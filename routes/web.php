@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CarrierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+
+
+// Register Routes
+Route::POST('/checkemail', [RegisterController::class, 'checkemail'])->name('checkemail');
+Route::get('/checkcompanyname/{id}', [RegisterController::class, 'checkcompanyname']);
+Route::get('/checkdotnumber/{id}', [RegisterController::class, 'checkdotnumber']);
+Route::POST('/carrierregister', [RegisterController::class, 'carrierregister']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [CarrierController::class, 'index']);
+
+
 
 Route::get('/', function () {
     return view('auth/login');
@@ -29,9 +44,7 @@ Route::get('/signup', function () {
     return view('auth/signup');
 });
 
-Route::get('/dashboard', function () {
-    return view('carrier/dashboard');
-});
+
 
 // Jobs
 Route::get('/jobs', function () {
@@ -115,6 +128,3 @@ Route::get('/change-password', function () {
 
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

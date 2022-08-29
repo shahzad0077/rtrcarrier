@@ -19,6 +19,8 @@
       <link href="{{ asset('carrier/assets/css/pages/login/login-4.css') }}" rel="stylesheet" />
       <link href="{{ asset('carrier/assets/css/pages/wizard/wizard-4.css') }}" rel="stylesheet" />
       <link href="{{ asset('carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
+      <input type="hidden" value="{{ url('') }}" id="app_url">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
 
   <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
@@ -26,6 +28,7 @@
           @yield('content')
       </div>
   </body>
+  
   <script src="{{ asset('carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="{{ asset('carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
@@ -98,5 +101,5 @@
         "font-family": "Poppins"
     };
     </script>
-
+    <script src="{{ asset('carrier/assets/js/custom.js') }}"></script>
   </html>
