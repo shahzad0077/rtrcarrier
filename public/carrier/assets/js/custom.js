@@ -138,3 +138,10 @@ function selectredirect(id)
 	$('.'+id).addClass('step-finish-card-active');
 	$("#"+id).prop("checked", true);
 }
+
+$("#updateprofileinput").change(function(){   
+    $('#updateprofileform').submit();
+});
+$("#updatecoverinput").change(function(){   
+    $('#updatecoverform').submit();
+});

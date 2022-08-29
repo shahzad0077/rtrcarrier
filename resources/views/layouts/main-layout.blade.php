@@ -61,7 +61,7 @@
 
   <script src="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
 
-
+ <script src="{{ asset('carrier/assets/js/custom.js') }}"></script>
   
   <script>
     $('.summernote').summernote({

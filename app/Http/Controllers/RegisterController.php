@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Helpers\Cmf;
+use App\Models\companies;
 use Illuminate\Support\Facades\Hash;
 use DB;
 class RegisterController extends Controller
@@ -27,7 +29,6 @@ class RegisterController extends Controller
     {
         $carrier = new User();
         $carrier->name = $request->name;
-        $carrier->company_name = $request->company_name;
         $carrier->email = $request->email;
         $carrier->password = Hash::make($request->password);
         $carrier->dot_number = $request->dot_number;
@@ -36,6 +37,12 @@ class RegisterController extends Controller
         $carrier->redirect = $request->redirect;
         $carrier->save();
 
+        $company = new companies();
+        $company->user_id = $carrier->id;
+        $company->email = $request->email;
+        $company->company_name = $request->company_name;
+        $company->company_link = Cmf::shorten_url($request->company_name);
+        $company->save();
         return redirect()->route('login');
     }
 }
