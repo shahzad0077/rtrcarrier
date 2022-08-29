@@ -57,6 +57,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script src="{{ asset('carrier/assets/js/pages/crud/datatables/advanced/column-rendering.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
 
   <script src="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
 
