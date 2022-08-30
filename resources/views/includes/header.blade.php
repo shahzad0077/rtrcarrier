@@ -179,12 +179,12 @@
                 <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
                     <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                         <div class="d-flex flex-column text-right pr-3">
-                            <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">Sean</span>
-                            <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">Director of Recrutor</span>
+                            <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">{{ Auth::user()->name }}</span>
+                            <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">{{ Auth::user()->company_name }} </span>
                         </div>
                         <!-- High Priority -->
                         <span class="symbol symbol-35 symbol-danger">
-                            <span class="symbol-label font-size-h5 font-weight-bold">S</span>
+                            <span class="symbol-label font-size-h5 font-weight-bold">{{ substr(Auth::user()->name, 0, 1); }}</span>
                         </span>
 
                         <!-- Medium -->
@@ -211,7 +211,7 @@
                         <!--end::Symbol-->
                         <!--begin::Text-->
                         <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
-                            Western Flyer Express <br>
+                            {{ Auth::user()->company_name }} <br>
                             <small>Verified Carrier</small>
                         </div>
                         <!--end::Text-->
@@ -282,7 +282,11 @@
                         <!--begin::Footer-->
                         <div class="navi-separator mt-3"></div>
                         <div class="navi-footer  px-8 py-5">
-                            <a href="{{url('/')}}" target="_blank" class="btn btn-light-primary font-weight-bold">Sign Out</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <a href="javascript:void(0)" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" target="_blank" class="btn btn-light-primary font-weight-bold">Sign Out</a>
                         </div>
                         <!--end::Footer-->
                     </div>

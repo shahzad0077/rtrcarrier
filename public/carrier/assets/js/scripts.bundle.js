@@ -4959,6 +4959,12 @@ var KTWizard = function(elementId, options) {
         goTo: function(number, eventHandle) {
             console.log('go to:' + number);
 
+            if(number == 1)
+            {
+                $("#check-email-button").show();
+                $("#check-password-button").hide();
+            }
+
             // Skip if this step is already shown
             if (number === the.currentStep || number > the.totalSteps || number < 0) {
                 return;

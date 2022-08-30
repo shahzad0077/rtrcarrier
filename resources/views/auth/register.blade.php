@@ -1,5 +1,5 @@
 @extends('layouts.layout-second')
-@section('title','Login')
+@section('title','Register')
 @section('content')
     <!--begin::Login-->
         <div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid wizard" id="kt_login">
@@ -10,7 +10,7 @@
                     <!--begin::Aside Top-->
                     <div class="d-flex flex-column-auto flex-column px-10">
                         <!--begin::Aside header-->
-                        <a href="#" class="login-logo pb-lg-4 pb-10 pt-2">
+                        <a href="{{ url('') }}" class="login-logo pb-lg-4 pb-10 pt-2">
                             <img src="https://i0.wp.com/classaclub.com/wp-content/uploads/2022/03/logo.png?fit=128%2C63&ssl=1" class="max-h-70px" alt="" />
                         </a>
                         <!--end::Aside header-->
@@ -99,7 +99,8 @@
                     <!--begin::Signin-->
                     <div class="login-form">
                         <!--begin::Form-->
-                        <form class="form px-10" novalidate="novalidate" id="kt_login_signup_form">
+                        <form method="POST" action="{{ url('carrierregister') }}" class="form px-10" novalidate="novalidate" id="kt_login_signup_form">
+                            @csrf
                             <!--begin: Wizard Step 1-->
                             <div class=" " data-wizard-type="step-content" data-wizard-state="current">
                                 <!--begin::Title-->
@@ -113,14 +114,23 @@
                                 <!--begin::Title-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
+                                    <label class="font-size-h6 font-weight-bolder text-dark">Full Name</label>
+                                    <input onkeyup="closealert()" required type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="name" name="name" />
+                                    <span id="name-error" class="invalid-feedback" role="alert"></span>
+                                </div>
+                                <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Company Name</label>
-                                    <input type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="company-name" />
+                                    <input onkeyup="checkcompanyname(this.value)" type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="company_name" name="company_name" />
+                                    <span id="company_name-error" class="invalid-feedback" role="alert"></span>
                                 </div>
                                 <!--end::Form Group-->
                                 <!--begin::Form Group-->
                                 <div class="form-group">
                                     <label class="font-size-h6 font-weight-bolder text-dark">Work Email address</label>
-                                    <input type="email" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="work-email" />
+                                    <input type="email" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="work_email" name="email" />
+                                    <span id="email-error" class="invalid-feedback" role="alert">
+                                        
+                                    </span>
                                 </div>
                                 <!--end::Form Group-->
                             </div>
@@ -141,15 +151,17 @@
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label class="font-size-h6 font-weight-bolder text-dark">Password</label>
-                                            <input type="password" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="password" />
+                                            <input type="password" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="password" name="password" />
+                                            <span id="password-error" class="invalid-feedback" role="alert"></span>
                                         </div>
                                         <!--end::Input-->
                                     </div>
+
                                     <div class="col-xl-6">
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label class="font-size-h6 font-weight-bolder text-dark">Confirm Password</label>
-                                            <input type="password" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="confirm-password" />
+                                            <input type="password" id="conferm-password" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="confirm-password" />
                                             <span class="form-text text-muted">Repeat your password</span>
                                         </div>
                                         <!--end::Input-->
@@ -162,7 +174,8 @@
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label class="font-size-h6 font-weight-bolder text-dark">Carrier DOT Number</label>
-                                            <input type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="carrier-dot-number" />
+                                            <input onkeyup="checkdotnumber(this.value)" type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="dot_number" name="dot_number" />
+                                            <span id="dot_number-error" class="invalid-feedback" role="alert"></span>
                                         </div>
                                         <!--end::Input-->
                                     </div>
@@ -170,7 +183,17 @@
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label class="font-size-h6 font-weight-bolder text-dark">How many trucks are in your fleet?</label>
-                                            <input type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" name="trucks-fleet" />
+                                            <input type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="trucks_in_fleet" name="trucks_in_fleet" />
+                                            <span id="trucks_in_fleet-error" class="invalid-feedback" role="alert"></span>
+                                        </div>
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <!--begin::Input-->
+                                        <div class="form-group">
+                                            <label class="font-size-h6 font-weight-bolder text-dark">How many drivers are you looking to hire within the next 90 days?</label>
+                                            <input type="text" class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" id="how_many_drivers_in_next" name="how_many_drivers_in_next" />
+                                            <span id="how_many_drivers_in_next-error" class="invalid-feedback" role="alert"></span>
                                         </div>
                                         <!--end::Input-->
                                     </div>
@@ -189,31 +212,24 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <div class="card step-finish-card">
+                                        <div onclick="selectredirect('free-job-post')" class="free-job-post card step-finish-card">
                                             <div class="card-body text-center">
-                                                <span>Finish setting up your carrier profile</span>
+                                                <span>Create your first free job post</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <div class="card step-finish-card">
+                                        <div onclick="selectredirect('dashboard')" class="dashboard card step-finish-card">
                                             <div class="card-body text-center">
-                                                <span>Create your first hiring map</span>
+                                                <span>take me to my dashboard</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <div class="card step-finish-card">
-                                            <div class="card-body text-center">
-                                                <span>advertse with us</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input style="display:none" type="radio" value="dashboard" id="dashboard" name="redirect">
+                                <input style="display:none" type="radio" value="jobpost" id="free-job-post" name="redirect">
                             </div>
                             <!--end: Wizard Step 5-->
                             <!--begin: Wizard Actions-->
@@ -232,7 +248,7 @@
                                     </button>
                                 </div>
                                 <div>
-                                    <a href="javascript:void(0)" data-toggle="modal" data-target="#subscription" type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-submit" type="submit">
+                                        <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-submit" type="submit">
                                         Submit
                                         <span class="svg-icon svg-icon-md ml-2">
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -242,8 +258,33 @@
                                                     <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
                                                 </g>
                                             </svg>
-                                            <!--end::Svg Icon--></span> </a>
-                                    <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
+                                            <!--end::Svg Icon--></span> 
+                                        </button>
+                                        <button id="check-password-button" type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" >
+                                        Next
+                                        <span class="svg-icon svg-icon-md ml-2">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) " x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon--></span> 
+                                        </button>
+                                        <button id="check-email-button" type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" >
+                                        Next
+                                        <span class="svg-icon svg-icon-md ml-2">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                    <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) " x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon--></span> 
+                                        </button>
+                                        <button style="display:none;" id="next-button" type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
                                         Next
                                         <span class="svg-icon svg-icon-md ml-2">
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CarrierController;
+use App\Http\Controllers\SiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +16,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
+Auth::routes();
+
+// Site Routes
+
+Route::get('/', [SiteController::class, 'index']);
+
+Route::get('/carrier/{id}', [SiteController::class, 'carrierprofile']);
+
+
+// Register Routes
+Route::POST('/checkemail', [RegisterController::class, 'checkemail'])->name('checkemail');
+Route::get('/checkcompanyname/{id}', [RegisterController::class, 'checkcompanyname']);
+Route::get('/checkdotnumber/{id}', [RegisterController::class, 'checkdotnumber']);
+Route::POST('/carrierregister', [RegisterController::class, 'carrierregister']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [CarrierController::class, 'index']);
+
+
+
+
+
+// carrier-profile
+Route::get('/carrier-profile', [CarrierController::class, 'carrierprofile']);
+Route::POST('/updatecarrierlogo', [CarrierController::class, 'updatecarrierlogo']);
+Route::POST('/changecoverphoto', [CarrierController::class, 'changecoverphoto']);
+Route::POST('/updatecarrierprofile', [CarrierController::class, 'updatecarrierprofile']);
+
+
+
+
+Route::get('/carrier-profile/reviews', function () {
+    return view('carrier/carrier-profile/reviews');
 });
+
+
 
 Route::get('/forgot-password', function () {
     return view('auth/forgot-password');
@@ -29,9 +64,7 @@ Route::get('/signup', function () {
     return view('auth/signup');
 });
 
-Route::get('/dashboard', function () {
-    return view('carrier/dashboard');
-});
+
 
 // Jobs
 Route::get('/jobs', function () {
@@ -77,13 +110,7 @@ Route::get('/education-center', function () {
     return view('carrier/education-center/index');
 });
 
-Route::get('/carrier-profile', function () {
-    return view('carrier/carrier-profile/index');
-});
 
-Route::get('/carrier-profile/reviews', function () {
-    return view('carrier/carrier-profile/reviews');
-});
 
 
 Route::get('/advertise', function () {
@@ -106,6 +133,7 @@ Route::get('/profile-settings', function () {
 Route::get('/change-password', function () {
     return view('carrier/profile-settings/change-password');
 });
+
 
 
 

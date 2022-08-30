@@ -97850,7 +97850,13 @@ body {
     color: #000000;
 }
 
+.step-finish-card-active{
+    background-color: #22AAE2;
 
+}
+#check-password-button{
+    display: none;
+}
 .step-finish-card:hover {
     background-color: #22AAE2;
     transition: .6s all;
