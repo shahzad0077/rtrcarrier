@@ -118,3 +118,32 @@ Route::get('/change-password', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+// Admin Routes (Shahzad)
+
+Route::get('/admin/login', function () {
+    return view('admin/auth/login');
+});
+
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard/index');
+});
+
+Route::get('/admin/carriers', function () {
+    return view('admin/carriers/index');
+});
+
+Route::get('/admin/carrier/requests', function () {
+    return view('admin/carriers/requests');
+});
+
+Route::get('/admin/jobs', function () {
+    return view('admin/jobs/index');
+});
+
+Route::get('/admin/jobs/pending', function () {
+    return view('admin/jobs/pending');
+});

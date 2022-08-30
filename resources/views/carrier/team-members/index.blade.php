@@ -33,46 +33,57 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <!--begin: Datatable-->
-                    <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                    <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
                         <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Phone Number</th>
-                                <th>company title</th>
-                                <th>Last Activity</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>hboule0@hp.com</td>
-                                <td>Hayes Boule</td>
-                                <td>example@gmail.com</td>
-                                <td>5</td>
-                                <td nowrap></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>hbresnen1@theguardian.com</td>
-                                <td>Humbert Bresnen</td>
-                                <td>example@gmail.com</td>
-                                <td>2</td>
-                                <td nowrap></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>jlabro2@kickstarter.com</td>
-                                <td>Jareb Labro</td>
-                                <td>example@gmail.com</td>
-                                <td>6</td>
-                                <td nowrap></td>
-                            </tr>
-                        </tbody>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Phone Number</th>
+                                    <th>User role</th>
+                                    <th>Last Activity</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="symbol symbol-50 symbol-light-dark">
+                                                <div class="symbol-label font-size-h5">H</div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">Humbert Bresnen</span>
+                                                <a href="#" class="text-muted text-hover-primary">example@gmail.com</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td>+923407712693</td>
+                                    <td>Manager</td>
+                                    <td>12 Jun 2022 <br> <small>12:00Pm</small></td>
+                                    <td>
+                                        <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown dropdown-inline">
+                                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
+                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                                <ul class="nav nav-hoverable flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Disable</span></a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="#">Activate</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
+                                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
+                                    </td>
+                                </tr>
+                            </tbody>
                     </table>
-                    <!--end: Datatable-->
                 </div>
             </div>
             <!--end::Card-->

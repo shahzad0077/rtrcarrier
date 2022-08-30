@@ -20,6 +20,7 @@
   <link href="{{ asset('carrier/assets/css/themes/layout/aside/dark.css?v=7.0.6') }}" rel="stylesheet" />
   <link href="{{ asset('carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">  
   <link href="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" />
   
 
@@ -47,7 +48,8 @@
     </body>
 
   <script src="{{ asset('carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
   <script src="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="{{ asset('carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   @yield('scripts')
@@ -171,5 +173,11 @@
         });
 
     </script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
+        </script>
    
 </html>
