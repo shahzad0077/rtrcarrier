@@ -102,4 +102,5 @@
     };
     </script>
     <script src="{{ asset('carrier/assets/js/custom.js') }}"></script>
+    @yield('script')
   </html>

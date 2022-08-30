@@ -24,6 +24,9 @@
                                     <p>New Here ? <a href="{{ route('register') }}">Create Account</a></p>
                                 </div>
                             </div>
+                            @if(session()->has('warning'))
+                                <div style="text-align: center;color: red;" id="result">{{ session()->get('warning') }}</div>
+                             @endif
                             <form class="form mt-4" id="kt_login_signin_form" method="POST" action="{{ route('login') }}">
                                  @csrf
                                 <div class="form-group mb-5">

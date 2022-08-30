@@ -8,7 +8,7 @@ class SiteController extends Controller
 {
     public function index()
     {
-        return view('frontend.homepage.index');
+        return view('auth.login');
     }
     public function carrierprofile($id)
     {

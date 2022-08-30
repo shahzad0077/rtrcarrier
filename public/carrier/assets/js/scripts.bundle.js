@@ -4965,6 +4965,12 @@ var KTWizard = function(elementId, options) {
                 $("#check-password-button").hide();
             }
 
+            if(number == 2)
+            {
+                $("#check-password-button").show();
+                $("#check-email-button").hide();
+            }
+
             // Skip if this step is already shown
             if (number === the.currentStep || number > the.totalSteps || number < 0) {
                 return;

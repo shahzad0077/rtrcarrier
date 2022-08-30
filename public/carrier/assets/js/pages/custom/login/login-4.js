@@ -126,10 +126,10 @@ var KTLogin = function() {
 						email: {
 							validators: {
 								notEmpty: {
-									message: 'Email is required'
+									message: ''
 								},
 								emailAddress: {
-									message: 'The value is not a valid email address'
+									message: ''
 								}
 							}
 						}
@@ -210,10 +210,10 @@ var KTLogin = function() {
 					email: {
 						validators: {
 							notEmpty: {
-								message: 'Email is required'
+								message: ''
 							},
 							emailAddress: {
-								message: 'The value is not a valid email address'
+								message: ''
 							}
 						}
 					}

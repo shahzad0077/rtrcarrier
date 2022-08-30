@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('content')
 <section >
-<div class="container main-bg-section" style="background-image: url('{{ asset('images') }}/{{ $data->banner }}');">
+<div class="container main-bg-section" @if($data->banner) style="background:url('{{ url('') }}/images/{{ $data->banner  }}')" @else style="background:url('https://thumbs.dreamstime.com/b/senior-man-steep-rock-climb-colorado-male-climber-climbing-turtle-rocks-usa-sized-to-fit-popular-social-media-cover-image-74256916.jpg');" @endif>
     <div class="row">
         <div class="col-md-12 heart-outer">
            <div class="heart-div">
@@ -12,7 +12,13 @@
         <div class="main-logo-content">
             <div class="logo-div">
                 <div class="logo-inner-main">
-                    <div class="inner-logo-div"><img style="width: 100%;" src="{{ asset('images') }}/{{ $data->logo }}"></div>
+                    <div class="inner-logo-div">
+                        @if($data->logo)
+                        <img style="width: 100%;" src="{{ asset('images') }}/{{ $data->logo }}">
+                        @else
+                        <img style="width:100%;" src="https://cdn3.vectorstock.com/i/thumb-large/35/52/placeholder-rgb-color-icon-vector-32173552.jpg">
+                        @endif
+                    </div>
                     <div class="inner-text-div">
                         <h2>{{ $data->company_name }}</h2>
                         <p>{{ $data->address }}</p>
@@ -438,33 +444,45 @@
                                             <!--begin::Body-->
                                             <div class="card-body">
                                                 <div class="row">
+                                                <div class="col-md-4 basic-content mb-4">
+                                                     <h5>Company Dot Number</h5>
+                                                     <p>{{ DB::table('users')->where('id' , $data->user_id)->get()->first()->dot_number }}</p>
+                                                 </div>
+                                                 <div class="col-md-4 basic-content mb-4">
+                                                     <h5>Trucks in fleet</h5>
+                                                     <p>{{ DB::table('users')->where('id' , $data->user_id)->get()->first()->trucks_in_fleet }}</p>
+                                                 </div>
+                                                 <div class="col-md-4 basic-content mb-4">
+                                                     <h5>Hire Drivers within the next 90 days</h5>
+                                                     <p>{{ DB::table('users')->where('id' , $data->user_id)->get()->first()->how_many_drivers_in_next }}</p>
+                                                 </div>
                                                  <div class="col-md-4 basic-content mb-4">
                                                      <h5>Company Email</h5>
-                                                     <p>autotransport@gmail.com</p>
+                                                     <p>{{ $data->email }}</p>
                                                  </div>
                                                  <div class="col-md-4 basic-content mb-4">
                                                      <h5>Contact Number</h5>
-                                                     <p>Sea Freight</p>
+                                                     <p>{{ $data->contact_number }}</p>
                                                  </div>
                                                  <div class="col-md-4 basic-content mb-4">
                                                      <h5>Website Link</h5>
-                                                     <span>https://www.google.com</span>
+                                                     <span>{{ $data->website_link }}</span>
                                                  </div>
                                                  <div class="col-md-4 basic-content mb-4">
                                                      <h5>Google Profile</h5>
-                                                     <span>https://www.google.com</span>
+                                                     <span>{{ $data->google_link }}</span>
                                                  </div>
                                                  <div class="col-md-4 basic-content mb-4">
                                                      <h5>Facebook Profile</h5>
-                                                     <span>https://www.google.com</span>
+                                                     <span>{{ $data->facebook_link }}</span>
                                                  </div>
                                                  <div class="col-md-12 basic-content mb-4">
                                                      <h5>Company address</h5>
-                                                     <p>Street1, Street2, Great Area, Califorina, United States(US) 92090EI</p>
+                                                     <p>{{ $data->address }}</p>
                                                  </div>
                                                  <div class="col-md-12 basic-content mb-4">
                                                      <h5>About Us</h5>
-                                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                     <p>{{ $data->aboutus }}</p>
                                                  </div>
                                                 </div>  
                                             </div>
