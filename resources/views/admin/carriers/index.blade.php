@@ -95,103 +95,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($data as $r)
                                         <tr>
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="symbol symbol-50 symbol-light-dark">
-                                                        <div class="symbol-label font-size-h5">H</div>
+                                                        <div class="symbol-label font-size-h5">{{ substr($r->user_name, 0, 1); }}</div>
                                                     </div>
                                                     <div class="ml-3">
-                                                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">Humbert Bresnen</span>
-                                                        <a href="#" class="text-muted text-hover-primary">example@gmail.com</a>
+                                                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">{{ $r->user_name }}</span>
+                                                        <a href="#" class="text-muted text-hover-primary">{{ $r->user_email }}</a>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>DOT-12445</td>
-                                            <td>+923407712693</td>
-                                            <td>Hayes Boule</td>
+                                            <td>DOT-{{ $r->dot_number }}</td>
+                                            <td>{{ $r->contact_number }}</td>
+                                            <td>{{ $r->company_name }}</td>
                                             
-                                            <td>Free</td>
+                                            <td>Static</td>
                                             <td>
+                                                @if($r->approved_status == 1)
                                                 <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
-                                            </td>
-                                            <td nowrap="">
-                                                <div class="dropdown dropdown-inline">
-                                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                        <ul class="nav nav-hoverable flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Disable</span></a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Activate</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                                <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50 symbol-light-dark">
-                                                        <div class="symbol-label font-size-h5">H</div>
-                                                    </div>
-                                                    <div class="ml-3">
-                                                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">Humbert Bresnen</span>
-                                                        <a href="#" class="text-muted text-hover-primary">example@gmail.com</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>DOT-12445</td>
-                                            <td>+923407712693</td>
-                                            <td>Hayes Boule</td>
-                                            
-                                            <td>Free</td>
-                                            <td>
+                                                @endif
+                                                @if($r->approved_status == '')
                                                 <span class="label label-lg font-weight-bold label-light-warning label-inline">Pending Invitation</span>
-                                            </td>
-                                            <td nowrap="">
-                                                <div class="dropdown dropdown-inline">
-                                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                        <ul class="nav nav-hoverable flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Disable</span></a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Activate</span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                                <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="symbol symbol-50 flex-shrink-0">
-                                                        <img src="{{asset('admin/assets/media/users/100_13.jpg')}}" alt="photo">
-                                                    </div>
-                                                    <div class="ml-3">
-                                                        <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">Humbert Bresnen</span>
-                                                        <a href="#" class="text-muted text-hover-primary">example@gmail.com</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>DOT-12445</td>
-                                            <td>+923407712693</td>
-                                            <td>Hayes Boule</td>
-                                            
-                                            <td>Free</td>
-                                            <td>
+                                                @endif
+                                                @if($r->approved_status == 2)
                                                 <span class="label label-lg font-weight-bold label-light-danger label-inline">Disabled</span>
+                                                @endif
                                             </td>
                                             <td nowrap="">
                                                 <div class="dropdown dropdown-inline">
@@ -199,10 +130,10 @@
                                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                         <ul class="nav nav-hoverable flex-column">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="#">Disable</span></a>
+                                                                <a class="nav-link" href="#">Disable</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="#">Activate</span></a>
+                                                                <a class="nav-link" href="#">Activate</a>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -211,6 +142,7 @@
                                                 <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <!--end: Datatable-->
@@ -241,6 +173,8 @@
                 </button>
             </div>
             <div class="modal-body">
+                <form id="addnewcarrier" method="POST" action="{{ route('admin.addnewcarrier') }}">
+                    @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -251,40 +185,41 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Company Name</label>
-                            <input type="text" class="form-control input-lg" name="">
+                            <input onkeyup="checkcompanyname(this.value)" type="text" class="form-control input-lg" name="company_name">
+                            <span id="company_name-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="lable-control">Company Name</label>
-                            <input type="text" class="form-control input-lg" name="">
+                            <label class="lable-control">Company Email</label>
+                            <input type="text" class="form-control input-lg" name="company_email">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Carrier DOT Number</label>
-                            <input type="email" class="form-control input-lg" name="">
+                            <input onkeyup="checkdotnumber(this.value)" type="email" class="form-control input-lg" name="dot_number">
+                            <span id="dot_number-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">How many trucks are in fleet?</label>
-                            <input type="number" class="form-control input-lg" name="">
+                            <input type="number" class="form-control input-lg" name="trucks_in_fleet">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Work Email address</label>
-                            <input type="text" class="form-control input-lg" name="email">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Phone number</label>
-                            <input type="text" class="form-control input-lg" name="phone-number">
+                            <input type="text" class="form-control input-lg" name="phone_number">
                         </div>
                     </div>
-
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">How many drivers looking to hire within the next 90 days?</label>
+                            <input type="text" class="form-control input-lg" name="how_many_drivers_in_next">
+                        </div>
+                    </div>
                     <div class="col-md-12 mt-3 mb-3">
                         <h4 class="text-primary">Account Credentials</h4>
                     </div>                    
@@ -292,7 +227,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Email address</label>
-                            <input type="email" class="form-control input-lg" name="">
+                            <input onkeyup="checkemail(this.value)" type="email" class="form-control input-lg" name="email">
+                            <span id="email-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
                     
@@ -305,21 +241,21 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Confirm password</label>
-                            <input type="text" class="form-control input-lg" name="password">
+                            <input type="text" class="form-control input-lg" name="conferm_password">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <label class="checkbox checkbox-lg">
-                            <input type="checkbox" checked="checked" name="Checkboxes3_1"/>
+                            <input type="checkbox" checked="checked" name="password_instructions"/>
                             <span></span>
                             &nbsp;&nbsp; Send Password Instructions
                         </label>
                     </div>
                 </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button id="submitbutton" onclick="formsubmit('addnewcarrier')" type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>

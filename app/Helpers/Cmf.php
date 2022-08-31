@@ -32,4 +32,8 @@ class Cmf
         }
         return $String_of_five_words;
     }
+    public static function date_format($data)
+    {
+        return date('d M Y', strtotime($data));
+    }
 }

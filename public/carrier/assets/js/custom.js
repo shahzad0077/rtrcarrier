@@ -105,3 +105,7 @@ $("#updateprofileinput").change(function(){
 $("#updatecoverinput").change(function(){   
     $('#updatecoverform').submit();
 });
+
+$("#profile_avatar").change(function(){   
+    $('#profileavatarform').submit();
+});

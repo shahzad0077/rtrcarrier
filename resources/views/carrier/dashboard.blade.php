@@ -438,7 +438,12 @@
                             <!--begin::User-->
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
-                                    <div class="symbol-label" style="background-image: url('{{asset('carrier/assets/media/users/300_13.jpg')}}');"></div>
+                                    @if(Auth::user()->profile_picture)
+                                    <div class="symbol-label" style="background-image: url('{{ asset('') }}images/{{ Auth::user()->profile_picture }}');"></div>
+                                    @else
+                                     <div class="symbol-label" style="background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg');"></div>
+                                    @endif
+                                    
                                     <i class="symbol-badge bg-success"></i>
                                 </div>
                                 <div>
@@ -446,10 +451,10 @@
                                         Good Morning
                                     </a>
                                     <div class="">
-                                        <b>James Jones</b>
+                                        <b>{{Auth::user()->name}}</b>
                                     </div>
                                     <div class="text-muted">
-                                        <span class="badge badge-info">Recruiter</span>
+                                        <span class="badge badge-info">Carrier</span>
                                     </div>
                                 </div>
                             </div>

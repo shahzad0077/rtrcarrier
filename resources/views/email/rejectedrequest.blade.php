@@ -1,9 +1,9 @@
-@include('frontend.email.header')
+@include('email.header')
 <tr>
     <td align="center" style="font-size:0px;padding:10px 25px;padding-bottom:40px;word-break:break-word;">
 
         <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:28px;font-weight:bold;line-height:1;text-align:center;color:white;">
-            New User Request Rejected
+            Carrier Request Rejected
         </div>
 
     </td>
@@ -18,4 +18,4 @@
 
     </td>
 </tr>
-@include('frontend.email.footer')                       
+@include('email.footer')                       

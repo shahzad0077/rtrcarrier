@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ use App\Http\Controllers\SiteController;
 */
 
 Auth::routes();
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Site Routes
 
 Route::get('/', [SiteController::class, 'index']);
@@ -42,6 +43,10 @@ Route::get('/carrier-profile', [CarrierController::class, 'carrierprofile']);
 Route::POST('/updatecarrierlogo', [CarrierController::class, 'updatecarrierlogo']);
 Route::POST('/changecoverphoto', [CarrierController::class, 'changecoverphoto']);
 Route::POST('/updatecarrierprofile', [CarrierController::class, 'updatecarrierprofile']);
+Route::get('/profile-settings', [CarrierController::class, 'profilesettings']);
+Route::POST('/updateprofilepicture', [CarrierController::class, 'updateprofilepicture']);
+Route::POST('/updateuserprofile', [CarrierController::class, 'updateuserprofile']);
+Route::POST('/securetycredentials', [CarrierController::class, 'securetycredentials']);
 
 
 
@@ -126,9 +131,7 @@ Route::get('/billing', function () {
 });
 
 
-Route::get('/profile-settings', function () {
-    return view('carrier/profile-settings/index');
-});
+
 
 Route::get('/change-password', function () {
     return view('carrier/profile-settings/change-password');
@@ -143,35 +146,23 @@ Route::get('/change-password', function () {
 
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-
-// Admin Routes (Shahzad)
-
-Route::get('/admin/login', function () {
-    return view('admin/auth/login');
+Route::name('admin.')->prefix('admin')->group(function(){
+    Route::get('/login',[LoginController::class, 'login'])->name('login');
+    Route::post('/login-process',[LoginController::class, 'login_process'])->name('login_process');
+    Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/dashboard/index');
-});
 
-Route::get('/admin/carriers', function () {
-    return view('admin/carriers/index');
-});
+Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('admin')->group(function(){
+    Route::get('/dashboard','AdminController@dashboard')->name('dashboard');
+    Route::get('/carriers','AdminController@allcarriers')->name('allcarriers');
+    Route::post('/carriers','AdminController@addnewcarrier')->name('addnewcarrier');
 
-Route::get('/admin/carrier/requests', function () {
-    return view('admin/carriers/requests');
-});
 
-Route::get('/admin/jobs', function () {
-    return view('admin/jobs/index');
-});
 
-Route::get('/admin/jobs/pending', function () {
-    return view('admin/jobs/pending');
+    Route::name('carrier.')->prefix('carrier')->group(function(){
+        Route::get('/requests','AdminController@carrierrequests');
+        Route::get('/approve/{id}','AdminController@approvecarrier');
+        Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
+    });
 });

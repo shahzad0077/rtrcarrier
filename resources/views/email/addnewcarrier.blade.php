@@ -15,7 +15,7 @@
 
         <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:22px;text-align:left;color:white;">
             Hello {{ $name }}!<br></br>
-            Thank you for be a Part of {{ env('APP_NAME') }}. We're really happy to have you! Your User Request has beed <b>Approved</b> Successfully. Enjoy {{ env('APP_NAME') }}.<br> Click the link below to login to your account:
+            {{ env('APP_NAME') }} Registerd You as a Carrier. We're really happy to have you! These are your Credentials<br> Email : {{ $email }}<br>Password : {{ $password }}
         </div>
 
     </td>
@@ -28,7 +28,7 @@
             <tr>
                 <td align="center" bgcolor="#2F67F6" role="presentation" style="border:none;border-radius:3px;color:#ffffff;cursor:auto;padding:15px 25px;" valign="middle">
 
-                    <a href="{{ url('') }}">
+                    <a href="{{ url('login') }}">
 
                     <p style="background:#2F67F6;color:#ffffff;font-family:'Helvetica Neue',Arial,sans-serif;font-size:15px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;">
                         Login to Your Account
@@ -40,4 +40,4 @@
 
     </td>
 </tr>
-@include('email.footer')
+@include('email.footer')                       

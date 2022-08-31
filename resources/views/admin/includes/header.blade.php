@@ -179,7 +179,7 @@
                 <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
                     <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                         <div class="d-flex flex-column text-right pr-3">
-                            <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">Sean</span>
+                            <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">{{ Auth::user()->name }}</span>
                             <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">Director of Recrutor</span>
                         </div>
                         <!-- High Priority -->
@@ -282,7 +282,11 @@
                         <!--begin::Footer-->
                         <div class="navi-separator mt-3"></div>
                         <div class="navi-footer  px-8 py-5">
-                            <a href="{{url('/')}}" target="_blank" class="btn btn-light-primary font-weight-bold">Sign Out</a>
+                            <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" role="button"  class="btn btn-light-primary font-weight-bold">Sign Out</a>
+                                                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                         </div>
                         <!--end::Footer-->
                     </div>

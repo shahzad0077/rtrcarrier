@@ -180,7 +180,9 @@
                     <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                         <div class="d-flex flex-column text-right pr-3">
                             <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">{{ Auth::user()->name }}</span>
-                            <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">{{ Auth::user()->company_name }} </span>
+                            <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">
+                            {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }} 
+                            </span>
                         </div>
                         <!-- High Priority -->
                         <span class="symbol symbol-35 symbol-danger">
@@ -206,12 +208,16 @@
                     <div class="d-flex align-items-center p-8 rounded-top">
                         <!--begin::Symbol-->
                         <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-                            <img src="{{asset('carrier/assets/media/users/300_21.jpg')}}" alt="" />
+                            @if(Auth::user()->profile_picture)
+                            <img src="{{ asset('images') }}/{{ Auth::user()->profile_picture }}" alt="" />
+                            @else
+                            <img src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg" alt="" />
+                            @endif
                         </div>
                         <!--end::Symbol-->
                         <!--begin::Text-->
                         <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
-                            {{ Auth::user()->company_name }} <br>
+                            {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }}  <br>
                             <small>Verified Carrier</small>
                         </div>
                         <!--end::Text-->

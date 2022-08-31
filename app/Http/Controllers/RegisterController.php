@@ -31,11 +31,13 @@ class RegisterController extends Controller
         $carrier = new User();
         $carrier->name = $request->name;
         $carrier->email = $request->email;
+        $carrier->type = 'carrier';
         $carrier->password = Hash::make($request->password);
         $carrier->dot_number = $request->dot_number;
         $carrier->trucks_in_fleet = $request->trucks_in_fleet;
         $carrier->how_many_drivers_in_next = $request->how_many_drivers_in_next;
         $carrier->redirect = $request->redirect;
+        $carrier->approved_status = 0;
         $carrier->save();
 
         $company = new companies();

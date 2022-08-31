@@ -22,7 +22,8 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <link href="{{ asset('admin/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">  
-
+  <input type="hidden" value="{{ url('') }}" id="app_url">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="{{ asset('admin/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
 
   
@@ -144,6 +145,7 @@
         <!--begin::Page Scripts(used by this page)-->
         <script src="{{asset('admin/assets/js/pages/widgets.js?v=7.0.6')}}"></script>
         <script src="{{asset('admin/assets/js/pages/crud/ktdatatable/base/data-local.js?v=7.0.6')}}"></script>
+        <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
         <!--end::Page Scripts-->
 
         <script type="text/javascript">

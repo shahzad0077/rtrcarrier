@@ -50,16 +50,27 @@
                             <h3 class="font-weight-normal">Admin Login</h3>
                             <p class="opacity-40">Enter your details to login to your account</p>
                         </div>
-                        <div class="form-group">
-                                <input style="min-height: 58px" class="form-control text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="text" placeholder="Email" name="username" autocomplete="off" />
+                        @if(Session::get('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                        @endif
+
+                        <form class="user"  action="{{route('admin.login_process')}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <input style="min-height: 58px" class="form-control @error('email') is-invalid @enderror text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="text" placeholder="Email" name="email" autocomplete="off" />
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input style="min-height: 58px" class="form-control text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="password" placeholder="Password" name="password" />
+                                <input style="min-height: 58px" class="form-control  text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="password" placeholder="Password" name="password" />
                             </div>
                             <div class="form-group d-flex flex-wrap justify-content-between align-items-center px-8 opacity-60">
                                 <div class="checkbox-inline">
                                     <label class="checkbox checkbox-outline checkbox-white text-white m-0">
-                                        <input type="checkbox" name="remember" />
+                                        <input type="checkbox" id="remember" name="remember"  {{ old('remember') ? 'checked' : '' }}/>
                                         <span></span>
                                         Remember me
                                     </label>
@@ -67,28 +78,11 @@
                                 <a href="javascript:;" id="kt_login_forgot" class="text-white font-weight-bold">Forget Password ?</a>
                             </div>
                             <div class="form-group text-center mt-10">
-                                <a href="{{url('admin/dashboard')}}" id="kt_login_signin_submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3">Sign In</a>
-                            </div>
-                    </div>
-                    <!--end::Login Sign in form-->
-                   
-                    <!--begin::Login forgot password form-->
-                    <div class="login-forgot">
-                        <div class="mb-20">
-                            <h3 class="font-weight-normal">Forgotten Password ?</h3>
-                            <p class="opacity-40">Enter your email to reset your password</p>
-                        </div>
-                        <form class="form" id="kt_login_forgot_form">
-                            <div class="form-group mb-10">
-                                <input style="min-height: 58px" class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="text" placeholder="Email" name="email" autocomplete="off" />
-                            </div>
-                            <div class="form-group">
-                                <button id="kt_login_forgot_submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3 m-2">Request</button>
-                                <button id="kt_login_forgot_cancel" class="btn btn-pill btn-outline-white opacity-70 px-15 py-3 m-2">Cancel</button>
+
+                                <button type="submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3">Sign In</button>
                             </div>
                         </form>
                     </div>
-                    <!--end::Login forgot password form-->
                 </div>
             </div>
         </div>
