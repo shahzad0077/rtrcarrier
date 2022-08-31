@@ -2,26 +2,25 @@ function geturl()
 {
 	return $('#app_url').val();
 }
-$("#check-email-button").click(function(){
-	if($('#name').val() == '')
-	{
-		$('#name-error').show();
-		$('#name-error').html('Full Name is Required');
-	}else{
-		$('#name-error').hide();
-		if($('#company_name').val() == '')
-		{
-			$('#company_name-error').show();
-			$('#company_name-error').html('Company Name is Required');
-		}else{
-			$('#company_name-error').hide();
-			checkemail();
-		}
-	}
-});
+
 function closealert()
 {
 	$('#name-error').hide();
+}
+
+function coppytoclipboard() {
+  /* Get the text field */
+  var copyText = document.getElementById("kt_clipboard_1");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText(copyText.value);
+  
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
 }
 
 function checkcompanyname(id)
@@ -64,45 +63,6 @@ function checkdotnumber(id)
     })
 }
 
-$("#check-password-button").click(function(){
-  	var password = $('#password').val();
-	var confermpassword = $('#conferm-password').val();
-	if(password == confermpassword)
-	{
-		$('#password-error').hide();
-		var dot_number = $('#dot_number').val();
-		var trucks_in_fleet = $('#trucks_in_fleet').val();
-		var how_many_drivers_in_next = $('#how_many_drivers_in_next').val();
-		if(dot_number)
-		{
-			if(trucks_in_fleet)
-			{
-				if(how_many_drivers_in_next)
-				{
-					$("#check-email-button").hide();
-	            	$('#check-password-button').hide();
-	            	$('#next-button').click();
-				}else{
-					$('#how_many_drivers_in_next-error').show();
-					$('#how_many_drivers_in_next-error').html('This is Required')
-				}
-			}else{
-				$('#trucks_in_fleet-error').show();
-				$('#trucks_in_fleet-error').html('This is Required')
-			}
-		}else
-		{
-			$('#dot_number-error').show();
-			$('#dot_number-error').html('Carrier DOT Number id Required')
-		}
-	}else
-	{
-		$('#password-error').show();
-		$('#password-error').html('Please Make Sure your Passwords Match')
-	}
-});
-
-
 function checkemail()
 {
 	var email = $('#work_email').val();
@@ -120,15 +80,15 @@ function checkemail()
         contentType:false,
         processData:false,
         success:function(res){
-            if(res == 1)
-            {
-            	$('#work_email').addClass('is-invalid');
-            	$('#email-error').html('<strong>This Email is already in out Records</strong>')
-            }else{
-            	$("#check-email-button").hide();
-            	$('#check-password-button').show();
-            	$('#next-button').click();
-            }
+           	if(res == 1)
+           	{
+           		$('#check-email-button').attr('disabled' , true);
+           		$('#email-error').html('This Email is already in our Records');
+           	}else{
+           		$('#check-email-button').attr('disabled' , false);
+           		$('#email-error').html('');
+           	}
+            
         }
     }) 
 }

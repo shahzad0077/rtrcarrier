@@ -44,6 +44,8 @@ class CarrierController extends Controller
         $company->address = $request->address;
         $company->website_link = $request->website_link;
         $company->aboutus = $request->aboutus;
+        $company->google_link = $request->google_link;
+        $company->facebook_link = $request->facebook_link;
         $company->save();
         return redirect()->back()->with('message', 'Carrier Profile Updated Successfully');
     }
