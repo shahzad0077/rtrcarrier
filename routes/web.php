@@ -172,6 +172,29 @@ Route::get('/admin/jobs', function () {
     return view('admin/jobs/index');
 });
 
+Route::get('/admin/job/add', function () {
+    return view('admin/jobs/add-new');
+});
+
 Route::get('/admin/jobs/pending', function () {
     return view('admin/jobs/pending');
+});
+
+Route::get('/admin/staff', function () {
+    return view('admin/staff/index');
+});
+Route::get('/admin/staff/permissions', function () {
+    return view('admin/staff/permissions');
+});
+
+Route::get('/admin/job-attributes/basic-details', function () {
+    return view('admin/job-attributes/basic-details');
+});
+
+Route::get('/admin/job-attributes/pay-options', function () {
+    return view('admin/job-attributes/pay-options');
+});
+
+Route::get('/admin/job-attributes/benefits', function () {
+    return view('admin/job-attributes/benefits');
 });
