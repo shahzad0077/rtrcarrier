@@ -1747,6 +1747,7 @@ pre {
   .table th,
   .table td {
     padding: 0.75rem;
+    font-size: 14px;
     vertical-align: top;
     border-top: 1px solid #EBEDF3; }
   .table thead th {
@@ -61876,4 +61877,27 @@ body {
   overflow: hidden;
   max-height: 3.6em;
   line-height: 1.8em;
+}
+
+
+.flex-equal {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-shrink: 0;
+}
+
+.ms-5 {
+    margin-left: 1.25rem!important;
+}
+
+.mh-lg-275px {
+    max-height: 275px!important;
+}
+
+.mb-lg-n12 {
+    margin-bottom: -3rem!important;
+}
+
+.mw-100 {
+    max-width: 100%!important;
 }
