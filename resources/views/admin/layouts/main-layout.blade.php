@@ -144,6 +144,7 @@
 
         <!--begin::Page Scripts(used by this page)-->
         <script src="{{asset('admin/assets/js/pages/widgets.js?v=7.0.6')}}"></script>
+        <script src="{{ asset('carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
         <script src="{{asset('admin/assets/js/pages/crud/ktdatatable/base/data-local.js?v=7.0.6')}}"></script>
         <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
         <!--end::Page Scripts-->
