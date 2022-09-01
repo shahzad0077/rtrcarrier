@@ -50,6 +50,9 @@ Route::POST('/securetycredentials', [CarrierController::class, 'securetycredenti
 
 
 
+Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
+
+
 
 Route::get('/carrier-profile/reviews', function () {
     return view('carrier/carrier-profile/reviews');
@@ -90,9 +93,6 @@ Route::get('/hirig-maps', function () {
     return view('carrier/hiring-maps/index');
 });
 
-Route::get('/map/add-new', function () {
-    return view('carrier/hiring-maps/add-new');
-});
 
 // Staff
 Route::get('/members', function () {

@@ -102,4 +102,8 @@ class CarrierController extends Controller
             return redirect()->back();
         }
     }
+    public function addnewmap()
+    {
+        return view('carrier/hiring-maps/add-new');
+    }
 }
