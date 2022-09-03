@@ -23,7 +23,8 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">  
   <link href="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" />
   
-
+  <input type="hidden" value="{{ url('') }}" id="app_url">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="{{ asset('carrier/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
 
   

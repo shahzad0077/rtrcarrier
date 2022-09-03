@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StaffPermissionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,19 @@ Route::get('/profile-settings', [CarrierController::class, 'profilesettings']);
 Route::POST('/updateprofilepicture', [CarrierController::class, 'updateprofilepicture']);
 Route::POST('/updateuserprofile', [CarrierController::class, 'updateuserprofile']);
 Route::POST('/securetycredentials', [CarrierController::class, 'securetycredentials']);
+
+
+
+
+// Staff Permissions
+Route::get('/staff-permissions', [StaffPermissionController::class, 'allpermissions']);
+Route::get('/edit-staff-permission/{id}', [StaffPermissionController::class, 'editstaffpermission']);
+Route::get('/add-staff-permission', [StaffPermissionController::class, 'addstaffpermission']);
+Route::POST('/addnewstaffpermission', [StaffPermissionController::class, 'addnewstaffpermission']);
+Route::POST('/updatestaffpermission', [StaffPermissionController::class, 'updatestaffpermission']);
+Route::get('/members', [StaffPermissionController::class, 'allmembers']);
+Route::POST('/addnewcarrierstaff', [StaffPermissionController::class, 'addnewcarrierstaff']);
+
 
 
 
@@ -95,13 +109,8 @@ Route::get('/hirig-maps', function () {
 
 
 // Staff
-Route::get('/members', function () {
-    return view('carrier/team-members/index');
-});
 
-Route::get('/staff-permissions', function () {
-    return view('carrier/team-members/staff-permissions');
-});
+
 
 Route::get('/company-info', function () {
     return view('carrier/company-info/index');

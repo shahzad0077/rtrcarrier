@@ -181,7 +181,11 @@
                         <div class="d-flex flex-column text-right pr-3">
                             <span class="text-muted font-weight-bold font-size-base d-none d-md-inline">{{ Auth::user()->name }}</span>
                             <span class="text-dark-75 font-weight-bolder font-size-base d-none d-md-inline">
-                            {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }} 
+                                @if(Auth::user()->type == 'carrier_sub_account')
+
+                                @elseif(Auth::user()->type == 'carrier')
+                                    {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }} 
+                                @endif
                             </span>
                         </div>
                         <!-- High Priority -->
@@ -217,7 +221,12 @@
                         <!--end::Symbol-->
                         <!--begin::Text-->
                         <div class="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
-                            {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }}  <br>
+                            @if(Auth::user()->type == 'carrier_sub_account')
+                                    
+                                @elseif(Auth::user()->type == 'carrier')
+                                    {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }} 
+                                @endif
+                             <br>
                             <small>Verified Carrier</small>
                         </div>
                         <!--end::Text-->

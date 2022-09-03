@@ -1,4 +1,4 @@
-<!--begin::Aside-->
+begin::Aside-->
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
@@ -56,16 +56,34 @@
                                 <span class="menu-link"><span class="menu-text">Manage Jobs</span></span>
                             </li>
                             <!-- Child -->
+                            @if(Cmf::getcarrierrole(1) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('jobs/')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Jobs</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(1) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('jobs/')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Jobs</span>
+                                </a>
+                            </li>
+                            @endif
+
+
+                            @if(Cmf::getcarrierrole(2) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('job/add')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(2) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('job/add')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -180,6 +198,7 @@
                         </ul>
                     </div>
                 </li>
+                @if(Cmf::getcarrierrole(15) == 0)
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('education-center')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
@@ -188,6 +207,17 @@
                         <span class="menu-text">Education Center</span>
                     </a>
                 </li>
+                @elseif(Cmf::getcarrierrole(15) == 1)
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{url('education-center')}}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{asset('carrier/assets/media/custom/education-center.svg')}}">
+                        </span>
+                        <span class="menu-text">Education Center</span>
+                    </a>
+                </li>
+                @endif
+
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
@@ -202,19 +232,42 @@
                                 <span class="menu-link"><span class="menu-text">Carrier Profile</span></span>
                             </li>
                             <!-- Child -->
+                            @if(Cmf::getcarrierrole(16) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('carrier-profile/')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(16) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('carrier-profile/')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(17) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="carrier-profile/reviews" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(17) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="carrier-profile/reviews" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
+                                </a>
+                            </li>
+                            @endif
+
+
                         </ul>
                     </div>
                 </li>
+
+
+
+                @if(Cmf::getcarrierrole(18) == 0)
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('advertise/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
@@ -223,6 +276,16 @@
                         <span class="menu-text">Advertising</span>
                     </a>
                 </li>
+                @elseif(Cmf::getcarrierrole(18) == 1)
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{url('advertise/')}}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{asset('carrier/assets/media/custom/advertise.svg')}}">
+                        </span>
+                        <span class="menu-text">Advertising</span>
+                    </a>
+                </li>
+                @endif
 
                 <li class="menu-section">
                     <h4 class="menu-text">OTHER</h4>
@@ -237,7 +300,7 @@
                         <span class="menu-text">My Profile</span>
                     </a>
                 </li>
-
+                @if(Cmf::getcarrierrole(19) == 0)
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('integrations/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
@@ -246,7 +309,18 @@
                         <span class="menu-text">Integrations</span>
                     </a>
                 </li>
-                
+                @elseif(Cmf::getcarrierrole(19) == 1)
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{url('integrations/')}}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{asset('carrier/assets/media/custom/integration.svg')}}">
+                        </span>
+                        <span class="menu-text">Integrations</span>
+                    </a>
+                </li>
+                @endif
+
+                @if(Cmf::getcarrierrole(20) == 0)
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('billing/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
@@ -255,8 +329,18 @@
                         <span class="menu-text">Billing & Invoices</span>
                     </a>
                 </li>
-                
-                
+                @elseif(Cmf::getcarrierrole(20) == 1)
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{url('billing/')}}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{asset('carrier/assets/media/custom/billing.svg')}}">
+                        </span>
+                        <span class="menu-text">Billing & Invoices</span>
+                    </a>
+                </li>
+                @endif
+
+                @if(Cmf::getcarrierrole(21) == 0)
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('help/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
@@ -265,6 +349,16 @@
                         <span class="menu-text">Help</span>
                     </a>
                 </li>
+                @elseif(Cmf::getcarrierrole(21) == 1)
+                <li class="menu-item" aria-haspopup="true">
+                    <a href="{{url('help/')}}" class="menu-link">
+                        <span class="svg-icon menu-icon">
+                            <img src="{{asset('carrier/assets/media/custom/help.svg')}}">
+                        </span>
+                        <span class="menu-text">Help</span>
+                    </a>
+                </li>
+                @endif
                 
             </ul>
             <!--end::Menu Nav-->
@@ -273,4 +367,4 @@
     </div>
     <!--end::Aside Menu-->
 </div>
-<!--end::Aside-->
+<!--end::Aside

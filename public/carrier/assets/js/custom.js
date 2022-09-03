@@ -84,9 +84,11 @@ function checkemail()
            	{
            		$('#check-email-button').attr('disabled' , true);
            		$('#email-error').html('This Email is already in our Records');
+                $('#submitbutton').attr('disabled' , true);
            	}else{
            		$('#check-email-button').attr('disabled' , false);
            		$('#email-error').html('');
+                $('#submitbutton').attr('disabled' , false);
            	}
             
         }

@@ -5,6 +5,10 @@ namespace App\Helpers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use App\Models\staff_permissions;
+use App\Models\set_roles;
+use App\Models\role_users;
+use App\Models\companies;
 use Illuminate\Support\Facades\Http;
 class Cmf
 {
@@ -35,5 +39,59 @@ class Cmf
     public static function date_format($data)
     {
         return date('d M Y', strtotime($data));
+    }
+    public static  function getusercompany()
+    {
+        return companies::where('user_id' , Auth::user()->id)->first();
+    }
+
+    public static function getcarrierrole($id)
+    {
+        $checkrole = role_users::where('user_id' , Auth::user()->id)->get();
+        if($checkrole->count() > 0)
+        {
+            $role = $checkrole->first()->role_id;
+            $checkmodule = set_roles::where('staff_permissions' , $role)->where('module_id' , $id)->count();
+            if($checkmodule > 0)
+            {
+                return 1;
+            }else{
+                return 2;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public static function carriermodules()
+    {
+
+        $cars = array(
+          array("id"=>1,"name"=>'All Jobs'),
+          array("id"=>2,"name"=>'Add New Job'),
+          array("id"=>3,"name"=>'All Maps'),
+          array("id"=>4,"name"=>'Add New Map'),
+          array("id"=>5,"name"=>'All Members'),
+          array("id"=>6,"name"=>'Staff Permissions'),
+          array("id"=>7,"name"=>'Best Practices'),
+          array("id"=>8,"name"=>'Ownership Policy'),
+          array("id"=>9,"name"=>'Referral Program'),
+          array("id"=>10,"name"=>'Orientation Schedule'),
+          array("id"=>11,"name"=>'terminal Locations'),
+          array("id"=>12,"name"=>'Sales Funnel'),
+          array("id"=>13,"name"=>'Processiong and Safety Guide'),
+          array("id"=>14,"name"=>'Driver Benifits'),
+          array("id"=>15,"name"=>'Education Center'),
+          array("id"=>16,"name"=>'My Carrier Profile'),
+          array("id"=>17,"name"=>'Prodile Reviews'),
+          array("id"=>18,"name"=>'Advertising'),
+          array("id"=>19,"name"=>'Integrations'),
+          array("id"=>20,"name"=>'Billing $ Invoices'),
+          array("id"=>21,"name"=>'Help')
+        );
+
+        return $cars;
     }
 }

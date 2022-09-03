@@ -45,7 +45,7 @@
                                         </div>
                                         <div class="form-group mb-10">
                                             <label class="lable-control field-bold">
-                                              Conferm Password
+                                              Confirm Password
                                             </label>
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>

@@ -45,22 +45,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($data as $r)
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="symbol symbol-50 symbol-light-dark">
-                                                <div class="symbol-label font-size-h5">H</div>
+                                                <div class="symbol-label font-size-h5">{{ substr($r->user_name, 0, 1); }}</div>
                                             </div>
                                             <div class="ml-3">
-                                                <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">Humbert Bresnen</span>
-                                                <a href="#" class="text-muted text-hover-primary">example@gmail.com</a>
+                                                <span class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">{{ $r->user_name }}</span>
+                                                <a href="#" class="text-muted text-hover-primary">{{ $r->user_email }}</a>
                                             </div>
                                         </div>
                                     </td>
                                     
-                                    <td>+923407712693</td>
-                                    <td>Manager</td>
-                                    <td>12 Jun 2022 <br> <small>12:00Pm</small></td>
+                                    <td>{{ $r->user_phonenumber }}</td>
+                                    <td>{{ $r->role_name }}</td>
+                                    <td>{{ Cmf::date_format($r->created_at) }}</td>
                                     <td>
                                         <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
                                     </td>
@@ -70,10 +71,10 @@
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <ul class="nav nav-hoverable flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Disable</span></a>
+                                                        <a class="nav-link" href="#">Disable</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Activate</span></a>
+                                                        <a class="nav-link" href="#">Activate</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -82,6 +83,7 @@
                                         <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                     </table>
                 </div>
@@ -107,51 +109,43 @@
                 </button>
             </div>
             <div class="modal-body">
+                <form method="POST" action="{{ url('addnewcarrierstaff') }}">
+                    @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="lable-control">Company Title</label>
-                            <input type="text" class="form-control input-lg" name="">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label class="lable-control">Select Role</label>
-                            <select class="form-control">
-                                <option>Admin</option>
-                                <option>Staff</option>
-                                <option>Manager</option>
+                            <select required name="role_id" class="form-control">
+                                <option value="">Select Role</option>
+                                @foreach(DB::table('staff_permissions')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
+                                <option value="{{ $r->id }}">{{ $r->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Name</label>
-                            <input type="text" class="form-control input-lg" name="name">
+                            <input required type="text" class="form-control input-lg" name="name">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Email</label>
-                            <input type="text" class="form-control input-lg" name="email">
+                            <input required onkeyup="checkemail()" type="text" class="form-control input-lg" id="work_email" name="email">
+                            <span style="color:red;" id="email-error"  role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Phone number</label>
-                            <input type="text" class="form-control input-lg" name="phone-number">
+                            <input required type="text" class="form-control input-lg" name="phone_number">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Password</label>
-                            <input type="text" class="form-control input-lg" name="password">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Confirm password</label>
-                            <input type="text" class="form-control input-lg" name="password">
+                            <input required type="password" class="form-control input-lg" name="password">
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -161,11 +155,12 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-primary btn-block">
+                        <button id="submitbutton" type="submit" class="btn btn-primary btn-block">
                             Send Invitation
                         </button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
