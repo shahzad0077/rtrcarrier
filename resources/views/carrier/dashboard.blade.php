@@ -119,7 +119,7 @@
                                         </div>
                                         <div>
                                             <button type="button" class="btn btn-lg btn-white shadow-cs btn-icon btn-filter mr-3" data-toggle="modal" data-target="#exampleModalCenter">
-                                                <img src="{{asset('carrier/assets/media/custom/filter.svg')}}" />
+                                                <img src="{{asset('public/carrier/assets/media/custom/filter.svg')}}" />
                                             </button>
                                             <button class="btn btn-primary btn-lg shadow-cs">
                                                 Search
@@ -163,10 +163,10 @@
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/completed.svg')}}" />Completed </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/pause.svg')}}" />Pause </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -234,10 +234,10 @@
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/completed.svg')}}" />Completed </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/pause.svg')}}" />Pause </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -305,10 +305,10 @@
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/completed.svg')}}" />Completed </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('carrier/assets/media/custom/pause.svg')}}" />Pause </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
+                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -439,7 +439,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
                                     @if(Auth::user()->profile_picture)
-                                    <div class="symbol-label" style="background-image: url('{{ asset('') }}images/{{ Auth::user()->profile_picture }}');"></div>
+                                    <div class="symbol-label" style="background-image: url('{{ asset('public/') }}images/{{ Auth::user()->profile_picture }}');"></div>
                                     @else
                                      <div class="symbol-label" style="background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg');"></div>
                                     @endif
@@ -508,7 +508,7 @@
                             <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="symbol-label" style="background-image: url('{{asset('carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
+                                    <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
                                 </div>
                                 <div class="d-flex flex-column flex-grow-1">
                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-1">
@@ -523,7 +523,7 @@
                             <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="symbol-label" style="background-image: url('{{asset('carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
+                                    <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
                                 </div>
                                 <div class="d-flex flex-column flex-grow-1">
                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-1">
@@ -538,7 +538,7 @@
                             <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="symbol-label" style="background-image: url('{{asset('carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
+                                    <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
                                 </div>
                                 <div class="d-flex flex-column flex-grow-1">
                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-1">
@@ -553,7 +553,7 @@
                             <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
-                                    <div class="symbol-label" style="background-image: url('{{asset('carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
+                                    <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
                                 </div>
                                 <div class="d-flex flex-column flex-grow-1">
                                     <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg mb-1">
@@ -583,7 +583,7 @@
                                 <div class="single-staff-item">
                                     <img src="http://placehold.it/500x500" alt="" />
                                     <div class="staff-meta">
-                                        <img src="{{asset('carrier/assets/media/custom/company-logo.svg')}}" />
+                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
                                     </div>
                                     <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
                                     <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
@@ -593,7 +593,7 @@
                                 <div class="single-staff-item">
                                     <img src="http://placehold.it/500x500" alt="" />
                                     <div class="staff-meta">
-                                        <img src="{{asset('carrier/assets/media/custom/company-logo.svg')}}" />
+                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
                                     </div>
                                     <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
                                     <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
@@ -603,7 +603,7 @@
                                 <div class="single-staff-item">
                                     <img src="http://placehold.it/500x500" alt="" />
                                     <div class="staff-meta">
-                                        <img src="{{asset('carrier/assets/media/custom/company-logo.svg')}}" />
+                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
                                     </div>
                                     <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
                                     <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
@@ -613,7 +613,7 @@
                                 <div class="single-staff-item">
                                     <img src="http://placehold.it/500x500" alt="" />
                                     <div class="staff-meta">
-                                        <img src="{{asset('carrier/assets/media/custom/company-logo.svg')}}" />
+                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
                                     </div>
                                     <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
                                     <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>

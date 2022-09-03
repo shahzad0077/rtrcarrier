@@ -2,7 +2,7 @@
     <div class="footer-main-outer">
         <div class="footer-logo-content" >
             <div class="footer-logo">
-                <img src="{{ asset('front/assets/images/logo.png') }}" class="img-fluid" alt="Footer logo" />
+                <img src="{{ asset('public/front/assets/images/logo.png') }}" class="img-fluid" alt="Footer logo" />
             </div>
             <div class="main-social">
                 <div class="social-icon">

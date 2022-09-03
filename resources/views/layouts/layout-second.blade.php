@@ -6,19 +6,19 @@
       <title>@yield('title')</title>
       <!-- Login -->
       <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,900&amp;display=swap" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/pages/login/classic/login-4.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/style.bundle.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
+      <link href="{{ asset('public/carrier/assets/css/pages/login/classic/login-4.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/style.bundle.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
       <!-- Signup -->
-      <link href="{{ asset('carrier/assets/css/pages/login/login-4.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/pages/wizard/wizard-4.css') }}" rel="stylesheet" />
-      <link href="{{ asset('carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/pages/login/login-4.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/pages/wizard/wizard-4.css') }}" rel="stylesheet" />
+      <link href="{{ asset('public/carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
       <input type="hidden" value="{{ url('') }}" id="app_url">
       <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
@@ -29,13 +29,13 @@
       </div>
   </body>
   
-  <script src="{{ asset('carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/pages/custom/login/login-general.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/custom/login/login-general.js?v=7.0.6') }}" type="text/javascript"></script>
 
-  <script src="{{ asset('carrier/assets/js/pages/custom/login/login-4.js') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/pages/custom/wizard/wizard-4.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/custom/login/login-4.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/custom/wizard/wizard-4.js') }}" type="text/javascript"></script>
 
   <script>
         var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";
@@ -101,6 +101,6 @@
         "font-family": "Poppins"
     };
     </script>
-    <script src="{{ asset('carrier/assets/js/custom.js') }}"></script>
+    <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>
     @yield('script')
   </html>

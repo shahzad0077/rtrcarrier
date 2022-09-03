@@ -37,14 +37,14 @@
 
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                        <img src="{{asset('carrier/assets/media/custom/sun.svg')}}">
+                        <img src="{{asset('public/carrier/assets/media/custom/sun.svg')}}">
                     </div>
                 </div>
 
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
                         <span class="svg-icon svg-icon-xl svg-icon-primary">
-                            <img src="{{asset('carrier/assets/media/custom/notification-bell.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/notification-bell.svg')}}">
                         </span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-anim-up dropdown-menu-lg" style="width: 400px;">
                     <form>
                         <!--begin::Header-->
-                        <div class="d-flex flex-column pt-8 pl-9 pb-8 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url({{asset('carrier/assets/media/misc/bg-1.jpg')}});">
+                        <div class="d-flex flex-column pt-8 pl-9 pb-8 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url({{asset('public/carrier/assets/media/misc/bg-1.jpg')}});">
                             <!--begin::Title-->
                             <h4 class="d-flex rounded-top">
                                 <span class="text-white">User Notifications</span>
@@ -72,7 +72,7 @@
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-secondary mr-5">
                                         <span class="symbol-label">
-                                            <img src="{{asset('carrier/assets/media/custom/account-drop.svg')}}">
+                                            <img src="{{asset('public/carrier/assets/media/custom/account-drop.svg')}}">
                                         </span>
                                     </div>
                                     <!--end::Symbol-->
@@ -89,7 +89,7 @@
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-secondary mr-5">
                                         <span class="symbol-label">
-                                            <img src="{{asset('carrier/assets/media/custom/billing-drop.svg')}}">
+                                            <img src="{{asset('public/carrier/assets/media/custom/billing-drop.svg')}}">
                                         </span>
                                     </div>
                                     <!--end::Symbol-->
@@ -106,7 +106,7 @@
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-secondary mr-5">
                                         <span class="symbol-label">
-                                            <img src="{{asset('carrier/assets/media/custom/integration-drop.svg')}}">
+                                            <img src="{{asset('public/carrier/assets/media/custom/integration-drop.svg')}}">
                                         </span>
                                     </div>
                                     <!--end::Symbol-->
@@ -123,7 +123,7 @@
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-secondary mr-5">
                                         <span class="symbol-label">
-                                            <img src="{{asset('carrier/assets/media/custom/message-drop.svg')}}">
+                                            <img src="{{asset('public/carrier/assets/media/custom/message-drop.svg')}}">
                                         </span>
                                     </div>
                                     <!--end::Symbol-->
@@ -140,7 +140,7 @@
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-secondary mr-5">
                                         <span class="symbol-label">
-                                            <img src="{{asset('carrier/assets/media/custom/project-drop.svg')}}">
+                                            <img src="{{asset('public/carrier/assets/media/custom/project-drop.svg')}}">
                                         </span>
                                     </div>
                                     <!--end::Symbol-->
@@ -206,7 +206,7 @@
                     <div class="d-flex align-items-center p-8 rounded-top">
                         <!--begin::Symbol-->
                         <div class="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-                            <img src="{{asset('carrier/assets/media/users/300_21.jpg')}}" alt="" />
+                            <img src="{{asset('public/carrier/assets/media/users/300_21.jpg')}}" alt="" />
                         </div>
                         <!--end::Symbol-->
                         <!--begin::Text-->
@@ -232,7 +232,7 @@
                         <a href="{{url('profile-settings/')}}" class="navi-item px-8">
                             <div class="navi-link">
                                 <div class="navi-icon mr-2">
-                                    <img src="{{asset('carrier/assets/media/custom/account-drop.svg')}}">
+                                    <img src="{{asset('public/carrier/assets/media/custom/account-drop.svg')}}">
                                 </div>
                                 <div class="navi-text">
                                     <div class="font-weight-bold">
@@ -249,7 +249,7 @@
                         <a href="{{url('profile-settings/')}}" class="navi-item px-8">
                             <div class="navi-link">
                                 <div class="navi-icon mr-2">
-                                    <img src="{{asset('carrier/assets/media/custom/admin-drop.svg')}}">
+                                    <img src="{{asset('public/carrier/assets/media/custom/admin-drop.svg')}}">
                                 </div>
                                 <div class="navi-text">
                                     <div class="font-weight-bold">
@@ -266,7 +266,7 @@
                         <a href="{{url('billing/')}}" class="navi-item px-8">
                             <div class="navi-link">
                                 <div class="navi-icon mr-2">
-                                    <img src="{{asset('carrier/assets/media/custom/billing-drop.svg')}}">
+                                    <img src="{{asset('public/carrier/assets/media/custom/billing-drop.svg')}}">
                                 </div>
                                 <div class="navi-text">
                                     <div class="font-weight-bold">

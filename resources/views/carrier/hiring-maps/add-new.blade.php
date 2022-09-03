@@ -218,43 +218,43 @@
 
 @section('scripts')
 
-    <script src="{{asset('carrier/assets/map/libs/leaflet-src.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('carrier/assets/map/libs/leaflet.css')}}"/>
-    <script src="{{asset('carrier/assets/map/src/Leaflet.draw.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/Leaflet.Draw.Event.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('carrier/assets/map/src/leaflet.draw.css')}}"/>
+    <script src="{{asset('public/carrier/assets/map/libs/leaflet-src.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/libs/leaflet.css')}}"/>
+    <script src="{{asset('public/carrier/assets/map/src/Leaflet.draw.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Leaflet.Draw.Event.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/src/leaflet.draw.css')}}"/>
 
-    <script src="{{asset('carrier/assets/map/src/Toolbar.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/Tooltip.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Toolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Tooltip.js')}}"></script>
 
-    <script src="{{asset('carrier/assets/map/src/ext/GeometryUtil.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/ext/LatLngUtil.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/ext/LineUtil.Intersect.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/ext/Polygon.Intersect.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/ext/Polyline.Intersect.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/ext/TouchEvents.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/GeometryUtil.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/LatLngUtil.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/LineUtil.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/Polygon.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/Polyline.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/TouchEvents.js')}}"></script>
 
-    <script src="{{asset('carrier/assets/map/src/draw/DrawToolbar.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Feature.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.SimpleShape.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Polyline.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Marker.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Circle.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.CircleMarker.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Polygon.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/draw/handler/Draw.Rectangle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/DrawToolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Feature.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.SimpleShape.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polyline.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Marker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Circle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.CircleMarker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polygon.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Rectangle.js')}}"></script>
 
 
-    <script src="{{asset('carrier/assets/map/src/edit/EditToolbar.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/EditToolbar.Edit.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/EditToolbar.Delete.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/EditToolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Edit.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Delete.js')}}"></script>
 
-    <script src="{{asset('carrier/assets/map/src/Control.Draw.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Control.Draw.js')}}"></script>
 
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.Poly.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.SimpleShape.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.Rectangle.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.Marker.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.CircleMarker.js')}}"></script>
-    <script src="{{asset('carrier/assets/map/src/edit/handler/Edit.Circle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Poly.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.SimpleShape.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Rectangle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Marker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.CircleMarker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Circle.js')}}"></script>
 @endsection

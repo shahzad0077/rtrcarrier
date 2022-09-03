@@ -4,13 +4,13 @@ begin::Aside-->
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
         <a href="{{url('/dashboard')}}">
-            <img alt="Logo" src="{{asset('carrier/assets/media/custom/rtr-logo.png')}}" />
+            <img alt="Logo" src="{{asset('public/carrier/assets/media/custom/rtr-logo.png')}}" />
         </a>
         <!--end::Logo-->
         <!--begin::Toggle-->
         <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
             <span class="svg-icon svg-icon svg-icon-xl">
-                <!--begin::Svg Icon | path:{{asset('carrier/')}}assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+                <!--begin::Svg Icon | path:{{asset('public/carrier/')}}assets/media/svg/icons/Navigation/Angle-double-left.svg-->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                         <polygon points="0 0 24 0 24 24 0 24" />
@@ -33,7 +33,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-active" aria-haspopup="true">
                     <a href="{{url('dashboard/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/dashboard.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/dashboard.svg')}}">
                         </span>
                         <span class="menu-text">Dashboard</span>
                     </a>
@@ -45,7 +45,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:void(0)" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/manage-jobs.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/manage-jobs.svg')}}">
                         </span>
                         <span class="menu-text">Jobs</span><i class="menu-arrow"></i>
                     </a>
@@ -90,7 +90,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/hiring-maps.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/hiring-maps.svg')}}">
                         </span>
                         <span class="menu-text">Maps</span><i class="menu-arrow"></i>
                     </a>
@@ -117,7 +117,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/team-members.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
                         </span>
                         <span class="menu-text">Team</span><i class="menu-arrow"></i>
                     </a>
@@ -144,7 +144,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/company-info.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/company-info.svg')}}">
                         </span>
                         <span class="menu-text">Company Info</span><i class="menu-arrow"></i>
                     </a>
@@ -202,7 +202,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('education-center')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/education-center.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
                         </span>
                         <span class="menu-text">Education Center</span>
                     </a>
@@ -211,7 +211,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('education-center')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/education-center.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
                         </span>
                         <span class="menu-text">Education Center</span>
                     </a>
@@ -221,7 +221,7 @@ begin::Aside-->
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/carrier-profile.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
                         </span>
                         <span class="menu-text">Carrier Profile</span><i class="menu-arrow"></i>
                     </a>
@@ -271,7 +271,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('advertise/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/advertise.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/advertise.svg')}}">
                         </span>
                         <span class="menu-text">Advertising</span>
                     </a>
@@ -280,7 +280,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('advertise/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/advertise.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/advertise.svg')}}">
                         </span>
                         <span class="menu-text">Advertising</span>
                     </a>
@@ -295,7 +295,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('profile-settings/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/team-members.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
                         </span>
                         <span class="menu-text">My Profile</span>
                     </a>
@@ -304,7 +304,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('integrations/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/integration.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
                         </span>
                         <span class="menu-text">Integrations</span>
                     </a>
@@ -313,7 +313,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('integrations/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/integration.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
                         </span>
                         <span class="menu-text">Integrations</span>
                     </a>
@@ -324,7 +324,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('billing/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/billing.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
                         </span>
                         <span class="menu-text">Billing & Invoices</span>
                     </a>
@@ -333,7 +333,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('billing/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/billing.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
                         </span>
                         <span class="menu-text">Billing & Invoices</span>
                     </a>
@@ -344,7 +344,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('help/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/help.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
                         </span>
                         <span class="menu-text">Help</span>
                     </a>
@@ -353,7 +353,7 @@ begin::Aside-->
                 <li class="menu-item" aria-haspopup="true">
                     <a href="{{url('help/')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('carrier/assets/media/custom/help.svg')}}">
+                            <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
                         </span>
                         <span class="menu-text">Help</span>
                     </a>

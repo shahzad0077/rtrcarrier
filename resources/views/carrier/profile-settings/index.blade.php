@@ -36,7 +36,7 @@
                                                         <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
 
                                                             @if(Auth::user()->profile_picture)
-                                                            <div class="image-input-wrapper" style="background-image: url('{{ asset('') }}images/{{ Auth::user()->profile_picture }}')"></div>
+                                                            <div class="image-input-wrapper" style="background-image: url('{{ asset('public/') }}images/{{ Auth::user()->profile_picture }}')"></div>
                                                             @else
                                                             <div class="image-input-wrapper" style="background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg')"></div>
                                                             @endif

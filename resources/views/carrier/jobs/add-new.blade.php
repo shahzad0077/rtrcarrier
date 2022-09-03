@@ -24,7 +24,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link active" id="one-tab-2" data-toggle="tab" href="#one-2">
                                                     <span class="nav-icon">
-                                                        <img src="{{asset('carrier/assets/media/custom/basic-details.svg')}}">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/basic-details.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Basic Details</span>
                                                 </a>
@@ -32,7 +32,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="two-tab-2" data-toggle="tab" href="#two-2" aria-controls="two">
                                                     <span class="nav-icon">
-                                                        <img src="{{asset('carrier/assets/media/custom/hiring-req.svg')}}">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/hiring-req.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Hiring Req.</span>
                                                 </a>
@@ -40,7 +40,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="three-tab-2" data-toggle="tab" href="#three-2" aria-controls="three">
                                                     <span class="nav-icon">
-                                                        <img src="{{asset('carrier/assets/media/custom/routing-trans.svg')}}">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/routing-trans.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Routing & trans.</span>
                                                 </a>
@@ -48,7 +48,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="four-tab-2" data-toggle="tab" href="#four-2" aria-controls="four">
                                                     <span class="nav-icon">
-                                                        <img src="{{asset('carrier/assets/media/custom/subscription.svg')}}">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/subscription.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Subscriptions</span>
                                                 </a>
@@ -56,7 +56,7 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="five-tab-2" data-toggle="tab" href="#five-2" aria-controls="five">
                                                     <span class="nav-icon">
-                                                        <img src="{{asset('carrier/assets/media/custom/preview.svg')}}">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/preview.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Preview</span>
                                                 </a>
@@ -1253,7 +1253,7 @@
                                             <div class="card">
                                                 <div class="card-header" id="headingOne6">
                                                     <div class="card-title" data-toggle="collapse" data-target="#collapseOne6">
-                                                        <img class="mr-2" src="{{asset('carrier/assets/media/custom/basic-details.svg')}}"> Basic Details
+                                                        <img class="mr-2" src="{{asset('public/carrier/assets/media/custom/basic-details.svg')}}"> Basic Details
                                                     </div>
                                                 </div>
                                                 <div id="collapseOne6" class="collapse show" data-parent="#accordionExample6">
@@ -1357,7 +1357,7 @@
                                             <div class="card">
                                                 <div class="card-header" id="headingTwo6">
                                                     <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseTwo6">
-                                                        <img class="mr-2" src="{{asset('carrier/assets/media/custom/hiring-req.svg')}}"> Hiring Req.
+                                                        <img class="mr-2" src="{{asset('public/carrier/assets/media/custom/hiring-req.svg')}}"> Hiring Req.
                                                     </div>
                                                 </div>
                                                 <div id="collapseTwo6" class="collapse" data-parent="#accordionExample6">
@@ -1369,7 +1369,7 @@
                                             <div class="card">
                                                 <div class="card-header" id="headingThree6">
                                                     <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseThree6">
-                                                        <img class="mr-2" src="{{asset('carrier/assets/media/custom/routing-trans.svg')}}"> Routing & trans.
+                                                        <img class="mr-2" src="{{asset('public/carrier/assets/media/custom/routing-trans.svg')}}"> Routing & trans.
                                                     </div>
                                                 </div>
                                                 <div id="collapseThree6" class="collapse" data-parent="#accordionExample6">
@@ -1382,7 +1382,7 @@
                                             <div class="card">
                                                 <div class="card-header" id="headingFour6">
                                                     <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseFour6">
-                                                        <img class="mr-2" src="{{asset('carrier/assets/media/custom/preview.svg')}}"> Subscriptions
+                                                        <img class="mr-2" src="{{asset('public/carrier/assets/media/custom/preview.svg')}}"> Subscriptions
                                                     </div>
                                                 </div>
                                                 <div id="collapseFour6" class="collapse" data-parent="#accordionExample6">

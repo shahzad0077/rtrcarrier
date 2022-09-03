@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 successfully-content">
-                                    <img src="{{asset('carrier/assets/media/custom/ticked.png')}}">
+                                    <img src="{{asset('public/carrier/assets/media/custom/ticked.png')}}">
                                     <h2>Your Job has been successfully received</h2>
                                     <p>We're examining your job posting and will publish it soon one of our administrators approves it.</p>
                                     <div class="dashboad-btn-main">

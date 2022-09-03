@@ -14,7 +14,7 @@
                 <div class="logo-inner-main">
                     <div class="inner-logo-div">
                         @if($data->logo)
-                        <img style="width: 100%;" src="{{ asset('images') }}/{{ $data->logo }}">
+                        <img style="width: 100%;" src="{{ asset('public/images') }}/{{ $data->logo }}">
                         @else
                         <img style="width:100%;" src="https://cdn3.vectorstock.com/i/thumb-large/35/52/placeholder-rgb-color-icon-vector-32173552.jpg">
                         @endif
@@ -27,7 +27,7 @@
             </div>
             <div class="report-btn-div">
                 <a href="javascript:void(0)" class="report-btn">Report</a>
-                <a href="javascript:void(0)"  class="share-btn"><img src="{{ asset('front/assets/images/shere.png') }}">Share</a>
+                <a href="javascript:void(0)"  class="share-btn"><img src="{{ asset('public/front/assets/images/shere.png') }}">Share</a>
             </div>
         </div>
     </div>
@@ -202,7 +202,7 @@
                 <div class="job-lists-main">
                     <div class="list-card-main">
                         <div class="job-logo-left">
-                            <img class="img-fluid"src="{{ asset('front/assets/images/us-express.png') }}">
+                            <img class="img-fluid"src="{{ asset('public/front/assets/images/us-express.png') }}">
                         </div>
                         <div class="job-info-right">
                             <div class="job-title">
@@ -240,7 +240,7 @@
                     </div>
                     <div class="list-card-main">
                         <div class="job-logo-left">
-                            <img class="img-fluid"src="{{ asset('front/assets/images/us-express.png') }}">
+                            <img class="img-fluid"src="{{ asset('public/front/assets/images/us-express.png') }}">
                         </div>
                         <div class="job-info-right">
                             <div class="job-title">
@@ -615,7 +615,7 @@
 </section>
 <!-- ready to work with us section start here -->
 <section class="find-your-job-section singl-team-cdl">
-         <div class="container find-your-job-container" style="background-image: url('{{ asset('front/assets/images/newslater-background.png')  }}');">
+         <div class="container find-your-job-container" style="background-image: url('{{ asset('public/front/assets/images/newslater-background.png')  }}');">
              <div class="row">
                  <div class="col-md-12 find-your-job-title aos-init aos-animate" >
                      <h2>Find your next CDL-A driving job!</h2>

@@ -5,9 +5,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{{ asset('front/assets/dist/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}" />
-        <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('public/front/assets/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('public/front/assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('public/front/assets/css/responsive.css') }}" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         @yield('title')
@@ -26,8 +26,8 @@
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="{{ asset('front/assets/dist/umd/popper.min.js') }}"></script>
-        <script src="{{ asset('front/assets/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('public/front/assets/dist/umd/popper.min.js') }}"></script>
+        <script src="{{ asset('public/front/assets/dist/js/bootstrap.min.js') }}"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
   AOS.init();

@@ -8,24 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
   <!-- Dashboard -->
-  <link href="{{ asset('carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/plugins/global/plugins.bundle.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/plugins/global/plugins.bundle.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/style.bundle.css?v=7.0.6') }}" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <link href="{{ asset('carrier/assets/css/themes/layout/header/base/light.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/css/themes/layout/header/menu/light.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/css/themes/layout/brand/dark.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/css/themes/layout/aside/dark.css?v=7.0.6') }}" rel="stylesheet" />
-  <link href="{{ asset('carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/themes/layout/header/base/light.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/themes/layout/header/menu/light.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/themes/layout/brand/dark.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/themes/layout/aside/dark.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/css/my-custom-style.css') }}" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">  
-  <link href="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" />
+  <link href="{{ asset('public/carrier/assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6') }}" rel="stylesheet" />
   
   <input type="hidden" value="{{ url('') }}" id="app_url">
       <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link href="{{ asset('carrier/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
+  <link href="{{ asset('public/carrier/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
 
   
 </head>
@@ -48,23 +48,23 @@
 	    </div>        
     </body>
 
-  <script src="{{ asset('carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-  <script src="{{ asset('carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   @yield('scripts')
   <!-- Dashboard -->
-  <script src="{{ asset('carrier/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/pages/widgets.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/widgets.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-  <script src="{{ asset('carrier/assets/js/pages/crud/datatables/advanced/column-rendering.js?v=7.0.6') }}" type="text/javascript"></script>
-  <script src="{{ asset('carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/crud/datatables/advanced/column-rendering.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
 
-  <script src="{{ asset('carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
+  <script src="{{ asset('public/carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
 
- <script src="{{ asset('carrier/assets/js/custom.js') }}"></script>
+ <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>
   
   <script>
     $('.summernote').summernote({

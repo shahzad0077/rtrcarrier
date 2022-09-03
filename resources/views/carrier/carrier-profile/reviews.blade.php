@@ -38,7 +38,7 @@
                                             <td class="pl-0">
                                                 <div class="main-user">
                                                     <div class="iser-img">
-                                                        <img src="{{asset('carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
+                                                        <img src="{{asset('public/carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
                                                     </div>
                                                     <div class="user-name">
                                                         <a href="javascript:void(0)">
@@ -109,7 +109,7 @@
                                             <td class="pl-0">
                                                 <div class="main-user">
                                                     <div class="iser-img">
-                                                        <img src="{{asset('carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
+                                                        <img src="{{asset('public/carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
                                                     </div>
                                                     <div class="user-name">
                                                         <a href="javascript:void(0)">
@@ -180,7 +180,7 @@
                                             <td class="pl-0">
                                                 <div class="main-user">
                                                     <div class="iser-img">
-                                                        <img src="{{asset('carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
+                                                        <img src="{{asset('public/carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
                                                     </div>
                                                     <div class="user-name">
                                                         <a href="javascript:void(0)">
@@ -251,7 +251,7 @@
                                             <td class="pl-0">
                                                 <div class="main-user">
                                                     <div class="iser-img">
-                                                        <img src="{{asset('carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
+                                                        <img src="{{asset('public/carrier/assets-dashboard/media/dashborad-img/user-rofile.png')}}" />
                                                     </div>
                                                     <div class="user-name">
                                                         <a href="javascript:void(0)">

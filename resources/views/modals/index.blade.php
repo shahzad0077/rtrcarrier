@@ -62,10 +62,10 @@
                                                                             </p>
                                                                             <hr>
                                                                             <ul class="subs-list-benefits">
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
                                                                             </ul>
                                                                             <div class="d-grid mt-3">
                                                                                 <button class="btn btn-primary btn-lg btn-block">Get Started</button>
@@ -92,10 +92,10 @@
                                                                                 </div>
                                                                             </div>
                                                                             <ul class="subs-list-benefits">
-                                                                                <li class="text-white"><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
-                                                                                <li class="text-white"><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
-                                                                                <li class="text-white"><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
-                                                                                <li class="text-white"><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
+                                                                                <li class="text-white"><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
+                                                                                <li class="text-white"><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
+                                                                                <li class="text-white"><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
+                                                                                <li class="text-white"><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
                                                                             </ul>
                                                                             <div class="d-grid mt-3">
                                                                                 <button class="btn btn-white text-primary btn-lg btn-block">Get Started</button>
@@ -113,10 +113,10 @@
                                                                             </p>
                                                                             <hr>
                                                                             <ul class="subs-list-benefits">
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
-                                                                                <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
+                                                                                <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
                                                                             </ul>
                                                                             <div class="d-grid mt-3">
                                                                                 <button class="btn btn-primary btn-lg btn-block">Get Started</button>
@@ -138,17 +138,17 @@
                                                                                     <div class="d-flex">
                                                                                         <div class="p-2">
                                                                                             <button class="btn btn-rounded">
-                                                                                                <img src="{{asset('carrier/assets/media/custom/paypal.svg')}}"> Paypal
+                                                                                                <img src="{{asset('public/carrier/assets/media/custom/paypal.svg')}}"> Paypal
                                                                                             </button>
                                                                                         </div>
                                                                                         <div class="p-2">
                                                                                             <button class="btn bg-primary text-white btn-rounded">
-                                                                                                <img src="{{asset('carrier/assets/media/custom/credit-card.svg')}}"> Credit Card
+                                                                                                <img src="{{asset('public/carrier/assets/media/custom/credit-card.svg')}}"> Credit Card
                                                                                             </button>
                                                                                         </div>
                                                                                         <div class="p-2">
                                                                                             <button class="btn btn-rounded">
-                                                                                                <img src="{{asset('carrier/assets/media/custom/google-pay.svg')}}"> Google Pay
+                                                                                                <img src="{{asset('public/carrier/assets/media/custom/google-pay.svg')}}"> Google Pay
                                                                                             </button>
                                                                                         </div>
                                                                                     </div>
@@ -220,10 +220,10 @@
                                                                                     </p>
                                                                                     <hr>
                                                                                     <ul class="subs-list-benefits">
-                                                                                        <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
-                                                                                        <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
-                                                                                        <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
-                                                                                        <li><img src="{{asset('carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
+                                                                                        <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> More than 30 people can use</li>
+                                                                                        <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Over 600 components</li>
+                                                                                        <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Upto 20GB storage</li>
+                                                                                        <li><img src="{{asset('public/carrier/assets/media/custom/check-subs.svg')}}"> Dedicated customer Support</li>
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
