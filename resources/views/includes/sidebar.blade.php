@@ -101,16 +101,33 @@ begin::Aside-->
                                 <span class="menu-link"><span class="menu-text">Hiring Maps</span></span>
                             </li>
                             <!-- Child -->
+                            @if(Cmf::getcarrierrole(3) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('hirig-maps/')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Maps</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(3) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('hirig-maps/')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Maps</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(4) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('map/add-new')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Map</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(4) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('map/add-new')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Map</span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -128,16 +145,33 @@ begin::Aside-->
                                 <span class="menu-link"><span class="menu-text">Team Members</span></span>
                             </li>
                             <!-- Child -->
+                            @if(Cmf::getcarrierrole(5) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('members')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Members</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(5) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('members')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Members</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(6) == 0)
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('staff-permissions')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Staff Permissions</span>
                                 </a>
                             </li>
+                            @elseif(Cmf::getcarrierrole(6) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('staff-permissions')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Staff Permissions</span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
