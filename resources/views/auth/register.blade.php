@@ -21,8 +21,8 @@
                     <!--begin::Aside Top-->
                     <div class="d-flex flex-column-auto flex-column px-10">
                         <!--begin::Aside header-->
-                        <a href="{{ url('') }}" class="login-logo pb-lg-4 pb-10 pt-2">
-                            <img src="https://i0.wp.com/classaclub.com/wp-content/uploads/2022/03/logo.png?fit=128%2C63&ssl=1" class="max-h-70px" alt="" />
+                        <a href="{{ url('') }}">
+                            <img src="{{ asset('public/front/assets/images/logo.webp') }}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
                         </a>
                         <!--end::Aside header-->
                         <!--begin: Wizard Nav-->
@@ -359,6 +359,7 @@ var length = document.getElementById("length");
 
 // When the user starts to type something inside the password field
 myInput.onkeyup = function() {
+   $('#check-password-button').attr('disabled' , true);
   // Validate lowercase letters
   var lowerCaseLetters = /[a-z]/g;
   if(myInput.value.match(lowerCaseLetters)) {
@@ -397,6 +398,17 @@ myInput.onkeyup = function() {
     length.classList.remove("valid");
     length.classList.add("invalid");
   }
+
+    var errortwo = $('.invalid').length;
+
+    if(errortwo > 0)
+    {
+        $('#check-password-button').attr('disabled' , true);
+    }else{
+        $('#check-password-button').attr('disabled' , false);
+    }
+
+
 }
 </script>
 <script type="text/javascript">

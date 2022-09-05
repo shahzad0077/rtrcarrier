@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Site Routes
 
@@ -32,6 +32,8 @@ Route::POST('/checkemail', [RegisterController::class, 'checkemail'])->name('che
 Route::get('/checkcompanyname/{id}', [RegisterController::class, 'checkcompanyname']);
 Route::get('/checkdotnumber/{id}', [RegisterController::class, 'checkdotnumber']);
 Route::POST('/carrierregister', [RegisterController::class, 'carrierregister']);
+
+Route::get('/registeralert', [RegisterController::class, 'registeralert'])->name('registeralert');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [CarrierController::class, 'index']);
 

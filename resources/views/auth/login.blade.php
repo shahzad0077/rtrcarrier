@@ -9,8 +9,8 @@
             <div class="login-form text-center p-7 position-relative overflow-hidden">
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
-                    <a href="#">
-                        <img src="https://i0.wp.com/classaclub.com/wp-content/uploads/2022/03/logo.png?fit=128%2C63&ssl=1" class="max-h-75px" alt="" />
+                    <a href="{{ url('') }}">
+                        <img src="{{ asset('public/front/assets/images/logo.webp') }}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
                     </a>
                 </div>
                 <!--end::Login Header-->
