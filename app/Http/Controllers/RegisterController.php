@@ -9,6 +9,7 @@ use App\Models\companies;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
+use Auth;
 class RegisterController extends Controller
 {
     public function checkemail(Request $request)
@@ -39,7 +40,7 @@ class RegisterController extends Controller
         $carrier->redirect = $request->redirect;
         $carrier->approved_status = 0;
         $carrier->save();
-
+        $carrier->sendEmailVerificationNotification();
         $company = new companies();
         $company->user_id = $carrier->id;
         $company->email = $request->email;
@@ -47,10 +48,11 @@ class RegisterController extends Controller
         $company->company_link = Cmf::shorten_url($request->company_name);
         $company->save();
         $subject = 'Welcome To '.env('APP_NAME').' Your Request Submited Successfully';
-        // Mail::send('email.userrequest', ['name' => $request->name], function($message) use($request , $subject){
-        //     $message->to($request->email);
-        //     $message->subject($subject);
-        // });
-        return view('auth/verify')->with(array('email'=>$request->email));
+        Mail::send('email.userrequest', ['name' => $request->name], function($message) use($request , $subject){
+            $message->to($request->email);
+            $message->subject($subject);
+        });
+        Auth::login($carrier);
+        return redirect()->route('verification.notice')->with('email', $request->email);
     }
 }
