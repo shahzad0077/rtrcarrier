@@ -218,7 +218,7 @@
                                 <span class="menu-link"><span class="menu-text">Add Job</span></span>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{url('admin/job/add')}}" class="menu-link">
+                                <a href="{{url('admin/jobs/addnewjob')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
                                 </a>
                             </li>
@@ -386,17 +386,10 @@
                                 <span class="menu-link"><span class="menu-text">Job Attributes</span></span>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{url('admin/job-attributes/basic-details')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Basic Details</span>
+                                <a href="{{url('admin/jobs/bassic-attributes')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Attributes</span>
                                 </a>
                             </li>
-
-                            <li class="menu-item" aria-haspopup="true">
-                                <a href="{{url('admin/job-attributes/benefits')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Benefits</span>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
 

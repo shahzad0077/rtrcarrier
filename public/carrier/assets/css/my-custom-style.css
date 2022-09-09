@@ -14,7 +14,10 @@
 .my-progress-line {
     width: 85%;
 }
-
+.print-error-msg{
+    display: none;
+    text-transform: capitalize;
+}
 .my-progress-percantage {
     width: 5%;
     text-align: right;

@@ -1,6 +1,6 @@
 @extends('layouts.main-layout')
 @section('title','Add Job')
-@section('content')
+@section('content') 
     
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -69,6 +69,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="tab-content" id="myTabContent2">
+                                <form method="POST" action="{{ url('job/submitone') }}">
+                                    @csrf
                                     <div class="tab-pane fade active show" id="one-2" role="tabpanel" aria-labelledby="one-tab-2">
                                         <!-- job details card -->
                                         <div class="card card-custom card-stretch">
@@ -85,82 +87,120 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">How often will the driver get home?</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Daily</option>
-                                                                <option>Once Every 1-2 Days</option>
-                                                                <option>Once every 2-3 Days</option>
-                                                                <option>Weekly</option>
-                                                                <option>2-3 weeks</option>
-                                                                <option>21+</option>
+                                                            <select name="how_often_will_driver_get_home" class="form-control @error('how_often_will_driver_get_home') is-invalid @enderror form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 123)->first()->options) as $r)
+                                                                <option @if(old('how_often_will_driver_get_home') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('how_often_will_driver_get_home')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Add Custom Home Time</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custome Time Here" name="">
+                                                            <input value="{{ old('custom_home_time') }}" type="text" class="@error('custom_home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custome Time Here" name="custom_home_time">
+                                                            @error('custom_home_time')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="lable-control">Title</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="">
-                                                            <span class="mt-4">Please enter your title.</span>
+                                                            <input value="{{ old('job_tittle') }}" type="text" class="@error('job_tittle') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="job_tittle">
+                                                            @error('job_tittle')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Driver Type</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Company Solo</option>
-                                                                <option>Team</option>
-                                                                <option>Team LP</option>
-                                                                <option>Lease Purchase</option>
-                                                                <option>Owner Operator</option>
-                                                                <option>Trainer, Mentor</option>
+                                                            <select name="driver_type" class="@error('driver_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 124)->first()->options) as $r)
+                                                                <option @if(old('driver_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('driver_type')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Home Time</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Sunday</option>
-                                                                <option>Monday</option>
-                                                                <option>Tuesday</option>
-                                                                <option>Wednesday</option>
-                                                                <option>Thursday</option>
-                                                                <option>Friday</option>
-                                                                <option>Saturday</option>
+                                                            <select name="home_time" class="@error('home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 125)->first()->options) as $r)
+                                                                <option @if(old('home_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('home_time')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Freight Type</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Dry Van</option>
+                                                            <select name="freight_type" class="@error('freight_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 126)->first()->options) as $r)
+                                                                <option @if(old('freight_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('freight_type')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Dedicated Account</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Yes</option>
+                                                            <select name="dedicated_account" class="@error('dedicated_account') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 127)->first()->options) as $r)
+                                                                <option @if(old('dedicated_account') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('dedicated_account')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="lable-control">Avg Weekly Mile</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="">
+                                                            <input value="{{ old('avg_weekly_mile') }}" name="avg_weekly_mile" type="text" class="@error('avg_weekly_mile') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200">
+                                                            @error('avg_weekly_mile')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                        <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#advanceDetail">
+                                                        <span class="btn btn-primary mr-2" data-toggle="modal" data-target="#advanceDetail">
                                                             Advanced Details
-                                                        </button>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,7 +219,7 @@
                                                     <div class="col-md-6 map-content">
                                                         <div class="form-group">
                                                             <label class="lable-control">Hiring Area</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                 <option>Select Hiring Map</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
@@ -192,7 +232,7 @@
                                                     <div class="col-md-6 map-content">
                                                         <div class="form-group">
                                                             <label class="lable-control">Operating Area</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                 <option>Select Hiring Map</option>
                                                                 <option>2</option>
                                                                 <option>3</option>
@@ -216,7 +256,7 @@
                                                 <div class="col-md-12 map-content">
                                                     <div class="form-group">
                                                         <label class="lable-control">Hiring Requirements Templates</label>
-                                                        <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                        <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                             <option>Select Hiring Requirements Template</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -240,71 +280,123 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Compensation</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>CPM</option>
-                                                                <option>Salary</option>
-                                                                <option>Percentage Pay</option>
+                                                            <select name="compensation" class="@error('compensation') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 128)->first()->options) as $r)
+                                                                <option @if(old('compensation') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('compensation')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Duty Time</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Duty Time</option>
+                                                            <select name="duty_time" class="@error('duty_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 129)->first()->options) as $r)
+                                                                <option @if(old('duty_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('duty_time')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Compensation amount</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="">
+                                                            <input value="{{ old('compensation_ammount') }}" type="text" class="@error('compensation_ammount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="compensation_ammount">
+                                                            @error('compensation_ammount')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Top 10% Of Earners are making</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="">
+                                                            <input value="{{ old('top_10_of_earners_are_makking') }}" type="text" class="@error('top_10_of_earners_are_makking') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200"name="top_10_of_earners_are_makking">
+                                                            @error('top_10_of_earners_are_makking')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Average Weekly Pay</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>$5,000 - $10,000</option>
+                                                            <select class="@error('avgerage_weekly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_weekly_pay">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 130)->first()->options) as $r)
+                                                                <option @if(old('avgerage_weekly_pay') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('avgerage_weekly_pay')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 map-content">
                                                         <div class="form-group">
                                                             <label class="lable-control">Average Yearly Pay</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>$5,000 - $10,000</option>
+                                                            <select class="@error('avgerage_yearly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_yearly_pay">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 131)->first()->options) as $r)
+                                                                <option @if(old('avgerage_yearly_pay') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('avgerage_yearly_pay')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Sign on Bonus</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Yes</option>
-                                                                <option>No</option>
+                                                            <select class="@error('sign_on_bonus') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="sign_on_bonus">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 132)->first()->options) as $r)
+                                                                <option @if(old('sign_on_bonus') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('sign_on_bonus')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Sign on Bonus Amount</label>
-                                                            <input class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" type="text" name="">
+                                                            <input value="{{ old('sign_on_bonus_amount') }}" class="@error('sign_on_bonus_amount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" type="text" name="sign_on_bonus_amount">
+                                                            @error('sign_on_bonus_amount')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 text-right">
                                                         <p class="text-primary" data-toggle="modal" data-target="#payOption">Edit Payout Schedule</p>
                                                     </div>
                                                     <div class="col-md-12 d-flex justify-content-end">
-                                                        <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#advancepayOption">
+                                                        <span class="btn btn-primary mr-2" data-toggle="modal" data-target="#advancepayOption">
                                                             Advanced Pay Options
-                                                        </button>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,56 +411,33 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Health Insurance
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Life Insurance
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            401(k)
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Dental Insurance
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Vision Insurance
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Tuition Reimbursement
-                                                        </label>
-                                                        <label class="checkbox checkbox-lg mb-3">
-                                                            <input type="checkbox" name="Checkboxes3_1" />
-                                                            <span class="mr-3"></span>
-                                                            Paid time off
-                                                        </label>
+
+                                                        <div class="row" id="appendbenifitindiv">
+                                                            @foreach(explode(',' , $attribute->where('id' , 133)->first()->options) as $r)
+                                                            <div class="col-md-6">
+                                                                <label class="checkbox checkbox-lg mb-3">
+                                                                    <input type="checkbox" name="benifits[]" />
+                                                                    <span class="mr-3"></span>
+                                                                    {{ $r }}
+                                                                </label>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Add Custom Benefit</label>
-                                                                    <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custom Benefit Here" name="">
+                                                                    <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custom Benefit Here" id="bennifitnew">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-4">
                                                             <div class="col-md-12">
-                                                                <button class="btn btn-primary">
+                                                                <span onclick="appendbenifit()" class="btn btn-primary">
                                                                     <i class="fa fa-plus"></i> Add New
-                                                                </button>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -384,62 +453,58 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Freight Type</label>
-                                                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                                                <option>Dry Van</option>
-                                                                <option>reefer</option>
-                                                                <option>reefer</option>
-                                                                <option>Sand/Tanker</option>
-                                                                <option>Heavy Haul</option>
+                                                            <select name="freight_type_equipment" class="@error('freight_type_equipment') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                <option value="">Select Option</option>
+                                                                @foreach(explode(',' , $attribute->where('id' , 126)->first()->options) as $r)
+                                                                <option @if(old('freight_type_equipment') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                                                                @endforeach
                                                             </select>
+                                                            @error('freight_type_equipment')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Drop and Hook</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%" name="">
+                                                            <input value="{{ old('drop_and_hook') }}" name="drop_and_hook" type="text" class="@error('drop_and_hook') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                                                            @error('drop_and_hook')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Live Load/Unload</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%" name="">
+                                                            <input value="{{ old('live_load') }}" name="live_load" type="text" class="@error('live_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                                                            @error('live_load')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="lable-control">Driver Load/Unload</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%" name="">
+                                                            <input value="{{ old('driver_load') }}" name="driver_load" type="text" class="@error('driver_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                                                            @error('driver_load')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="lable-control">Truck Make</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="lable-control">Truck Model</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label class="lable-control">Truck Year</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
+                                                
 
                                             </div>
                                         </div>
@@ -451,7 +516,7 @@
                                                         <h3 class="card-label font-weight-bolder text-dark">Equipment </h3>
                                                     </div>
                                                     <div class="ml-auto">
-                                                        <button class="btn btn-primary">+ Add Equipment</button>
+                                                        <span onclick="addnewequipment()" class="btn btn-primary">+ Add Equipment</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -460,19 +525,36 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="lable-control">Truck Make</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. Freightliner" name="">
+                                                            <input value="{{ old('truck_make') }}" name="truck_make" type="text" class="@error('truck_make') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                                            @error('truck_make')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="lable-control">Truck Model</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. Cascadia" name="">
+                                                            <input value="{{ old('truck_modal') }}" name="truck_modal" type="text" class="@error('truck_modal') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                                            @error('truck_modal')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="lable-control">Truck Year</label>
-                                                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. 2020-2022" name="">
+                                                            <input value="{{ old('truck_year') }}" name="truck_year" type="text" class="@error('truck_year') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                                            @error('truck_year')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -503,14 +585,14 @@
                                                                 <h3>Rider Policy</h3>
                                                             </div>
                                                             <div class="ml-auto">
-                                                                <button class="btn btn-light-primary btn-icon">
+                                                                <span data-toggle="modal" data-target="#riderpolicy" class="btn btn-light-primary btn-icon">
                                                                     <i class="icon-xl la la-edit"></i>
-                                                                </button>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                                        <p class="policy-text" id="ridertextpolicy">{{ Cmf::getusercompany()->riderpolicy }}</p>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
@@ -520,14 +602,14 @@
                                                                 <h3>Pet Policy</h3>
                                                             </div>
                                                             <div class="ml-auto">
-                                                                <button class="btn btn-light-primary btn-icon">
+                                                                <span data-toggle="modal" data-target="#petpolicy" class="btn btn-light-primary btn-icon">
                                                                     <i class="icon-xl la la-edit"></i>
-                                                                </button>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                                        <p id="pettextpolicy" class="policy-text">{{ Cmf::getusercompany()->petpolicy }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -544,6 +626,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </form>
                                     <div class="tab-pane fade" id="two-2" role="tabpanel" aria-labelledby="two-tab-2">
                                         <div class="card card-custom card-stretch">
                                             <div class="card-header">
@@ -552,7 +635,6 @@
                                                 </div>
                                             </div>
                                             <div class="card-body">
-                                                <form class="form">
                                                     <!--begin::Body-->
                                                     <div class="card-body">
                                                         <div class="row">
@@ -560,7 +642,7 @@
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Minimum Age</label>
                                                                     <small>This referral code will be sent to your CRM</small>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>21 Years Old</option>
                                                                         <option>Other</option>
                                                                     </select>
@@ -569,13 +651,13 @@
                                                             <!-- If they Select other then this field should popup -->
                                                             <div class="col-md-6">
                                                                 <label class="lable-control">Enter the Minimum Age</label>
-                                                                    <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
+                                                                    <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="">
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Minimum Experience</label> <br>
                                                                     <small>Tractor/Trailer/OTR</small>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Student</option>
                                                                         <option>Recent Graduate</option>
                                                                         <option>1 Month</option>
@@ -613,7 +695,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">No more than</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -630,7 +712,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Moving violations</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                         <option>1 Year</option>
                                                                         <option>2 Years</option>
@@ -657,7 +739,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">No more than</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -674,7 +756,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Moving violations</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                         <option>1 Year</option>
                                                                         <option>2 Years</option>
@@ -694,7 +776,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">License Suspensions</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -717,7 +799,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">No more than</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -734,7 +816,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Moving violations</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                         <option>1 Year</option>
                                                                         <option>2 Years</option>
@@ -747,7 +829,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Preventable accidents within the last</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                     </select>
                                                                 </div>
@@ -763,7 +845,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Preventable accidents within the last</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                     </select>
                                                                 </div>
@@ -784,7 +866,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">No more than</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -801,7 +883,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Moving violations</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                         <option>1 Year</option>
                                                                         <option>2 Years</option>
@@ -814,7 +896,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Ticket/Accident/Incident Combo </label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -837,7 +919,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">No more than</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>1</option>
                                                                         <option>2</option>
                                                                         <option>3</option>
@@ -854,7 +936,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Moving violations</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>6 Months</option>
                                                                         <option>1 Year</option>
                                                                         <option>2 Years</option>
@@ -867,7 +949,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Unemployment</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -905,7 +987,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Type of Drug Test </label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Urine</option>
                                                                         <option>Hair Follicle</option>
                                                                     </select>
@@ -914,7 +996,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Type of Drug Test </label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                     </select>
                                                                 </div>
@@ -922,7 +1004,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Accepting SAP Drivers? </label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -946,19 +1028,19 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Automatic DQ’s </label>
-                                                                    <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
+                                                                    <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Automatic DQ’s </label>
-                                                                    <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
+                                                                    <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Automatic DQ’s </label>
-                                                                    <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
+                                                                    <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -969,7 +1051,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Accommodate an Automatic Restriction? </label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -979,7 +1061,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Cameras Installed in the Trucks?</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Yes</option>
                                                                         <option>No</option>
                                                                     </select>
@@ -991,7 +1073,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Select Type</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Inward</option>
                                                                         <option>Outward</option>
                                                                     </select>
@@ -1001,7 +1083,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Cameras are</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Continuously recording</option>
                                                                         <option>Only during incidents</option>
                                                                     </select>
@@ -1011,7 +1093,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Camera Facing</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Inward</option>
                                                                     </select>
                                                                 </div>
@@ -1019,7 +1101,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label class="lable-control">Camera Recording</label>
-                                                                    <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                                                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                                                         <option>Only during incidents</option>
                                                                     </select>
                                                                 </div>
@@ -1076,7 +1158,6 @@
                                                         </div>
                                                     </div>
                                                     <!--end::Body-->
-                                                </form>
                                             </div>
                                         </div>
                                         <div class="row mb-7">
@@ -1421,7 +1502,74 @@
         <!--end::Entry-->
     </div>
     <!--end::Content-->
-
+<div class="modal fade" id="riderpolicy" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="modal-title" id="exampleModalLabel">Rider Policy</h5>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <form id="updateriderpolicy" method="POST" action="{{ url('updateriderpolicy') }}">
+                @csrf
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Rider Policy</label>
+                            <textarea name="rider_policy" id="rider_policy" rows="10" class="form-control form-control-solid" style="height:200px;">{{ Cmf::getusercompany()->riderpolicy }}</textarea>
+                            <span class="invalid-feedback riderpolicy-feedback" id="rider_policy_err" role="alert"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                <button type="submit" id="riderpolicy_submit_button" class="btn btn-primary font-weight-bold">Save</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="petpolicy" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="modal-title" id="exampleModalLabel">Pet Policy</h5>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <form id="updatepetpolicy" method="POST" action="{{ url('updatepetpolicy') }}">
+                @csrf
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Pet Policy</label>
+                            <textarea name="petpolicy" id="petpolicy" rows="5" class="form-control form-control-solid" style="height:200px;">{{ Cmf::getusercompany()->petpolicy }}</textarea>
+                            <span class="invalid-feedback petpolicy-feedback" id="petpolicy_err" role="alert"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                <button type="submit" id="update-pet-policy-submit-button" class="btn btn-primary font-weight-bold">Save</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
     <div class="modal fade" id="advanceDetail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -1435,75 +1583,85 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
+            <form id="advance_detail_submit_form" method="POST" action="{{ url('job/adddadvancedetails') }}">
+                @csrf
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">What are the primary running lanes for this position?</label>
-                            <textarea rows="5" class="form-control form-control-solid" style="height:100px;">
-                            </textarea>
+                            <textarea name="primary_running_lanes" id="primary_running_lanes" rows="5" class="form-control form-control-solid" style="height:100px;"></textarea>
+                            <span class="invalid-feedback advance-feedback" id="primary_running_lanes_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Avg Length of haul (Miles)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
+                            <input type="number" id="avg_length_of_haul" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="avg_length_of_haul">
+                            <span class="invalid-feedback advance-feedback" id="avg_length_of_haul_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Type of Fuel Card</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. 25,000 miles" name="">
+                            <input type="text" id="type_of_fuel_card" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. 25,000 miles" name="type_of_fuel_card">
+                            <span class="invalid-feedback advance-feedback" id="type_of_fuel_card_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Tolls</label>
-                            <textarea rows="4" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px"></textarea>
+                            <textarea id="tolls" name="tolls" rows="4" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px"></textarea>
+                            <span class="invalid-feedback advance-feedback" id="tolls_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">24 hour Dispatch</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select name="hour_dispatch" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="hour_dispatch">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
+                            <span class="invalid-feedback advance-feedback" id="hour_dispatch_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">EZ Pass</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select name="ez_Pass" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="ez_Pass">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
+                            <span class="invalid-feedback advance-feedback" id="ez_Pass_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Pre-Pass</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select name="pre_pass" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="pre_pass">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
+                            <span class="invalid-feedback advance-feedback" id="pre_pass_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Non-Forced Dispatch</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select name="non_forced_dispatch" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="non_forced_dispatch">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
+                            <span class="invalid-feedback advance-feedback" id="non_forced_dispatch_err" role="alert"></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Save Changes</button>
+                <button type="submit" id="advance_detail_submit_button" class="btn btn-primary font-weight-bold">Save</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -1529,7 +1687,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">When?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Orientation</option>
                                 <option>1st Dispatch</option>
                                 <option>Delivery of 1st Load</option>
@@ -1551,7 +1709,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1565,7 +1723,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">When?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Orientation</option>
                                 <option>1st Dispatch</option>
                                 <option>Delivery of 1st Load</option>
@@ -1587,7 +1745,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1596,7 +1754,7 @@
                 </div>
                 <div class="d-flex">
                     <div class="mr-0">
-                        <a href="javascript:void(0)">Add New Payout</a>
+                        <a href="javascript:void(0)" id="addmore" class="add_input">Add New Payout</a>
                     </div>
                 </div>
             </div>
@@ -1627,13 +1785,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Breakdown Pay ($)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Cash Advance</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1642,7 +1800,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Detention pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>1 hour</option>
                                 <option>2 hours</option>
                                 <option>3 hours</option>
@@ -1653,13 +1811,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Pays Amount ($)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Are drivers paid the same for loaded and empty miles?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1669,7 +1827,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Miles CPM chat</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                 </div>
@@ -1677,7 +1835,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">End of Pay Week</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Monday</option>
                                 <option>Tuesday</option>
                                 <option>Wednesday</option>
@@ -1691,7 +1849,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Hazmat Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1701,7 +1859,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Select Option</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>$0.01</option>
                                 <option>$0.02</option>
                                 <option>$0.03</option>
@@ -1723,14 +1881,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Holiday Pay</label>
-                            <textarea class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" rows="8"></textarea>
+                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="8"></textarea>
                             <small>Max 400 characters</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">How Are Drivers Paid?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Direct Deposit</option>
                                 <option>Other</option>
                             </select>
@@ -1740,13 +1898,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Add option</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Layover Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>1 hour</option>
                                 <option>2 hours</option>
                                 <option>3 hours</option>
@@ -1757,13 +1915,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Minimum Pay Guarantee</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Weekly</option>
                                 <option>Other</option>
                             </select>
@@ -1772,13 +1930,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Multi-stop Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1787,13 +1945,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Paid On</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>All stops</option>
                                 <option>All stop except first and last stop</option>
                                 <option>Other</option>
@@ -1804,13 +1962,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Specify other</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">New York City Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1819,13 +1977,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Northeast Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1834,13 +1992,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount(CPM)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Orientation Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1849,20 +2007,20 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Pay Increase</label>
-                            <textarea class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" rows="6"></textarea>
+                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="6"></textarea>
                             <small>Max 200 characters</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Per Diem</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1871,26 +2029,26 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Amount(CPM)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Referral Bonus ($)</label>
-                            <input type="number" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Safety Bonus</label>
-                            <textarea class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" rows="6"></textarea>
+                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="6"></textarea>
                             <small>Max 400 characters</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Start of Pay Week</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Monday</option>
                                 <option>Tuesday</option>
                                 <option>Wednesday</option>
@@ -1904,7 +2062,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Type of Driver Pay</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option> Practical Millage Pay</option>
                                 <option>HHG</option>
                             </select>
@@ -1913,7 +2071,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Unloading Pay ($)</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -1922,14 +2080,14 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Vacation Pay</label>
-                            <textarea class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" rows="6" style="height:100px;"></textarea>
+                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="6" style="height:100px;"></textarea>
                             <small>Max 200 characters</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">When Are Drivers Paid?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Monday</option>
                                 <option>Tuesday</option>
                                 <option>Wednesday</option>
@@ -1970,13 +2128,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Engine</label>
-                            <input type="text" class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Transmission Type</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Automatic</option>
                             </select>
                         </div>
@@ -1984,7 +2142,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Truck Speed (Cruise / Pedal)</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Cruise</option>
                             </select>
                         </div>
@@ -1992,7 +2150,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Inverter</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2001,7 +2159,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">APU/EPU</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2010,7 +2168,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Bunks</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>SIngle Bunk</option>
                             </select>
                         </div>
@@ -2018,7 +2176,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Orientation</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Inward Facing</option>
                             </select>
                         </div>
@@ -2026,7 +2184,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Recording</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Camera Recording</option>
                             </select>
                         </div>
@@ -2034,7 +2192,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Can Truck Be Taken Home?</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                             </select>
                         </div>
@@ -2042,7 +2200,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Truck Permanently Assigned</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                             </select>
                         </div>
@@ -2050,7 +2208,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Onboard Navigation</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Camera Recording</option>
                             </select>
                         </div>
@@ -2058,13 +2216,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Onboard Communication</label>
-                            <textarea class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Enter your text here..." rows="5"></textarea>
+                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Enter your text here..." rows="5"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Onboard Navigation</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2073,7 +2231,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">DirecTV</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2082,7 +2240,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">SiriusXM</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2091,7 +2249,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Refrigerator</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2100,7 +2258,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Microwave</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
@@ -2109,7 +2267,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Collision Mitigation</label>
-                            <select class="form-control border-0 form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>

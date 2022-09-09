@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
+                                <table class="table table-bordered table-head-custom table-checkable" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>Attribute</th>
@@ -44,97 +44,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($data->where('type' , 'job_detail') as $r)
                                         <tr>
                                             <td>
-                                                How often will the driver get home?
+                                                {{ $r->name }}
                                             </td>
                                             <td>
-                                                Option Field
+                                                {{ $r->option_type }}
                                             </td>
                                             <td>
-                                                Daily, 
-                                                Once Every 1-2 Days, 
-                                                Once every 2-3 Days, 
-                                                Weekly, 
-                                                2-3 weeks, 
-                                                21+
+                                                {{ $r->options }}
                                             </td>
                                             <td nowrap="">
-                                                <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
+                                                <a onclick="editjobattribute({{ $r->id }})" href="javascript:void(0)" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
                                             </td>
                                         </tr>
-
-                                        <tr>
-                                            <td>
-                                                Driver Type
-                                            </td>
-                                            <td>
-                                                Option Field
-                                            </td>
-                                            <td>
-                                                Company Solo,
-                                                Team,
-                                                Team LP,
-                                                Lease Purchase,
-                                                Owner Operator,
-                                                Trainer, Mentor
-                                            </td>
-                                            <td nowrap="">
-                                                <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                Home Time
-                                            </td>
-                                            <td>
-                                                Option Field
-                                            </td>
-                                            <td>
-                                                Sunday, 
-                                                Monday, 
-                                                Tuesday, 
-                                                Wednesday, 
-                                                Thursday, 
-                                                Friday, 
-                                                Saturday
-                                            </td>
-                                            <td nowrap="">
-                                                <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                Freight Type
-                                            </td>
-                                            <td>
-                                                Option Field
-                                            </td>
-                                            <td>
-                                                Dry Van
-                                            </td>
-                                            <td nowrap="">
-                                                <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>
-                                                Dedicated Account
-                                            </td>
-                                            <td>
-                                                Option Field
-                                            </td>
-                                            <td>
-                                                Dry Van
-                                            </td>
-                                            <td nowrap="">
-                                                <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                            </td>
-                                        </tr>
-
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -153,95 +78,34 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Attribute</th>
-                                        <th>Type</th>
-                                        <th>Options</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Compensation
-                                        </td>
-                                        <td>
-                                            Option Field
-                                        </td>
-                                        <td>
-                                            CMP,
-                                            Salary,
-                                            Percentage Pay
-                                        </td>
-                                        <td nowrap="">
-                                            <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            Duty Time
-                                        </td>
-                                        <td>
-                                            Option Field
-                                        </td>
-                                        <td>
-                                            something, something, something
-                                        </td>
-                                        <td nowrap="">
-                                            <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            Average Weekly Pay
-                                        </td>
-                                        <td>
-                                            Option Field
-                                        </td>
-                                        <td>
-                                            $5,000 - 10,000
-                                        </td>
-                                        <td nowrap="">
-                                            <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            Average Yearly Pay
-                                        </td>
-                                        <td>
-                                            Option Field
-                                        </td>
-                                        <td>
-                                            $5,000 - 10,000
-                                        </td>
-                                        <td nowrap="">
-                                            <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            Sign on Bonus
-                                        </td>
-                                        <td>
-                                            Option Field
-                                        </td>
-                                        <td>
-                                            Yes, No
-                                        </td>
-                                        <td nowrap="">
-                                            <a data-toggle="modal" data-target="#addAttributes" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
+                            <table class="table table-bordered table-head-custom table-checkable" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Attribute</th>
+                                            <th>Type</th>
+                                            <th>Options</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($data->where('type' , 'pay_options') as $r)
+                                        <tr>
+                                            <td>
+                                                {{ $r->name }}
+                                            </td>
+                                            <td>
+                                                {{ $r->option_type }}
+                                            </td>
+                                            <td>
+                                                {{ $r->options }}
+                                            </td>
+                                            <td nowrap="">
+                                                <a onclick="editjobattribute({{ $r->id }})" href="javascript:void(0)" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                         </div>
                     </div>
                     <!--end::Card-->
@@ -264,34 +128,28 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="lable-control">Field title</label>
-                            <input type="text" class="form-control font-size-lg " value="Dedicated Account" name="">
-                        </div>
-                    </div>
+            <form method="POST" action="{{ url('admin/jobs/updateattributes') }}">
+                 @csrf
+            <div id="modalboyd" class="modal-body">
+                <div class="row" id="namefields">
+                    
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
-                        <select class="form-control select2 form-control-lg form-control-solid" style="width:100%; height: 55px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="param">
+                        <select class="form-control select2 form-control-lg form-control-solid" style="width:100%; height: 55px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="param[]">
                             <option>Company Solo</option>   
                             <option>LP</option> 
                             <option>Team, Team</option> 
                         </select>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
+                <button type="submit" class="btn btn-primary font-weight-bold">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
-
-
 @endsection

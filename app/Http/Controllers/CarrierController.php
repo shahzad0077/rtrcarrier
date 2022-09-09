@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\Cmf;
 use App\Models\User;
 use App\Models\companies;
+use Validator;
 use Auth;
 class CarrierController extends Controller
 {
@@ -106,4 +107,41 @@ class CarrierController extends Controller
     {
         return view('carrier/hiring-maps/add-new');
     }
+
+
+    public function updatepetpolicy(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'petpolicy' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()]);
+        } 
+
+
+        $updatecompany = companies::find(Cmf::getusercompany()->id);
+        $updatecompany->petpolicy = $request->petpolicy;
+        $updatecompany->save();
+
+
+        return response()->json(['policytext'=>$request->petpolicy]);
+        
+    }
+    public function updateriderpolicy(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rider_policy' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()]);
+        }
+
+        $updatecompany = companies::find(Cmf::getusercompany()->id);
+        $updatecompany->riderpolicy = $request->rider_policy;
+        $updatecompany->save();
+
+        return response()->json(['policytext'=>$request->rider_policy]);
+    }
+
+
 }

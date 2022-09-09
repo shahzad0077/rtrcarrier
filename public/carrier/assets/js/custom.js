@@ -111,3 +111,126 @@ $("#updatecoverinput").change(function(){
 $("#profile_avatar").change(function(){   
     $('#profileavatarform').submit();
 });
+function appendbenifit()
+{
+    var value = $('#bennifitnew').val();
+    if(value)
+    {
+        $('#bennifitnew').removeClass('is-invalid')
+        $('#appendbenifitindiv').append('<div class="col-md-6"><label class="checkbox checkbox-lg mb-3"><input checked type="checkbox" name="benifits[]" /><span class="mr-3"></span>'+value+'</label></div>');
+        $('#bennifitnew').val(' ');
+    }else{
+        $('#bennifitnew').addClass('is-invalid')
+    }
+}
+
+$('#advance_detail_submit_form').on('submit',(function(e) {
+    $('#advance_detail_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $(".advance-feedback").css('display','none');
+    $('#advance_detail_submit_form').find('*').removeClass('is-invalid');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $(".advance-feedback").css('display','none');
+            $('#advance_detail_submit_form')[0].reset();
+        }else{
+            $('#advance_detail_submit_button').html('Save');
+            // $("html, body").animate({ scrollTop: 0 }, "slow");
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+$('#updateriderpolicy').on('submit',(function(e) {
+    $('#riderpolicy_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $(".riderpolicy-feedback").css('display','none');
+    $('#updateriderpolicy').find('*').removeClass('is-invalid');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#ridertextpolicy').html(data.policytext)
+            $('#riderpolicy').modal('hide');
+            $('#riderpolicy_submit_button').html('Save');
+        }else{
+            $('#riderpolicy_submit_button').html('Save');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+$('#updatepetpolicy').on('submit',(function(e) {
+    $('#update-pet-policy-submit-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $(".petpolicy-feedback").css('display','none');
+    $('#updatepetpolicy').find('*').removeClass('is-invalid');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#pettextpolicy').html(data.policytext)
+            $('#petpolicy').modal('hide');
+            $('#update-pet-policy-submit-button').html('Save');
+        }else{
+            $('#update-pet-policy-submit-button').html('Save');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+
+function printErrorMsg (msg) {
+    $.each( msg, function( key, value ) {
+        $("#"+key+"_err").html('<strong>'+value+'</strong>');
+        $("#"+key+"_err").show();
+        $('#'+key).addClass('is-invalid');
+    });
+}
+function addnewequipment() {
+    
+}
+
+
+$(document).ready(function() {
+  $("#addmore").click(function() {
+    $("#req_input").append('<div class="required_inp"><input name="fname" placeholder="Text Field 1" type="text"><input name="lname" placeholder="Text Field 2" type="text">' + '<input type="button" class="inputRemove" value="Remove"/></div>');
+  });
+  $('body').on('click','.inputRemove',function() {
+    $(this).parent('div.required_inp').remove()
+  });
+});

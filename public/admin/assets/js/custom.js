@@ -81,3 +81,30 @@ function declinecarrier(id)
     $('#declinerequest').modal('show');
     $('#declineid').val(id);
 }
+function editjobattribute(id)
+{
+    getattributenameandid(id);
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/admin/jobs/editattribute/"+id, 
+        type:"get",
+        success:function(res)
+        {
+            $('#kt_select2_11').html(res);
+            $('#addAttributes').modal('show');
+        }
+    })
+}
+
+function getattributenameandid(id)
+{
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/admin/jobs/getattributenameandid/"+id, 
+        type:"get",
+        success:function(res)
+        {
+            $('#namefields').html(res);
+        }
+    })
+}

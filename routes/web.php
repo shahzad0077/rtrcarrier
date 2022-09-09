@@ -7,6 +7,7 @@ use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StaffPermissionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\JobController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +51,8 @@ Route::get('/profile-settings', [CarrierController::class, 'profilesettings']);
 Route::POST('/updateprofilepicture', [CarrierController::class, 'updateprofilepicture']);
 Route::POST('/updateuserprofile', [CarrierController::class, 'updateuserprofile']);
 Route::POST('/securetycredentials', [CarrierController::class, 'securetycredentials']);
+Route::POST('/updatepetpolicy', [CarrierController::class, 'updatepetpolicy']);
+Route::POST('/updateriderpolicy', [CarrierController::class, 'updateriderpolicy']);
 
 
 
@@ -67,41 +70,21 @@ Route::POST('/addnewcarrierstaff', [StaffPermissionController::class, 'addnewcar
 
 
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
-
-
-
 Route::get('/carrier-profile/reviews', function () {
     return view('carrier/carrier-profile/reviews');
 });
 
 
 
-Route::get('/forgot-password', function () {
-    return view('auth/forgot-password');
-});
-
-Route::get('/signup', function () {
-    return view('auth/signup');
-});
-
-Route::get('/signup', function () {
-    return view('auth/signup');
-});
+// Jobs Routes
+Route::get('/jobs', [JobController::class, 'allcarrierjobs']);
+Route::get('/job/add', [JobController::class, 'addnewjob']);
+Route::get('/job/published', [JobController::class, 'publishedjobstatus']);
+Route::post('/job/submitone', [JobController::class, 'submitone']);
+Route::post('/job/adddadvancedetails', [JobController::class, 'adddadvancedetails']);
 
 
 
-// Jobs
-Route::get('/jobs', function () {
-    return view('carrier/jobs/index');
-});
-
-Route::get('/job/add', function () {
-    return view('carrier/jobs/add-new');
-});
-
-Route::get('/job/published', function () {
-    return view('carrier/jobs/published');
-});
 
 // Hiring Maps
 
@@ -178,13 +161,19 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
     });
 
-});
-Route::get('/admin/job/add', function () {
-    return view('admin/jobs/add-new');
-});
 
-Route::get('/admin/jobs/pending', function () {
-    return view('admin/jobs/pending');
+
+    Route::name('job.')->prefix('jobs')->group(function(){
+        Route::get('/','JobController@alljobs');
+        Route::get('/addnewjob','JobController@addnewjob');
+        Route::get('/bassic-attributes','JobController@basicattributes');
+        Route::get('/pending','JobController@pendingjobs');
+        Route::get('/editattribute/{id}','JobController@editattribute');
+        Route::get('/getattributenameandid/{id}','JobController@getattributenameandid');
+        Route::post('/updateattributes','JobController@updateattributes');
+
+    });
+
 });
 
 Route::get('/admin/staff', function () {
@@ -192,16 +181,4 @@ Route::get('/admin/staff', function () {
 });
 Route::get('/admin/staff/permissions', function () {
     return view('admin/staff/permissions');
-});
-
-Route::get('/admin/job-attributes/basic-details', function () {
-    return view('admin/job-attributes/basic-details');
-});
-
-Route::get('/admin/job-attributes/pay-options', function () {
-    return view('admin/job-attributes/pay-options');
-});
-
-Route::get('/admin/job-attributes/benefits', function () {
-    return view('admin/job-attributes/benefits');
 });
