@@ -7,7 +7,9 @@ function closealert()
 {
 	$('#name-error').hide();
 }
-
+function validatetwitter(id) {
+    
+}
 function coppytoclipboard() {
   /* Get the text field */
   var copyText = document.getElementById("kt_clipboard_1");
@@ -142,10 +144,15 @@ $('#advance_detail_submit_form').on('submit',(function(e) {
         success: function(data){
          if($.isEmptyObject(data.error)){
             $(".advance-feedback").css('display','none');
-            $('#advance_detail_submit_form')[0].reset();
+            $('#advance_detail_submit_button').css('background-color' , 'green');
+            $('#advance_detail_submit_button').html('<i class="fa fa-check"></i> Updated');
+            setTimeout(function() { 
+                $('#advanceDetail').modal('hide');
+                $('#advance_detail_submit_button').html('Save');
+                $('#advance_detail_submit_button').css('background-color' , '#22AAE2');
+            }, 2000);
         }else{
             $('#advance_detail_submit_button').html('Save');
-            // $("html, body").animate({ scrollTop: 0 }, "slow");
             printErrorMsg(data.error);
         }
             
@@ -214,6 +221,56 @@ $('#updatepetpolicy').on('submit',(function(e) {
 
 
 
+$('#addpayoutschedule').on('submit',(function(e) {
+    $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#payOption').modal('hide');
+            $('#payout-schedule-button').html('Set Schedule');
+        }else{
+            $('#payout-schedule-button').html('Set Schedule');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+$('#addadvancepayoutdetails').on('submit',(function(e) {
+    $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#payOption').modal('hide');
+            $('#payout-schedule-button').html('Set Schedule');
+        }else{
+            $('#payout-schedule-button').html('Set Schedule');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
 function printErrorMsg (msg) {
     $.each( msg, function( key, value ) {
         $("#"+key+"_err").html('<strong>'+value+'</strong>');
@@ -221,16 +278,55 @@ function printErrorMsg (msg) {
         $('#'+key).addClass('is-invalid');
     });
 }
-function addnewequipment() {
-    
+
+
+// Add Payout Schedule
+var payoutrow=2;
+$(document).on("click", "#addmore", function () {
+  var new_row = '<div id="payoutrow'+payoutrow+'" class="row mb-3"> <div class="col-md-6 mb-3"> <h5>Payout #' + payoutrow + '</h5> </div><div class="col-md-6 mb-3 text-right"> <a onclick="removepayoutrow('+payoutrow+')" href="javascript:void(0)" class="text-danger">Delete New Payout</a></div> <div class="col-md-6"> <div class="form-group"> <label class="lable-control">When?</label> <select name="whenpayout[]" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects"> <option value="Orientation">Orientation</option> <option value="1st Dispatch">1st Dispatch</option> <option value="Delivery of 1st Load">Delivery of 1st Load</option> <option value="Month 1">Month 1</option> <option value="Month 2">Month 2</option> <option value="Month 3">Month 3</option> <option value="Month 4">Month 4</option> <option value="Month 5">Month 5</option> <option value="Month 6">Month 6</option> <option value="Month 7">Month 7</option> <option value="Month 8">Month 8</option> <option value="Month 9">Month 9</option> <option value="Month 10">Month 10</option> <option value="Month 11">Month 11</option> <option value="Month 12">Month 12</option> </select> </div> </div> <div class="col-md-6"> <div class="form-group"> <label class="lable-control">Amount</label> <select name="ammountpayout[]" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects"> <option value="Yes">Yes</option> <option value="No">No</option> </select> </div> </div> </div>';
+  $('#payoutschedule').append(new_row);
+  payoutrow++;
+  return false;
+});
+
+$(document).on("click", ".delete-row", function () {
+    if(payoutrow>1) {
+      $(this).closest('tr').remove();
+      payoutrow--;
+    }
+  return false;
+});
+
+function removepayoutrow(id)
+{
+    $('#payoutrow'+id).remove();
 }
 
 
-$(document).ready(function() {
-  $("#addmore").click(function() {
-    $("#req_input").append('<div class="required_inp"><input name="fname" placeholder="Text Field 1" type="text"><input name="lname" placeholder="Text Field 2" type="text">' + '<input type="button" class="inputRemove" value="Remove"/></div>');
-  });
-  $('body').on('click','.inputRemove',function() {
-    $(this).parent('div.required_inp').remove()
-  });
+
+// Add Equipment
+var row=1;
+$(document).on("click", "#add-row", function () {
+  var new_row = '<tr style="margin-bottom:20px;" class="row" id="row' + row + '"><td class="col-md-3"><input name="truck_make[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" /></td><td class="col-md-3"><input name="truck_model[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" /></td><td class="col-md-3"><input name="truck_year[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" /></td><td class="col-md-3"><input style="height:52px;" class="delete-row form-control btn btn-danger" type="button" value="Delete" /></td></tr>';
+  $('#test-body').append(new_row);
+  row++;
+  return false;
 });
+
+$(document).on("click", ".delete-row", function () {
+    if(row>1) {
+      $(this).closest('tr').remove();
+      row--;
+    }
+  return false;
+});
+
+function showbelowfield(value , id , condition)
+{
+    if(value == condition)
+    {
+        $('#'+id).show();
+    }else{
+        $('#'+id).hide();
+    }
+}

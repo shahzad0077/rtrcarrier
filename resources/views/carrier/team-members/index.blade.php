@@ -33,6 +33,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @include('alerts.index')
                     <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">
                         <thead>
                                 <tr>

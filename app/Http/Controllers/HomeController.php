@@ -21,10 +21,10 @@ class HomeController extends Controller
         {
             $subject = 'Your Account Is Not Approved Yet';
             $request = Auth::user();
-            Mail::send('email.accountnotapproved', ['name' => $request->name], function($message) use($request , $subject){
-                $message->to($request->email);
-                $message->subject($subject);
-            });
+            // Mail::send('email.accountnotapproved', ['name' => $request->name], function($message) use($request , $subject){
+            //     $message->to($request->email);
+            //     $message->subject($subject);
+            // });
             Auth::logout();
             return redirect()->route('login')->with('warning', 'Your Account is Not Approved.');
         }        

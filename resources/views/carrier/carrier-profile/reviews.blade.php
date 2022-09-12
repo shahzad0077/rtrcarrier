@@ -22,6 +22,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            @include('alerts.index')
                             <!--begin: Datatable-->
                             <div class="table-responsive">
                                 <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_4">

@@ -32,6 +32,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @include('alerts.index')
                     <!--begin: Datatable-->
                     <div class="table-responsive">
                         <table id="example" class="table table-separate table-head-custom table-checkable" style="width:100%">

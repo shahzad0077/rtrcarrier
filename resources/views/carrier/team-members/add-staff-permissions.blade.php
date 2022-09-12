@@ -20,6 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @include('alerts.index')
                     <form method="POST" action="{{ url('addnewstaffpermission') }}">
                         @csrf
                     <input type="hidden" value="{{ Cmf::getusercompany()->id }}" name="company_id">

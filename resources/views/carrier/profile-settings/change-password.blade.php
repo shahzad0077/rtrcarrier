@@ -7,6 +7,7 @@
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
             <div class="container">
+              @include('alerts.index')
                 <!--begin::Profile Personal Information-->
                 <div class="d-flex flex-row">
                     <!--begin::Aside-->

@@ -31,8 +31,9 @@
                         <!--begin::Form-->
                             <!--begin::Body-->
                             <div class="card-body">
+                                @include('alerts.index')
                                 <div class="row">
-                                    <div class="col-md-12 truck-bg" @if($data->banner) style="background:url('{{ url('') }}/images/{{ $data->banner  }}')" @else style="background:url('https://thumbs.dreamstime.com/b/senior-man-steep-rock-climb-colorado-male-climber-climbing-turtle-rocks-usa-sized-to-fit-popular-social-media-cover-image-74256916.jpg');" @endif>
+                                    <div class="col-md-12 truck-bg" @if($data->banner) style="background:url('{{ url('public') }}/images/{{ $data->banner  }}')" @else style="background:url('public/carrier/assets/placeholder.jpg');" @endif>
                                         <div class="row">
                                             <div class="col-md-12 edit-btn ">
                                                 <label class="inner-label edit-covers">
@@ -51,7 +52,7 @@
                                 <div class="row ocean-row">
                                     <div class="col-md-4 ocean-way">
                                         <div class="image-input image-input-outline image-input-circle" id="kt_image_3" style="margin-top: -60px;">
-                                            <div class="image-input-wrapper" @if($data->logo) style="background-image: url('{{ url('') }}/images/{{ $data->logo  }}')" @else style="background-image: url('https://cdn3.vectorstock.com/i/thumb-large/35/52/placeholder-rgb-color-icon-vector-32173552.jpg')"  @endif></div>
+                                            <div class="image-input-wrapper" @if($data->logo) style="background-image: url('{{ url('public') }}/images/{{ $data->logo  }}')" @else style="background-image: url('public/carrier/assets/profile.jpg')"  @endif></div>
                                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                                 <i class="fa fa-pen icon-sm text-muted"></i>
                                                 <form id="updateprofileform" style="display: none;" enctype="multipart/form-data" method="POST" action="{{ url('updatecarrierlogo') }}">
@@ -111,8 +112,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="lable-control">Google Profile</label>
-                                            <input value="{{ $data->google_link }}" type="text" class="form-control form-control-lg form-control-solid" name="address">
+                                            <label class="lable-control">Twitter Profile</label>
+                                            <input onkeyup="validatetwitter(this.value)" value="{{ $data->google_link }}" type="text" class="form-control form-control-lg form-control-solid" name="address">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

@@ -82,6 +82,9 @@ Route::get('/job/add', [JobController::class, 'addnewjob']);
 Route::get('/job/published', [JobController::class, 'publishedjobstatus']);
 Route::post('/job/submitone', [JobController::class, 'submitone']);
 Route::post('/job/adddadvancedetails', [JobController::class, 'adddadvancedetails']);
+Route::post('/job/addpayoutschedule', [JobController::class, 'addpayoutschedule']);
+Route::post('/job/addadvancepayoutdetails', [JobController::class, 'addadvancepayoutdetails']);
+Route::post('/job/hiringreq', [JobController::class, 'hiringreq']);
 
 
 

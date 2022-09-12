@@ -20,6 +20,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @include('alerts.index')
                     <form method="POST" action="{{ url('updatestaffpermission') }}">
                         @csrf
                     <input type="hidden" value="{{ $data->id }}" name="id">

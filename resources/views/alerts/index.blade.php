@@ -1,28 +1,12 @@
 @if(session()->has('message'))
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-<script type="text/javascript">
-    $( document ).ready(function() {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: '{{ session()->get('message') }}',
-            showConfirmButton: false,
-            timer: 3500
-          })
-    });
-</script>
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> {{ session()->get('message') }}
+  </div>
 @endif 
 @if(session()->has('warning'))
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-<script type="text/javascript">
-    $( document ).ready(function() {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'warning',
-            title: '{{ session()->get('warning') }}',
-            showConfirmButton: false,
-            timer: 3500
-          })
-    });
-</script>
+<div class="alert alert-warning alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Warning!</strong> {{ session()->get('warning') }}
+  </div>
 @endif
