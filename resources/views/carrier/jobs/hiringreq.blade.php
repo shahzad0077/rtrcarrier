@@ -51,8 +51,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Additional Notes about Experience</label>
-                            <textarea name="additional_notes_about_expereince" class="summernote">
-                        </textarea>
+                            <textarea name="additional_notes_about_expereince" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
@@ -95,8 +94,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Additional Notes</label>
-                            <textarea name="additionl_notes_about_moving_voliations" class="summernote">
-                        </textarea>
+                            <textarea name="additionl_notes_about_moving_voliations" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
@@ -139,8 +137,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Additional Notes</label>
-                            <textarea name="additionl_notes_about_moving_major_voliations" class="summernote">
-                        </textarea>
+                            <textarea name="additionl_notes_about_moving_major_voliations" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
@@ -157,8 +154,7 @@
                     <div style="display:none;" id="license_suspensions" class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Reason of Suspensions</label>
-                            <textarea name="license_suspensions_field" class="summernote">
-                        </textarea>
+                            <textarea name="license_suspensions_field" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
@@ -208,25 +204,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Reason of Suspensions</label>
-                            <textarea name="reason_of_suspensions" class="summernote">
-                        </textarea>
+                            <textarea name="reason_of_suspensions" class="summernote"></textarea>
                         </div>
                     </div>
                     
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Preventable accidents within the last</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>6 Months</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
-                        </div>
-                    </div>
                     <!-- Section -->
                     <div class="col-md-12">
                         <div class="form-group">
@@ -237,39 +218,39 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">No more than</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
+                            <select name="no_more_than_incidents" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Moving violations</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>6 Months</option>
-                                <option>1 Year</option>
-                                <option>2 Years</option>
-                                <option>3 Years</option>
-                                <option>4 Years</option>
-                                <option>5 Years</option>
+                            <select name="moving_voilations_incidents" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="6 Months">6 Months</option>
+                                <option value="1 Year">1 Year</option>
+                                <option value="2 Year">2 Years</option>
+                                <option value="3 Year">3 Years</option>
+                                <option value="4 Year">4 Years</option>
+                                <option value="5 Year">5 Years</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Ticket/Accident/Incident Combo </label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="ticket_incedent" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
@@ -277,8 +258,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Specify in a free form fill</label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="specify_in_a_free_form_fill" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
@@ -290,75 +270,71 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">No more than</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
+                            <select name="maximum_jobs_no_more_than" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Moving violations</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>6 Months</option>
-                                <option>1 Year</option>
-                                <option>2 Years</option>
-                                <option>3 Years</option>
-                                <option>4 Years</option>
-                                <option>5 Years</option>
+                            <select name="maximum_jobs_moving_voilations" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="6 Months">6 Months</option>
+                                <option value="1 Year">1 Year</option>
+                                <option value="2 Year">2 Years</option>
+                                <option value="3 Year">3 Years</option>
+                                <option value="4 Year">4 Years</option>
+                                <option value="5 Year">5 Years</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Unemployment</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="unemployment" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Additional Information</label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="maximum_jobs_additional_infomation" class="summernote"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Felony Convictions </label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="felony_convictions" class="summernote"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Misdemeanors</label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="misdemeanors" class="summernote"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Drugs/DUIs </label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="drug_duis" class="summernote"></textarea>
                         </div>
                     </div>
                     <!-- Section -->
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Type of Drug Test </label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                            <select name="type_of_drug_test" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                                 <option>Urine</option>
                                 <option>Hair Follicle</option>
                             </select>
@@ -366,97 +342,62 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="lable-control">Type of Drug Test </label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
                             <label class="lable-control">Accepting SAP Drivers? </label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select onchange="showbelowfield(this.value,'accepting_sap_drivers' , 'Yes')" name="accepting_sap_drivers" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
                     <!-- If they pressed Yes then it should appear -->
-                    <div class="col-md-12">
+                    <div style="display:none;" id="accepting_sap_drivers" class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Additional Information</label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="additional_information" class="summernote"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Physical</label>
-                            <textarea name="kt-ckeditor-4" class="summernote">
-                        </textarea>
+                            <textarea name="physical" class="summernote"></textarea>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Automatic DQ’s </label>
-                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Automatic DQ’s </label>
-                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Automatic DQ’s </label>
-                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="mt-8 btn btn-primary">
-                            Add DQ's
-                        </button>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Accommodate an Automatic Restriction? </label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="accomodate_an_automatic_restriction" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Cameras Installed in the Trucks?</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select onchange="showbelowfield(this.value,'camera_installed' , 'Yes')" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="camera_installed">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
-
                     <!-- If they pressed Yes -->
-
-                    <div class="col-md-6">
+                    <div id="camera_installed" class="row" style="display:none">
+                    <div  id="camera_installed" class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Select Type</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Inward</option>
-                                <option>Outward</option>
+                            <select name="camera_type" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="Inward">Inward</option>
+                                <option value="Outward">Outward</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div  class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Cameras are</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Continuously recording</option>
-                                <option>Only during incidents</option>
+                            <select name="camera_are" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="Continuously recording">Continuously recording</option>
+                                <option value="Only during incidents">Only during incidents</option>
                             </select>
                         </div>
                     </div>
@@ -464,57 +405,58 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Facing</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Inward</option>
+                            <select name="camera_facing" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="Inward">Inward</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div  class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Recording</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Only during incidents</option>
+                            <select name="camera_recording" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option value="Only during incidents">Only during incidents</option>
                             </select>
                         </div>
+                    </div>
                     </div>
                     <div class="col-md-12 mb-3">
                         <h4>Required Endorsements</h4>
                     </div>
                     <div class="col-md-6">
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="Hazmat" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             Hazmat
                         </label>
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="TWIC Card" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             TWIC Card
                         </label>
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="Tanker" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             Tanker
                         </label>
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="Hazardous Tank Endorsement" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             Hazardous Tank Endorsement
                         </label>
                     </div>
                     <div class="col-md-6">
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="Double/Triple" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             Double/Triple
                         </label>
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="Passenger endorsement" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             Passenger endorsement
                         </label>
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" name="Checkboxes3_1" />
+                            <input value="No endorsements required" type="checkbox" name="requiredendorsements[]" />
                             <span class="mr-3"></span>
                             No endorsements required
                         </label>
@@ -522,7 +464,7 @@
                     <div class="col-md-12">
                         <div class="d-flex">
                             <div class="ml-auto">
-                                <button class="btn btn-lg btn-primary">Save as template</button>
+                                <span onclick="savetemplate()" class="btn btn-lg btn-primary">Save as template</span>
                             </div>
                         </div>
                     </div>

@@ -183,10 +183,9 @@
                 <label class="lable-control">Hiring Requirements Templates</label>
                 <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                     <option>Select Hiring Requirements Template</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    @foreach($template as $r)
+                    <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <p>Create new hiring requirements template</p>
@@ -341,12 +340,23 @@
                     @foreach(explode(',' , $attribute->where('id' , 133)->first()->options) as $r)
                     <div class="col-md-6">
                         <label class="checkbox checkbox-lg mb-3">
-                            <input type="checkbox" value="{{ $r }}" name="benifits[]" />
+                            <input @foreach(explode(',' , $job->benifits) as $b) @if($b == $r) checked @endif @endforeach type="checkbox" value="{{ $r }}" name="benifits[]" />
                             <span class="mr-3"></span>
                             {{ $r }}
                         </label>
                     </div>
                     @endforeach
+                    @if($job->custombenifits)
+                        @foreach(explode(',' , $job->custombenifits) as $r)
+                        <div class="col-md-6">
+                            <label class="checkbox checkbox-lg mb-3">
+                                <input checked type="checkbox" value="{{ $r }}" name="custombenifits[]" />
+                                <span class="mr-3"></span>
+                                {{ $r }}
+                            </label>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="col-md-6">

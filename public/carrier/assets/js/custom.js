@@ -10,6 +10,10 @@ function closealert()
 function validatetwitter(id) {
     
 }
+function savetemplate()
+{
+    $('#savetemplate').modal('show');
+}
 function coppytoclipboard() {
   /* Get the text field */
   var copyText = document.getElementById("kt_clipboard_1");
@@ -119,7 +123,7 @@ function appendbenifit()
     if(value)
     {
         $('#bennifitnew').removeClass('is-invalid')
-        $('#appendbenifitindiv').append('<div class="col-md-6"><label class="checkbox checkbox-lg mb-3"><input checked type="checkbox" name="benifits[]" /><span class="mr-3"></span>'+value+'</label></div>');
+        $('#appendbenifitindiv').append('<div class="col-md-6"><label class="checkbox checkbox-lg mb-3"><input checked value="'+value+'" type="checkbox" name="custombenifits[]" /><span class="mr-3"></span>'+value+'</label></div>');
         $('#bennifitnew').val(' ');
     }else{
         $('#bennifitnew').addClass('is-invalid')
@@ -330,3 +334,13 @@ function showbelowfield(value , id , condition)
         $('#'+id).hide();
     }
 }
+function showbelowfieldbyclass(value , id , condition)
+{
+    if(value == condition)
+    {
+        $('.'+id).show();
+    }else{
+        $('.'+id).hide();
+    }
+}
+

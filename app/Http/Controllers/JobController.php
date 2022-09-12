@@ -10,6 +10,8 @@ use App\Models\jot_attributes;
 use App\Models\jobs;
 use App\Models\payout_schedules;
 use App\Models\advance_pay_options;
+use App\Models\hiring_templates;
+use App\Models\linktemplatewithjobs;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
@@ -37,9 +39,10 @@ class JobController extends Controller
             $addjob->step = 0;
             $addjob->save();
             $job = $addjob;
-        }        
+        }
+        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->get();  
         $attribute = jot_attributes::all();
-        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job));
+        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
     public function publishedjobstatus()
     {
@@ -83,6 +86,10 @@ class JobController extends Controller
         if($request->benifits)
         {
             $addnewjob->benifits = implode(',', $request->benifits);
+        }
+        if($request->custombenifits)
+        {
+            $addnewjob->custombenifits = implode(',', $request->custombenifits);
         }
         $addnewjob->compensation_ammount = $request->compensation_ammount;
         $addnewjob->top_10_of_earners_are_makking = $request->top_10_of_earners_are_makking;
@@ -194,5 +201,57 @@ class JobController extends Controller
         $adv_pay_out->when_are_drivers_paid =  $request->when_are_drivers_paid;
         $adv_pay_out->save();
     }
-    
+    public function hiringreq(Request $request)
+    {
+        $template = new hiring_templates();
+        $template->company_id = Cmf::getusercompany()->id;
+        $template->minimum_age = $request->minimum_age;
+        $template->minimum_age_field =$request->minimum_age_field;
+        $template->minimum_expereince =$request->minimum_expereince;
+        $template->additional_notes_about_expereince =$request->additional_notes_about_expereince;
+        $template->no_more_than =$request->no_more_than;
+        $template->moving_violations =$request->moving_violations;
+        $template->additionl_notes_about_moving_voliations =$request->additionl_notes_about_moving_voliations;
+        $template->no_more_than_major_voilations =$request->no_more_than_major_voilations;
+        $template->major_moving_voilations =$request->major_moving_voilations;
+        $template->additionl_notes_about_moving_major_voliations =$request->additionl_notes_about_moving_major_voliations;
+        $template->license_suspensions =$request->license_suspensions;
+        $template->license_suspensions_field =$request->license_suspensions_field;
+        $template->dot_no_more_than =$request->dot_no_more_than;
+        $template->dot_moving_voilations =$request->dot_moving_voilations;
+        $template->preventable_accidents_withn_the_last =$request->preventable_accidents_withn_the_last;
+        $template->reason_of_suspensions =$request->reason_of_suspensions;
+        $template->no_more_than_incidents =$request->no_more_than_incidents;
+        $template->moving_voilations_incidents =$request->moving_voilations_incidents;
+        $template->ticket_incedent =$request->ticket_incedent;
+        $template->specify_in_a_free_form_fill =$request->specify_in_a_free_form_fill;
+        $template->maximum_jobs_no_more_than =$request->maximum_jobs_no_more_than;
+        $template->maximum_jobs_moving_voilations =$request->maximum_jobs_moving_voilations;
+        $template->unemployment =$request->unemployment;
+        $template->maximum_jobs_additional_infomation =$request->maximum_jobs_additional_infomation;
+        $template->felony_convictions =$request->felony_convictions;
+        $template->misdemeanors =$request->misdemeanors;
+        $template->drug_duis =$request->drug_duis;
+        $template->type_of_drug_test =$request->type_of_drug_test;
+        $template->accepting_sap_drivers =$request->accepting_sap_drivers;
+        $template->additional_information =$request->additional_information;
+        $template->physical =$request->physical;
+        $template->accomodate_an_automatic_restriction =$request->accomodate_an_automatic_restriction;
+        $template->camera_installed =$request->camera_installed;
+        $template->camera_type =$request->camera_type;
+        $template->camera_are =$request->camera_are;
+        $template->camera_facing =$request->camera_facing;
+        $template->camera_recording =$request->camera_recording;
+        $template->requiredendorsements =$request->requiredendorsements;
+        $template->is_template = 0;
+        $template->save();
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->step = 2;
+        $addnewjob->save();
+        $linktemplate = new linktemplatewithjobs();
+        $linktemplate->job_id = $request->job_id;
+        $linktemplate->template_id = $template->id;
+        $linktemplate->save();
+        return redirect()->back()->with('message', 'Added Successfully');
+    }
 }
