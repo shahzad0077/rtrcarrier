@@ -249,6 +249,27 @@ $('#addpayoutschedule').on('submit',(function(e) {
     });
 }));
 
+function savetemplatemodalsubmit()
+{
+    var value = $('#templatenamefield').val(); 
+    if(value)
+    {
+        $('#template_name_field').val(value);
+        $('#save_templatebutton').html('<i class="fa fa-spin fa-spinner"></i>');
+        setTimeout(function() { 
+            $('#savetemplate').modal('hide');
+            $('#save_templatebutton').html('Save');
+            $('#save_as_template').css('background-color' , 'green');
+            $('#save_as_template').html('<i class="fa fa-check"></i> Saved');
+        }, 2000);
+    }else{
+        $('#templatenameerror').html('This Field Is Required');
+        $('#templatenameerror').css('display' , 'block');
+    }
+    
+}
+
+
 
 $('#addadvancepayoutdetails').on('submit',(function(e) {
     $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');

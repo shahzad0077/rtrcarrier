@@ -461,10 +461,11 @@
                             No endorsements required
                         </label>
                     </div>
+                    <input type="hidden" name="template_name" id="template_name_field">
                     <div class="col-md-12">
                         <div class="d-flex">
                             <div class="ml-auto">
-                                <span onclick="savetemplate()" class="btn btn-lg btn-primary">Save as template</span>
+                                <span onclick="savetemplate()" id="save_as_template" class="btn btn-lg btn-primary">Save as template</span>
                             </div>
                         </div>
                     </div>

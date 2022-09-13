@@ -10,39 +10,39 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <b>How often will the driver get home?</b>
-                        <p class="mt-2">Daily</p>
+                        <p class="mt-2">{{ $job->how_often_will_driver_get_home }}</p>
                     </div>
                     <div class="col-md-6 mb-3">
                         <b>Custom Home Time</b>
-                        <p class="mt-2">Title goes here</p>
+                        <p class="mt-2">{{ $job->custom_home_time }}</p>
                     </div>
 
                     <div class="col-md-6">
                         <b>Title</b>
-                        <p class="mt-2">Title goes here</p>
+                        <p class="mt-2">{{ $job->job_tittle }}</p>
                     </div>
                     <div class="col-md-6 mb-3">
                         <b>Driver Type</b>
-                        <p class="mt-2">Company Solo</p>
+                        <p class="mt-2">{{ $job->driver_type }}</p>
                     </div>
                     <div class="col-md-6 mb-3">
                         <b>Home Time</b>
-                        <p class="mt-2">Sunday</p>
+                        <p class="mt-2">{{ $job->home_time }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Freight Type</b>
-                        <p class="mt-2">Dry Van</p>
+                        <p class="mt-2">{{ $job->freight_type }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Dedicated Account</b>
-                        <p class="mt-2">Yes</p>
+                        <p class="mt-2">{{ $job->dedicated_account }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Avg Weekly Mile</b>
-                        <p class="mt-2">1000</p>
+                        <p class="mt-2">{{ $job->avg_weekly_mile }}</p>
                     </div>
 
                     <div class="col-md-12">
@@ -54,49 +54,44 @@
                     <div class="col-md-12 mb-3">
                         <b>What are the primary running lanes for this position?</b>
                         <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {!! $job->primary_running_lanes  !!}
                         </p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Avg Length of haul (Miles)</b>
-                        <p class="mt-2">something</p>
+                        <p class="mt-2">{{ $job->avg_length_of_haul }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Type of Fuel Card</b>
-                        <p class="mt-2">Debit</p>
+                        <p class="mt-2">{{ $job->type_of_fuel_card }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Tolls</b>
-                        <p class="mt-2">Available</p>
+                        <p class="mt-2">{{ $job->tolls }}</p>
                     </div>
 
 
                     <div class="col-md-6 mb-3">
                         <b>24 hour Dispatch</b>
-                        <p class="mt-2">Yes</p>
+                        <p class="mt-2">{{ $job->hour_dispatch }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>EZ Pass</b>
-                        <p class="mt-2">yes</p>
+                        <p class="mt-2">{{ $job->ez_Pass }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Pre-Pass</b>
-                        <p class="mt-2">Yes</p>
+                        <p class="mt-2">{{ $job->pre_pass }}</p>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <b>Non-Forced Dispatch</b>
-                        <p class="mt-2">yes</p>
+                        <p class="mt-2">{{ $job->non_forced_dispatch }}</p>
                     </div>
 
                 </div>

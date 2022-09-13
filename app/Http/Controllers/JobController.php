@@ -40,7 +40,7 @@ class JobController extends Controller
             $addjob->save();
             $job = $addjob;
         }
-        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->get();  
+        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
         $attribute = jot_attributes::all();
         return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
@@ -103,6 +103,21 @@ class JobController extends Controller
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->step = 1;
         $addnewjob->save();
+        if($request->hiring_template)
+        {
+            $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id);
+            if($checklinktemplete->count() == 0)
+            {
+                $linktemplate = new linktemplatewithjobs();
+                $linktemplate->job_id = $request->job_id;
+                $linktemplate->template_id = $template->id;
+                $linktemplate->save();
+            }else{
+                $linktemplate = linktemplatewithjobs::find($checklinktemplete->first()->id);
+                $linktemplate->template_id = $request->hiring_template;
+                $linktemplate->save();
+            }
+        }
         return redirect()->back()->with('message', 'Added Successfully');
     }
 
@@ -243,15 +258,25 @@ class JobController extends Controller
         $template->camera_facing =$request->camera_facing;
         $template->camera_recording =$request->camera_recording;
         $template->requiredendorsements =$request->requiredendorsements;
-        $template->is_template = 0;
+        if($request->template_name)
+        {
+            $template->name = $request->template_name;
+            $template->is_template = 1;
+        }else{
+            $template->is_template = 0;
+        }
         $template->save();
         $addnewjob = jobs::find($request->job_id);
         $addnewjob->step = 2;
         $addnewjob->save();
-        $linktemplate = new linktemplatewithjobs();
-        $linktemplate->job_id = $request->job_id;
-        $linktemplate->template_id = $template->id;
-        $linktemplate->save();
+        $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id)->count();
+        if($checklinktemplete == 0)
+        {
+            $linktemplate = new linktemplatewithjobs();
+            $linktemplate->job_id = $request->job_id;
+            $linktemplate->template_id = $template->id;
+            $linktemplate->save();
+        }
         return redirect()->back()->with('message', 'Added Successfully');
     }
 }

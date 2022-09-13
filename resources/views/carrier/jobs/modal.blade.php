@@ -17,15 +17,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Template Name</label>
-                                <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="templatename">
-                                <span class="invalid-feedback riderpolicy-feedback" id="rider_policy_err" role="alert"></span>
+                                <input type="text" id="templatenamefield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
+                                <span class="invalid-feedback" id="templatenameerror" role="alert"></span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                    <button type="submit" id="riderpolicy_submit_button" class="btn btn-primary font-weight-bold">Save</button>
+                    <button type="button" onclick="savetemplatemodalsubmit()" id="save_templatebutton" class="btn btn-primary font-weight-bold">Save</button>
                 </div>
         </div>
     </div>
