@@ -53,7 +53,8 @@ Route::POST('/updateuserprofile', [CarrierController::class, 'updateuserprofile'
 Route::POST('/securetycredentials', [CarrierController::class, 'securetycredentials']);
 Route::POST('/updatepetpolicy', [CarrierController::class, 'updatepetpolicy']);
 Route::POST('/updateriderpolicy', [CarrierController::class, 'updateriderpolicy']);
-
+Route::get('/companyinfo/{id}', [CarrierController::class, 'companyinfo']);
+Route::POST('/updatecompanyinfo', [CarrierController::class, 'updatecompanyinfo']);
 
 
 
@@ -100,9 +101,7 @@ Route::get('/hirig-maps', function () {
 
 
 
-Route::get('/company-info', function () {
-    return view('carrier/company-info/index');
-});
+
 
 Route::get('/integrations', function () {
     return view('carrier/integrations/index');

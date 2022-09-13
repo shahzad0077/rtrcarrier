@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\companies;
 use Validator;
 use Auth;
+use DB;
 class CarrierController extends Controller
 {
     public function __construct()
@@ -107,8 +108,6 @@ class CarrierController extends Controller
     {
         return view('carrier/hiring-maps/add-new');
     }
-
-
     public function updatepetpolicy(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -117,15 +116,10 @@ class CarrierController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()]);
         } 
-
-
         $updatecompany = companies::find(Cmf::getusercompany()->id);
         $updatecompany->petpolicy = $request->petpolicy;
         $updatecompany->save();
-
-
         return response()->json(['policytext'=>$request->petpolicy]);
-        
     }
     public function updateriderpolicy(Request $request)
     {
@@ -135,13 +129,33 @@ class CarrierController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()]);
         }
-
         $updatecompany = companies::find(Cmf::getusercompany()->id);
         $updatecompany->riderpolicy = $request->rider_policy;
         $updatecompany->save();
-
         return response()->json(['policytext'=>$request->rider_policy]);
     }
+    public function companyinfo($id)
+    {
+        $data = companies::where('user_id' , Auth::user()->id)->get()->first();
+        $text = $data->$id;
+        $modulename = Cmf::companyinfopages();
 
+        foreach ($modulename as $r) {
+            if($id == $r['columnname'])
+            {
+                $modulenametest = $r['name'];
+            }
+        }
+        return view('carrier/company-info/index')->with(array('data'=>$text,'modulename'=>$modulenametest,'columname'=>$id));
+    }
+    public function updatecompanyinfo(Request $request)
+    {
+        $data = companies::where('user_id' , Auth::user()->id)->get()->first();
 
+        $sql = "UPDATE `companies` SET $request->columnname = '$request->additional_notes_about_expereince' WHERE `id` = $data->id;";
+
+        DB::statement($sql);
+
+        return redirect()->back()->with('message', 'Profile Updated Successfully');
+    }
 }

@@ -79,7 +79,7 @@ class Cmf
           array("id"=>8,"name"=>'Ownership Policy'),
           array("id"=>9,"name"=>'Referral Program'),
           array("id"=>10,"name"=>'Orientation Schedule'),
-          array("id"=>11,"name"=>'terminal Locations'),
+          array("id"=>11,"name"=>'Terminal Locations'),
           array("id"=>12,"name"=>'Sales Funnel'),
           array("id"=>13,"name"=>'Processiong and Safety Guide'),
           array("id"=>14,"name"=>'Driver Benifits'),
@@ -90,6 +90,24 @@ class Cmf
           array("id"=>19,"name"=>'Integrations'),
           array("id"=>20,"name"=>'Billing $ Invoices'),
           array("id"=>21,"name"=>'Help')
+        );
+
+        return $cars;
+    }
+
+
+    public static function companyinfopages()
+    {
+
+        $cars = array(
+          array("id"=>7,"name"=>'Best Practices',"columnname"=>'best_practices'),
+          array("id"=>8,"name"=>'Ownership Policy',"columnname"=>'ownership_policy'),
+          array("id"=>9,"name"=>'Referral Program',"columnname"=>'referral_programe'),
+          array("id"=>10,"name"=>'Orientation Schedule',"columnname"=>'orientation_schedule'),
+          array("id"=>11,"name"=>'Terminal Locations',"columnname"=>'terminal_locations'),
+          array("id"=>12,"name"=>'Sales Funnel',"columnname"=>'sales_funner'),
+          array("id"=>13,"name"=>'Processiong & Safety Guide',"columnname"=>'safety_guide'),
+          array("id"=>14,"name"=>'Driver Benifits',"columnname"=>'driver_benifits')
         );
 
         return $cars;
