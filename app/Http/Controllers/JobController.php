@@ -110,7 +110,7 @@ class JobController extends Controller
             {
                 $linktemplate = new linktemplatewithjobs();
                 $linktemplate->job_id = $request->job_id;
-                $linktemplate->template_id = $template->id;
+                $linktemplate->template_id = $request->hiring_template;
                 $linktemplate->save();
             }else{
                 $linktemplate = linktemplatewithjobs::find($checklinktemplete->first()->id);

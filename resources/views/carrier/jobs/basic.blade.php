@@ -182,7 +182,7 @@
             <div class="form-group">
                 <label class="lable-control">Hiring Requirements Templates</label>
                 <select name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                    <option>Select Hiring Requirements Template</option>
+                    <option value="">Select Hiring Requirements Template</option>
                     @foreach($template as $r)
                     <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
                     @endforeach
