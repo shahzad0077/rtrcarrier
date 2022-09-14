@@ -42,6 +42,11 @@ class JobController extends Controller
         }
         $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
         $attribute = jot_attributes::all();
+        $link = linktemplatewithjobs::where('job_id' , $job->id);
+        if($link->count() > 0)
+        {
+            
+        }
         return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
     public function publishedjobstatus()

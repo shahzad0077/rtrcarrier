@@ -439,7 +439,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
                                     @if(Auth::user()->profile_picture)
-                                    <div class="symbol-label" style="background-image: url('{{ asset('public/') }}images/{{ Auth::user()->profile_picture }}');"></div>
+                                    <div class="symbol-label" style="background-image: url('{{ asset('public/') }}/images/{{ Auth::user()->profile_picture }}');"></div>
                                     @else
                                      <div class="symbol-label" style="background-image: url('https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg');"></div>
                                     @endif
