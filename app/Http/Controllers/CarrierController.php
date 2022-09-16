@@ -162,7 +162,7 @@ class CarrierController extends Controller
     }
     public function carrierhelp()
     {
-        $data = help_categories::where('status' , 'published')->get();
+        $data = help_categories::where('status' , 'published')->orderby('order' , 'ASC')->get();
         return view('carrier/help/index')->with(array('data'=>$data));
     }
 }

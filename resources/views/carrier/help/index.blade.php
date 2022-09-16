@@ -31,7 +31,7 @@
                             </div>
                             <div class="accordion accordion-light accordion-light-borderless accordion-svg-toggle" id="accordionExample7">
                                 
-                                @foreach(DB::table('help_articles')->where('category_id' , $r->id)->where('status' , 'Published')->get() as $a)
+                                @foreach(DB::table('help_articles')->where('category_id' , $r->id)->where('status' , 'Published')->orderby('order' , 'ASC')->get() as $a)
                                 <div class="card">
                                     <div class="card-header" id="headingTwo7">
                                         <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseTwo{{ $a->id }}">
