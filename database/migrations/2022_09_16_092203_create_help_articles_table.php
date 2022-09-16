@@ -20,6 +20,7 @@ class CreateHelpArticlesTable extends Migration
             $table->longtext('answer');
             $table->string('status');
             $table->string('image')->nullable();
+            $table->string('order')->nullable();
             $table->foreign('category_id')->references('id')->on('help_categories');
             $table->timestamps();
         });

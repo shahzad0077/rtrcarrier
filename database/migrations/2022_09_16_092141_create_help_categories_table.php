@@ -17,6 +17,7 @@ class CreateHelpCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status');
+            $table->string('order')->nullable();
             $table->timestamps();
         });
     }

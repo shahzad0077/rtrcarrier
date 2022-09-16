@@ -136,6 +136,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="lable-control">Article Order</label>
+                                                            <input value="{{ $r->order }}" name="order" type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>

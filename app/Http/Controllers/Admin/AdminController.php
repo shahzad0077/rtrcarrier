@@ -99,6 +99,7 @@ class AdminController extends Controller
         $add = help_categories::find($request->id);
         $add->name = $request->name;
         $add->status = $request->status;
+        $add->order = $request->order;
         $add->save();
         return redirect()->back()->with('message', 'Category Updated Successfully');
     }
@@ -138,6 +139,7 @@ class AdminController extends Controller
         $add->tittle = $request->tittle;
         $add->answer = $request->answer;
         $add->status = $request->status;
+        $add->order = $request->order;
         $add->save();
         return redirect()->back()->with('message', 'Article Added Successfully');
     }
