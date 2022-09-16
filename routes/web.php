@@ -55,7 +55,7 @@ Route::POST('/updatepetpolicy', [CarrierController::class, 'updatepetpolicy']);
 Route::POST('/updateriderpolicy', [CarrierController::class, 'updateriderpolicy']);
 Route::get('/companyinfo/{id}', [CarrierController::class, 'companyinfo']);
 Route::POST('/updatecompanyinfo', [CarrierController::class, 'updatecompanyinfo']);
-
+Route::get('/help', [CarrierController::class, 'carrierhelp']);
 
 
 // Staff Permissions
@@ -121,9 +121,7 @@ Route::get('/advertise', function () {
     return view('carrier/advertise/index');
 });
 
-Route::get('/help', function () {
-    return view('carrier/help/index');
-});
+
 
 Route::get('/billing', function () {
     return view('carrier/billing/index');

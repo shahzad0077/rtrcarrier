@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Helpers\Cmf;
 use App\Models\User;
 use App\Models\companies;
+use App\Models\help_categories;
+use App\Models\help_articles;
 use Validator;
 use Auth;
 use DB;
@@ -157,5 +159,10 @@ class CarrierController extends Controller
         DB::statement($sql);
 
         return redirect()->back()->with('message', 'Profile Updated Successfully');
+    }
+    public function carrierhelp()
+    {
+        $data = help_categories::where('status' , 'published')->get();
+        return view('carrier/help/index')->with(array('data'=>$data));
     }
 }
