@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Models\companies;
+use App\Models\help_categories;
+use App\Models\help_articles;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 class AdminController extends Controller
@@ -81,6 +83,64 @@ class AdminController extends Controller
     }
     public function helpcategories()
     {
-        return view('admin.help.categories');
+        $data = help_categories::all();
+        return view('admin.help.categories')->with(array('data'=>$data));
     }
+    public function addnewhelpcategory(Request $request)
+    {
+        $add = new help_categories();
+        $add->name = $request->name;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Category Added Successfully');
+    }
+    public function updatehelpcategory(Request $request)
+    {
+        $add = help_categories::find($request->id);
+        $add->name = $request->name;
+        $add->status = $request->status;
+        $add->save();
+        return redirect()->back()->with('message', 'Category Updated Successfully');
+    }
+
+    public function deletehelpcategory($id)
+    {
+        help_articles::where('category_id' , $id)->delete();
+        help_categories::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Category Deleted Successfully');
+    }
+    public function deletehelparticle($id)
+    {
+        help_articles::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Article Deleted Successfully');
+    }
+
+    public function addnewhelparticles()
+    {
+        $categories = help_categories::where('status' , 'Published')->get();
+        $data = help_articles::all();
+        return view('admin.help.addnewarticle')->with(array('data'=>$data,'categories'=>$categories));
+    }
+    public function addnewhelparticle(Request $request)
+    {
+        $add = new help_articles();
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        $add->answer = $request->answer;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Article Added Successfully');
+    }
+    public function updatehelparticle(Request $request)
+    {
+        $add = help_articles::find($request->id);
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        $add->answer = $request->answer;
+        $add->status = $request->status;
+        $add->save();
+        return redirect()->back()->with('message', 'Article Added Successfully');
+    }
+
+
 }

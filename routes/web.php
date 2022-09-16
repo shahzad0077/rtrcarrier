@@ -168,8 +168,13 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
 
     Route::name('help.')->prefix('help')->group(function(){
         Route::get('/categories','AdminController@helpcategories');
-        Route::get('/approve/{id}','AdminController@approvecarrier');
-        Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
+        Route::get('/addnew','AdminController@addnewhelparticles');
+        Route::post('/updatehelpcategory','AdminController@updatehelpcategory');
+        Route::post('/addnewhelpcategory','AdminController@addnewhelpcategory');
+        Route::post('/addnewhelparticle','AdminController@addnewhelparticle');
+        Route::post('/updatehelparticle','AdminController@updatehelparticle');
+        Route::get('/deletehelpcategory/{id}','AdminController@deletehelpcategory');
+        Route::get('/deletehelparticle/{id}','AdminController@deletehelparticle');
     });
 
     Route::name('job.')->prefix('jobs')->group(function(){
