@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanyEmailsTable extends Migration
+class CreateJobsubmissionsrequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateCompanyEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_emails', function (Blueprint $table) {
+        Schema::create('jobsubmissionsrequests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id');
-            $table->string('email');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedBigInteger('job_id');
+            $table->string('status');
+            $table->unsignedBigInteger('counter');
+            $table->foreign('job_id')->references('id')->on('jobs');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateCompanyEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_emails');
+        Schema::dropIfExists('jobsubmissionsrequests');
     }
 }

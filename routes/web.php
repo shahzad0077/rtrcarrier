@@ -86,7 +86,10 @@ Route::post('/job/adddadvancedetails', [JobController::class, 'adddadvancedetail
 Route::post('/job/addpayoutschedule', [JobController::class, 'addpayoutschedule']);
 Route::post('/job/addadvancepayoutdetails', [JobController::class, 'addadvancepayoutdetails']);
 Route::post('/job/hiringreq', [JobController::class, 'hiringreq']);
-
+Route::post('/job/addnewcompanyemal', [JobController::class, 'addnewcompanyemal']);
+Route::post('/job/routingandtrans', [JobController::class, 'routingandtrans']);
+Route::post('/job/subscription', [JobController::class, 'subscription']);
+Route::post('/job/jobsubmitlast', [JobController::class, 'jobsubmitlast']);
 
 
 
@@ -163,7 +166,11 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
     });
 
-
+    Route::name('help.')->prefix('help')->group(function(){
+        Route::get('/categories','AdminController@helpcategories');
+        Route::get('/approve/{id}','AdminController@approvecarrier');
+        Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
+    });
 
     Route::name('job.')->prefix('jobs')->group(function(){
         Route::get('/','JobController@alljobs');

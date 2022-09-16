@@ -79,4 +79,8 @@ class AdminController extends Controller
         });
         return redirect()->back()->with('message', 'User Request Rejected Successfully');
     }
+    public function helpcategories()
+    {
+        return view('admin.help.categories');
+    }
 }

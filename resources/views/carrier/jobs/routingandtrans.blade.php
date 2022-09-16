@@ -18,12 +18,14 @@
                 <div class="form-group">
                     <label class="lable-control">Email</label>
                     <p>Select the email you would like to send applications from this job post to</p>
-                    <select class="form-control select2 form-control-lg form-control-solid" style="width:100%; height: 55px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="param">
-                        
+                    <select class="form-control select2 form-control-lg form-control-solid" style="width:100%; height: 55px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="emails[]">
+                        @foreach(DB::table('company_emails')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
+                            <option value="{{ $r->email }}">{{ $r->email }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-12 text-right add-email">
-                    <span>Add New Email</span>
+                    <span data-toggle="modal" data-target="#addcompanyemail">Add New Email</span>
                 </div>
                 <div class="modal-dialog add-email-model" role="document">
                     <div class="modal-content">
@@ -52,3 +54,5 @@
         </div>
     </div>
 </div>
+
+

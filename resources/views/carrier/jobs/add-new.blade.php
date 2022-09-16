@@ -112,56 +112,67 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane fade @if($job->step == 2) active show @endif" id="three-2" role="tabpanel" aria-labelledby="three-tab-2">
-                                        @include('carrier.jobs.routingandtrans')
-                                        <div class="row mb-7">
-                                            <div class="col-md-12 ml-auto">
-                                                <div class="d-flex">
-                                                    <div class="ml-auto">
-                                                        <button class="btn btn-white mr-3 btn-lg">
-                                                            <i class="fa fa-arrow-left"></i>Previous
-                                                        </button>
-                                                        <button class="btn btn-primary btn-lg">
-                                                            Next <i class="fa fa-arrow-right"></i>
-                                                        </button>
+                                        <form method="POST" action="{{ url('job/routingandtrans') }}">
+                                            @csrf
+                                            <input type="hidden" value="{{ $job->id }}" name="job_id">
+                                            @include('carrier.jobs.routingandtrans')
+                                            <div class="row mb-7">
+                                                <div class="col-md-12 ml-auto">
+                                                    <div class="d-flex">
+                                                        <div class="ml-auto">
+                                                            <button class="btn btn-white mr-3 btn-lg">
+                                                                <i class="fa fa-arrow-left"></i>Previous
+                                                            </button>
+                                                            <button class="btn btn-primary btn-lg">
+                                                                Next <i class="fa fa-arrow-right"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div class="tab-pane fade @if($job->step == 3) active show @endif" id="four-2" role="tabpanel" aria-labelledby="four-tab-2">
-                                        @include('carrier.jobs.subscriptions')
-                                        <div class="row mb-7">
-                                            <div class="col-md-12 ml-auto">
-                                                <div class="d-flex">
-                                                    <div class="ml-auto">
-                                                        <button class="btn btn-white mr-3 btn-lg">
-                                                            <i class="fa fa-arrow-left"></i>Previous
-                                                        </button>
-                                                        <button class="btn btn-primary btn-lg">
-                                                            Next <i class="fa fa-arrow-right"></i>
-                                                        </button>
+                                        <form method="POST" action="{{ url('job/subscription') }}">
+                                            @csrf
+                                            <input type="hidden" value="{{ $job->id }}" name="job_id">
+                                            @include('carrier.jobs.subscriptions')
+                                            <div class="row mb-7">
+                                                <div class="col-md-12 ml-auto">
+                                                    <div class="d-flex">
+                                                        <div class="ml-auto">
+                                                            <button class="btn btn-white mr-3 btn-lg">
+                                                                <i class="fa fa-arrow-left"></i>Previous
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                                Next <i class="fa fa-arrow-right"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                     <div class="tab-pane fade @if($job->step == 4) active show @endif" id="five-2" role="tabpanel" aria-labelledby="five-tab-2">
-                                        @include('carrier.jobs.preview')
-                                        <div class="row mb-7 mt-7">
-                                            <div class="col-md-12 ml-auto">
-                                                <div class="d-flex">
-                                                    <div class="ml-auto">
-                                                        <button class="btn btn-white mr-3 btn-lg">
-                                                            <i class="fa fa-arrow-left"></i>Previous
-                                                        </button>
-                                                        <button class="btn btn-primary btn-lg">
-                                                            Submit Job <i class="fa fa-arrow-right"></i>
-                                                        </button>
+                                        <form method="POST" action="{{ url('job/jobsubmitlast') }}">
+                                            @csrf
+                                            <input type="hidden" value="{{ $job->id }}" name="job_id">
+                                            @include('carrier.jobs.preview')
+                                            <div class="row mb-7 mt-7">
+                                                <div class="col-md-12 ml-auto">
+                                                    <div class="d-flex">
+                                                        <div class="ml-auto">
+                                                            <button class="btn btn-white mr-3 btn-lg">
+                                                                <i class="fa fa-arrow-left"></i>Previous
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                                Submit Job <i class="fa fa-arrow-right"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-
+                                        </form>
                                     </div>
                                 </div>
                             </div>

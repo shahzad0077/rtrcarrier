@@ -12,6 +12,8 @@ use App\Models\payout_schedules;
 use App\Models\advance_pay_options;
 use App\Models\hiring_templates;
 use App\Models\linktemplatewithjobs;
+use App\Models\company_emails;
+use App\Models\jobsubmissionsrequests;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
@@ -25,7 +27,8 @@ class JobController extends Controller
 
     public function allcarrierjobs()
     {
-        return view('carrier/jobs/index');
+        $data = linktemplatewithjobs::select('jobs.id as job_id','jobs.job_tittle','jobs.duty_time','jobs.freight_type','jobs.home_time')->leftJoin('jobs','jobs.id','=','linktemplatewithjobs.job_id')->get();
+        return view('carrier/jobs/index')->with(array('data'=>$data));
     }
     public function addnewjob()
     {
@@ -126,7 +129,50 @@ class JobController extends Controller
         return redirect()->back()->with('message', 'Added Successfully');
     }
 
+    public function addnewcompanyemal(Request $request)
+    {
+        $new = new company_emails();
+        $new->company_id  = Cmf::getusercompany()->id;
+        $new->email  = $request->email;
+        $new->save();
+        return redirect()->back()->with('message', 'Email Added Successfully');
+    }
+    public function routingandtrans(Request $request)
+    {
+        $addnewjob = jobs::find($request->job_id);
+        if($request->emails)
+        {
+            $addnewjob->emails_send = implode(',', $request->emails);
+        }
+        $addnewjob->step = 3;
+        $addnewjob->save();
+        return redirect()->back()->with('message', 'Email Added Successfully');
+    }
 
+    public function subscription(Request $request)
+    {
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->step = 4;
+        $addnewjob->save();
+        return redirect()->back()->with('message', 'Email Added Successfully');
+    }
+
+    public function jobsubmitlast(Request $request)
+    {
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->step = 5;
+        $addnewjob->save();
+        $check = jobsubmissionsrequests::where('job_id' , $request->job_id);
+        if($check->count() == 0)
+        {
+            $submit = new jobsubmissionsrequests();
+            $submit->job_id = $request->job_id;
+            $submit->status = 'pending';
+            $submit->counter = 1;
+            $submit->save();
+        }
+        return view('carrier/jobs/jobsubmit');
+    }
     public function adddadvancedetails(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -142,7 +188,6 @@ class JobController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()]);
         }
-
         $addnewjob = jobs::find($request->job_id);
         $addnewjob->primary_running_lanes = $request->primary_running_lanes;
         $addnewjob->avg_length_of_haul = $request->avg_length_of_haul;
