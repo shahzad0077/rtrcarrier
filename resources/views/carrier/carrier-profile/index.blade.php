@@ -113,13 +113,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="lable-control">Twitter Profile</label>
-                                            <input onkeyup="validatetwitter(this.value)" value="{{ $data->google_link }}" type="text" class="form-control form-control-lg form-control-solid" name="address">
+                                            <input value="{{ $data->google_link }}" type="text" class="form-control form-control-lg form-control-solid" name="google_link">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="lable-control">Facebook Profile</label>
-                                            <input value="{{ $data->facebook_link }}" type="link" class="form-control form-control-lg form-control-solid" name="website_link">
+                                            <input value="{{ $data->facebook_link }}" type="link" class="form-control form-control-lg form-control-solid" name="facebook_link">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
