@@ -62,7 +62,7 @@
 					                    </div>
 					                    <div class="col-md-12">
 					                        <div class="form-group">
-					                            <label class="lable-control">Conferm Password</label>
+					                            <label class="lable-control">Confirm Password</label>
 					                            <input type="password" class="form-control form-control-lg form-control-solid" name="password_confirmed">
 					                        </div>
 					                    </div>
