@@ -70,9 +70,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
+                                                        <div  class="form-group">
                                                             <label class="lable-control">Email</label>
-                                                            <input type="text" readonly value="{{Auth::user()->email}}" class="form-control form-control-lg form-control-solid" name="email">
+                                                            <input style="cursor: no-drop;" type="text" readonly value="{{Auth::user()->email}}" class="form-control form-control-lg form-control-solid" name="email">
                                                         </div>
                                                     </div>
 

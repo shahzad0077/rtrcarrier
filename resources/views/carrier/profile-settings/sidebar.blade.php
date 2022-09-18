@@ -22,7 +22,13 @@
                         {{ Auth::user()->name }}
                     </a>
                     <div class="text-muted">
-                        Carrier ID : {{ Auth::user()->id }}
+                        @if(Auth::user()->type == 'carrier_sub_account')
+
+
+                        @elseif(Auth::user()->type == 'carrier')
+
+                            Carrier Admin
+                        @endif
                     </div>
                     <div class="mt-2">
                         @if(Auth::user()->approved_status == 1)
@@ -43,10 +49,6 @@
                 <div class="d-flex align-items-center justify-content-between mb-2">
                     <span class="font-weight-bold mr-2">Phone:</span>
                     <span class="text-muted">{{ Auth::user()->phonenumber }}</span>
-                </div>
-                <div class="d-flex align-items-center justify-content-between">
-                    <span class="font-weight-bold mr-2">Available Jobs listings :</span>
-                    <span class="text-muted">232</span>
                 </div>
             </div>
             <!--end::Contact-->
