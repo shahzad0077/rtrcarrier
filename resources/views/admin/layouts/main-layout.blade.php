@@ -141,7 +141,7 @@
         <!--begin::Page Vendors(used by this page)-->
         <script src="{{asset('public/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6')}}"></script>
         <!--end::Page Vendors-->
-
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
         <!--begin::Page Scripts(used by this page)-->
         <script src="{{asset('public/admin/assets/js/pages/widgets.js?v=7.0.6')}}"></script>
         <script src="{{ asset('public/carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
@@ -154,5 +154,11 @@
                 $('#example').DataTable();
             });
         </script>
+        <script>
+    $('.summernote').summernote({
+        tabsize: 4,
+        height: 400
+      });
+    </script>
    
 </html>

@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\companies;
 use App\Models\help_categories;
 use App\Models\help_articles;
+use App\Models\company_info_pages;
 use Validator;
 use Auth;
 use DB;
@@ -138,17 +139,8 @@ class CarrierController extends Controller
     }
     public function companyinfo($id)
     {
-        $data = companies::where('user_id' , Auth::user()->id)->get()->first();
-        $text = $data->$id;
-        $modulename = Cmf::companyinfopages();
-
-        foreach ($modulename as $r) {
-            if($id == $r['columnname'])
-            {
-                $modulenametest = $r['name'];
-            }
-        }
-        return view('carrier/company-info/index')->with(array('data'=>$text,'modulename'=>$modulenametest,'columname'=>$id));
+        $data = company_info_pages::where('url' , $id)->first();
+        return view('carrier/company-info/index')->with(array('data'=>$data));
     }
     public function updatecompanyinfo(Request $request)
     {

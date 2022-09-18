@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Models\companies;
 use App\Models\help_categories;
 use App\Models\help_articles;
+use App\Models\company_info_pages;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 class AdminController extends Controller
@@ -144,5 +145,38 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Article Added Successfully');
     }
 
+    public function allcompanyinfopages()
+    {
+        $data = company_info_pages::all();
+        return view('admin.companyinfo.index')->with(array('data'=>$data));
+    }
 
+    public function addnewpage(Request $request)
+    {
+        $add =  new company_info_pages();
+        $add->name = $request->name;
+        $add->content = $request->additional_notes_about_expereince;
+        $add->status = 'Published';
+        $add->url = Cmf::shorten_url($request->name);
+        $add->save();
+        return redirect()->back()->with('message', 'Page Added Successfully');
+    }
+
+    public function updatepage(Request $request)
+    {
+        $add =  company_info_pages::find($request->id);
+        $add->name = $request->name;
+        $add->content = $request->additional_notes_about_expereince;
+        $add->status = $request->status;
+        $add->url = Cmf::shorten_url($request->name);
+        $add->save();
+        return redirect()->back()->with('message', 'Page Updated Successfully');
+    }
+    public function deletepage($id)
+    {
+        company_info_pages::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Page Deleted Successfully');
+    }
+
+    
 }

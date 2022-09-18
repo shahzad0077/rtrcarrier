@@ -175,6 +175,14 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::get('/deletehelparticle/{id}','AdminController@deletehelparticle');
     });
 
+
+    Route::name('companyinfo.')->prefix('companyinfo')->group(function(){
+        Route::get('/all','AdminController@allcompanyinfopages');
+        Route::post('/addnewpage','AdminController@addnewpage');
+        Route::post('/updatepage','AdminController@updatepage');
+        Route::get('/deletepage/{id}','AdminController@deletepage');
+    });
+
     Route::name('job.')->prefix('jobs')->group(function(){
         Route::get('/','JobController@alljobs');
         Route::get('/addnewjob','JobController@addnewjob');

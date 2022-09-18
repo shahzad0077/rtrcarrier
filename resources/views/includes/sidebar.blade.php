@@ -294,10 +294,10 @@ begin::Aside-->
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Company Info</span></span>
                             </li>
-                            @foreach(Cmf::companyinfopages() as $r)
+                            @foreach(DB::table('company_info_pages')->where('status' , 'Published')->get() as $r)
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{ url('companyinfo') }}/{{ $r['columnname'] }}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">{{ $r['name'] }}</span>
+                                <a href="{{ url('companyinfo') }}/{{ $r->url }}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">{{ $r->name }}</span>
                                 </a>
                             </li>
                             @endforeach
@@ -318,17 +318,16 @@ begin::Aside-->
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Company Info</span></span>
                             </li>
-                            @foreach(Cmf::companyinfopages() as $r)
+                            @foreach(DB::table('company_info_pages')->where('status' , 'Published')->get() as $r)
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{ url('companyinfo') }}/{{ $r['columnname'] }}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">{{ $r['name'] }}</span>
+                                <a href="{{ url('companyinfo') }}/{{ $r->url }}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">{{ $r->name }}</span>
                                 </a>
                             </li>
                             @endforeach
                         </ul>
                     </div>
                 </li>
-
                 @endif
                 @if(Cmf::getcarrierrole(15) == 0)
                 <li class="menu-item" aria-haspopup="true">
