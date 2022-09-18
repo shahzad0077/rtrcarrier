@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Models\companies;
 use App\Models\help_categories;
 use App\Models\help_articles;
+use App\Models\education_categories;
+use App\Models\education_articles;
 use App\Models\company_info_pages;
 use Illuminate\Support\Facades\Hash;
 use Mail;
@@ -176,6 +178,91 @@ class AdminController extends Controller
     {
         company_info_pages::where('id' , $id)->delete();
         return redirect()->back()->with('warning', 'Page Deleted Successfully');
+    }
+
+
+
+
+    public function educationcategories()
+    {
+        $data = education_categories::all();
+        return view('admin.education.categories')->with(array('data'=>$data));
+    }
+    public function addneweducationcategory(Request $request)
+    {
+        $add = new education_categories();
+        $add->name = $request->name;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Category Added Successfully');
+    }
+    public function updateeducationcategory(Request $request)
+    {
+        $add = education_categories::find($request->id);
+        $add->name = $request->name;
+        $add->status = $request->status;
+        $add->order = $request->order;
+        $add->save();
+        return redirect()->back()->with('message', 'Category Updated Successfully');
+    }
+
+    public function deleteeducationcategory($id)
+    {
+        education_articles::where('category_id' , $id)->delete();
+        education_categories::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Category Deleted Successfully');
+    }
+    public function deleteeducationarticle($id)
+    {
+        education_articles::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Article Deleted Successfully');
+    }
+    public function allpostseducationcenter()
+    {
+        $data = education_articles::all();
+        return view('admin.education.all')->with(array('data'=>$data));
+    }
+    public function editpost($id)
+    {
+        $categories = education_categories::all();
+        $data = education_articles::find($id);
+        return view('admin.education.edit')->with(array('data'=>$data,'categories'=>$categories));
+    }
+    public function addneweducationarticles()
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        $data = education_articles::all();
+        return view('admin.education.addnewarticle')->with(array('data'=>$data,'categories'=>$categories));
+    }
+    public function addneweducationarticle(Request $request)
+    {
+        $add = new education_articles();
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        if($request->image)
+        {
+            $add->image = Cmf::sendimagetodirectory($request->image);
+        }
+        $add->youtube = $request->youtube;
+        $add->content = $request->answer;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Article Added Successfully');
+    }
+    public function updateeducationarticle(Request $request)
+    {
+        $add = education_articles::find($request->id);
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        if($request->image)
+        {
+            $add->image = Cmf::sendimagetodirectory($request->image);
+        }
+        $add->youtube = $request->youtube;
+        $add->content = $request->answer;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Article Updated Successfully');
     }
 
     

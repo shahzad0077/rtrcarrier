@@ -183,6 +183,23 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::get('/deletepage/{id}','AdminController@deletepage');
     });
 
+
+
+
+    Route::name('education.')->prefix('education')->group(function(){
+        Route::get('/categories','AdminController@educationcategories');
+        Route::get('/addnew','AdminController@addneweducationarticles');
+        Route::get('/allposts','AdminController@allpostseducationcenter');
+        Route::post('/updateeducationcategory','AdminController@updateeducationcategory');
+        Route::post('/addneweducationcategory','AdminController@addneweducationcategory');
+        Route::post('/addneweducationarticle','AdminController@addneweducationarticle');
+        Route::post('/updateeducationarticle','AdminController@updateeducationarticle');
+        Route::get('/editpost/{id}','AdminController@editpost');
+        Route::get('/deleteeducationcategory/{id}','AdminController@deleteeducationcategory');
+        Route::get('/deleteeducationarticle/{id}','AdminController@deleteeducationarticle');
+    });
+
+
     Route::name('job.')->prefix('jobs')->group(function(){
         Route::get('/','JobController@alljobs');
         Route::get('/addnewjob','JobController@addnewjob');

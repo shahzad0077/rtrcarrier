@@ -213,13 +213,17 @@
                                 <span class="menu-link"><span class="menu-text">Add Post</span></span>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="layout/general/fluid-content.html" class="menu-link">
+                                <a href="{{ url('admin/education/addnew') }}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New</span>
+                                </a>
+                            </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{ url('admin/education/allposts') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
                                 </a>
                             </li>
-
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="layout/general/fluid-content.html" class="menu-link">
+                                <a href="{{ url('admin/education/categories') }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Categories</span>
                                 </a>
                             </li>
