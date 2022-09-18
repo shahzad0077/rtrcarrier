@@ -272,7 +272,7 @@ function savetemplatemodalsubmit()
 
 
 $('#addadvancepayoutdetails').on('submit',(function(e) {
-    $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $('#advance-pay-button-submit').html('<i class="fa fa-spin fa-spinner"></i>');
     e.preventDefault();
     var formData = new FormData(this);
     $.ajax({
@@ -284,8 +284,15 @@ $('#addadvancepayoutdetails').on('submit',(function(e) {
         processData: false,
         success: function(data){
          if($.isEmptyObject(data.error)){
-            $('#payOption').modal('hide');
-            $('#payout-schedule-button').html('Set Schedule');
+
+
+            $('#advance-pay-button-submit').css('background-color' , 'green');
+            $('#advance-pay-button-submit').html('<i class="fa fa-check"></i> Updated');
+            setTimeout(function() { 
+                $('#advancepayOption').modal('hide');
+                $('#advance-pay-button-submit').html('Submit Now');
+                $('#advance-pay-button-submit').css('background-color' , '#22AAE2');
+            }, 2000);
         }else{
             $('#payout-schedule-button').html('Set Schedule');
             printErrorMsg(data.error);

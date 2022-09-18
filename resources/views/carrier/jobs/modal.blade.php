@@ -313,6 +313,7 @@
             </div>
             <form id="addadvancepayoutdetails" method="POST" action="{{ url('job/addadvancepayoutdetails') }}">
                 @csrf
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -634,7 +635,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary font-weight-bold">Submit Now</button>
+                        <button type="submit" id="advance-pay-button-submit" class="btn btn-primary font-weight-bold">Submit Now</button>
                     </div>
                 </div>
             </form>
