@@ -14,6 +14,7 @@ use App\Models\hiring_templates;
 use App\Models\linktemplatewithjobs;
 use App\Models\company_emails;
 use App\Models\jobsubmissionsrequests;
+use App\Models\advance_equipment_values;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
@@ -226,7 +227,14 @@ class JobController extends Controller
 
     public function addadvancepayoutdetails(Request $request)
     {
-        $adv_pay_out = new advance_pay_options();
+        $check = advance_pay_options::where('job_id' , $request->job_id);
+
+        if($check->count() > 0)
+        {
+            $adv_pay_out = advance_pay_options::find($check->first()->id);
+        }else{
+            $adv_pay_out = new advance_pay_options();
+        }    
         $adv_pay_out->job_id = $request->job_id;
         $adv_pay_out->breakdown_pay = $request->breakdown_pay;
         $adv_pay_out->cash_advance = $request->cash_advance;
@@ -266,6 +274,38 @@ class JobController extends Controller
         $adv_pay_out->when_are_drivers_paid =  $request->when_are_drivers_paid;
         $adv_pay_out->save();
     }
+
+    public function advanceequipment(Request $request)
+    {
+        $check = advance_equipment_values::where('job_id' , $request->job_id);
+
+        if($check->count() > 0)
+        {
+            $adv_pay_out = advance_equipment_values::find($check->first()->id);
+        }else{
+            $adv_pay_out = new advance_equipment_values();
+        }    
+        $adv_pay_out->job_id = $request->job_id;
+        $adv_pay_out->engine = $request->engine;
+        $adv_pay_out->transmission_type = $request->transmission_type;
+        $adv_pay_out->truck_speed = $request->truck_speed;
+        $adv_pay_out->apu_epu = $request->apu_epu;
+        $adv_pay_out->bunks = $request->bunks;
+        $adv_pay_out->camera_orientation = $request->camera_orientation;
+        $adv_pay_out->camera_recording = $request->camera_recording;
+        $adv_pay_out->can_truck_taken_home = $request->can_truck_taken_home;
+        $adv_pay_out->truck_permanently_assigned = $request->truck_permanently_assigned;
+        $adv_pay_out->onboard_navigation = $request->onboard_navigation;
+        $adv_pay_out->onboard_communication = $request->onboard_communication;
+        $adv_pay_out->directtv = $request->directtv;
+        $adv_pay_out->siriusxm = $request->siriusxm;
+        $adv_pay_out->inverter = $request->inverter;
+        $adv_pay_out->refrigerator = $request->refrigerator;
+        $adv_pay_out->microwave = $request->microwave;
+        $adv_pay_out->collision_mitigation = $request->collision_mitigation;
+        $adv_pay_out->save();
+    }
+
     public function hiringreq(Request $request)
     {
         $template = new hiring_templates();

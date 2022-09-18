@@ -656,153 +656,153 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
+            <form id="advanceequipment" method="POST" action="{{ url('job/advanceequipment') }}">
+                @csrf
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
+                @php
+                    $advanceequipment = DB::table('advance_equipment_values')->where('job_id' , $job->id)->first();
+                @endphp
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Engine</label>
-                            <input type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="">
+                            <input @if($advanceequipment) value="{{ $advanceequipment->engine }}" @endif type="text" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="engine">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Transmission Type</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Automatic</option>
+                            <select name="transmission_type" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->transmission_type == 'Automatic') selected @endif @endif>Automatic</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Truck Speed (Cruise / Pedal)</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Cruise</option>
+                            <select name="truck_speed" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->truck_speed == 'Cruise') selected @endif @endif>Cruise</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Inverter</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="inverter" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->inverter == 'No') selected @endif @endif>No</option>
+                                <option @if($advanceequipment) @if($advanceequipment->inverter == 'Yes') selected @endif @endif>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">APU/EPU</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="apu_epu" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->apu_epu == 'No') selected @endif @endif>No</option>
+                                <option @if($advanceequipment) @if($advanceequipment->apu_epu == 'Yes') selected @endif @endif>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Bunks</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>SIngle Bunk</option>
+                            <select name="bunks" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->bunks == 'Single Bunk') selected @endif @endif>Single Bunk</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Orientation</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Inward Facing</option>
+                            <select name="camera_orientation" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->camera_orientation == 'Inward Facing') selected @endif @endif>Inward Facing</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Camera Recording</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Camera Recording</option>
+                            <select name="camera_recording" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->camera_recording == 'No') selected @endif @endif>No</option>
+                                <option @if($advanceequipment) @if($advanceequipment->camera_recording == 'Yes') selected @endif @endif>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Can Truck Be Taken Home?</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
+                            <select name="can_truck_taken_home" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->can_truck_taken_home == 'No') selected @endif @endif>No</option>
+                                <option @if($advanceequipment) @if($advanceequipment->can_truck_taken_home == 'Yes') selected @endif @endif>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Truck Permanently Assigned</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
+                            <select name="truck_permanently_assigned" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->truck_permanently_assigned == 'No') selected @endif @endif>No</option>
+                                <option @if($advanceequipment) @if($advanceequipment->truck_permanently_assigned == 'Yes') selected @endif @endif>Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Onboard Navigation</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Camera Recording</option>
+                            <select name="onboard_navigation" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->onboard_navigation == 'Camera Recording') selected @endif @endif>Camera Recording</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Onboard Communication</label>
-                            <textarea class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Enter your text here..." rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="lable-control">Onboard Navigation</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
+                            <textarea name="onboard_communication" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Enter your text here..." rows="5">@if($advanceequipment) {{ $advanceequipment->onboard_communication }} @endif</textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">DirecTV</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="directtv" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->directtv == 'Yes') selected @endif @endif>Yes</option>
+                                <option @if($advanceequipment) @if($advanceequipment->directtv == 'No') selected @endif @endif>No</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">SiriusXM</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="siriusxm" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->siriusxm == 'Yes') selected @endif @endif>Yes</option>
+                                <option @if($advanceequipment) @if($advanceequipment->siriusxm == 'No') selected @endif @endif>No</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Refrigerator</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="refrigerator" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->refrigerator == 'Yes') selected @endif @endif>Yes</option>
+                                <option @if($advanceequipment) @if($advanceequipment->refrigerator == 'No') selected @endif @endif>No</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Microwave</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="microwave" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->microwave == 'Yes') selected @endif @endif>Yes</option>
+                                <option @if($advanceequipment) @if($advanceequipment->microwave == 'No') selected @endif @endif>No</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Collision Mitigation</label>
-                            <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                <option>Yes</option>
-                                <option>No</option>
+                            <select name="collision_mitigation" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                                <option @if($advanceequipment) @if($advanceequipment->collision_mitigation == 'Yes') selected @endif @endif>Yes</option>
+                                <option @if($advanceequipment) @if($advanceequipment->collision_mitigation == 'No') selected @endif @endif>No</option>
                             </select>
                         </div>
                     </div>
@@ -810,8 +810,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Save Changes</button>
+                <button id="advance-equipment-modal-button" type="submit" class="btn btn-primary font-weight-bold">Save Changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

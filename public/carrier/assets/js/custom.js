@@ -303,6 +303,41 @@ $('#addadvancepayoutdetails').on('submit',(function(e) {
 }));
 
 
+
+$('#advanceequipment').on('submit',(function(e) {
+    $('#advance-equipment-modal-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#advance-equipment-modal-button').css('background-color' , 'green');
+            $('#advance-equipment-modal-button').html('<i class="fa fa-check"></i> Updated');
+            setTimeout(function() { 
+                $('#equipmentOption').modal('hide');
+                $('#advance-equipment-modal-button').html('Save Changes');
+                $('#advance-equipment-modal-button').css('background-color' , '#22AAE2');
+            }, 2000);
+        }else{
+            $('#advance-equipment-modal-button').html('Save Changes');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+
+
+
+
 function printErrorMsg (msg) {
     $.each( msg, function( key, value ) {
         $("#"+key+"_err").html('<strong>'+value+'</strong>');
