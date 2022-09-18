@@ -347,7 +347,7 @@ class JobController extends Controller
         $template->camera_are =$request->camera_are;
         $template->camera_facing =$request->camera_facing;
         $template->camera_recording =$request->camera_recording;
-        $template->requiredendorsements =$request->requiredendorsements;
+        $template->requiredendorsements = implode(',', $request->requiredendorsements);
         if($request->template_name)
         {
             $template->name = $request->template_name;
