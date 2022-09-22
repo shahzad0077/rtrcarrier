@@ -1,8 +1,8 @@
 @php
-    $hir = DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->first();
-    if(isset($hir->template_id))
+    $hir = DB::table('linktemplatewithjobs')->where('job_id' , $job->id);
+    if($hir->count() > 0)
     {
-        $template = DB::table('hiring_templates')->where('id' , $hir->template_id)->first();
+        $template = DB::table('hiring_templates')->where('id' , $hir->first()->template_id)->first();
     }
 @endphp
 <div class="accordion accordion-solid accordion-toggle-plus mt-5" id="accordionExample6">
@@ -114,7 +114,7 @@
         <div id="collapseTwo6" class="collapse" data-parent="#accordionExample6">
             <div class="card-body p-10">
                 <div class="row">
-                    @if(isset($template))
+                    @if($hir->count() > 0)
                     @if($template->minimum_age != 'Other')
                     <div class="col-md-6 mb-3">
                         <b>Minimum Age</b>
@@ -281,7 +281,20 @@
         </div>
         <div id="collapseThree6" class="collapse" data-parent="#accordionExample6">
             <div class="card-body p-10">
-                ...
+                <div class="col-md-12">
+                    <h4 class="mt-3 mb-3 text-primary">
+                        Emails
+                    </h4>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <b>Email you would like to send applications from this job post to</b>
+                    <p class="mt-2">
+                        @foreach(explode(',' , $job->emails_send) as $e) 
+                            {{ $e }}<br>
+                        @endforeach 
+                    </p>
+                </div>
             </div>
         </div>
     </div>

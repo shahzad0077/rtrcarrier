@@ -14,7 +14,7 @@ class AddOnMoreColumnInJobs extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->string('url');
+            $table->string('url')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddOnMoreColumnInJobs extends Migration
     public function down()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->dropColumn('url');
+            $table->dropColumn('url')->nullable();
         });
     }
 }
