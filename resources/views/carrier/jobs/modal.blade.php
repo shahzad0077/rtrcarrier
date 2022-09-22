@@ -11,7 +11,7 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <form method="POST" action="{{ url('job/addnewcompanyemal') }}">
+            <form id="addnewcompanyemal" method="POST" action="{{ url('job/addnewcompanyemal') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary font-weight-bold">Save</button>
+                    <button type="submit" id="addnewcompanyemal_submit_button" class="btn btn-primary font-weight-bold">Save</button>
                 </div>
             </form>
         </div>

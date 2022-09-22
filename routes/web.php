@@ -91,6 +91,10 @@ Route::post('/job/routingandtrans', [JobController::class, 'routingandtrans']);
 Route::post('/job/subscription', [JobController::class, 'subscription']);
 Route::post('/job/jobsubmitlast', [JobController::class, 'jobsubmitlast']);
 Route::post('/job/advanceequipment', [JobController::class, 'advanceequipment']);
+Route::get('/deletejob/{id}', [JobController::class, 'deletejob']);
+
+
+
 
 
 

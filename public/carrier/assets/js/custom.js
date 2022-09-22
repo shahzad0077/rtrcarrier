@@ -225,6 +225,33 @@ $('#updatepetpolicy').on('submit',(function(e) {
 
 
 
+$('#addnewcompanyemal').on('submit',(function(e) {
+    $('#addnewcompanyemal_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('.hirringreqemail').append('<option selected value="'+$('#emailfield').val()+'">'+$('#emailfield').val()+'</option>');
+            $("#addnewcompanyemal").trigger('reset');
+            $('#addcompanyemail').modal('hide');
+            $('#addnewcompanyemal_submit_button').html('Save');
+        }else{
+            $('#payout-schedule-button').html('Set Schedule');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
 $('#addpayoutschedule').on('submit',(function(e) {
     $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');
     e.preventDefault();
@@ -406,4 +433,10 @@ function showbelowfieldbyclass(value , id , condition)
         $('.'+id).hide();
     }
 }
-
+function deletejobbycarrier(id)
+{
+    $('#deletejobmodal').modal('show');
+    var app_url = geturl();
+    var newUrl = app_url+'/deletejob/'+id;
+    $('#deletejoburl').attr("href", newUrl);
+}

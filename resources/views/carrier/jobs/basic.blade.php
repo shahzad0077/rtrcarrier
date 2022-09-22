@@ -12,7 +12,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">How often will the driver get home?</label>
-                    <select name="how_often_will_driver_get_home" class="form-control @error('how_often_will_driver_get_home') is-invalid @enderror form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="how_often_will_driver_get_home" class="form-control @error('how_often_will_driver_get_home') is-invalid @enderror form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 123)->first()->options) as $r)
                         <option @if($job->how_often_will_driver_get_home == $r) selected @elseif(old('how_often_will_driver_get_home') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -28,7 +28,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Add Custom Home Time</label>
-                    <input value="@if($job->custom_home_time){{ $job->custom_home_time }}@elseif(old('custom_home_time')){{ old('custom_home_time') }}@endif" type="text" class="@error('custom_home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custome Time Here" name="custom_home_time">
+                    <input required value="@if($job->custom_home_time){{ $job->custom_home_time }}@elseif(old('custom_home_time')){{ old('custom_home_time') }}@endif" type="text" class="@error('custom_home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custome Time Here" name="custom_home_time">
                     @error('custom_home_time')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Title</label>
-                    <input value="@if($job->job_tittle){{ $job->job_tittle }}@elseif(old('job_tittle')){{ old('job_tittle') }}@endif" type="text" class="@error('job_tittle') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="job_tittle">
+                    <input required value="@if($job->job_tittle){{ $job->job_tittle }}@elseif(old('job_tittle')){{ old('job_tittle') }}@endif" type="text" class="@error('job_tittle') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="job_tittle">
                     @error('job_tittle')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Driver Type</label>
-                    <select name="driver_type" class="@error('driver_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="driver_type" class="@error('driver_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 124)->first()->options) as $r)
                         <option @if($job->driver_type == $r) selected @elseif(old('driver_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -66,7 +66,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Home Time</label>
-                    <select name="home_time" class="@error('home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="home_time" class="@error('home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 125)->first()->options) as $r)
                         <option @if($job->home_time == $r) selected @elseif(old('home_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -82,7 +82,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Freight Type</label>
-                    <select name="freight_type" class="@error('freight_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="freight_type" class="@error('freight_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 126)->first()->options) as $r)
                         <option @if($job->freight_type == $r) selected @elseif(old('freight_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -98,7 +98,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Dedicated Account</label>
-                    <select name="dedicated_account" class="@error('dedicated_account') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="dedicated_account" class="@error('dedicated_account') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 127)->first()->options) as $r)
                         <option @if($job->dedicated_account == $r) selected @elseif(old('dedicated_account') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -114,7 +114,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Avg Weekly Mile</label>
-                    <input value="@if($job->avg_weekly_mile){{ $job->avg_weekly_mile }}@elseif(old('avg_weekly_mile')){{ old('avg_weekly_mile') }}@endif" name="avg_weekly_mile" type="text" class="@error('avg_weekly_mile') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200">
+                    <input required value="@if($job->avg_weekly_mile){{ $job->avg_weekly_mile }}@elseif(old('avg_weekly_mile')){{ old('avg_weekly_mile') }}@endif" name="avg_weekly_mile" type="text" class="@error('avg_weekly_mile') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200">
                     @error('avg_weekly_mile')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -178,17 +178,18 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="col-md-12 map-content">
-            <div class="form-group">
-                <label class="lable-control">Hiring Requirements Templates</label>
-                <select name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                    <option value="">Select Hiring Requirements Template</option>
-                    @foreach($template as $r)
-                    <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
-                    @endforeach
-                </select>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="lable-control">Hiring Requirements Templates</label>
+                    <select  name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                        <option value="">Select Hiring Requirements Template</option>
+                        @foreach($template as $r)
+                        <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <p>Create new hiring requirements template</p>
         </div>
     </div>
 </div>
@@ -204,7 +205,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Compensation</label>
-                    <select name="compensation" class="@error('compensation') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="compensation" class="@error('compensation') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 128)->first()->options) as $r)
                         <option @if($job->compensation == $r) selected @elseif(old('compensation') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -220,7 +221,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Duty Time</label>
-                    <select name="duty_time" class="@error('duty_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="duty_time" class="@error('duty_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 129)->first()->options) as $r)
                         <option @if($job->duty_time == $r) selected @elseif(old('duty_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -236,7 +237,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Compensation amount</label>
-                    <input value="@if($job->compensation_ammount){{ $job->compensation_ammount }}@elseif(old('compensation_ammount')){{ old('compensation_ammount') }}@endif" type="text" class="@error('compensation_ammount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="compensation_ammount">
+                    <input required value="@if($job->compensation_ammount){{ $job->compensation_ammount }}@elseif(old('compensation_ammount')){{ old('compensation_ammount') }}@endif" type="text" class="@error('compensation_ammount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200" name="compensation_ammount">
                     @error('compensation_ammount')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -247,7 +248,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Top 10% Of Earners are making</label>
-                    <input value="@if($job->top_10_of_earners_are_makking){{ $job->top_10_of_earners_are_makking }}@elseif(old('top_10_of_earners_are_makking')){{ old('top_10_of_earners_are_makking') }}@endif" type="text" class="@error('top_10_of_earners_are_makking') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200"name="top_10_of_earners_are_makking">
+                    <input required value="@if($job->top_10_of_earners_are_makking){{ $job->top_10_of_earners_are_makking }}@elseif(old('top_10_of_earners_are_makking')){{ old('top_10_of_earners_are_makking') }}@endif" type="text" class="@error('top_10_of_earners_are_makking') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200"name="top_10_of_earners_are_makking">
                     @error('top_10_of_earners_are_makking')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -258,7 +259,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Average Weekly Pay</label>
-                    <select class="@error('avgerage_weekly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_weekly_pay">
+                    <select required class="@error('avgerage_weekly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_weekly_pay">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 130)->first()->options) as $r)
                         <option @if($job->avgerage_weekly_pay == $r) selected @elseif(old('avgerage_weekly_pay') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -274,7 +275,7 @@
             <div class="col-md-6 map-content">
                 <div class="form-group">
                     <label class="lable-control">Average Yearly Pay</label>
-                    <select class="@error('avgerage_yearly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_yearly_pay">
+                    <select required class="@error('avgerage_yearly_pay') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="avgerage_yearly_pay">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 131)->first()->options) as $r)
                         <option @if($job->avgerage_yearly_pay == $r) selected @elseif(old('avgerage_yearly_pay') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -290,7 +291,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Sign on Bonus</label>
-                    <select class="@error('sign_on_bonus') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="sign_on_bonus">
+                    <select required class="@error('sign_on_bonus') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects" name="sign_on_bonus">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 132)->first()->options) as $r)
                         <option @if($job->sign_on_bonus == $r) selected @elseif(old('sign_on_bonus') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -306,7 +307,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Sign on Bonus Amount</label>
-                    <input value="@if($job->sign_on_bonus_amount){{ $job->sign_on_bonus_amount }}@elseif(old('sign_on_bonus_amount')){{ old('sign_on_bonus_amount') }}@endif" class="@error('sign_on_bonus_amount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" type="text" name="sign_on_bonus_amount">
+                    <input required value="@if($job->sign_on_bonus_amount){{ $job->sign_on_bonus_amount }}@elseif(old('sign_on_bonus_amount')){{ old('sign_on_bonus_amount') }}@endif" class="@error('sign_on_bonus_amount') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" type="text" name="sign_on_bonus_amount">
                     @error('sign_on_bonus_amount')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -391,7 +392,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Freight Type</label>
-                    <select name="freight_type_equipment" class="@error('freight_type_equipment') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="freight_type_equipment" class="@error('freight_type_equipment') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 126)->first()->options) as $r)
                         <option @if($job->freight_type_equipment == $r) selected @elseif(old('freight_type_equipment') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
@@ -407,7 +408,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Drop and Hook</label>
-                    <input value="@if($job->drop_and_hook){{ $job->drop_and_hook }}@elseif(old('drop_and_hook')){{ old('drop_and_hook') }}@endif" name="drop_and_hook" type="text" class="@error('drop_and_hook') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                    <input required value="@if($job->drop_and_hook){{ $job->drop_and_hook }}@elseif(old('drop_and_hook')){{ old('drop_and_hook') }}@endif" name="drop_and_hook" type="text" class="@error('drop_and_hook') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
                     @error('drop_and_hook')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -418,7 +419,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Live Load/Unload</label>
-                    <input value="@if($job->live_load){{ $job->live_load }}@elseif(old('live_load')){{ old('live_load') }}@endif" name="live_load" type="text" class="@error('live_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                    <input required value="@if($job->live_load){{ $job->live_load }}@elseif(old('live_load')){{ old('live_load') }}@endif" name="live_load" type="text" class="@error('live_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
                     @error('live_load')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -429,7 +430,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Driver Load/Unload</label>
-                    <input value="@if($job->driver_load){{ $job->driver_load }}@elseif(old('driver_load')){{ old('driver_load') }}@endif" name="driver_load" type="text" class="@error('driver_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
+                    <input required value="@if($job->driver_load){{ $job->driver_load }}@elseif(old('driver_load')){{ old('driver_load') }}@endif" name="driver_load" type="text" class="@error('driver_load') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="%">
                     @error('driver_load')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

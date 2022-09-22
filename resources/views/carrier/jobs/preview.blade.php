@@ -1,3 +1,10 @@
+@php
+    $hir = DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->first();
+    if(isset($hir->template_id))
+    {
+        $template = DB::table('hiring_templates')->where('id' , $hir->template_id)->first();
+    }
+@endphp
 <div class="accordion accordion-solid accordion-toggle-plus mt-5" id="accordionExample6">
     <div class="card">
         <div class="card-header" id="headingOne6">
@@ -106,7 +113,163 @@
         </div>
         <div id="collapseTwo6" class="collapse" data-parent="#accordionExample6">
             <div class="card-body p-10">
-                ...
+                <div class="row">
+                    @if(isset($template))
+                    @if($template->minimum_age != 'Other')
+                    <div class="col-md-6 mb-3">
+                        <b>Minimum Age</b>
+                        <p class="mt-2">{{ $template->minimum_age }}</p>
+                    </div>
+                    @endif
+
+                    @if($template->minimum_age == 'Other')
+                    <div class="col-md-6 mb-3">
+                        <b>Minimum Age</b>
+                        <p class="mt-2">{{ $template->minimum_age_field }}</p>
+                    </div>
+                    @endif
+                    <div class="col-md-6 mb-3">
+                        <b>Minimum Expereince</b>
+                        <p class="mt-2">{{ $template->minimum_expereince }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>Additional Notes About Expereince</b>
+                        <p class="mt-2">{!! $template->additional_notes_about_expereince !!}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->no_more_than }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->moving_violations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->additionl_notes_about_moving_voliations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->no_more_than_major_voilations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->major_moving_voilations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->additionl_notes_about_moving_major_voliations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->license_suspensions }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->license_suspensions_field }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->dot_no_more_than }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->dot_moving_voilations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->preventable_accidents_withn_the_last }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->reason_of_suspensions }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->no_more_than_incidents }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->moving_voilations_incidents }}</p>
+                    </div><div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->ticket_incedent }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->specify_in_a_free_form_fill }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->maximum_jobs_no_more_than }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->maximum_jobs_moving_voilations }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->unemployment }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->maximum_jobs_additional_infomation }}</p>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->felony_convictions }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->misdemeanors }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->drug_duis }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->type_of_drug_test }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->accepting_sap_drivers }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->additional_information }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->physical }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->accomodate_an_automatic_restriction }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->camera_installed }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->camera_type }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->camera_are }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->camera_facing }}</p>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <b>test</b>
+                        <p class="mt-2">{{ $template->camera_recording }}</p>
+                    </div>  
+                    @endif             
+                </div>
             </div>
         </div>
     </div>

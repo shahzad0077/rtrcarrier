@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('content')
 <section >
-<div class="container main-bg-section" @if($data->banner) style="background:url('{{ url('') }}/images/{{ $data->banner  }}')" @else style="background:url('https://thumbs.dreamstime.com/b/senior-man-steep-rock-climb-colorado-male-climber-climbing-turtle-rocks-usa-sized-to-fit-popular-social-media-cover-image-74256916.jpg');" @endif>
+<div class="container main-bg-section" @if($data->banner) style="background:url('{{ url('public/') }}/images/{{ $data->banner  }}')" @else style="background:url('https://thumbs.dreamstime.com/b/senior-man-steep-rock-climb-colorado-male-climber-climbing-turtle-rocks-usa-sized-to-fit-popular-social-media-cover-image-74256916.jpg');" @endif>
     <div class="row">
         <div class="col-md-12 heart-outer">
            <div class="heart-div">
@@ -174,7 +174,7 @@
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                             <div class="top-bar-main">
                     <div class="result-show">
-                         <p> showing <strong>41-60</strong> of <strong>944</strong> jobs</p>
+                         <p> Showing <strong>10</strong> of <strong>{{ $jobs->count() }}</strong> jobs</p>
                     </div>
                     <div class="top-bar-filter">
                         <form>
@@ -200,34 +200,42 @@
                     </div>
                 </div>
                 <div class="job-lists-main">
+                    @foreach($jobs as $index => $job)
                     <div class="list-card-main">
                         <div class="job-logo-left">
-                            <img class="img-fluid"src="{{ asset('public/front/assets/images/us-express.png') }}">
+
+                            @if($data->logo)
+                            <img class="img-fluid" src="{{ asset('public/images') }}/{{ $data->logo }}">
+                            @else
+                            <img class="img-fluid"  src="https://cdn3.vectorstock.com/i/thumb-large/35/52/placeholder-rgb-color-icon-vector-32173552.jpg">
+                            @endif
+
+                            
                         </div>
                         <div class="job-info-right">
                             <div class="job-title">
-                                <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
+                                <h3>{{ $job->job_tittle }}</h3>
                             </div>
                             <div class="job-description-1">
                                 <ul>
-                                    <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
+                                    <li class="company-name"><p>{{ $data->company_name }}</p></li>
+                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> {{ $data->address }}</li>
+                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">{{ $job->avgerage_weekly_pay }} a week</span></li>
                                     <li><p class="job-type">Full Times</p></li>
                                 </ul>
                             </div>
                             <div class="job-description-bottom">
                                 <div class="recent-job-require freight">
                                     <h4>Freight Type</h4>
-                                    <p>See Freight</p>
+                                    <p>{{ $job->freight_type }}</p>
                                 </div>
                                 <div class="recent-job-require hours">
-                                    <h4>Duty time</h4>
-                                    <p>12 Hours</p>
+                                    <h4>Home time</h4>
+                                    <p>{{ $job->home_time }}</p>
                                 </div>
                                 <div class="recent-job-require experince">
                                     <h4>Experience</h4>
-                                    <p>3 Years</p>
+                                    <p>{{ $job->hirring->minimum_expereince }}</p>
                                 </div>
                                 <div class="recent-job-require-btn">
                                     <a href="#">See Details</a>
@@ -238,197 +246,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-card-main">
-                        <div class="job-logo-left">
-                            <img class="img-fluid"src="{{ asset('public/front/assets/images/us-express.png') }}">
-                        </div>
-                        <div class="job-info-right">
-                            <div class="job-title">
-                                <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
-                            </div>
-                            <div class="job-description-1">
-                                <ul>
-                                    <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
-                                    <li><p class="job-type">Full Time</p></li>
-                                </ul>
-                            </div>
-                            <div class="job-description-bottom">
-                                <div class="recent-job-require freight">
-                                    <h4>Freight Type</h4>
-                                    <p>See Freight</p>
-                                </div>
-                                <div class="recent-job-require hours">
-                                    <h4>Duty time</h4>
-                                    <p>12 Hours</p>
-                                </div>
-                                <div class="recent-job-require experince">
-                                    <h4>Experience</h4>
-                                    <p>3 Years</p>
-                                </div>
-                                <div class="recent-job-require-btn">
-                                    <a href="#">See Details</a>
-                                </div>
-                                <div class="recent-job-require-easy-btn">
-                                    <a href="#">Easy Apply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                
                 </div>
-                <div class="list-card-main">
-                    <div class="job-logo-left">
-                        <img class="img-fluid"src="assets/images/us-express.png">
-                    </div>
-                    <div class="job-info-right">
-                        <div class="job-title">
-                            <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
-                        </div>
-                        <div class="job-description-1">
-                            <ul>
-                                <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
-                                <li><p class="job-type">Full Time</p></li>
-                            </ul>
-                        </div>
-                        <div class="job-description-bottom">
-                            <div class="recent-job-require freight">
-                                <h4>Freight Type</h4>
-                                <p>See Freight</p>
-                            </div>
-                            <div class="recent-job-require hours">
-                                <h4>Duty time</h4>
-                                <p>12 Hours</p>
-                            </div>
-                            <div class="recent-job-require experince">
-                                <h4>Experience</h4>
-                                <p>3 Years</p>
-                            </div>
-                            <div class="recent-job-require-btn">
-                                <a href="#">See Details</a>
-                            </div>
-                            <div class="recent-job-require-easy-btn">
-                                <a href="#">Easy Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-card-main">
-                    <div class="job-logo-left">
-                        <img class="img-fluid"src="assets/images/us-express.png">
-                    </div>
-                    <div class="job-info-right">
-                        <div class="job-title">
-                            <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
-                        </div>
-                        <div class="job-description-1">
-                            <ul>
-                                <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
-                                <li><p class="job-type">Full Time</p></li>
-                            </ul>
-                        </div>
-                        <div class="job-description-bottom">
-                            <div class="recent-job-require freight">
-                                <h4>Freight Type</h4>
-                                <p>See Freight</p>
-                            </div>
-                            <div class="recent-job-require hours">
-                                <h4>Duty time</h4>
-                                <p>12 Hours</p>
-                            </div>
-                            <div class="recent-job-require experince">
-                                <h4>Experience</h4>
-                                <p>3 Years</p>
-                            </div>
-                            <div class="recent-job-require-btn">
-                                <a href="#">See Details</a>
-                            </div>
-                            <div class="recent-job-require-easy-btn">
-                                <a href="#">Easy Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-card-main">
-                    <div class="job-logo-left">
-                        <img class="img-fluid"src="assets/images/us-express.png">
-                    </div>
-                    <div class="job-info-right">
-                        <div class="job-title">
-                            <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
-                        </div>
-                        <div class="job-description-1">
-                            <ul>
-                                <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
-                                <li><p class="job-type">Full Time</p></li>
-                            </ul>
-                        </div>
-                        <div class="job-description-bottom">
-                            <div class="recent-job-require freight">
-                                <h4>Freight Type</h4>
-                                <p>See Freight</p>
-                            </div>
-                            <div class="recent-job-require hours">
-                                <h4>Duty time</h4>
-                                <p>12 Hours</p>
-                            </div>
-                            <div class="recent-job-require experince">
-                                <h4>Experience</h4>
-                                <p>3 Years</p>
-                            </div>
-                            <div class="recent-job-require-btn">
-                                <a href="#">See Details</a>
-                            </div>
-                            <div class="recent-job-require-easy-btn">
-                                <a href="#">Easy Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="list-card-main">
-                    <div class="job-logo-left">
-                        <img class="img-fluid"src="assets/images/us-express.png">
-                    </div>
-                    <div class="job-info-right">
-                        <div class="job-title">
-                            <h3>Fuel Transport Driver – Local, Home Daily (Traini..</h3>
-                        </div>
-                        <div class="job-description-1">
-                            <ul>
-                                <li class="company-name"><p>Joyride Logistics LLc</p></li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                                <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">$1,200 - $1,500 a week</span></li>
-                                <li><p class="job-type">Full Time</p></li>
-                            </ul>
-                        </div>
-                        <div class="job-description-bottom">
-                            <div class="recent-job-require freight">
-                                <h4>Freight Type</h4>
-                                <p>See Freight</p>
-                            </div>
-                            <div class="recent-job-require hours">
-                                <h4>Duty time</h4>
-                                <p>12 Hours</p>
-                            </div>
-                            <div class="recent-job-require experince">
-                                <h4>Experience</h4>
-                                <p>3 Years</p>
-                            </div>
-                            <div class="recent-job-require-btn">
-                                <a href="#">See Details</a>
-                            </div>
-                            <div class="recent-job-require-easy-btn">
-                                <a href="#">Easy Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                
+                
+            
                         </div>
                         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                             <div class="card card-custom card-stretch">

@@ -485,7 +485,7 @@ nav > div a.nav-item.nav-link.active
   background: transparent;
     line-height: 25px;
     border-top: 2px solid #22AAE2;  
-    padding:30px 25px;
+    padding:30px 0px;
 }
 
 nav > div a.nav-item.nav-link:hover,
@@ -1138,7 +1138,7 @@ a.share-btn {
     background: transparent;
     line-height: 25px;
     border-top: 1px solid #E6E6E6;
-    padding: 30px 25px;
+    padding: 30px 0px;
 }
 nav > div a.nav-item.nav-link, nav > div a.nav-item.nav-link {
     border: none;

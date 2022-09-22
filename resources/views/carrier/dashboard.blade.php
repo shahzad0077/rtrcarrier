@@ -134,7 +134,7 @@
                         <div class="col-md-12">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <p>Results Showing 41-60 of 112 jobs</p>
+                                    <p>Results Showing {{ 1 }} of {{ $jobs->count() }} jobs</p>
                                 </div>
                                 <div>
                                     <select class="form-control">
@@ -148,14 +148,17 @@
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12">
+
+
+                            @foreach($jobs as $index => $job)
                             <div class="card job-card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div>
-                                            <h4><a class="text-black" href="{{url('job-detail/')}}">Fuel Transport Driver – Local, Home Daily...</a></h4>
+                                            <h4><a class="text-black" href="{{url('job-detail')}}/{{ $job->job_id }}">{{ $job->job_tittle }}</a></h4>
                                         </div>
                                         <div>
-                                            <span class="job-type">Full-time</span>
+                                            <span class="job-type">{{ $job->job_status }}</span>
                                         </div>
                                         <div>
                                             <div class="dropdown dropdown-inline">
@@ -163,10 +166,13 @@
                                                     <i class="ki ki-bold-more-hor"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
+                                                    <a class="dropdown-item" href="{{ url('jobedit') }}/{{ $job->job_id }}"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
+                                                    <a onclick="deletejobbycarrier({{$job->job_id}})" class="dropdown-item" href="javascript:void(0)"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
+                                                    
+                                                    @if($job->job_status == 'approved')
+                                                    <a class="dropdown-item" href=""> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
                                                     <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -180,7 +186,7 @@
                                         </div>
                                         <div class="head-down">
                                             <i class="fas fa-dollar-sign"></i>
-                                            $1,200 - $1,500 a week
+                                            {{ $job->avgerage_weekly_pay }} a week
                                         </div>
                                     </div>
                                     <div class="row mt-4">
@@ -188,23 +194,23 @@
                                             <div class="d-flex flex-row mt-3">
                                                 <div class="job-detail">
                                                     <p>Freight type</p>
-                                                    <b>Sea Freight</b>
+                                                    <b>{{ $job->freight_type }}</b>
+                                                </div>
+                                                <div class="job-detail">
+                                                    <p>Driver type</p>
+                                                    <b>{{ $job->driver_type }}</b>
+                                                </div>
+                                                <div class="job-detail">
+                                                    <p>Compensation</p>
+                                                    <b>{{ $job->compensation }}</b>
                                                 </div>
                                                 <div class="job-detail">
                                                     <p>Home time</p>
-                                                    <b>12 hours</b>
+                                                    <b>{{ $job->home_time }}</b>
                                                 </div>
                                                 <div class="job-detail">
                                                     <p>Experience</p>
-                                                    <b>3 Years</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Total Apps</p>
-                                                    <b>300</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Last App Received</p>
-                                                    <b>12 Jun 2022 , 12:00PM</b>
+                                                    <b>{{ $job->hirring->minimum_expereince }}</b>
                                                 </div>
                                             </div>
                                         </div>
@@ -214,63 +220,8 @@
                                                     <p>Open Seats</p>
                                                     <b>200</b>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card job-card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h4><a class="text-black" href="{{url('job-detail/')}}">Fuel Transport Driver – Local, Home Daily...</a></h4>
-                                        </div>
-                                        <div>
-                                            <span class="job-type">Full-time</span>
-                                        </div>
-                                        <div>
-                                            <div class="dropdown dropdown-inline">
-                                                <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ki ki-bold-more-hor"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row mt-3">
-                                        <div class="head-down">
-                                            <a href="javascript:void(0)" class="text-primary">
-                                                <i class="fa fa-map-marker-alt"></i>
-                                                View Map
-                                            </a>
-                                        </div>
-                                        <div class="head-down">
-                                            <i class="fas fa-dollar-sign"></i>
-                                            $1,200 - $1,500 a week
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-md-12">
-                                            <div class="d-flex flex-row mt-3">
                                                 <div class="job-detail">
-                                                    <p>Freight type</p>
-                                                    <b>Sea Freight</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Home time</p>
-                                                    <b>12 hours</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Experience</p>
-                                                    <b>3 Years</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Total Apps</p>
+                                                    <p>Total Applications Recieved</p>
                                                     <b>300</b>
                                                 </div>
                                                 <div class="job-detail">
@@ -279,88 +230,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mt-3">
-                                            <div class="d-flex flex-row">
-                                                <div class="job-detail">
-                                                    <p>Open Seats</p>
-                                                    <b>200</b>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card job-card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <h4><a class="text-black" href="{{url('job-detail/')}}">Fuel Transport Driver – Local, Home Daily...</a></h4>
-                                        </div>
-                                        <div>
-                                            <span class="job-type">Full-time</span>
-                                        </div>
-                                        <div>
-                                            <div class="dropdown dropdown-inline">
-                                                <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ki ki-bold-more-hor"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/completed.svg')}}" />Completed </a>
-                                                    <a class="dropdown-item" href="#"> <img src="{{asset('public/carrier/assets/media/custom/pause.svg')}}" />Pause </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row mt-3">
-                                        <div class="head-down">
-                                            <a href="javascript:void(0)" class="text-primary">
-                                                <i class="fa fa-map-marker-alt"></i>
-                                                View Map
-                                            </a>
-                                        </div>
-                                        <div class="head-down">
-                                            <i class="fas fa-dollar-sign"></i>
-                                            $1,200 - $1,500 a week
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4">
-                                        <div class="col-md-12">
-                                            <div class="d-flex flex-row mt-3">
-                                                <div class="job-detail">
-                                                    <p>Freight type</p>
-                                                    <b>Sea Freight</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Home time</p>
-                                                    <b>12 hours</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Experience</p>
-                                                    <b>3 Years</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Total Apps</p>
-                                                    <b>300</b>
-                                                </div>
-                                                <div class="job-detail">
-                                                    <p>Last App Received</p>
-                                                    <b>12 Jun 2022 , 12:00PM</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mt-3">
-                                            <div class="d-flex flex-row">
-                                                <div class="job-detail">
-                                                    <p>Open Seats</p>
-                                                    <b>200</b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

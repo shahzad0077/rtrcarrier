@@ -13,6 +13,8 @@ use App\Models\advance_pay_options;
 use App\Models\hiring_templates;
 use App\Models\linktemplatewithjobs;
 use App\Models\company_emails;
+use App\Models\equipment_jobs;
+use App\Models\job_equipments;
 use App\Models\jobsubmissionsrequests;
 use App\Models\advance_equipment_values;
 use Illuminate\Support\Facades\Hash;
@@ -28,8 +30,12 @@ class JobController extends Controller
 
     public function allcarrierjobs()
     {
-        $data = linktemplatewithjobs::select('jobs.id as job_id','jobs.job_tittle','jobs.duty_time','jobs.freight_type','jobs.home_time')->leftJoin('jobs','jobs.id','=','linktemplatewithjobs.job_id')->get();
-        return view('carrier/jobs/index')->with(array('data'=>$data));
+        $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
+        $jobs = jobsubmissionsrequests::select('jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('company_id' , Cmf::getusercompany()->id)->orderby('jobs.id' , 'desc')->get();
+        foreach ($jobs as $index => $job) {
+            $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
+        }
+        return view('carrier/jobs/index')->with(array('jobs'=>$jobs));
     }
     public function addnewjob()
     {
@@ -52,6 +58,17 @@ class JobController extends Controller
             
         }
         return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+    }
+    public function deletejob($id)
+    {
+        advance_equipment_values::where('job_id' , $id)->delete();
+        advance_pay_options::where('job_id' , $id)->delete();
+        equipment_jobs::where('job_id' , $id)->delete();
+        jobsubmissionsrequests::where('job_id' , $id)->delete();
+        job_equipments::where('job_id' , $id)->delete();
+        linktemplatewithjobs::where('job_id' , $id)->delete();
+        jobs::where('id' , $id)->delete();
+        return redirect()->back()->with('message', 'Job Deleted Successfully');
     }
     public function publishedjobstatus()
     {
@@ -85,6 +102,7 @@ class JobController extends Controller
         $addnewjob->how_often_will_driver_get_home = $request->how_often_will_driver_get_home;
         $addnewjob->custom_home_time = $request->custom_home_time;
         $addnewjob->job_tittle = $request->job_tittle;
+        $addnewjob->url = Cmf::shorten_url($request->job_tittle);
         $addnewjob->driver_type = $request->driver_type;
         $addnewjob->home_time = $request->home_time;
         $addnewjob->freight_type = $request->freight_type;
@@ -157,7 +175,7 @@ class JobController extends Controller
         $addnewjob->save();
         return redirect()->back()->with('message', 'Email Added Successfully');
     }
-
+    
     public function jobsubmitlast(Request $request)
     {
         $addnewjob = jobs::find($request->job_id);
@@ -308,7 +326,17 @@ class JobController extends Controller
 
     public function hiringreq(Request $request)
     {
-        $template = new hiring_templates();
+        if($request->hirringid)
+        {
+            if($request->template_name)
+            {
+                $template = new hiring_templates();
+            }else{
+                $template = hiring_templates::find($request->hirringid);
+            }
+        }else{
+            $template = new hiring_templates();
+        }    
         $template->company_id = Cmf::getusercompany()->id;
         $template->minimum_age = $request->minimum_age;
         $template->minimum_age_field =$request->minimum_age_field;
@@ -347,26 +375,44 @@ class JobController extends Controller
         $template->camera_are =$request->camera_are;
         $template->camera_facing =$request->camera_facing;
         $template->camera_recording =$request->camera_recording;
-        $template->requiredendorsements = implode(',', $request->requiredendorsements);
+        if($request->requiredendorsements)
+        {
+            $template->requiredendorsements = implode(',', $request->requiredendorsements);
+        }
         if($request->template_name)
         {
             $template->name = $request->template_name;
             $template->is_template = 1;
         }else{
-            $template->is_template = 0;
+            if($request->hirringid)
+            {
+
+            }
+            else
+            {
+                $template->is_template = 0;
+            } 
         }
         $template->save();
+
         $addnewjob = jobs::find($request->job_id);
         $addnewjob->step = 2;
         $addnewjob->save();
-        $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id)->count();
-        if($checklinktemplete == 0)
+
+
+
+        $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id);
+        if($checklinktemplete->count() == 0)
         {
             $linktemplate = new linktemplatewithjobs();
             $linktemplate->job_id = $request->job_id;
             $linktemplate->template_id = $template->id;
             $linktemplate->save();
-        }
+        }else{
+            $linktemplate = linktemplatewithjobs::find($checklinktemplete->first()->id);
+            $linktemplate->template_id = $template->id;
+            $linktemplate->save();
+        }        
         return redirect()->back()->with('message', 'Added Successfully');
     }
 }

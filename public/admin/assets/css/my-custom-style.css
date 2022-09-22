@@ -1515,6 +1515,7 @@ label.inner-label.edit-covers p {
     line-height: 27px;
     background-color: #e9f7fc;
     color: #22AAE2;
+    text-transform: capitalize;
 }
 
 .job-dropdown .dropdown-item img {
