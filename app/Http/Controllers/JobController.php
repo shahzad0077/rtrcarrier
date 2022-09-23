@@ -37,6 +37,26 @@ class JobController extends Controller
         }
         return view('carrier/jobs/index')->with(array('jobs'=>$jobs));
     }
+    public function searchjobs(Request $request)
+    {
+        $input = $request->all();
+        $q = jobsubmissionsrequests::select('jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status');
+        if ($input['keyword'])
+        {
+            $q->where('jobs.job_tittle','like', '%' . $input['keyword'] . '%' );
+        }
+        if ($input['freighttype'])
+        {
+            $q->where('jobs.freight_type','like', '%' . $input['freighttype'] . '%' );
+        }
+        $q->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id');
+        $q->where('company_id' , Cmf::getusercompany()->id);
+        $jobs = $q->orderby('jobs.id' , 'desc')->get();
+        foreach ($jobs as $index => $job) {
+            $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
+        }
+        return view('carrier/jobs/searchjobs')->with(array('jobs'=>$jobs));
+    }
     public function addnewjob()
     {
         $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);

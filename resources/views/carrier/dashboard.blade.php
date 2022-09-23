@@ -97,36 +97,37 @@
                     <div class="card card-custom gutter-b">
                         <div class="card-body p-10">
                             <div class="card bg-light-gray">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <div class="input-icon" style="width: 100%;">
-                                                <input type="text" class="form-control border-none" placeholder="Job Search" />
-                                                <span><i class="flaticon2-search-1 icon-md"></i></span>
+                                <form method="GET" action="{{ url('searchjobs') }}">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="input-icon" style="width: 100%;">
+                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Job Search" />
+                                                    <span><i class="flaticon2-search-1 icon-md"></i></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <div class="input-icon" style="width: 100%;">
-                                                <select class="form-control border-none">
-                                                    <option>Dry Van</option>
-                                                    <option>Reefer</option>
-                                                    <option>Flatbed</option>
-                                                    <option>Sand/Tanker</option>
-                                                    <option>Heavy-Haul</option>
-                                                </select>
-                                                <span><i class="fas fa-briefcase icon-md"></i></span>
+                                            <div>
+                                                <div class="input-icon" style="width: 100%;">
+                                                    <select name="freighttype" class="form-control border-none">
+                                                        <option value="">Select Freight Type</option>
+                                                        @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
+                                                        <option value="{{ $r }}">{{ $r }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span><i class="fas fa-briefcase icon-md"></i></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-lg btn-white shadow-cs btn-icon btn-filter mr-3" data-toggle="modal" data-target="#exampleModalCenter">
-                                                <img src="{{asset('public/carrier/assets/media/custom/filter.svg')}}" />
-                                            </button>
-                                            <button class="btn btn-primary btn-lg shadow-cs">
-                                                Search
-                                            </button>
+                                            <div>
+                                                <button type="button" class="btn btn-lg btn-white shadow-cs btn-icon btn-filter mr-3" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    <img src="{{asset('public/carrier/assets/media/custom/filter.svg')}}" />
+                                                </button>
+                                                <button type="submit" class="btn btn-primary btn-lg shadow-cs">
+                                                    Search
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

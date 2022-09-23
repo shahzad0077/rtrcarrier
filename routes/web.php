@@ -79,6 +79,7 @@ Route::get('/carrier-profile/reviews', function () {
 
 // Jobs Routes
 Route::get('/jobs', [JobController::class, 'allcarrierjobs']);
+Route::get('/searchjobs', [JobController::class, 'searchjobs']);
 Route::get('/job/add', [JobController::class, 'addnewjob']);
 Route::get('/job/published', [JobController::class, 'publishedjobstatus']);
 Route::post('/job/submitone', [JobController::class, 'submitone']);

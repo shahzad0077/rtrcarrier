@@ -11,25 +11,21 @@
             <div class="row mt-4">
                 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Search with title" name="keyword">
+                        <input type="text" value="{{ $_GET['keyword'] }}" class="form-control" placeholder="Search with title" name="keyword">
                     </div>
                     <div class="col-md-3">
                         <select name="freighttype" class="form-control">
                             <option value="">Select Freight Type</option>
                             @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
-                            <option value="{{ $r }}">{{ $r }}</option>
+                            <option @if($_GET['freighttype'] == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-primary form-control"> <i class="fa fa-search"></i>Search Jobs</button>
                     </div>
-                    <div class="col-md-3 text-right">
-                    <a href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
-                </div>
             </div>
             </form>
-        
             <div class="row mt-5">                                
                 @foreach($jobs as $index => $job)
                 <div class="col-md-6">
