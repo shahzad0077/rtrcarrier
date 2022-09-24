@@ -42,7 +42,21 @@ class Cmf
     }
     public static  function getusercompany()
     {
-        return companies::where('user_id' , Auth::user()->id)->first();
+        if(Auth::user()->type == 'carrier_sub_account')
+        {
+            $roleid = role_users::where('user_id' , Auth::user()->id)->first();
+            $companyid = staff_permissions::where('id' , $roleid->role_id)->first();
+            $companyid = companies::where('id' , $companyid->company_id)->first();
+        }else{
+            $companyid = companies::where('user_id' , Auth::user()->id)->first();
+        }
+        return $companyid;
+    }
+
+    public static function getuserrole($id)
+    {
+        $roleid = role_users::where('user_id' , $id)->first();
+        return $userrole = staff_permissions::where('id' , $roleid->role_id)->first();
     }
 
     public static function getcarrierrole($id)

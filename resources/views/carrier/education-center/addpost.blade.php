@@ -1,4 +1,4 @@
-@extends('admin.layouts.main-layout')
+@extends('layouts.main-layout')
 @section('title','Add New Post')
 @section('content')
 
@@ -8,8 +8,9 @@
         <!--begin::Container-->
         <div class=" container ">
             <!--begin::Card-->
-            @include('alerts.index')
+            
             <div class="card card-custom mt-5">
+                @include('alerts.index')
                 <div class="card-header flex-wrap py-5">
                     <div class="card-title">
                         <h3 class="card-label">
@@ -18,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" method="POST" action="{{ url('admin/education/addneweducationarticle') }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ url('addneweducationarticle') }}">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -82,4 +83,5 @@
     </div>
     <!--end::Entry-->
 </div>
+
 @endsection

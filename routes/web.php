@@ -56,7 +56,13 @@ Route::POST('/updateriderpolicy', [CarrierController::class, 'updateriderpolicy'
 Route::get('/companyinfo/{id}', [CarrierController::class, 'companyinfo']);
 Route::POST('/updatecompanyinfo', [CarrierController::class, 'updatecompanyinfo']);
 Route::get('/help', [CarrierController::class, 'carrierhelp']);
-
+Route::get('/add-new-post', [CarrierController::class, 'addnewpost']);
+Route::get('/all-posts', [CarrierController::class, 'allposts']);
+Route::get('/editpost/{id}', [CarrierController::class, 'editpost']);
+Route::post('/addneweducationarticle', [CarrierController::class, 'addneweducationarticle']);
+Route::get('/education-center', [CarrierController::class, 'educationcenter']);
+Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducationarticle']);
+Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 
 // Staff Permissions
 Route::get('/staff-permissions', [StaffPermissionController::class, 'allpermissions']);
@@ -116,9 +122,7 @@ Route::get('/integrations', function () {
     return view('carrier/integrations/index');
 });
 
-Route::get('/education-center', function () {
-    return view('carrier/education-center/index');
-});
+
 
 
 

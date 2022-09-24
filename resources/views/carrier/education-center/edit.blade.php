@@ -1,5 +1,5 @@
-@extends('admin.layouts.main-layout')
-@section('title','Add New Post')
+@extends('layouts.main-layout')
+@section('title','Edit Post')
 @section('content')
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -18,8 +18,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" method="POST" action="{{ url('admin/education/addneweducationarticle') }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ url('updateeducationarticle') }}">
                 @csrf
+                <input type="hidden" value="{{ $data->id }}" name="id">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -28,7 +29,7 @@
                                 <select required class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="category_id"> 
                                     <option value="">Select Category</option>
                                     @foreach($categories as $r)
-                                    <option value="{{ $r->id }}">{{ $r->name }}</option>
+                                    <option @if($data->category_id == $r->id)selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -38,15 +39,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Enter Tittle</label>
-                                <input name="tittle" required type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
+                                <input value="{{ $data->tittle }}" name="tittle" required type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="lable-control">Youtube Video Link</label> <small>(Optional)</small>
-                                <input name="youtube" type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
+                                <label class="lable-control">Youtube Video Link</label>
+                                <input value="{{ $data->youtube }}" name="youtube" type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
                             </div>
                         </div>
                     </div>
@@ -55,8 +56,11 @@
                             <div class="form-group">
                                 <label class="lable-control">Image</label>
                                 <input name="image" type="file" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
-
-                                
+                                @if($data->image)
+                                <div class="image">
+                                    <img style="width: 100px;height: 100px;" src="{{ url('public/images') }}/{{ $data->image }}">
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -64,7 +68,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Content</label>
-                                <textarea  name="answer" class="summernote"></textarea>
+                                <textarea  name="answer" class="summernote">{{ $data->content }}</textarea>
                             </div>
                         </div>
                     </div>

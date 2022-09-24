@@ -246,6 +246,7 @@ class AdminController extends Controller
         }
         $add->youtube = $request->youtube;
         $add->content = $request->answer;
+        $add->type = 'rtr';
         $add->status = 'Published';
         $add->save();
         return redirect()->back()->with('message', 'Article Added Successfully');

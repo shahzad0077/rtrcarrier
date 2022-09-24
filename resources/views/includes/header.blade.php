@@ -10,7 +10,7 @@
             </h3>
             <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                 <li class="breadcrumb-item">
-                    <a href="dashboard.html" class="text-muted">
+                    <a href="{{ url('dashboard') }}" class="text-muted">
                         <i class="flaticon2-shelter icon-1x"></i>&nbsp;
                         Dashboard
                     </a>

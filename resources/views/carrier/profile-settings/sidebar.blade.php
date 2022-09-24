@@ -24,6 +24,7 @@
                     <div class="text-muted">
                         @if(Auth::user()->type == 'carrier_sub_account')
 
+                        {{ Cmf::getuserrole(Auth::user()->id)->name }}
 
                         @elseif(Auth::user()->type == 'carrier')
 

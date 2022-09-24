@@ -12,6 +12,8 @@ use App\Models\company_info_pages;
 use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
 use App\Models\jobs;
+use App\Models\education_categories;
+use App\Models\education_articles;
 use Validator;
 use Auth;
 use DB;
@@ -165,5 +167,70 @@ class CarrierController extends Controller
     {
         $data = help_categories::where('status' , 'published')->orderby('order' , 'ASC')->get();
         return view('carrier/help/index')->with(array('data'=>$data));
+    }
+    public function addnewpost()
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        return view('carrier.education-center.addpost')->with(array('categories'=>$categories));
+    }
+
+    public function addneweducationarticle(Request $request)
+    {
+        $add = new education_articles();
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        if($request->image)
+        {
+            $add->image = Cmf::sendimagetodirectory($request->image);
+        }
+        $add->youtube = $request->youtube;
+        $add->content = $request->answer;
+        $add->type = 'carrier';
+        $add->carrier_id = Cmf::getusercompany()->id;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Post Added Successfully');
+    }
+    public function educationcenter()
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        $rtrposts = education_articles::where('status' , 'Published')->where('type' , 'rtr');
+        $carrierposts = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier');
+        return view('carrier/education-center/index')->with(array('categories'=>$categories,'carrierposts'=>$carrierposts,'rtrposts'=>$rtrposts));
+    }
+
+    public function allposts()
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        $data = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier')->get();
+        return view('carrier/education-center/allposts')->with(array('categories'=>$categories,'data'=>$data));
+    }
+    public function editpost($id)
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        $data = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier')->where('id' , $id)->get()->first();
+        return view('carrier/education-center/edit')->with(array('categories'=>$categories,'data'=>$data));
+    }
+
+    public function updateeducationarticle(Request $request)
+    {
+        $add = education_articles::find($request->id);
+        $add->category_id = $request->category_id;
+        $add->tittle = $request->tittle;
+        if($request->image)
+        {
+            $add->image = Cmf::sendimagetodirectory($request->image);
+        }
+        $add->youtube = $request->youtube;
+        $add->content = $request->answer;
+        $add->status = 'Published';
+        $add->save();
+        return redirect()->back()->with('message', 'Article Updated Successfully');
+    }
+    public function detailpost($id)
+    {
+        $categories = education_categories::where('status' , 'Published')->get();
+        $data = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier')->where('id' , $id)->get()->first();
+        return view('carrier/education-center/detail')->with(array('categories'=>$categories,'data'=>$data));
     }
 }
