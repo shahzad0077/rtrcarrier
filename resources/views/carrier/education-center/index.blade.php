@@ -47,11 +47,11 @@
                             @foreach($rtrposts->where('category_id' , $r->id)->limit(6)->get() as $a)
                             <div class="col-md-4">
                                 <div class="card-xl-stretch me-md-6">
-                                    <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image: url('https://preview.keenthemes.com/metronic8/demo1/assets/media/stock/600x400/img-73.jpg');" data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/btornGtLwIo">
+                                    <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="background-image: url('https://preview.keenthemes.com/metronic8/demo1/assets/media/stock/600x400/img-73.jpg');" data-fslightbox="lightbox-video-tutorials" href="{{ url('detail') }}/{{ $a->id }}">
                                         
                                     </a>
                                     <div class="m-0">
-                                        <a href="/metronic8/demo1/../demo1/pages/user-profile/overview.html" class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">{{ $a->tittle }}</a>
+                                        <a href="{{ url('detail') }}/{{ $a->id }}" class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">{{ $a->tittle }}</a>
                                         <!--end::Title-->
                                         <!--begin::Text-->
                                         <div class="fw-semibold fs-5 text-gray-600 text-dark my-4">We’ve been focused on making a the from also not been afraid to and step away been focused create eye</div>
@@ -59,7 +59,7 @@
                                         <!--begin::Content-->
                                         <div class="fs-6 fw-bold">
                                             <!--begin::Author-->
-                                            <a href="/metronic8/demo1/../demo1/pages/user-profile/overview.html" class="text-gray-700 text-hover-primary">Admin</a>
+                                            <a href="javascript::void(0)" class="text-gray-700 text-hover-primary">Admin</a>
                                             <!--end::Author-->
                                             <!--begin::Date-->
                                             <span class="text-muted">on Mar 21 2021</span>
