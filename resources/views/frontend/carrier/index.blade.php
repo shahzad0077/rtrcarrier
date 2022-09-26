@@ -214,7 +214,9 @@
                         </div>
                         <div class="job-info-right">
                             <div class="job-title">
-                                <h3>{{ $job->job_tittle }}</h3>
+                                <a href="{{ url('job-detail') }}/{{ $job->url }}">
+                                    <h3>{{ $job->job_tittle }}</h3>
+                                </a>
                             </div>
                             <div class="job-description-1">
                                 <ul>

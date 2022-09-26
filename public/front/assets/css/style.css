@@ -485,7 +485,7 @@ nav > div a.nav-item.nav-link.active
   background: transparent;
     line-height: 25px;
     border-top: 2px solid #22AAE2;  
-    padding:30px 0px;
+    padding:30px 25px;
 }
 
 nav > div a.nav-item.nav-link:hover,
@@ -1138,7 +1138,7 @@ a.share-btn {
     background: transparent;
     line-height: 25px;
     border-top: 1px solid #E6E6E6;
-    padding: 30px 0px;
+    padding: 30px 25px;
 }
 nav > div a.nav-item.nav-link, nav > div a.nav-item.nav-link {
     border: none;
@@ -1320,7 +1320,7 @@ section.popup-section {
     border: none;
     padding: 20px;
     margin-bottom: 40px;
-
+    display: none;
 }
 .croos-shere-div {
     position: relative;
@@ -1344,14 +1344,10 @@ section.popup-section {
     left: 50%;
     transform: translate(-50%, 50%);
 }
-.shere-section {
-    position: fixed;
+.shere-section{
+    position: absolute;
     top: 0;
-    left: unset;
-    width: 100%;
-    height: 100vh;
-    background: #00000052;
-    display: none;
+    left: 50%;
 }
 .shere-profile-text h2 {
     font-family: 'Poppins';
@@ -1541,17 +1537,379 @@ img.loader-ajax-popup {
     right: 60px;
     display: none;
 }
-.heart-div i {
-    padding: 13px;
-    border-radius: 50%;
+
+
+/*job details pages style start here*/
+
+.main-ux-outer {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ux-content {
+    padding-left: 20px;
+    width: 77%;
+    padding-top: 10px;
+}
+.left-wyle {
+    width: 23%;
+}
+.ux-content h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+}
+.ux-content ul {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+}
+.main-ux-outer .price-dollar {
+    margin-left: 13px;
+}
+section.ux-secton {
+    background: #F6FBFF;
+    padding: 76px 0px;
+    margin-bottom: 30px;
+}
+.full-time-btn {
+    background: #d6effb;
+    border-radius: 100px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 27px;
+    color: #22AAE2;
+    padding: 6px 16px;
+}
+.urgent-btn {
+    background: #f6efd9;
+    border-radius: 100px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 27px;
+    color: #F9AB00;
+    padding: 6px 20px;
+}
+.apply-job-btn a {
+    background: #22AAE2;
+    box-shadow: 0px 4px 20px rgb(0 0 0 / 18%);
+    border-radius: 4px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 27px;
+    color: #FFFFFF;
+    padding: 16px 37px;
+}
+.apply-job-btn {
+    text-align: end;
+    vertical-align: baseline;
+    margin-top: 45px;
+}
+.my-tabs-content{
+    border-top: none !important;
+}
+.description-outer{
+    border: none;
+}
+.description-pera p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 33px;
+    color: #696969;
+}
+.hiring-requirment {
     background: #FFFFFF;
+    border: 1px solid #DCDCDC;
+    border-radius: 15px;
+    padding: 25px 5px 25px 35px;
+        margin-top: 15px;
+}
+.hiring-title h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+}
+.hiring-content {
+    margin-top: 13px;
+}
+.hiring-content h3 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 34px;
+    color: #10151E;
+    padding-bottom: 0px;
+}
+.hiring-content p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #696969;
+    padding-top: 0px;
+}
+.hiring-map {
+    padding-left: 0px;
+    margin: 20px 0px;
+}
+
+.hiring-map h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+    padding-bottom: 20px;
+}
+iframe#gmap_canvas {
+    border: 1px solid #DCDCDC;
+    border-radius: 9px;
+}
+.skilled-div h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+}
+
+.skilled-div {
+    padding-left: 0px;
+}
+.skilled-div ul li {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 30px;
+    color: #696969;
+}
+.skilled-div ul {
+    padding-left: 18px;
+}
+.relareds-card {
+    border: none;
+        padding-left: 12px;
+}
+.relateds-title h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+}
+.relateds-title p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #696969;
+}
+.my-tabs-link{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 34px;
     color: #000000;
 }
-.heart-div i:hover {
-    transition: .5s;
-    background: #000;
-    color: #fff;
+.my-tabs-link.active{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 34px;
+    color: #FFFFFF !important;
+    background: #10151E !important;
+border-radius: 6px !important;
 }
+.my-tabs-link:hover{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 34px;
+    color: #FFFFFF !important;
+    background: #10151E !important;
+border-radius: 6px !important;
+}
+.main-description-tab{
+    width: 460px !important;
+}
+.description-pera {
+    padding-left: 0px;
+}
+.job-left-details {
+    background: #F9FAFC;
+    border-radius: 15px;
+    border: none;
+    padding: 30px;
+}
+.jobs-title h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 34px;
+    color: #10151E;
+        padding-bottom: 24px;
+
+}
+.details-contents-main {
+    display: flex;
+    flex-wrap: wrap;
+        margin-top: 10px;
+}
+.left-img {
+    width: 15%;
+}
+.right-content {
+    width: 85%;
+}
+.right-content h3 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 23px;
+    color: #10151E;
+}
+.right-content p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #696969;
+}
+.righ-wyle-main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+     margin-bottom: 35px;
+}
+.wyle-info {
+    width: 65%;
+    padding-top: 15px;
+}
+.wyle-logo {
+    width: 35%;
+}
+.wyle-logo img {
+    width: 82px;
+    height: 82px;
+}
+.wyle-info h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 20px;
+    color: #10151E;
+}
+.wyle-info a {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: right;
+    color: #22AAE2;
+}
+.contact-info-main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.info-title {
+    width: 35%;
+}
+.info-title h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 34px;
+    color: #10151E;
+}
+.contect-text {
+    width: 60%;
+}
+.contect-text p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 39px;
+    text-align: right;
+    color: #696969;
+}
+.web-div{
+    padding: 0px;
+}
+.web-div input {
+    background: #dbeff8;
+    border-radius: 4px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 27px;
+    padding: 14px 44px;
+    color: #22AAE2;
+    text-align: center;
+    border: none;
+}
+.abouts-content h2 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 0px;
+    color: #10151E;
+}
+
+.abouts-content p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 27px;
+    color: #696969;
+}
+.abouts-content a {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    color: #22AAE2 !important;
+}
+.col-md-12.abouts-content.mt-4.about-us-pera h2 {
+    line-height: 23px;
+}
+
+/*job details pages style end here*/
+
 
 
 /*/////////////////////////////////MOBILE RESPONSIVE///////////////////////////////*/

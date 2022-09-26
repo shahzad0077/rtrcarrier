@@ -30,7 +30,6 @@ class CarrierController extends Controller
         foreach ($jobs as $index => $job) {
             $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
         }
-
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs));
     }
     public function carrierprofile()

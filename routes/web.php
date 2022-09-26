@@ -26,6 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [SiteController::class, 'index']);
 
 Route::get('/carrier/{id}', [SiteController::class, 'carrierprofile']);
+Route::get('/job-detail/{id}', [SiteController::class, 'jobdetail']);
+
 
 
 // Register Routes
@@ -63,6 +65,11 @@ Route::post('/addneweducationarticle', [CarrierController::class, 'addneweducati
 Route::get('/education-center', [CarrierController::class, 'educationcenter']);
 Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducationarticle']);
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
+Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
+
+
+
+
 
 // Staff Permissions
 Route::get('/staff-permissions', [StaffPermissionController::class, 'allpermissions']);
@@ -76,7 +83,8 @@ Route::POST('/addnewcarrierstaff', [StaffPermissionController::class, 'addnewcar
 
 
 
-Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
+
+
 Route::get('/carrier-profile/reviews', function () {
     return view('carrier/carrier-profile/reviews');
 });

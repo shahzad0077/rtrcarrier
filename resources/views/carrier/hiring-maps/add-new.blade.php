@@ -39,7 +39,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
-                                                <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <input type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -125,29 +125,32 @@
 <!-- Add Zipcode-->
 <div class="modal fade" id="addZip" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Zip Code</h5>
+        <form method="POST" action="{{ url('map/addzipcode') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Zip Code</h5>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                        </div>
                     </div>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter Zip Code">
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
