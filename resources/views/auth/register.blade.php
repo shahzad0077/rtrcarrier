@@ -22,7 +22,7 @@
                     <div class="d-flex flex-column-auto flex-column px-10">
                         <!--begin::Aside header-->
                         <a href="{{ url('') }}">
-                            <img src="{{ asset('public/front/assets/images/logo.webp') }}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
+                            <img src="{{asset('public/admin/assets/media/custom/logo.png')}}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
                         </a>
                         <!--end::Aside header-->
                         <!--begin: Wizard Nav-->

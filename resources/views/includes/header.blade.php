@@ -227,21 +227,28 @@
                                     {{ DB::table('companies')->where('user_id' , Auth::user()->id)->get()->first()->company_name }} 
                                 @endif
                              <br>
-                            <small>Verified Carrier</small>
+                            <small>@if(Auth::user()->type == 'carrier_sub_account')
+
+                        {{ Cmf::getuserrole(Auth::user()->id)->name }}
+
+                        @elseif(Auth::user()->type == 'carrier')
+
+                            Carrier Admin
+                        @endif</small>
                         </div>
                         <!--end::Text-->
                     </div>
                     <div class="separator separator-solid"></div>
                     <!--end::Header-->
                     <!--begin::Nav-->
-                    <div class="row pt-5 pl-5 pr-5 pb-0">
+                   <!--  <div class="row pt-5 pl-5 pr-5 pb-0">
                         <div class="col-md-6">
                             <button class="btn btn-block">Light</button>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-secondary btn-block">Dark</button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="navi navi-spacer-x-0 pt-5">
                         <!--begin::Item-->
                         <a href="{{url('profile-settings/')}}" class="navi-item px-8">
@@ -259,25 +266,6 @@
                                 </div>
                             </div>
                         </a>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <a href="{{url('profile-settings/')}}" class="navi-item px-8">
-                            <div class="navi-link">
-                                <div class="navi-icon mr-2">
-                                    <img src="{{asset('public/carrier/assets/media/custom/admin-drop.svg')}}">
-                                </div>
-                                <div class="navi-text">
-                                    <div class="font-weight-bold">
-                                        Admin
-                                    </div>
-                                    <div class="text-muted">
-                                        Admin Panel Setting
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <!--end::Item-->
-                        <!--begin::Item-->
                         <a href="{{url('billing/')}}" class="navi-item px-8">
                             <div class="navi-link">
                                 <div class="navi-icon mr-2">

@@ -10,7 +10,7 @@
                 <!--begin::Login Header-->
                 <div class="d-flex flex-center mb-15">
                     <a href="{{ url('') }}">
-                        <img src="{{ asset('public/front/assets/images/logo.webp') }}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
+                        <img src="{{asset('public/admin/assets/media/custom/logo.png')}}" class="max-h-75px" alt="{{ env('APP_NAME') }}" />
                     </a>
                 </div>
                 <!--end::Login Header-->
