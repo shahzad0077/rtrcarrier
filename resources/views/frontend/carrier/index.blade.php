@@ -221,8 +221,8 @@
                             <div class="job-description-1">
                                 <ul>
                                     <li class="company-name"><p>{{ $data->company_name }}</p></li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> {{ $data->address }}</li>
-                                    <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">{{ $job->avgerage_weekly_pay }} a week</span></li>
+                                    <li><img src="{{ asset('public/front/assets/images/location-Vector.png') }}" class="img-fluid" alt="location vector"> {{ $data->address }}</li>
+                                    <li><img src="{{ asset('public/front/assets/images/dollar-vector.png') }}" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">{{ $job->avgerage_weekly_pay }} a week</span></li>
                                     <li><p class="job-type">Full Times</p></li>
                                 </ul>
                             </div>
