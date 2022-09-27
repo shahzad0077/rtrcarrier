@@ -18,8 +18,8 @@
                      <div class="ux-content">
                          <h2>{{ $data->job_tittle }}</h2>
                          <ul>
-                             <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/location-Vector.png" class="img-fluid" alt="location vector"> Uk,London</li>
-                             <li><img src="http://box5783.temp.domains/~driverx8/wp-content/themes/rtr/assets/images/dollar-vector.png" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">{{ $data->avgerage_weekly_pay }} a week</span></li>
+                             <li><img src="{{ asset('public/front/assets/images/location-Vector.png') }}" class="img-fluid" alt="location vector"> Uk,London</li>
+                             <li><img src="{{ asset('public/front/assets/images/dollar-vector.png') }}" class="img-fluid price-dollar" alt="dollar vector"><span class="job-salry">{{ $data->avgerage_weekly_pay }} a week</span></li>
                          </ul>
                          <a href="#" class="full-time-btn">Full-time</a>
                          <a href="#" class="urgent-btn">Urgent</a>
