@@ -91,11 +91,11 @@
                                    </div>
                                    <div class="col-md-4 col-6 hiring-content">
                                        <h3>Felony Convictions</h3>
-                                       <p>{{ $hirring->felony_convictions }}</p>
+                                       <p>{!! $hirring->felony_convictions !!}</p>
                                    </div>
                                    <div class="col-md-4 col-6 hiring-content">
                                        <h3>Misdemeanors</h3>
-                                       <p>{{ $hirring->misdemeanors }}</p>
+                                       <p>{!! $hirring->misdemeanors !!}</p>
                                    </div>
                                </div>
                            </div>
