@@ -229,7 +229,7 @@ class CarrierController extends Controller
     public function detailpost($id)
     {
         $categories = education_categories::where('status' , 'Published')->get();
-        $data = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier')->where('id' , $id)->get()->first();
+        $data = education_articles::where('status' , 'Published')->where('id' , $id)->get()->first();
         return view('carrier/education-center/detail')->with(array('categories'=>$categories,'data'=>$data));
     }
 }

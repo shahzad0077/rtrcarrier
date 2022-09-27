@@ -345,7 +345,7 @@
                             <!-- Child -->
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('education-center')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Posts From RTR</span>
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
                                 </a>
                             </li>
                             <li class="menu-item" aria-haspopup="true">
@@ -355,7 +355,7 @@
                             </li>
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('all-posts')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Carrier Posts</span>
                                 </a>
                             </li>
                         </ul>

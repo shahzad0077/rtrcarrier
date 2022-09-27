@@ -47,6 +47,7 @@
                             <div class="form-group">
                                 <label class="lable-control">Youtube Video Link</label> <small>(Optional)</small>
                                 <input name="youtube" type="text" id="emailfield" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">
+                                <small style="color:red;">Add Embaded Link of youtube Video Eg: https://www.youtube.com/embed/TWdDZYNqlg4</small>
                             </div>
                         </div>
                     </div>

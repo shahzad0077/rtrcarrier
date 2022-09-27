@@ -79,6 +79,20 @@ class JobController extends Controller
         }
         return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
+    public function jobedit($id)
+    {
+        $job = jobs::find($id);
+        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
+        $attribute = jot_attributes::all();
+        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+    }
+    public function carrierjobdetail($id)
+    {
+        $job = jobs::find($id);
+        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
+        $attribute = jot_attributes::all();
+        return view('carrier/jobs/jobdetail')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+    }
     public function deletejob($id)
     {
         advance_equipment_values::where('job_id' , $id)->delete();
