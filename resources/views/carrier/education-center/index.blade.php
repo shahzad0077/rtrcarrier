@@ -12,7 +12,7 @@
                     <div class="mb-17">
                         <div class="d-flex mb-5">
                               <div>
-                                  <h3 class="text-dark">Posts from RTR</h3>
+                                  <h3 class="text-dark">Education Center</h3>
                               </div>
                               <!-- <div class="ml-auto">
                                   <a href="#" class="fs-6 fw-semibold link-primary ml-auto">View All</a>
