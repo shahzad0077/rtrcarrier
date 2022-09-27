@@ -66,7 +66,10 @@
                             <!--end::Col-->
                             <!--begin::Col-->
                             <div class="col-md-6 justify-content-between d-flex flex-column">
-                               @foreach($rtrposts->whereNull('youtube')->limit(3)->get() as $a) <!--begin::Post-->
+                               @foreach($rtrposts->limit(3)->get() as $a) <!--begin::Post-->
+                               @if($a->youtube)
+
+                               @else
                                 <div class="ps-lg-6 mb-16 mt-md-0 mt-17">
                                     <!--begin::Body-->
                                     <div class="mb-6">
@@ -95,6 +98,7 @@
                                     </div>
                                     <!--end::Footer-->
                                 </div>
+                                @endif
                                 @endforeach
 
 
