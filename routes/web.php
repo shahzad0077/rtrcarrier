@@ -66,8 +66,10 @@ Route::get('/education-center', [CarrierController::class, 'educationcenter']);
 Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducationarticle']);
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
-
-
+Route::get('/savemaplocations/{one}/{two}/{three}/{four}', [CarrierController::class, 'savemaplocations']);
+Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
+Route::get('/hirig-maps', [CarrierController::class, 'hiringmaps']);
+Route::get('/deletemap/{id}', [CarrierController::class, 'deletemap']);
 
 
 
@@ -117,9 +119,8 @@ Route::get('/carrierjobdetail/{id}', [JobController::class, 'carrierjobdetail'])
 
 // Hiring Maps
 
-Route::get('/hirig-maps', function () {
-    return view('carrier/hiring-maps/index');
-});
+
+
 
 
 // Staff

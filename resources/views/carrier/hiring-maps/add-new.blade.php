@@ -1,6 +1,10 @@
 @extends('layouts.main-layout')
 @section('title','Add Hiring Map')
 @section('content')
+
+@php
+    $map_id = rand(100000000000 , 2000000000);
+@endphp
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Entry-->
@@ -18,24 +22,15 @@
                             </div>
                             <!--end::Header-->
                             <!--begin::Form-->
-                            <form class="form">
+
+                            <form enctype="multipart/form-data" method="POST" action="{{ url('addnewhiringmap') }}" class="form">
+                                @csrf
+                                <input type="hidden" name="map_id" value="{{ $map_id }}">
+                                
                                 <!--begin::Body-->
                                 <div class="card-body">
+                                    @include('alerts.index')
                                     <div class="row">
-                                        <div class="col-md-12 mb-4">
-                                            <div class="alert alert-custom alert-light-success fade show mb-5" role="alert">
-                                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                                                <div class="alert-text">
-                                                    <b>Map Added Successfully</b>
-                                                    <p>We’ve succefully added the map to list</p>
-                                                </div>
-                                                <div class="alert-close">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
@@ -45,13 +40,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map Type</label>
-                                                <select class="form-control border-0 form-control-solid text-muted font-size-lg font-weight-bolder pl-5 min-h-50px" id="exampleSelects">
-                                                    <option>Hiring Map</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
+                                                <input required type="text" class="form-control form-control-lg form-control-solid" name="map_type" placeholder="Map Type">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -63,13 +52,10 @@
                                             <button type="button" class="btn btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
                                         </div>
                                         <div class="col-md-12 mt-5">
-                                            <div id="map" style="width: 100%; border-radius: 12px; height: 400px; border: 1px solid #ccc"></div>
+                                            <div id="map" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
                                         </div>
-                                        <div class="col-md-12 mt-5">
-                                            <button type="button" class="btn btn-secondary map-delete-btn">New York <i class="icon-2x text-dark-50 flaticon-delete-1"></i></button>
-                                            <button type="button" class="btn btn-secondary map-delete-btn">80014 <i class="icon-2x text-dark-50 flaticon-delete-1"></i></button>
-                                            <button type="button" class="btn btn-secondary map-delete-btn">California <i class="icon-2x text-dark-50 flaticon-delete-1"></i></button>
-                                            <button type="button" class="btn btn-secondary map-delete-btn">55126 - 200 miles <i class="icon-2x text-dark-50 flaticon-delete-1"></i></button>
+                                        <div id="appenddivs" class="col-md-12 mt-5">
+                                            
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
@@ -86,7 +72,7 @@
                                                         <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_2.jpg)"></div>
                                                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                                             <i class="fa fa-pen icon-sm text-muted"></i>
-                                                            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
+                                                            <input type="file" name="logo" accept=".png, .jpg, .jpeg">
                                                             <input type="hidden" name="profile_avatar_remove">
                                                         </label>
                                                         <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
@@ -103,7 +89,7 @@
                                             <div class="map-btns">
                                                 <button type="button" class="btn btn-secondary mr-2">Preview</button>
                                                 <button type="button" class="btn btn-outline-primary mr-2">Download as PDF</button>
-                                                <button type="button" class="btn btn-primary">Save</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -125,8 +111,6 @@
 <!-- Add Zipcode-->
 <div class="modal fade" id="addZip" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <form method="POST" action="{{ url('map/addzipcode') }}">
-            @csrf
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="row">
@@ -141,16 +125,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <input type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                            <input id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
+                    <button onclick="addnewzip()" type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
                 </div>
             </div>
-        </form>
     </div>
 </div>
 
@@ -172,13 +155,13 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter City">
+                        <input id="city" type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter City">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
+                <button onclick="addnewcity()" type="button" class="btn btn-primary font-weight-bold">Save</button>
             </div>
         </div>
     </div>
@@ -202,13 +185,13 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter State">
+                        <input id="state" type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter State">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Add Zip Code</button>
+                <button onclick="addnewstate()" type="button" class="btn btn-primary font-weight-bold">Save</button>
             </div>
         </div>
     </div>
@@ -220,6 +203,49 @@
 
 
 @section('scripts')
+    <script type="text/javascript">
+        function addnewstate()
+        {
+            var state = $('#state').val();
+            let value1 = Math.floor(Math.random() * 10000);;
+            $('#appenddivs').append('<button type="button" class="state'+value1+' btn btn-secondary map-delete-btn">'+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+value1+')"></i></button><input type="hidden" value="'+state+'" name="state[]" id="state'+value1+'">');
+            $('#state').val('')
+            $('#addState').modal('hide');
+        }
+        function deletestate(id)
+        {
+            $('.state'+id).hide();
+            $('#state'+id).val('');
+        }
+        function addnewcity()
+        {
+            var city = $('#city').val();
+            let value1 = Math.floor(Math.random() * 10000);;
+            $('#appenddivs').append('<button type="button" class="city'+value1+' btn btn-secondary map-delete-btn">'+city+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletecity('+value1+')"></i></button><input type="hidden" value="'+city+'" name="city[]" id="city'+value1+'">');
+            $('#city').val('')
+            $('#addCity').modal('hide');
+        }
+        function deletecity(id)
+        {
+            $('.city'+id).hide();
+            $('#city'+id).val('');
+        }
+        function addnewzip()
+        {
+            var zipcode = $('#zipcode').val();
+            let value1 = Math.floor(Math.random() * 10000);;
+            $('#appenddivs').append('<button type="button" class="zipcode'+value1+' btn btn-secondary map-delete-btn">'+zipcode+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+value1+')"></i></button><input type="hidden" value="'+zipcode+'" name="zipcode[]" id="zipcode'+value1+'">');
+            $('#zipcode').val('')
+            $('#addZip').modal('hide');
+        }
+        function deletezipcode(id)
+        {
+            $('.zipcode'+id).hide();
+            $('#zipcode'+id).val('');
+        }
+    </script>
+   
+
 
     <script src="{{asset('public/carrier/assets/map/libs/leaflet-src.js')}}"></script>
     <link rel="stylesheet" href="{{asset('public/carrier/assets/map/libs/leaflet.css')}}"/>
@@ -260,4 +286,64 @@
     <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Marker.js')}}"></script>
     <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.CircleMarker.js')}}"></script>
     <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Circle.js')}}"></script>
+    <script>
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
+        map = new L.Map('map', { center: new L.LatLng(32.008694605395604,74.02606973404139), zoom: 13 }),
+        drawnItems = L.featureGroup().addTo(map);
+        L.control.layers({
+            'osm': osm.addTo(map)
+        }, { 'drawlayer': drawnItems }, { position: 'topleft', collapsed: false }).addTo(map);
+
+
+
+        @foreach(DB::table('maplocations')->get() as $r)
+
+
+        // L.circle([{{ $r->long }},{{ $r->lat }}], {{ $r->radius }}).addTo(map);
+
+        @endforeach
+
+
+        map.addControl(new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems,
+                poly: {
+                    allowIntersection: false
+                }
+            },
+            draw: {
+                polygon: false,
+                rectangle:false,
+                circlemarker:false,
+                polyline:false,
+                marker:false
+            }
+        }));
+
+        map.on(L.Draw.Event.CREATED, function (event) {
+            var layer = event.layer;
+            var latlong = layer.getLatLng();
+            var center = [latlong.lng,latlong.lat]; 
+            var theRadius = layer.getRadius();
+            drawnItems.addLayer(layer);
+            savelocation(latlong.lng,latlong.lat,theRadius)
+        });
+    </script>
+
+    <script type="text/javascript">
+        function savelocation(lat , long , radius)
+        {
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/savemaplocations/"+lat+"/"+long+"/"+radius+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
+        }
+    </script>
 @endsection

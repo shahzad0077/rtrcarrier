@@ -14,6 +14,9 @@ use App\Models\linktemplatewithjobs;
 use App\Models\jobs;
 use App\Models\education_categories;
 use App\Models\education_articles;
+use App\Models\maplocations;
+use App\Models\hiring_maps;
+
 use Validator;
 use Auth;
 use DB;
@@ -120,6 +123,52 @@ class CarrierController extends Controller
     public function addnewmap()
     {
         return view('carrier/hiring-maps/add-new');
+    }
+    public function addnewhiringmap(Request $request)
+    {
+        $map = new hiring_maps();
+        $map->id = $request->map_id;
+        $map->company_id = Cmf::getusercompany()->id;
+        $map->tittle = $request->map_tittle;
+        $map->type = $request->map_tittle;
+        if($request->logo)
+        {
+            $map->logo = Cmf::sendimagetodirectory($request->logo);
+        }
+        if($request->state)
+        {
+            $map->state = implode(',', $request->state);
+        }
+        if($request->city)
+        {
+            $map->city = implode(',', $request->city);
+        }
+        if($request->zipcode)
+        {
+            $map->zipcode = implode(',', $request->zipcode);
+        }
+        $map->save();
+        return redirect()->back()->with('message', 'Map Added Successfully');
+    }
+    public function hiringmaps()
+    {
+        $data = hiring_maps::where('company_id' , Cmf::getusercompany()->id)->get();
+        return view('carrier/hiring-maps/index')->with(array('data'=>$data));
+    }
+    public function deletemap($id)
+    {
+        maplocations::where('map_id' , $id)->delete();
+        hiring_maps::where('id' , $id)->delete();
+        return redirect()->back()->with('message', 'Map Deleted Successfully');
+    }
+    public function savemaplocations($lat,$long,$radius,$map_id)
+    {
+        $maploc = new maplocations();
+        $maploc->map_id = $map_id;
+        $maploc->lat = $lat;
+        $maploc->long = $long;
+        $maploc->radius = $radius;
+        $maploc->save();
     }
     public function updatepetpolicy(Request $request)
     {
