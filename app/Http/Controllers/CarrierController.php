@@ -131,6 +131,34 @@ class CarrierController extends Controller
         $map->company_id = Cmf::getusercompany()->id;
         $map->tittle = $request->map_tittle;
         $map->type = $request->map_tittle;
+        $map->status = 1;
+        if($request->logo)
+        {
+            $map->logo = Cmf::sendimagetodirectory($request->logo);
+        }
+        if($request->state)
+        {
+            $map->state = implode(',', $request->state);
+        }
+        if($request->city)
+        {
+            $map->city = implode(',', $request->city);
+        }
+        if($request->zipcode)
+        {
+            $map->zipcode = implode(',', $request->zipcode);
+        }
+        $map->save();
+        return redirect()->back()->with('message', 'Map Added Successfully');
+    }
+    public function updatehiringmap(Request $request)
+    {
+        $map = hiring_maps::find($request->map_id);
+        $map->id = $request->map_id;
+        $map->company_id = Cmf::getusercompany()->id;
+        $map->tittle = $request->map_tittle;
+        $map->type = $request->map_tittle;
+        $map->status = 1;
         if($request->logo)
         {
             $map->logo = Cmf::sendimagetodirectory($request->logo);
@@ -160,6 +188,25 @@ class CarrierController extends Controller
         maplocations::where('map_id' , $id)->delete();
         hiring_maps::where('id' , $id)->delete();
         return redirect()->back()->with('message', 'Map Deleted Successfully');
+    }
+    function editmap($id)
+    {
+        $locations = maplocations::where('map_id' , $id)->get();
+        $map = hiring_maps::where('id' , $id)->get()->first();
+        return view('carrier/hiring-maps/editmap')->with(array('locations'=>$locations,'map'=>$map));
+    }
+
+
+    public function changestatusofmap($id)
+    {
+        $map = hiring_maps::find($id);
+        if($map->status == 1){
+            $map->status = 2;
+        }else{
+            $map->status = 1;
+        }
+        $map->save();
+        return redirect()->back()->with('message', 'Map status Updated Successfully');
     }
     public function savemaplocations($lat,$long,$radius,$map_id)
     {

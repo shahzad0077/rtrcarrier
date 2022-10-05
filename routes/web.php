@@ -70,6 +70,9 @@ Route::get('/savemaplocations/{one}/{two}/{three}/{four}', [CarrierController::c
 Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
 Route::get('/hirig-maps', [CarrierController::class, 'hiringmaps']);
 Route::get('/deletemap/{id}', [CarrierController::class, 'deletemap']);
+Route::get('/changestatusofmap/{id}', [CarrierController::class, 'changestatusofmap']);
+Route::get('/editmap/{id}', [CarrierController::class, 'editmap']);
+Route::post('/updatehiringmap', [CarrierController::class, 'updatehiringmap']);
 
 
 

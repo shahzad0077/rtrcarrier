@@ -26,7 +26,7 @@
                                 @include('alerts.index')
                                 <!--begin::Table-->
                                 <div class="table-responsive">
-                                    <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_4">
+                                    <table id="example" class="table table-separate table-head-custom table-checkable">
                                         <thead>
                                             <tr class="text-left">
                                                 <th class="pl-0" style="min-width: 120px">Map ID</th>
@@ -69,10 +69,15 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="label label-lg label-light-primary label-inline">Approved</span>
+                                                    @if($r->status == 1)
+                                                    <span class="label label-lg label-light-primary label-inline">Published</span>
+                                                    @else
+                                                    <span class="label label-lg label-light-danger label-inline">Not Published</span>
+                                                    @endif
+
                                                 </td>
                                                 <td class="pr-0 text-right">
-                                                    <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                                    <a href="{{ url('changestatusofmap') }}/{{ $r->id }}" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                                         <span class="svg-icon svg-icon-md svg-icon-primary">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -82,7 +87,7 @@
                                                                 </g>
                                                             </svg>
                                                             <!--end::Svg Icon--></span> </a>
-                                                    <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                                    <a href="{{ url('editmap') }}/{{ $r->id }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                                         <span class="svg-icon svg-icon-md svg-icon-primary">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

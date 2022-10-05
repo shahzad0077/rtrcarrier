@@ -141,31 +141,22 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-6 map-content">
+            <div class="col-md-12 map-content">
                 <div class="form-group">
                     <label class="lable-control">Hiring Area</label>
-                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                        <option>Select Hiring Map</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select name="map_id" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                        <option value="">Select Hiring Map</option>
+                        @foreach(DB::table('hiring_maps')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
+                        <option value="{{ $r->id }}" @if($job->map_id == $r->id) selected @elseif(old('map_id') == $r->id) selected @endif>{{ $r->tittle }} ({{ $r->state }} | {{ $r->city }})</option>
+                        @endforeach
                     </select>
+                    @error('map_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-                <p>Create New Hiring Map</p>
-            </div>
-            <div class="col-md-6 map-content">
-                <div class="form-group">
-                    <label class="lable-control">Operating Area</label>
-                    <select class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                        <option>Select Hiring Map</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <p>Create New Operating Area Map</p>
+                <a target="_blank" href="{{ url('map/add-new') }}">Create New Hiring Map</a>
             </div>
         </div>
     </div>

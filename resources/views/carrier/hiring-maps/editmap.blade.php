@@ -1,10 +1,6 @@
 @extends('layouts.main-layout')
-@section('title','Add Hiring Map')
+@section('title','Edit Map')
 @section('content')
-
-@php
-    $map_id = rand(100000000000 , 2000000000);
-@endphp
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Entry-->
@@ -23,10 +19,9 @@
                             <!--end::Header-->
                             <!--begin::Form-->
 
-                            <form enctype="multipart/form-data" method="POST" action="{{ url('addnewhiringmap') }}" class="form">
+                            <form enctype="multipart/form-data" method="POST" action="{{ url('updatehiringmap') }}" class="form">
                                 @csrf
-                                <input type="hidden" name="map_id" value="{{ $map_id }}">
-                                
+                                <input type="hidden" name="map_id" value="{{ $map->id }}">
                                 <!--begin::Body-->
                                 <div class="card-body">
                                     @include('alerts.index')
@@ -34,7 +29,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
-                                                <input type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <input type="text" value="{{ $map->tittle }}" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -42,24 +37,38 @@
                                                 <label class="lable-control">Map Type</label>
                                                 <select class="form-control" name="map_type">
                                                     <option value="">Map Type</option>
-                                                    <option value="Hiring Map">Hiring Map</option>
-                                                    <option value="Operating Map">Operating Map</option>
+                                                    <option @if($map->type == 'Hiring Map') selected @endif value="Hiring Map">Hiring Map</option>
+                                                    <option @if($map->type == 'Operating Map') selected @endif value="Operating Map">Operating Map</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-
                                             <button type="button" class="btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
-
                                             <button type="button" class="btn btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-
                                             <button type="button" class="btn btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
                                         </div>
                                         <div class="col-md-12 mt-5">
                                             <div id="map" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
                                         </div>
                                         <div id="appenddivs" class="col-md-12 mt-5">
-                                            
+                                            @foreach(explode(',' , $map->state) as $key => $state)
+                                            @if($state)
+                                            <button type="button" class="state{{$key}} btn btn-secondary map-delete-btn">{{$state}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
+                                            <input type="hidden" value="{{$state}}" name="state[]" id="state{{$key}}">
+                                            @endif
+                                            @endforeach
+                                            @foreach(explode(',' , $map->city) as $key => $city)
+                                            @if($city)
+                                            <button type="button" class="city{{$key}} btn btn-secondary map-delete-btn">{{$city}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
+                                            <input type="hidden" value="{{$city}}" name="city[]" id="city{{$key}}">
+                                            @endif
+                                            @endforeach
+                                            @foreach(explode(',' , $map->zipcode) as $key => $zipcode)
+                                            @if($zipcode)
+                                            <button type="button" class="zipcode{{$key}} btn btn-secondary map-delete-btn">{{$zipcode}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
+                                            <input type="hidden" value="{{$zipcode}}" name="zipcode[]" id="zipcode{{$key}}">
+                                            @endif
+                                            @endforeach
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
@@ -73,7 +82,7 @@
                                                 </div>
                                                 <div class="col-md-6 logo-preview">
                                                     <div class="image-input" id="kt_image_2">
-                                                        <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_2.jpg)"></div>
+                                                        <div class="image-input-wrapper" style="background-image: url({{ url('public/images') }}/{{ $map->logo  }})"></div>
                                                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                                             <i class="fa fa-pen icon-sm text-muted"></i>
                                                             <input type="file" name="logo" accept=".png, .jpg, .jpeg">
@@ -91,8 +100,8 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
-                                                <button type="button" class="btn btn-secondary mr-2">Preview</button>
-                                                <button type="button" class="btn btn-outline-primary mr-2">Download as PDF</button>
+                                                <!-- <button type="button" class="btn btn-secondary mr-2">Preview</button> -->
+                                                <!-- <button type="button" class="btn btn-outline-primary mr-2">Download as PDF</button> -->
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
@@ -294,11 +303,21 @@
         var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
-        map = new L.Map('map', { center: new L.LatLng(32.008694605395604,74.02606973404139), zoom: 13 }),
+        map = new L.Map('map', { center: new L.LatLng(32.008694605395604,74.02606973404139), zoom: 5 }),
         drawnItems = L.featureGroup().addTo(map);
         L.control.layers({
             'osm': osm.addTo(map)
         }, { 'drawlayer': drawnItems }, { position: 'topleft', collapsed: false }).addTo(map);
+
+
+
+        @foreach($locations->where('map_id' , $map->id) as $r)
+
+
+        L.circle([{{ $r->long }},{{ $r->lat }}], {{ $r->radius }}).addTo(map);
+
+        @endforeach
+
 
         map.addControl(new L.Control.Draw({
             edit: {
@@ -330,7 +349,7 @@
         function savelocation(lat , long , radius)
         {
             var app_url = geturl();
-            var map_id = '{{ $map_id }}';
+            var map_id = '{{ $map->id }}';
             $.ajax({
                 url:app_url+"/savemaplocations/"+lat+"/"+long+"/"+radius+"/"+map_id, 
                 type:"get",

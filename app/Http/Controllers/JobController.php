@@ -113,6 +113,7 @@ class JobController extends Controller
         $this->validate($request, [
             'how_often_will_driver_get_home' => 'required',
             'custom_home_time' => 'required',
+            'map_id' => 'required',
             'job_tittle' => 'required',
             'driver_type' => 'required',
             'home_time' => 'required',
@@ -136,6 +137,7 @@ class JobController extends Controller
         $addnewjob->how_often_will_driver_get_home = $request->how_often_will_driver_get_home;
         $addnewjob->custom_home_time = $request->custom_home_time;
         $addnewjob->job_tittle = $request->job_tittle;
+        $addnewjob->map_id = $request->map_id;
         $addnewjob->url = Cmf::shorten_url($request->job_tittle);
         $addnewjob->driver_type = $request->driver_type;
         $addnewjob->home_time = $request->home_time;
