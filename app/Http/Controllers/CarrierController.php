@@ -16,7 +16,7 @@ use App\Models\education_categories;
 use App\Models\education_articles;
 use App\Models\maplocations;
 use App\Models\hiring_maps;
-
+use App\Models\recuring_tips;
 use Validator;
 use Auth;
 use DB;
@@ -29,11 +29,12 @@ class CarrierController extends Controller
     public function index()
     {
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
+        $recuringtips = recuring_tips::orderby('id' , 'desc')->limit(5)->get();
         $jobs = jobsubmissionsrequests::select('jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('company_id' , Cmf::getusercompany()->id)->orderby('jobs.id' , 'desc')->get();
         foreach ($jobs as $index => $job) {
             $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
         }
-        return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs));
+        return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
     }
     public function carrierprofile()
     {

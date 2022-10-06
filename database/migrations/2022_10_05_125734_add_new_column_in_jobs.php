@@ -14,7 +14,8 @@ class AddNewColumnInJobs extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedBigInteger('map_id')->nullable();
+            $table->unsignedBigInteger('hiring_area')->nullable();
+            $table->unsignedBigInteger('operating_area')->nullable();
         });
     }
 
@@ -26,7 +27,8 @@ class AddNewColumnInJobs extends Migration
     public function down()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->dropColumn('map_id');
+            $table->dropColumn('hiring_area');
+            $table->dropColumn('operating_area');
         });
     }
 }

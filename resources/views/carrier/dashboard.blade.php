@@ -335,37 +335,35 @@
                             <!--end::User-->
 
                             <!--begin::Contact-->
-                            <div class="pt-8 pb-4">
+                           <!--  <div class="pt-8 pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <span class="font-weight-bold mr-2">Total Goals</span>
                                     <a href="#" class="text-muted text-hover-primary">100</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--end::Contact-->
 
                             <!--begin::Contact-->
-                            <div class="pt-0 pb-6">
+                           <!--  <div class="pt-0 pb-6">
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <span class="font-weight-bold mr-2">Achieved Goals</span>
                                     <a href="#" class="text-muted text-hover-primary">32</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!--end::Contact-->
 
                             <!--begin::Contact-->
-                            <div class="pt-0 pb-6">
+                   <!--          <div class="pt-0 pb-6">
                                 <div class="d-flex align-items-center justify-content-between mb-2">
                                     <span class="font-weight-bold mr-2">Percentage</span>
                                     <a href="#" class="text-muted text-hover-primary">60%</a>
                                 </div>
-                            </div>
-                            <!--end::Contact-->
-
+                            </div> -->
                         
 
-                            <a href="#" class="btn btn-light-success font-weight-bold py-3 px-6 mb-2 text-center btn-block">
+                           <!--  <a href="#" class="btn btn-light-success font-weight-bold py-3 px-6 mb-2 text-center btn-block">
                                 Profile Overview
-                            </a>
+                            </a> -->
                         </div>
                         <!--end::Body-->
                     </div>
@@ -442,44 +440,15 @@
                         <div class="card-body pt-0" id="style-2">
                             <div class="owl-carousel staff-list">
                                 <!-- Tips -->
+                                @foreach($recuringtips as $r)
                                 <div class="single-staff-item">
-                                    <img src="http://placehold.it/500x500" alt="" />
                                     <div class="staff-meta">
-                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
+                                        <img src="{{ url('public/images') }}/{{ $r->logo }}">
                                     </div>
-                                    <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
-                                    <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
+                                    <p class="staff-desc">{{ $r->content }}</p>
+                                    <span class="text-black">{{ Cmf::date_format($r->created_at) }} &nbsp;&nbsp;&nbsp; {{ date('H:s:a', strtotime($r->created_at)) }}</span>
                                 </div>
-                                <!-- end Tips -->
-                                <!-- Tips -->
-                                <div class="single-staff-item">
-                                    <img src="http://placehold.it/500x500" alt="" />
-                                    <div class="staff-meta">
-                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
-                                    </div>
-                                    <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
-                                    <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
-                                </div>
-                                <!-- end Tips -->
-                                <!-- Tips -->
-                                <div class="single-staff-item">
-                                    <img src="http://placehold.it/500x500" alt="" />
-                                    <div class="staff-meta">
-                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
-                                    </div>
-                                    <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
-                                    <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
-                                </div>
-                                <!-- end Tips -->
-                                <!-- Tips -->
-                                <div class="single-staff-item">
-                                    <img src="http://placehold.it/500x500" alt="" />
-                                    <div class="staff-meta">
-                                        <img src="{{asset('public/carrier/assets/media/custom/company-logo.svg')}}" />
-                                    </div>
-                                    <p class="staff-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatum omnis doloremque ducimus ipsum eaque.</p>
-                                    <span class="text-black">02/08/2022 &nbsp;&nbsp;&nbsp; 12:00 pm</span>
-                                </div>
+                                @endforeach
                                 <!-- end Tips -->
                             </div>
                         </div>
@@ -491,25 +460,6 @@
     </div>
     <!--end::Entry-->
 </div>
-<!--end::Content-->
-<script type="text/javascript">
-    $('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:1
-        },
-        1000:{
-            items:1
-        }
-    }
-})
-</script>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

@@ -288,6 +288,19 @@ class AdminController extends Controller
         $add->save();
         return redirect()->back()->with('message', 'Tip Added Successfully');
     }
+
+
+    public function updatenewrecuringtips(Request $request)
+    {
+        $add = recuring_tips::find($request->id);
+        $add->content = $request->content;
+        if($request->logo)
+        {
+            $add->logo = Cmf::sendimagetodirectory($request->logo);
+        }
+        $add->save();
+        return redirect()->back()->with('message', 'Tip Added Successfully');
+    }
     public function deleterecuringtips($id)
     {
         recuring_tips::where('id' , $id)->delete();
