@@ -104,7 +104,7 @@ class Cmf
           array("id"=>15,"name"=>'Education Center'),
           array("id"=>26,"name"=>'Carrier Profile'),
           array("id"=>16,"name"=>'My Carrier Profile'),
-          array("id"=>17,"name"=>'Prodile Reviews'),
+          array("id"=>17,"name"=>'Profile Reviews'),
           array("id"=>18,"name"=>'Advertising'),
           array("id"=>19,"name"=>'Integrations'),
           array("id"=>20,"name"=>'Billing $ Invoices'),

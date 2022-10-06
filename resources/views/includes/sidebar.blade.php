@@ -440,17 +440,17 @@
                             @endif
 
                             @if(Cmf::getcarrierrole(17) == 0)
-                            <li class="menu-item" aria-haspopup="true">
+                            <!-- <li class="menu-item" aria-haspopup="true">
                                 <a href="carrier-profile/reviews" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
                                 </a>
-                            </li>
+                            </li> -->
                             @elseif(Cmf::getcarrierrole(17) == 1)
-                            <li class="menu-item" aria-haspopup="true">
+                           <!--  <li class="menu-item" aria-haspopup="true">
                                 <a href="carrier-profile/reviews" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
                                 </a>
-                            </li>
+                            </li> -->
                             @endif
 
 
