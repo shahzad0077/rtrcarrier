@@ -103,7 +103,7 @@
                         <div class="m-0">
                             <h4 class="text-dark mb-7">Recent Posts</h4>
                             <!--begin::Item-->
-                            @foreach(DB::table('education_articles')->where('status' , 'Published')->limit(5)->get() as $r)
+                            @foreach(DB::table('education_articles')->where('id', '!=', $data->id)->where('status' , 'Published')->limit(5)->get() as $r)
                             <div class="d-flex flex-stack mb-7">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-60px symbol-2by3 me-4">

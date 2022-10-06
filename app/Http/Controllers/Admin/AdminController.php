@@ -12,6 +12,7 @@ use App\Models\help_articles;
 use App\Models\education_categories;
 use App\Models\education_articles;
 use App\Models\company_info_pages;
+use App\Models\recuring_tips;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 class AdminController extends Controller
@@ -267,5 +268,29 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Article Updated Successfully');
     }
 
-    
+    // Recuring Tips
+
+
+    public function recuringtips()
+    {
+        $data = recuring_tips::all();
+        return view('admin.recuringtips.index')->with(array('data'=>$data));
+    }
+
+    public function addnewrecuringtips(Request $request)
+    {
+        $add = new recuring_tips();
+        $add->content = $request->content;
+        if($request->logo)
+        {
+            $add->logo = Cmf::sendimagetodirectory($request->logo);
+        }
+        $add->save();
+        return redirect()->back()->with('message', 'Tip Added Successfully');
+    }
+    public function deleterecuringtips($id)
+    {
+        recuring_tips::where('id' , $id)->delete();
+        return redirect()->back()->with('message', 'Tip Deleted Successfully');
+    }
 }

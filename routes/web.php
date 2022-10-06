@@ -179,7 +179,13 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
     Route::get('/carriers','AdminController@allcarriers')->name('allcarriers');
     Route::post('/carriers','AdminController@addnewcarrier')->name('addnewcarrier');
 
-
+    Route::name('recuringtips.')->prefix('recuringtips')->group(function(){
+        Route::get('/','AdminController@recuringtips');
+        Route::get('/{id}','AdminController@editrecuringtips');
+        Route::post('/addrecuringtips','AdminController@addnewrecuringtips');
+        Route::post('/updaterecuringtips','AdminController@updatenewrecuringtips');
+        Route::get('/deleterecuringtips/{id}','AdminController@deleterecuringtips');
+    });
 
 
     Route::name('carrier.')->prefix('carrier')->group(function(){

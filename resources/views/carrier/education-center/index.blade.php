@@ -50,7 +50,7 @@
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center pe-2">
                                             <div class="fs-5 fw-bold">
-                                                <a href="javascript:void(0)" class="text-gray-700 text-hover-primary">RTR Admin</a>
+                                                <a href="javascript:void(0)" class="text-gray-700 text-hover-primary">Admin</a>
                                                 <span class="text-muted">{{ Cmf::date_format($a->created_at) }}</span>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                         <!--begin::Item-->
                                         <div class="d-flex align-items-center pe-2">
                                             <div class="fs-5 fw-bold">
-                                                <a href="javascript::void(0)" class="text-gray-700 text-hover-primary">RTR Admin</a>
+                                                <a href="javascript::void(0)" class="text-gray-700 text-hover-primary">Admin</a>
                                                 <span class="text-muted">{{ Cmf::date_format($a->created_at) }}</span>
                                             </div>
                                             <!--end::Text-->

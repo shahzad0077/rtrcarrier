@@ -369,17 +369,13 @@
                         </div>
                         <!--end::Body-->
                     </div>
-                    <div class="card card-custom gutter-b mt-5">
-                        <!--begin::Header-->
+                    <!-- <div class="card card-custom gutter-b mt-5">
                         <div class="card-header border-0 pt-7">
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="card-label font-weight-bold font-size-h4 text-dark-75">Recently Viewed</span>
                             </h3>
                         </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
                         <div class="card-body pt-0" id="style-2" style="max-height: 400px; overflow-y: auto;">
-                            <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
@@ -393,8 +389,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--end::Item-->
-                            <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
@@ -408,8 +402,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--end::Item-->
-                            <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
@@ -423,8 +415,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--end::Item-->
-                            <!--begin::Item-->
                             <div class="d-flex align-items-center pb-9">
                                 <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
                                     <div class="symbol-label" style="background-image: url('{{asset('public/carrier/assets/media/stock-600x400/img-25.jpg')}}')"></div>
@@ -438,10 +428,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <!--end::Item-->
                         </div>
-                        <!--end::Body-->
-                    </div>
+                    </div> -->
                     <div class="card card-custom gutter-b mt-5">
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-7">
@@ -504,7 +492,24 @@
     <!--end::Entry-->
 </div>
 <!--end::Content-->
-
+<script type="text/javascript">
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:1
+        },
+        1000:{
+            items:1
+        }
+    }
+})
+</script>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
