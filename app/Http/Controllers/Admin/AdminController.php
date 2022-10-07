@@ -13,6 +13,7 @@ use App\Models\education_categories;
 use App\Models\education_articles;
 use App\Models\company_info_pages;
 use App\Models\recuring_tips;
+use App\Models\subscription_plans;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 class AdminController extends Controller
@@ -305,5 +306,33 @@ class AdminController extends Controller
     {
         recuring_tips::where('id' , $id)->delete();
         return redirect()->back()->with('message', 'Tip Deleted Successfully');
+    }
+    public function subscriptions()
+    {
+        $data = subscription_plans::all();
+        return view('admin.subscription.index')->with(array('data'=>$data));  
+    }
+
+    public function createplan(Request $request)
+    {
+        $plan = new subscription_plans;
+        $plan->name = $request->name;
+        $plan->tagline = $request->tagline;
+        $plan->price = $request->price;
+        $plan->short_description = $request->description;
+        $plan->status = 1;
+        $plan->save();
+        return redirect()->back()->with('message', 'Plan Successfully Inserted');
+    }
+    public function updatesubscriptionplan(Request $request)
+    {
+        $plan = subscription_plans::find($request->id);
+        $plan->name = $request->name;
+        $plan->tagline = $request->tagline;
+        $plan->price = $request->price;
+        $plan->duration = $request->duration;
+        $plan->short_description = $request->description;
+        $plan->save();
+        return redirect()->back()->with('message', 'Plan Updated Successfully');
     }
 }

@@ -18,6 +18,7 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
 function closealert()
 {
 	$('#name-error').hide();

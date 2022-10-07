@@ -179,6 +179,16 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
     Route::get('/carriers','AdminController@allcarriers')->name('allcarriers');
     Route::post('/carriers','AdminController@addnewcarrier')->name('addnewcarrier');
 
+
+    Route::name('subscriptions.')->prefix('subscriptions')->group(function(){
+        Route::get('/','AdminController@subscriptions');
+        Route::get('/{id}','AdminController@editrecuringtips');
+        Route::post('/createplan','AdminController@createplan');
+        Route::post('/updatesubscriptionplan','AdminController@updatesubscriptionplan');
+        Route::get('/delete/{id}','AdminController@deleterecuringtips');
+    });
+
+
     Route::name('recuringtips.')->prefix('recuringtips')->group(function(){
         Route::get('/','AdminController@recuringtips');
         Route::get('/{id}','AdminController@editrecuringtips');
