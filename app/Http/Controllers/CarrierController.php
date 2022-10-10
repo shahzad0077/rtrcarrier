@@ -20,6 +20,7 @@ use App\Models\recuring_tips;
 use Validator;
 use Auth;
 use DB;
+use Stripe;
 class CarrierController extends Controller
 {
     public function __construct()
@@ -131,7 +132,7 @@ class CarrierController extends Controller
         $map->id = $request->map_id;
         $map->company_id = Cmf::getusercompany()->id;
         $map->tittle = $request->map_tittle;
-        $map->type = $request->map_tittle;
+        $map->type = $request->map_type;
         $map->status = 1;
         if($request->logo)
         {
@@ -158,7 +159,7 @@ class CarrierController extends Controller
         $map->id = $request->map_id;
         $map->company_id = Cmf::getusercompany()->id;
         $map->tittle = $request->map_tittle;
-        $map->type = $request->map_tittle;
+        $map->type = $request->map_type;
         $map->status = 1;
         if($request->logo)
         {
@@ -329,4 +330,5 @@ class CarrierController extends Controller
         $data = education_articles::where('status' , 'Published')->where('id' , $id)->get()->first();
         return view('carrier/education-center/detail')->with(array('categories'=>$categories,'data'=>$data));
     }
+    
 }

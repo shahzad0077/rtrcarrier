@@ -18,7 +18,10 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
-
+function selectplan(id)
+{
+    
+}
 function closealert()
 {
 	$('#name-error').hide();

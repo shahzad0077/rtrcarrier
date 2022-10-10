@@ -1,5 +1,5 @@
 @extends('admin.layouts.main-layout')
-@section('title','All Recuring Tips')
+@section('title','All Recruiting Tips')
 @section('content')
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -16,7 +16,7 @@
                         <div class="card-header flex-wrap py-5">
                             <div class="card-title">
                                 <h3 class="card-label">
-                                    All Recuring Tips
+                                    All Recruiting Tips
                                 </h3>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                         <div class="card-header flex-wrap py-5">
                             <div class="card-title">
                                 <h3 class="card-label">
-                                    All Recuring Tips
+                                    Add Recruiting Tip
                                 </h3>
                             </div>
                         </div>

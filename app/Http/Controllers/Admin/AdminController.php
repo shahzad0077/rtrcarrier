@@ -16,6 +16,7 @@ use App\Models\recuring_tips;
 use App\Models\subscription_plans;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Auth;
 class AdminController extends Controller
 {
     public function dashboard(){
@@ -220,6 +221,20 @@ class AdminController extends Controller
         education_articles::where('id' , $id)->delete();
         return redirect()->back()->with('warning', 'Article Deleted Successfully');
     }
+    public function changestatusofarticle($id)
+    {
+        $update = education_articles::find($id);
+        if($update->status == 'Published')
+        {
+            $update->status = 'Not Published';
+        }
+        else
+        {
+            $update->status = 'Published';
+        }
+        $update->save();
+        return redirect()->back()->with('message', 'Article Status Updated Successfully');
+    }
     public function allpostseducationcenter()
     {
         $data = education_articles::all();
@@ -248,6 +263,7 @@ class AdminController extends Controller
         }
         $add->youtube = $request->youtube;
         $add->content = $request->answer;
+        $add->added_by = Auth::user()->id;
         $add->type = 'rtr';
         $add->status = 'Published';
         $add->save();
@@ -319,7 +335,7 @@ class AdminController extends Controller
         $plan->name = $request->name;
         $plan->tagline = $request->tagline;
         $plan->price = $request->price;
-        $plan->short_description = $request->description;
+        $plan->key_points = implode(',', $request->key_points);
         $plan->status = 1;
         $plan->save();
         return redirect()->back()->with('message', 'Plan Successfully Inserted');
@@ -330,8 +346,7 @@ class AdminController extends Controller
         $plan->name = $request->name;
         $plan->tagline = $request->tagline;
         $plan->price = $request->price;
-        $plan->duration = $request->duration;
-        $plan->short_description = $request->description;
+        $plan->key_points = implode(',', $request->key_points);
         $plan->save();
         return redirect()->back()->with('message', 'Plan Updated Successfully');
     }

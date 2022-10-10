@@ -132,18 +132,14 @@
                                     <input name="price" class="form-control input-lg" type="text" id="username" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="username">Duration (Days)</label>
-                                    <input name="duration" class="form-control input-lg" type="text" id="username" required="duration" placeholder="eg. 20 days">
-                                </div>
-                                <div class="form-group">
                                     <div class="row" id="morebenifit">
                                         <div class="col-md-8">
-                                            <label for="username">Benifits / Short Description</label>
+                                            <label for="username">Benifits</label>
                                             <input name="key_points[]" class="form-control input-lg" type="text" id="username">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="username">Add More Benifit</label>
-                                            <span onclick="addmorebenifit()" class="form-control btn btn-primary">+</span>
+                                            <span style=" height: 51px; font-size: 24px; " onclick="addmorebenifit()" class="form-control btn btn-primary">+</span>
                                         </div>
                                     </div>
                                 </div>
@@ -165,6 +161,6 @@
 <script type="text/javascript">
 function addmorebenifit()
 {
-    $('#morebenifit').append('<div class="col-md-8"> <label for="username">Benifits / Short Description</label> <input name="key_points[]" class="form-control input-lg" type="text" id="username"> </div> <div class="col-md-4"> <label for="username">Add More Benifit</label><span onclick="removemorebenifit()" class="form-control btn btn-danger">-</span> </div>')
+    $('#morebenifit').append('<div class="col-md-8"> <label for="username">Benifits / Short Description</label> <input name="key_points[]" class="form-control input-lg" type="text" id="username"> </div> <div class="col-md-4"> <label for="username">Add More Benifit</label><span style=" height: 51px; font-size: 24px; " onclick="removemorebenifit()" class="form-control btn btn-danger">-</span> </div>')
 }
 </script>

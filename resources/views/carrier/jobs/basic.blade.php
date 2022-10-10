@@ -9,6 +9,17 @@
     <!--begin::Body-->
     <div class="card-body">
         <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="lable-control">Title</label>
+                    <input required value="@if($job->job_tittle){{ $job->job_tittle }}@elseif(old('job_tittle')){{ old('job_tittle') }}@endif" type="text" class="@error('job_tittle') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="job_tittle">
+                    @error('job_tittle')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">How often will the driver get home?</label>
@@ -36,17 +47,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="lable-control">Title</label>
-                    <input required value="@if($job->job_tittle){{ $job->job_tittle }}@elseif(old('job_tittle')){{ old('job_tittle') }}@endif" type="text" class="@error('job_tittle') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Looking for fulltime driver for our native company" name="job_tittle">
-                    @error('job_tittle')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
+            
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Driver Type</label>

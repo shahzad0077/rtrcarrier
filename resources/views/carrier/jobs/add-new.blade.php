@@ -65,6 +65,18 @@
                                 </div>
                             </div>
                         </div>
+                        @if(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count()  == 0)
+                          <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Warning!</strong>You have not Added any hiring Area Map Please Add Mapp Before Starting Job
+                          </div>
+                        @endif
+                        @if(DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count()  == 0)
+                          <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Warning!</strong>You have not Added any hiring Area Map Please Add Mapp Before Starting Job
+                          </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="tab-content" id="myTabContent2">

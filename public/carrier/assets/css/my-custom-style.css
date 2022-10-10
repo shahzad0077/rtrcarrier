@@ -215,7 +215,7 @@ button.btn.previous-btn {
     flex-wrap: wrap;
     width: 100%;
     margin-top: 6px;
-    padding-bottom: 70px;
+    /*padding-bottom: 70px;*/
 }
 
 .my-icon {

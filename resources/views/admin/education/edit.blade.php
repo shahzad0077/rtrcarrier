@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="lable-control">Select Status</label>
+                                <label class="lable-control">Select Category</label>
                                 <select required class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="category_id"> 
                                     <option value="">Select Category</option>
                                     @foreach($categories as $r)
