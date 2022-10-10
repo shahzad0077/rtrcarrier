@@ -7,7 +7,7 @@ use App\Http\Controllers\CarrierController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StaffPermissionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
