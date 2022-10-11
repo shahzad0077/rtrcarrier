@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4><a class="text-black" href="{{url('carrierjobdetail')}}/{{ $job->job_id }}">{{ $job->job_tittle }}</a></h4>
+                                    <h4><a target="_blank" class="text-black" href="{{url('job-detail')}}/{{ $job->url }}">{{ $job->job_tittle }}</a></h4>
                                 </div>
                                 <div>
                                     <span class="job-type">{{ $job->job_status }}</span>

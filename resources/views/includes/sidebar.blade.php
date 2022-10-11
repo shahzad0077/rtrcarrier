@@ -94,6 +94,21 @@
                                 </a>
                             </li>
                             @endif
+
+
+                            @if(Cmf::getcarrierrole(1) == 0)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('hiring-templates')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Hiring Templates</span>
+                                </a>
+                            </li>
+                            @elseif(Cmf::getcarrierrole(1) == 1)
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('hiring-templates')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Hiring Templates</span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>

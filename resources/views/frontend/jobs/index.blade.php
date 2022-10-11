@@ -49,9 +49,9 @@
                 <div class="tab-content my-tabs-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                        <div class="row">
-                           <div class="col-md-12 description-pera">
+                           <!-- <div class="col-md-12 description-pera">
                                <p>As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent. You will help the team design beautiful interfaces that solve business challenges for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big Data arenas.</p>
-                           </div>
+                           </div> -->
                            <div class="col-md-12 hiring-requirment">
                                <div class="row">
                                    <div class="col-md-12 hiring-title">
@@ -100,11 +100,18 @@
                                </div>
                            </div>
                            <div class="col-md-12 hiring-map">
-                               <h2>Hiring Map</h2>
+                               <h2>Hiring Area</h2>
                                <div class="map-div">
-                               <iframe width="100%" height="248" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><style>.mapouter{position:relative;text-align:right;height:248px;width:1000px;}</style><style>.gmap_canvas {overflow:hidden;background:none!important;height:248px;width:1000px;}</style></div>
+                                   <div id="hiringarea" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
+                               </div>
                            </div>
-                           <div class="col-md-12 skilled-div">
+                           <div class="col-md-12 hiring-map">
+                               <h2>Operating Area</h2>
+                               <div class="map-div">
+                                   <div id="operatingarea" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
+                               </div>
+                           </div>
+                           <!-- <div class="col-md-12 skilled-div">
                                <h2>Skill & Experience</h2>
                                <ul>
                                    <li>You have at least 3 years’ experience working as a Product Designer.</li>
@@ -112,7 +119,7 @@
                                    <li> You have some previous experience working in an agile environment – Think two-week sprints.</li>
                                    <li>You are familiar using Jira and Confluence in your workflow</li>
                                </ul>
-                           </div>
+                           </div> -->
                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
