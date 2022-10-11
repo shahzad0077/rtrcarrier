@@ -7,6 +7,8 @@ use App\Models\companies;
 use App\Models\jobs;
 use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
+use App\Models\maplocations;
+use App\Models\hiring_map;
 class SiteController extends Controller
 {
     public function index()
@@ -24,7 +26,7 @@ class SiteController extends Controller
     }
     public function jobdetail($id)
     {   
-        $jobs = jobsubmissionsrequests::select('jobs.company_id','jobs.url','jobs.id as job_id','jobs.job_tittle','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('jobs.url' , $id)->get()->first();
+        $jobs = jobsubmissionsrequests::select('jobs.hiring_area','jobs.operating_area','jobs.company_id','jobs.url','jobs.id as job_id','jobs.job_tittle','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('jobs.url' , $id)->get()->first();
         $hirring = linktemplatewithjobs::select(
             'linktemplatewithjobs.job_id',
             'hiring_templates.minimum_expereince',
