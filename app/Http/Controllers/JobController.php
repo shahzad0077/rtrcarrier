@@ -32,6 +32,73 @@ class JobController extends Controller
         $data = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->get();
         return view('carrier/jobs/hiringtemplates')->with(array('data'=>$data));
     }
+    public function addnewhiringtemplate()
+    {
+        return view('carrier/jobs/addnewhiringtemplat');
+    }
+    public function createnewhiringtemplate(Request $request)
+    {
+        $template = new hiring_templates();  
+        $template->company_id = Cmf::getusercompany()->id;
+        $template->name = $request->template_name;
+        $template->minimum_age = $request->minimum_age;
+        $template->minimum_age_field =$request->minimum_age_field;
+        $template->minimum_expereince =$request->minimum_expereince;
+        $template->additional_notes_about_expereince =$request->additional_notes_about_expereince;
+        $template->no_more_than =$request->no_more_than;
+        $template->moving_violations =$request->moving_violations;
+        $template->additionl_notes_about_moving_voliations =$request->additionl_notes_about_moving_voliations;
+        $template->no_more_than_major_voilations =$request->no_more_than_major_voilations;
+        $template->major_moving_voilations =$request->major_moving_voilations;
+        $template->additionl_notes_about_moving_major_voliations =$request->additionl_notes_about_moving_major_voliations;
+        $template->license_suspensions =$request->license_suspensions;
+        $template->license_suspensions_field =$request->license_suspensions_field;
+        $template->dot_no_more_than =$request->dot_no_more_than;
+        $template->dot_moving_voilations =$request->dot_moving_voilations;
+        $template->preventable_accidents_withn_the_last =$request->preventable_accidents_withn_the_last;
+        $template->reason_of_suspensions =$request->reason_of_suspensions;
+        $template->no_more_than_incidents =$request->no_more_than_incidents;
+        $template->moving_voilations_incidents =$request->moving_voilations_incidents;
+        $template->ticket_incedent =$request->ticket_incedent;
+        $template->specify_in_a_free_form_fill =$request->specify_in_a_free_form_fill;
+        $template->maximum_jobs_no_more_than =$request->maximum_jobs_no_more_than;
+        $template->maximum_jobs_moving_voilations =$request->maximum_jobs_moving_voilations;
+        $template->unemployment =$request->unemployment;
+        $template->maximum_jobs_additional_infomation =$request->maximum_jobs_additional_infomation;
+        $template->felony_convictions =$request->felony_convictions;
+        $template->misdemeanors =$request->misdemeanors;
+        $template->drug_duis =$request->drug_duis;
+        $template->type_of_drug_test =$request->type_of_drug_test;
+        $template->accepting_sap_drivers =$request->accepting_sap_drivers;
+        $template->additional_information =$request->additional_information;
+        $template->physical =$request->physical;
+        $template->accomodate_an_automatic_restriction =$request->accomodate_an_automatic_restriction;
+        $template->camera_installed =$request->camera_installed;
+        $template->camera_type =$request->camera_type;
+        $template->camera_are =$request->camera_are;
+        $template->camera_facing =$request->camera_facing;
+        $template->camera_recording =$request->camera_recording;
+        $template->is_template = 1;
+        if($request->requiredendorsements)
+        {
+            $template->requiredendorsements = implode(',', $request->requiredendorsements);
+        }
+        $template->save();
+        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
+        if($check->count() > 0)
+        {
+            return redirect()->route('addnewjob')->with('success','You are Login as Admin!');
+        }else{
+            return redirect()->back()->with('message', 'Template Added Successfully');
+        }        
+    }
+    public function deletehiringtemplate($id)
+    {
+        $checkjob = linktemplatewithjobs::where('template_id' , $id);
+        linktemplatewithjobs::where('template_id' , $id)->delete();
+        hiring_templates::where('id' , $id)->delete();
+        return redirect()->back()->with('message', 'Template Deleted Successfully');
+    }
     public function allcarrierjobs()
     {
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
@@ -368,93 +435,17 @@ class JobController extends Controller
 
     public function hiringreq(Request $request)
     {
-        if($request->hirringid)
-        {
-            if($request->template_name)
-            {
-                $template = new hiring_templates();
-            }else{
-                $template = hiring_templates::find($request->hirringid);
-            }
-        }else{
-            $template = new hiring_templates();
-        }    
-        $template->company_id = Cmf::getusercompany()->id;
-        $template->minimum_age = $request->minimum_age;
-        $template->minimum_age_field =$request->minimum_age_field;
-        $template->minimum_expereince =$request->minimum_expereince;
-        $template->additional_notes_about_expereince =$request->additional_notes_about_expereince;
-        $template->no_more_than =$request->no_more_than;
-        $template->moving_violations =$request->moving_violations;
-        $template->additionl_notes_about_moving_voliations =$request->additionl_notes_about_moving_voliations;
-        $template->no_more_than_major_voilations =$request->no_more_than_major_voilations;
-        $template->major_moving_voilations =$request->major_moving_voilations;
-        $template->additionl_notes_about_moving_major_voliations =$request->additionl_notes_about_moving_major_voliations;
-        $template->license_suspensions =$request->license_suspensions;
-        $template->license_suspensions_field =$request->license_suspensions_field;
-        $template->dot_no_more_than =$request->dot_no_more_than;
-        $template->dot_moving_voilations =$request->dot_moving_voilations;
-        $template->preventable_accidents_withn_the_last =$request->preventable_accidents_withn_the_last;
-        $template->reason_of_suspensions =$request->reason_of_suspensions;
-        $template->no_more_than_incidents =$request->no_more_than_incidents;
-        $template->moving_voilations_incidents =$request->moving_voilations_incidents;
-        $template->ticket_incedent =$request->ticket_incedent;
-        $template->specify_in_a_free_form_fill =$request->specify_in_a_free_form_fill;
-        $template->maximum_jobs_no_more_than =$request->maximum_jobs_no_more_than;
-        $template->maximum_jobs_moving_voilations =$request->maximum_jobs_moving_voilations;
-        $template->unemployment =$request->unemployment;
-        $template->maximum_jobs_additional_infomation =$request->maximum_jobs_additional_infomation;
-        $template->felony_convictions =$request->felony_convictions;
-        $template->misdemeanors =$request->misdemeanors;
-        $template->drug_duis =$request->drug_duis;
-        $template->type_of_drug_test =$request->type_of_drug_test;
-        $template->accepting_sap_drivers =$request->accepting_sap_drivers;
-        $template->additional_information =$request->additional_information;
-        $template->physical =$request->physical;
-        $template->accomodate_an_automatic_restriction =$request->accomodate_an_automatic_restriction;
-        $template->camera_installed =$request->camera_installed;
-        $template->camera_type =$request->camera_type;
-        $template->camera_are =$request->camera_are;
-        $template->camera_facing =$request->camera_facing;
-        $template->camera_recording =$request->camera_recording;
-        if($request->requiredendorsements)
-        {
-            $template->requiredendorsements = implode(',', $request->requiredendorsements);
-        }
-        if($request->template_name)
-        {
-            $template->name = $request->template_name;
-            $template->is_template = 1;
-        }else{
-            if($request->hirringid)
-            {
 
-            }
-            else
-            {
-                $template->is_template = 0;
-            } 
-        }
-        $template->save();
+        $link  = new linktemplatewithjobs();
+        $link->template_id = $request->hiring_template;
+        $link->job_id = $request->job_id;
+        $link->save();
+
 
         $addnewjob = jobs::find($request->job_id);
         $addnewjob->step = 2;
         $addnewjob->save();
 
-
-
-        $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id);
-        if($checklinktemplete->count() == 0)
-        {
-            $linktemplate = new linktemplatewithjobs();
-            $linktemplate->job_id = $request->job_id;
-            $linktemplate->template_id = $template->id;
-            $linktemplate->save();
-        }else{
-            $linktemplate = linktemplatewithjobs::find($checklinktemplete->first()->id);
-            $linktemplate->template_id = $template->id;
-            $linktemplate->save();
-        }        
-        return redirect()->back()->with('message', 'Added Successfully');
+        return redirect()->back()->with('message', 'Email Added Successfully');
     }
 }

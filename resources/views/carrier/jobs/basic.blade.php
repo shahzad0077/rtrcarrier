@@ -183,29 +183,6 @@
     <!--begin::Header-->
     <div class="card-header">
         <div class="card-title">
-            <h3 class="card-label font-weight-bolder text-dark">Hiring Requirements</h3>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="lable-control">Hiring Requirements Templates</label>
-                    <select  name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                        <option value="">Select Hiring Requirements Template</option>
-                        @foreach($template as $r)
-                        <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card card-custom card-stretch">
-    <!--begin::Header-->
-    <div class="card-header">
-        <div class="card-title">
             <h3 class="card-label font-weight-bolder text-dark">Pay</h3>
         </div>
     </div>

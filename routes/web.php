@@ -99,7 +99,7 @@ Route::get('/carrier-profile/reviews', function () {
 // Jobs Routes
 Route::get('/jobs', [JobController::class, 'allcarrierjobs']);
 Route::get('/searchjobs', [JobController::class, 'searchjobs']);
-Route::get('/job/add', [JobController::class, 'addnewjob']);
+Route::get('/job/add', [JobController::class, 'addnewjob'])->name('addnewjob');
 Route::get('/job/published', [JobController::class, 'publishedjobstatus']);
 Route::post('/job/submitone', [JobController::class, 'submitone']);
 Route::post('/job/adddadvancedetails', [JobController::class, 'adddadvancedetails']);
@@ -115,6 +115,9 @@ Route::get('/deletejob/{id}', [JobController::class, 'deletejob']);
 Route::get('/jobedit/{id}', [JobController::class, 'jobedit']);
 Route::get('/carrierjobdetail/{id}', [JobController::class, 'carrierjobdetail']);
 Route::get('/hiring-templates', [JobController::class, 'hiringtemplates']);
+Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);
+Route::get('/add-new-hiring-template', [JobController::class, 'addnewhiringtemplate']);
+Route::post('/addnewhiringtemplate', [JobController::class, 'createnewhiringtemplate']);
 
 
 

@@ -33,7 +33,7 @@
                                                     <span class="nav-icon">
                                                         <img src="{{asset('public/carrier/assets/media/custom/hiring-req.svg')}}">
                                                     </span>
-                                                    <span class="nav-text">Hiring Req.</span>
+                                                    <span class="nav-text">Hiring Requirements</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
@@ -41,7 +41,7 @@
                                                     <span class="nav-icon">
                                                         <img src="{{asset('public/carrier/assets/media/custom/routing-trans.svg')}}">
                                                     </span>
-                                                    <span class="nav-text">Routing & trans.</span>
+                                                    <span class="nav-text">Routing & Transfer</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item @if($job->step == 3) active @endif">

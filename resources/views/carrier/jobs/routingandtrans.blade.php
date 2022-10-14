@@ -2,7 +2,7 @@
     <!--begin::Header-->
     <div class="card-header">
         <div class="card-title">
-            <h3 class="card-label font-weight-bolder text-dark">Routing & trans.</h3>
+            <h3 class="card-label font-weight-bolder text-dark">Routing & Transfer</h3>
         </div>
     </div>
     <div class="card-body">
@@ -10,8 +10,8 @@
             <div class="col-md-6 routing-content">
                 <div class="form-group">
                     <label class="lable-control">Referral Code</label>
-                    <p>This referral code will be sent to your CRM</p>
-                    <input type="text" class="form-control form-control-lg form-control-solid" style="margin-top:32px !important;" name="" placeholder="Looking for fulltime driver for our native company">
+                    <p>Choose how you want this lead displayed in your CRM</p>
+                    <input type="text" class="form-control form-control-lg form-control-solid" style="margin-top:32px !important;" name="" placeholder="Chicago-WalmartAccount-Solo">
                 </div>
             </div>
             <div class="col-md-6 routing-content">
