@@ -48,34 +48,16 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <button type="button" class="form-control btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" placeholder="Search..." name="" class="form-control">
-                                                </div>
-                                            </div>
+
+                                            <button type="button" class="btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+
+                                            <button type="button" class="btn btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
+
+                                            <button type="button" class="btn btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
                                         </div>
                                         <div class="col-md-12 mt-5">
                                             <div id="map" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
                                         </div>
-                                        <script>
-                                            function myMap() {
-                                            var mapProp= {
-                                              center:new google.maps.LatLng(44.500000,-89.500000),
-                                              zoom:4,
-                                            };
-                                            var map = new google.maps.Map(document.getElementById("map"),mapProp);
-                                            }
-                                        </script>
-                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQAdBoWGWwdne8WSvfQRlQv58Hyz-BVQw&callback=myMap"></script>
                                         <div id="appenddivs" class="col-md-12 mt-5">
                                             
                                         </div>
@@ -266,6 +248,84 @@
             $('#zipcode'+id).val('');
         }
     </script>
+   
+
+
+    <script src="{{asset('public/carrier/assets/map/libs/leaflet-src.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/libs/leaflet.css')}}"/>
+    <script src="{{asset('public/carrier/assets/map/src/Leaflet.draw.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Leaflet.Draw.Event.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/src/leaflet.draw.css')}}"/>
+
+    <script src="{{asset('public/carrier/assets/map/src/Toolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/Tooltip.js')}}"></script>
+
+    <script src="{{asset('public/carrier/assets/map/src/ext/GeometryUtil.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/LatLngUtil.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/LineUtil.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/Polygon.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/Polyline.Intersect.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/ext/TouchEvents.js')}}"></script>
+
+    <script src="{{asset('public/carrier/assets/map/src/draw/DrawToolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Feature.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.SimpleShape.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polyline.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Marker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Circle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.CircleMarker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polygon.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Rectangle.js')}}"></script>
+
+
+    <script src="{{asset('public/carrier/assets/map/src/edit/EditToolbar.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Edit.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Delete.js')}}"></script>
+
+    <script src="{{asset('public/carrier/assets/map/src/Control.Draw.js')}}"></script>
+
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Poly.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.SimpleShape.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Rectangle.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Marker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.CircleMarker.js')}}"></script>
+    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Circle.js')}}"></script>
+    <script>
+        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
+        map = new L.Map('map', { center: new L.LatLng(38.892059,-77.019913), zoom: 13 }),
+        drawnItems = L.featureGroup().addTo(map);
+        L.control.layers({
+            'osm': osm.addTo(map)
+        }, { 'drawlayer': drawnItems }, { position: 'topleft', collapsed: false }).addTo(map);
+
+        map.addControl(new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems,
+                poly: {
+                    allowIntersection: false
+                }
+            },
+            draw: {
+                polygon: false,
+                rectangle:false,
+                circlemarker:false,
+                polyline:false,
+                marker:false
+            }
+        }));
+
+        map.on(L.Draw.Event.CREATED, function (event) {
+            var layer = event.layer;
+            var latlong = layer.getLatLng();
+            var center = [latlong.lng,latlong.lat]; 
+            var theRadius = layer.getRadius();
+            drawnItems.addLayer(layer);
+            savelocation(latlong.lng,latlong.lat,theRadius)
+        });
+    </script>
+
     <script type="text/javascript">
         function savelocation(lat , long , radius)
         {
