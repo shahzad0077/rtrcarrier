@@ -44,6 +44,7 @@ Route::get('/dashboard', [CarrierController::class, 'index']);
 
 
 
+
 // carrier-profile
 Route::get('/carrier-profile', [CarrierController::class, 'carrierprofile']);
 Route::POST('/updatecarrierlogo', [CarrierController::class, 'updatecarrierlogo']);
@@ -118,7 +119,9 @@ Route::get('/hiring-templates', [JobController::class, 'hiringtemplates']);
 Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);
 Route::get('/add-new-hiring-template', [JobController::class, 'addnewhiringtemplate']);
 Route::post('/addnewhiringtemplate', [JobController::class, 'createnewhiringtemplate']);
-
+Route::POST('/paypal', [JobController::class, 'postPaymentWithpaypal'])->name('paypal');
+Route::get('/paypal', [JobController::class, 'getPaymentStatus'])->name('status');
+Route::post('stripe', [JobController::class, 'stripePost'])->name('stripe.post');
 
 
 
@@ -183,6 +186,10 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
     Route::get('/carriers','AdminController@allcarriers')->name('allcarriers');
     Route::post('/carriers','AdminController@addnewcarrier')->name('addnewcarrier');
 
+    Route::name('settings.')->prefix('settings')->group(function(){
+        Route::get('/','AdminController@settings');
+        Route::post('/settingsupdate','AdminController@settingsupdate');
+    });
 
     Route::name('subscriptions.')->prefix('subscriptions')->group(function(){
         Route::get('/','AdminController@subscriptions');

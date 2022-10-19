@@ -20,7 +20,9 @@ $('.owl-carousel').owlCarousel({
 })
 function selectplan(id)
 {
-    
+    $('#plan_id').val(id);
+    $('.removeactiveplan').removeClass('activeplan');
+    $('#activeplan'+id).addClass('activeplan');
 }
 function closealert()
 {

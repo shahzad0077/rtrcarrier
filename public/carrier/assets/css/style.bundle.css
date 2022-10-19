@@ -98192,3 +98192,34 @@ body {
 .ps-10 {
     padding-left: 2.5rem !important;
 }
+.activeplan{
+    background-color: #22aae229 !important;
+}
+
+
+.paypal-buy-now-button {
+display: inline-flex;
+position: relative;
+background: #FFC439;
+border-radius: 5px;
+border: 1px solid #DC911D;
+box-shadow: inset 0 1px 0 0 #ffd699;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+font-weight: 700;
+font-size: 25px;
+padding: 0 23px;
+height: 42px;
+width: 100%;
+justify-content: center;
+align-items: center;
+color: #df5965;
+text-decoration: none;
+cursor: pointer;
+}
+
+.paypal-buy-now-button span {
+padding-top: 3px;
+padding-right: 7px;
+text-shadow: 0 1px 0 #FFD699;
+z-index: 2;
+}

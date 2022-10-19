@@ -19,6 +19,10 @@ class Cmf
         $file->move(public_path('images'), $filename);
         return $filename;
     }
+    public static function getsettings($value)
+    {
+        return DB::table('site_settings')->where('id' , 1)->first()->$value;
+    }
     public static function shorten_url($text)
     {
         $words = explode('-', $text);

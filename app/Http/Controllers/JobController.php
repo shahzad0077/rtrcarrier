@@ -17,15 +17,36 @@ use App\Models\equipment_jobs;
 use App\Models\job_equipments;
 use App\Models\jobsubmissionsrequests;
 use App\Models\advance_equipment_values;
+use App\Models\subscription_plans;
+use App\Models\payements;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
 use Validator;
+use Session;
+use Stripe;
+use URL;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\ExecutePayment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Transaction;
+use Illuminate\Support\Facades\Redirect;
 class JobController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth','verified']);
+        $paypal_configuration = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['client_id'], $paypal_configuration['secret']));
+        $this->_api_context->setConfig($paypal_configuration['settings']);
     }
     public function hiringtemplates()
     {
@@ -279,10 +300,25 @@ class JobController extends Controller
 
     public function subscription(Request $request)
     {
-        $addnewjob = jobs::find($request->job_id);
-        $addnewjob->step = 4;
-        $addnewjob->save();
-        return redirect()->back()->with('message', 'Email Added Successfully');
+        $check = subscription_plans::where('id' , $request->plan_id)->first();
+        if($check->price > 0)
+        {
+            $addnewjob = jobs::find($request->job_id);
+            $addnewjob->step = 3;
+            $addnewjob->plan_id = $request->plan_id;
+            $addnewjob->payement_status = 'pending';
+            $addnewjob->save();
+            return redirect()->back()->with('message', 'Email Added Successfully');
+        }
+        else
+        {
+            $addnewjob = jobs::find($request->job_id);
+            $addnewjob->step = 4;
+            $addnewjob->plan_id = $request->plan_id;
+            $addnewjob->payement_status = 'done';
+            $addnewjob->save();
+            return redirect()->back()->with('message', 'Email Added Successfully');
+        }
     }
     
     public function jobsubmitlast(Request $request)
@@ -344,7 +380,6 @@ class JobController extends Controller
                         }
                     }
                 }
-                
             }
             $data .= ",'{$whenpayout[$k]}' ";
             $data .= ",'{$ammountpayout[$k]}' ";
@@ -447,5 +482,178 @@ class JobController extends Controller
         $addnewjob->save();
 
         return redirect()->back()->with('message', 'Email Added Successfully');
+    }
+
+
+    public function postPaymentWithpaypal(Request $request)
+    {
+        $job = jobs::find($request->job_id);
+
+        $plan = subscription_plans::find($job->plan_id);
+
+        Session::put('plainid',$request->id);
+
+        $totalprice = round($plan->price);
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $item_1 = new Item();
+        $item_1->setName('Product 1')
+            ->setCurrency('USD')
+            ->setQuantity(1)
+            ->setPrice($totalprice);
+        $item_list = new ItemList();
+        $item_list->setItems(array($item_1));
+        $amount = new Amount();
+        $amount->setCurrency('USD')
+            ->setTotal($totalprice);
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)->setItemList($item_list)
+        ->setDescription('Enter Your transaction description');
+        $redirect_urls = new RedirectUrls();
+        $redirect_urls->setReturnUrl(URL::route('status'))
+            ->setCancelUrl(URL::route('status'));
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($transaction));            
+        try {
+            $payment->create($this->_api_context);
+        } catch (\PayPal\Exception\PPConnectionException $ex) {
+            if (\Config::get('app.debug')) {
+                \Session::put('warning','Connection timeout');
+                return Redirect::route('paywithpaypal'); 
+
+                $url = url('stepthree');
+                return Redirect::to($url);
+
+            } else {
+                \Session::put('warning','Some error occur, sorry for inconvenient');
+                $url = url('stepthree');
+                return Redirect::to($url);             
+            }
+        }
+
+        foreach($payment->getLinks() as $link) {
+            if($link->getRel() == 'approval_url') {
+                $redirect_url = $link->getHref();
+                break;
+            }
+        }
+        
+        Session::put('paypal_payment_id', $payment->getId());
+
+        if(isset($redirect_url)) {            
+            return Redirect::away($redirect_url);
+        }
+
+        \Session::put('warning','Unknown error occurred');
+        $url = url('payement').'/'.$request->orderid;
+        return Redirect::to($url);
+    }
+
+
+    public function getPaymentStatus(Request $request)
+    {        
+        $payment_id = Session::get('paypal_payment_id');
+
+        Session::forget('paypal_payment_id');
+        if (empty($request->input('PayerID')) || empty($request->input('token'))) {
+            \Session::put('warning','Payment failed due to panga');
+            $url = url('stepthree');
+            return Redirect::to($url);
+        }
+        $payment = Payment::get($payment_id, $this->_api_context);        
+        $execution = new PaymentExecution();
+        $execution->setPayerId($request->input('PayerID'));        
+        $result = $payment->execute($execution, $this->_api_context);
+        
+        if ($result->getState() == 'approved') {         
+
+
+
+            $plainid = Session::get('plainid');
+
+            $plan = DB::table('subscriptionplans')->where('id' , $plainid)->get()->first();
+
+            \Session::put('message',"Your Payment $".$plan->price." Successfully Processed");
+
+            $user = user::find(session()->get('user_id_temp'));
+            $user->selectplan = $plainid;
+            $user->steps = 3;
+            $user->save();
+
+            $payments = new payments();
+            $payments->currency = 'usd';
+            $payments->charge_id = $payment_id;
+            $payments->payment_channel = 'paypal';
+            $payments->description = 'Paypal Ammount';
+            $payments->amount = $plan->price;
+            $payments->order_id = $plan->id;
+            $payments->status = $result->getState();
+            $payments->customer_id = session()->get('user_id_temp');
+            $payments->save();
+
+            $plandata = DB::table('subscriptionplans')->where('id' , $plainid)->get()->first();
+            $subject = 'Welcome To '.Cmf::get_store_value('site_name').'| Invoice for Purchasing Plan';
+            Mail::send('frontend.email.invoice', ['name' => $user->name,'planname' => $plandata->name,'price' => $plandata->price,'places_allowed' => $plandata->places_allowed], function($message) use($user , $subject){
+                  $message->to($user->email);
+                  $message->subject($subject);
+            });
+
+            $plan = new subscribedplans();
+            $plan->user_id = session()->get('user_id_temp');
+            $plan->plan_id = $plainid;
+            $plan->save();
+            return redirect()->route('user.stepfour');
+
+
+
+        }else{
+            \Session::put('warning','Payment failed due to very very panga !!');
+            $orderid = Session::get('orderid');
+            $url = url('stepthree');
+            return Redirect::to($url);
+        }
+    }
+
+
+
+    public function stripePost(Request $request)
+    {
+        $job = jobs::find($request->job_id);
+        $plan = subscription_plans::find($job->plan_id);
+        $totalprice = round($plan->price);
+        $totalprice = $totalprice+100;
+        Stripe\Stripe::setApiKey(Cmf::getsettings('stripe_secret'));
+        $payement = Stripe\Charge::create ([
+                "amount" => $totalprice,
+                "currency" => "usd",
+                "source" => $request->stripeToken,
+                "description" => $plan->name
+        ]);
+        if(!empty($payement->id))
+        {
+            $addnewjob = jobs::find($request->job_id);
+            $addnewjob->step = 4;
+            $addnewjob->plan_id = $plan->id;
+            $addnewjob->payement_status = 'done';
+            $addnewjob->save();
+            $payments = new payements();
+            $payments->currency = 'usd';
+            $payments->charge_id = $payement->id;
+            $payments->payment_channel = 'stripe';
+            $payments->description = $payement->description;
+            $payments->amount = $payement->amount;
+            $payments->plan_id = $plan->id;
+            $payments->status = $payement->status;
+            $payments->job_id = $request->job_id;
+            $payments->save();
+            return redirect()->route('addnewjob')->with('success','Payement Successfully Done');
+        }
+        else
+        {
+            return redirect()->route('addnewjob')->with('warning','Payement Not Done');
+        }   
     }
 }

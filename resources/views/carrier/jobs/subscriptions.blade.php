@@ -11,10 +11,10 @@
                 <h2>How would you like to post your job?</h2>
                 <p>We're examining your job posting and will publish it soon one of our administrators approves it.</p>
             </div>
+            <input required type="hidden" id="plan_id" name="plan_id" >
             @foreach(DB::table('subscription_plans')->where('status' , 1)->orderby('price' , 'asc')->get() as $r)
-            <input required type="hidden" id="plan_{{ $r->id }}" name="plan_id" value="{{ $r->id }}">
-            <div class="col-md-6 ">
-                <div class="card my-left card">
+            <div  style="margin-bottom:20px;" class="col-md-6">
+                <div id="activeplan{{ $r->id }}" class="card my-left card removeactiveplan">
                     <div class="card-body post-jobs-titles">
                         <h2>{{ $r->name }} (${{$r->price}})</h2>
                         <div class="correct-pin">

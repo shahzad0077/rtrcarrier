@@ -14,6 +14,7 @@ use App\Models\education_articles;
 use App\Models\company_info_pages;
 use App\Models\recuring_tips;
 use App\Models\subscription_plans;
+use App\Models\site_settings;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
@@ -30,7 +31,18 @@ class AdminController extends Controller
             ->get();
         return view('admin/carriers/index')->with(array('data'=>$data));
     }
-
+    public function settings()
+    {
+        return view('admin.settigns.index');
+    }
+    public function settingsupdate(Request $request)
+    {
+        $update = site_settings::find(1);
+        $update->stripe_published = $request->stripe_published;
+        $update->stripe_secret = $request->stripe_secret;
+        $update->save();
+        return redirect()->back()->with('message', 'Settings Updated Successfully');
+    }
     public function addnewcarrier(Request $request)
     {
         $carrier = new User();
