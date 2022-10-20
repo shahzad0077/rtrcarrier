@@ -18,10 +18,7 @@ class JobController extends Controller
 {   
     public function alljobs()
     {
-        $jobs = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->leftJoin('companies','jobs.company_id','=','companies.id')->paginate(10);
-        foreach ($jobs as $index => $job) {
-            $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
-        }
+        $jobs = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->leftJoin('companies','jobs.company_id','=','companies.id')->orderby('jobs.id' , 'desc')->paginate(10);
         $attribute = jot_attributes::all();
         return view('admin/jobs/index')->with(array('data'=>$jobs,'attribute'=>$attribute));
     }
@@ -84,7 +81,9 @@ class JobController extends Controller
     }
     public function pendingjobs()
     {
-        return view('admin/jobs/pending');
+        $jobs = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->leftJoin('companies','jobs.company_id','=','companies.id')->where('jobsubmissionsrequests.status' , 'pending')->orderby('jobs.id' , 'desc')->paginate(10);
+        $attribute = jot_attributes::all();
+        return view('admin/jobs/pending')->with(array('data'=>$jobs,'attribute'=>$attribute));
     }
 
 }

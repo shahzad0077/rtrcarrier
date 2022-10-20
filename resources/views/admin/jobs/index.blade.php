@@ -111,12 +111,12 @@
                                     @if($r->status == 'pending')
                                     <span class="badge badge-warning">Pending</span> 
                                     @elseif($r->status == 'active')
-                                    <span class="badge badge-success">Pending</span> 
+                                    <span class="badge badge-success">Active</span> 
                                     @elseif($r->status == 'notactive')
                                     <span class="badge badge-danger">Not Active</span> 
                                     @endif
                                     
-                                    @if($r->payement_status == 'done')
+                                    @if($r->payement_id)
                                     <span class="m-2 label label-lg font-weight-bold label-light-primary label-inline">Featured</span>
                                     @endif
                                 </td>
@@ -126,13 +126,13 @@
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <ul class="nav nav-hoverable flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Disable</span></a>
+                                                    <a class="nav-link" href="#">Disable</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Featured</span></a>
+                                                    <a class="nav-link" href="#">Featured</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Activate</span></a>
+                                                    <a class="nav-link" href="#">Activate</a>
                                                 </li>
                                             </ul>
                                         </div>

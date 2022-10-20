@@ -191,7 +191,9 @@ begin::Aside-->
                         </ul>
                     </div>
                 </li>
-
+                @php
+                        $jobs = DB::table('jobsubmissionsrequests')->where('status', 'pending')->count();
+                    @endphp
                 <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
@@ -212,8 +214,9 @@ begin::Aside-->
                             </svg>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Jobs</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Jobs @if($jobs > 0)<span style="margin-left: 30px;" class="badge badge-success">{{ $jobs }}</span> @endif</span><i class="menu-arrow"></i>
                     </a>
+                    
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
@@ -233,7 +236,7 @@ begin::Aside-->
 
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('admin/jobs/pending')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Pending</span>
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Pending @if($jobs > 0)<span style="margin-left: 30px;" class="badge badge-success">{{ $jobs }}</span> @endif </span>
                                 </a>
                             </li>
                         </ul>

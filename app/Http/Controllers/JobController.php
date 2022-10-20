@@ -331,7 +331,13 @@ class JobController extends Controller
         {
             $submit = new jobsubmissionsrequests();
             $submit->job_id = $request->job_id;
-            $submit->status = 'pending';
+            if($addnewjob->payement_id)
+            {
+                $submit->status = 'pending';
+            }else
+             {
+                $submit->status = 'active';
+             }
             $submit->counter = 1;
             $submit->save();
         }
@@ -637,6 +643,7 @@ class JobController extends Controller
             $addnewjob = jobs::find($request->job_id);
             $addnewjob->step = 4;
             $addnewjob->plan_id = $plan->id;
+            $addnewjob->payement_id = $payement->id;
             $addnewjob->payement_status = 'done';
             $addnewjob->save();
             $payments = new payements();
