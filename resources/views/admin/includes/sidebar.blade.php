@@ -1,4 +1,4 @@
-<!--begin::Aside-->
+begin::Aside-->
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
@@ -220,11 +220,11 @@
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Add Job</span></span>
                             </li>
-                            <li class="menu-item" aria-haspopup="true">
+                            <!-- <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('admin/jobs/addnewjob')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{{url('admin/jobs/')}}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Jobs</span>
@@ -497,4 +497,4 @@
     </div>
     <!--end::Aside Menu-->
 </div>
-<!--end::Aside-->
+<!--end::Aside
