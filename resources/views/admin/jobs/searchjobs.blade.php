@@ -25,16 +25,16 @@
                         <div class="row">
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input name="keyword" type="text" class="form-control" placeholder="Search with title...">
+                                    <input value="{{ $_GET['keyword'] }}" name="keyword" type="text" class="form-control" placeholder="Search with title...">
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="d-flex align-items-center">
                                     <select class="form-control" name="carrier">
-                                        <option value="">Select Carrier</option>
+                                        <option value="">All Carrier</option>
                                         @foreach(DB::table('companies')->get() as $r)
-                                        <option value="{{ $r->id }}">{{ $r->company_name }}</option>
+                                        <option @if($_GET['carrier'] == $r->id) selected @endif  value="{{ $r->id }}">{{ $r->company_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -42,9 +42,9 @@
                             <div class="col-md-2 my-2 my-md-0">
                                 <div class="d-flex align-items-center">
                                     <select name="freight_type" class="form-control">
-                                        <option value="">Freight Type</option>
+                                        <option value="">All Freight Type</option>
                                         @foreach(explode(',' , $attribute->where('id' , 126)->first()->options) as $r)
-                                        <option value="{{ $r }}">{{ $r }}</option>
+                                        <option @if($_GET['freight_type'] == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -52,9 +52,9 @@
                             <div class="col-md-2 my-2 my-md-0">
                                 <div class="d-flex align-items-center">
                                     <select name="driver_type" class="form-control">
-                                        <option value="">Driver Type</option>
+                                        <option value="">All Driver Type</option>
                                         @foreach(explode(',' , $attribute->where('id' , 124)->first()->options) as $r)
-                                        <option value="{{ $r }}">{{ $r }}</option>
+                                        <option @if($_GET['driver_type'] == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -144,9 +144,6 @@
                             @endforeach
                             </tbody>
                     </table>
-                    <div class="row">
-                        {!! $data->links('admin.pagination.index') !!}
-                    </div>
                 </div>
             </div>
             <!--end::Card-->

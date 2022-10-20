@@ -246,6 +246,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
     });
     Route::name('job.')->prefix('jobs')->group(function(){
         Route::get('/','JobController@alljobs');
+        Route::get('/searchjobs','JobController@searchjobs');
         Route::get('/addnewjob','JobController@addnewjob');
         Route::get('/bassic-attributes','JobController@basicattributes');
         Route::get('/pending','JobController@pendingjobs');

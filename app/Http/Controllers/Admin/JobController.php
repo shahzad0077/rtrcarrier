@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Models\companies;
 use App\Models\jot_attributes;
+use App\Models\jobsubmissionsrequests;
+use App\Models\linktemplatewithjobs;
+use App\Models\jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 
@@ -15,7 +18,34 @@ class JobController extends Controller
 {   
     public function alljobs()
     {
-        return view('admin/jobs/index');
+        $jobs = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->leftJoin('companies','jobs.company_id','=','companies.id')->paginate(10);
+        foreach ($jobs as $index => $job) {
+            $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
+        }
+        $attribute = jot_attributes::all();
+        return view('admin/jobs/index')->with(array('data'=>$jobs,'attribute'=>$attribute));
+    }
+    public function searchjobs(Request $request)
+    {
+        $input = $request->all();
+        $q = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name');
+        if ($input['keyword'])
+        {
+            $q->where('jobs.job_tittle','like', '%' . $input['keyword'] . '%' );
+        }
+        if ($input['freight_type'])
+        {
+            $q->where('jobs.freight_type','like', '%' . $input['freight_type'] . '%' );
+        }
+        if ($input['driver_type'])
+        {
+            $q->where('jobs.driver_type','like', '%' . $input['driver_type'] . '%' );
+        }
+        $q->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id');
+        $q->leftJoin('companies','jobs.company_id','=','companies.id');
+        $jobs = $q->orderby('jobs.id' , 'desc')->get();
+        $attribute = jot_attributes::all();
+        return view('admin/jobs/searchjobs')->with(array('data'=>$jobs,'attribute'=>$attribute));
     }
     public function addnewjob()
     {
