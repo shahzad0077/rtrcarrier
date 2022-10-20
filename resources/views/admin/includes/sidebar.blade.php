@@ -309,7 +309,7 @@ begin::Aside-->
                             <!--end::Svg Icon-->
                         </span>
                         <span class="menu-text">Manage Company</span><i class="menu-arrow"></i>
-                    </a>
+                    </a> 
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
