@@ -43,32 +43,63 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
-                                            <button type="button" class="btn btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-                                            <button type="button" class="btn btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <button type="button" class="form-control btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+                                                </div>
+                                                <!-- <div class="col-md-2">
+                                                    <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
+                                                </div> -->
+                                                <!-- <div class="col-md-2">
+                                                    <button type="button" class="btn form-control btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" placeholder="Search..." name="" class="form-control">
+                                                </div> -->
+                                            </div>
                                         </div>
+                                        <style>
+                                          html, body, #map { 
+                                            width:100%; 
+                                            height:100%; 
+                                            margin:0; 
+                                            padding:0; 
+                                            z-index: 5;
+                                          }
+                                          #filterdiv{
+                                            margin-top: 25%;
+                                            margin-left: 10px;
+                                            z-index: 20000;
+                                            position: relative;
+                                            width: 200px;
+                                          }
+                                          .chk{
+                                            width: 15px; 
+                                            height: 15px; 
+                                          }
+                                        </style>
+                                        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
+                                        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+                                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+                                        <link rel="stylesheet" href="{{ url('public/carrier/map/geocoder.css') }}" />
+                                        <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+
+                                        <script src="{{ url('public/carrier/map/states.js') }}"></script>
+                                        <script src="{{ url('public/carrier/map/print_bundle.js') }}"></script>
+
+                                        <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.js"></script>
+                                        <script src="https://igor-vladyka.github.io/leaflet.browser.print/dist/leaflet.browser.print.js"></script>
                                         <div class="col-md-12 mt-5">
-                                            <div id="map" style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc"></div>
+                                            <div style="width: 100%; border-radius: 12px; height: 500px; border: 1px solid #ccc" id="map">
+                                              <div id="filterdiv">
+                                                
+                                              </div>
+                                            </div>
                                         </div>
+                                        <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.js"></script>                                  
                                         <div id="appenddivs" class="col-md-12 mt-5">
-                                            @foreach(explode(',' , $map->state) as $key => $state)
-                                            @if($state)
-                                            <button type="button" class="state{{$key}} btn btn-secondary map-delete-btn">{{$state}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
-                                            <input type="hidden" value="{{$state}}" name="state[]" id="state{{$key}}">
-                                            @endif
-                                            @endforeach
-                                            @foreach(explode(',' , $map->city) as $key => $city)
-                                            @if($city)
-                                            <button type="button" class="city{{$key}} btn btn-secondary map-delete-btn">{{$city}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
-                                            <input type="hidden" value="{{$city}}" name="city[]" id="city{{$key}}">
-                                            @endif
-                                            @endforeach
-                                            @foreach(explode(',' , $map->zipcode) as $key => $zipcode)
-                                            @if($zipcode)
-                                            <button type="button" class="zipcode{{$key}} btn btn-secondary map-delete-btn">{{$zipcode}} <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate({{$key}})"></i></button>
-                                            <input type="hidden" value="{{$zipcode}}" name="zipcode[]" id="zipcode{{$key}}">
-                                            @endif
-                                            @endforeach
+                                            
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
@@ -198,7 +229,10 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="state" type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter State">
+                        <div id="states_div">
+                          <div id="states_chkbx_div" style=" max-height: 300px; padding: 5%; overflow: auto; background-color: aliceblue;">
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -216,6 +250,215 @@
 
 
 @section('scripts')
+<script>
+        setTimeout(function(){
+          $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
+        }, 500);
+        var map
+        map = L.map('map', {
+        center: [47.291, -107.78],
+        zoom: 4,
+        attributionControl: false
+        });
+        var googlestreet   = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+          maxZoom: 20,
+          subdomains:['mt0','mt1','mt2','mt3']
+          }).addTo(map);
+        var dark  = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png');
+        var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+                    maxZoom: 20,
+                    subdomains:['mt0','mt1','mt2','mt3']
+                })  
+      L.simpleMapScreenshoter({position:'topright'}).addTo(map)
+
+      L.control.browserPrint({position:'topright'}).addTo(map);
+      map.zoomControl.setPosition('topright');
+     
+
+    var baseLayers = {
+    "Google Street Map": googlestreet,
+    "Google Sattellite Map": googleSat,
+    "Dark Map": dark,
+    };
+    var overLays = {
+    // "Land_Plots": Land_Plots,
+    // "Trees & Graphics": trees_layer,
+    // "Clouds": clouds_layer
+    };
+
+    var mylayercontrol= L.control.layers(baseLayers,overLays).addTo(map);
+
+
+      var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+      
+          var drawControl = new L.Control.Draw({
+            position: 'topright',
+            draw:{
+              polygon : {
+                          allowIntersection: false,
+                          showLength: true,
+                          metric:['km', 'm']
+                      },
+              polyline:false,
+              marker: true,
+              squire: false,
+              circlemarker: false,
+              rectangle: false,
+              circle: false,
+               
+              },
+            edit: {
+              featureGroup: drawnItems,
+              remove: true,
+              edit: true,
+      
+            }
+          });
+        
+        map.addControl(drawControl);
+          
+        map.on(L.Draw.Event.CREATED, function (e) {
+          console.clear();
+          var type = e.layerType
+          var layer = e.layer;
+            drawnItems.addLayer(layer);
+        });
+      
+      
+        map.on('draw:editvertex', function (e) { 
+
+        });   
+
+        var eachlyr_arr =  Array();
+
+        setTimeout(function(){
+          var str='';
+          str=str+'<h5>--Select State--</h5>';
+          @foreach(DB::table('maplocations')->where('map_id' , $map->id)->get() as $r)
+          state_drwa('{{ $r->state }}')
+          @endforeach
+          for(var i=0;i<us_states.length;i++){
+            str=str+'<label for="'+us_states[i].name+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
+            $('#states_chkbx_div').html(str);
+          }
+
+          $('.stchk').change(function(event) {
+            var valname =$(event.target).val();
+            
+            var checked = $(this).is(':checked')
+            if(checked==true){
+
+              savelocation(valname);
+              // console.log("chkd")
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
+              $.getJSON(nurl, function(data) {
+                console.log(data);
+                var lyrname=L.geoJSON(data, {
+                  style: (feature) => {
+                    return {
+                      stroke: true,
+                      color: "#9933ff",
+                      weight: 2,
+                      opacity: 0.7,
+                      fill: true,
+                      fillColor: "#7300e6",
+                      fillOpacity: 0.15,
+                      smoothFactor: 0.5,
+                      interactive: false,
+                    };
+                  },
+                });
+                eachlyr_arr.push(valname)
+                eachlyr_arr[valname]=lyrname
+                eachlyr_arr[valname].addTo(map)
+              });
+            }else{
+              savelocation(valname);
+              // console.log("un chkd")
+              if(map.hasLayer(eachlyr_arr[valname])){
+                map.removeLayer(eachlyr_arr[valname])
+              }   
+            }  
+          });
+        }, 400); 
+        
+        
+
+
+        function state_drwa(valname){
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
+              $.getJSON(nurl, function(data) {
+                console.log(data);
+                var lyrname=L.geoJSON(data, {
+                  style: (feature) => {
+                    return {
+                      stroke: true,
+                      color: "#9933ff",
+                      weight: 2,
+                      opacity: 0.7,
+                      fill: true,
+                      fillColor: "#7300e6",
+                      fillOpacity: 0.15,
+                      smoothFactor: 0.5,
+                      interactive: false,
+                    };
+                  },
+                })
+                eachlyr_arr.push(valname)
+                eachlyr_arr[valname]=lyrname
+                eachlyr_arr[valname].addTo(map)
+              });
+            
+        }
+
+
+
+         
+          // var lgeocoder=L.Control.geocoder({collapsed:false,position:"topleft", placeholder:"Enter Zip Code Here..."}).addTo(map);
+         
+       
+
+
+
+
+
+          var geocoder=L.Control.geocoder({
+          // defaultMarkGeocode: false,
+            collapsed:false,
+            position:"topleft", 
+            placeholder:"Enter Zip Code Here...",
+            queryParams: {"countrycodes": "US"},
+            geocoder: new L.Control.Geocoder.Nominatim({
+            geocodingQueryParams: {
+                "countrycodes": "US"
+                }
+            })
+          }).on('markgeocode', function(e) {
+              var searchTxt = $('div.leaflet-control-geocoder-form input').val();
+              console.log(searchTxt);
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
+              $.getJSON(nurl, function(data) {
+                console.log(data);
+                var lyrname=L.geoJSON(data, {
+                  style: (feature) => {
+                    return {
+                      stroke: true,
+                      color: "#9933ff",
+                      weight: 2,
+                      opacity: 0.7,
+                      fill: true,
+                      fillColor: "#7300e6",
+                      fillOpacity: 0.15,
+                      smoothFactor: 0.5,
+                      interactive: false,
+                    };
+                  },
+                }).addTo(map);
+              });
+          })
+          geocoder.addTo(map);
+    </script>
     <script type="text/javascript">
         function addnewstate()
         {
@@ -256,102 +499,12 @@
             $('.zipcode'+id).hide();
             $('#zipcode'+id).val('');
         }
-    </script>
-   
-
-
-    <script src="{{asset('public/carrier/assets/map/libs/leaflet-src.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/libs/leaflet.css')}}"/>
-    <script src="{{asset('public/carrier/assets/map/src/Leaflet.draw.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/Leaflet.Draw.Event.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('public/carrier/assets/map/src/leaflet.draw.css')}}"/>
-
-    <script src="{{asset('public/carrier/assets/map/src/Toolbar.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/Tooltip.js')}}"></script>
-
-    <script src="{{asset('public/carrier/assets/map/src/ext/GeometryUtil.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/ext/LatLngUtil.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/ext/LineUtil.Intersect.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/ext/Polygon.Intersect.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/ext/Polyline.Intersect.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/ext/TouchEvents.js')}}"></script>
-
-    <script src="{{asset('public/carrier/assets/map/src/draw/DrawToolbar.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Feature.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.SimpleShape.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polyline.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Marker.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Circle.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.CircleMarker.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Polygon.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/draw/handler/Draw.Rectangle.js')}}"></script>
-
-
-    <script src="{{asset('public/carrier/assets/map/src/edit/EditToolbar.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Edit.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/EditToolbar.Delete.js')}}"></script>
-
-    <script src="{{asset('public/carrier/assets/map/src/Control.Draw.js')}}"></script>
-
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Poly.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.SimpleShape.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Rectangle.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Marker.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.CircleMarker.js')}}"></script>
-    <script src="{{asset('public/carrier/assets/map/src/edit/handler/Edit.Circle.js')}}"></script>
-    <script>
-        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        osm = L.tileLayer(osmUrl, { maxZoom: 18, attribution: osmAttrib }),
-        map = new L.Map('map', { center: new L.LatLng(32.008694605395604,74.02606973404139), zoom: 5 }),
-        drawnItems = L.featureGroup().addTo(map);
-        L.control.layers({
-            'osm': osm.addTo(map)
-        }, { 'drawlayer': drawnItems }, { position: 'topleft', collapsed: false }).addTo(map);
-
-
-
-        @foreach($locations->where('map_id' , $map->id) as $r)
-
-
-        L.circle([{{ $r->long }},{{ $r->lat }}], {{ $r->radius }}).addTo(map);
-
-        @endforeach
-
-
-        map.addControl(new L.Control.Draw({
-            edit: {
-                featureGroup: drawnItems,
-                poly: {
-                    allowIntersection: false
-                }
-            },
-            draw: {
-                polygon: false,
-                rectangle:false,
-                circlemarker:false,
-                polyline:false,
-                marker:false
-            }
-        }));
-
-        map.on(L.Draw.Event.CREATED, function (event) {
-            var layer = event.layer;
-            var latlong = layer.getLatLng();
-            var center = [latlong.lng,latlong.lat]; 
-            var theRadius = layer.getRadius();
-            drawnItems.addLayer(layer);
-            savelocation(latlong.lng,latlong.lat,theRadius)
-        });
-    </script>
-
-    <script type="text/javascript">
-        function savelocation(lat , long , radius)
+        function savelocation(value)
         {
             var app_url = geturl();
             var map_id = '{{ $map->id }}';
             $.ajax({
-                url:app_url+"/savemaplocations/"+lat+"/"+long+"/"+radius+"/"+map_id, 
+                url:app_url+"/savestatemap/"+value+"/"+map_id, 
                 type:"get",
                 success:function(res){
                    

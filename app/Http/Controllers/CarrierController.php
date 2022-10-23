@@ -210,14 +210,20 @@ class CarrierController extends Controller
         $map->save();
         return redirect()->back()->with('message', 'Map status Updated Successfully');
     }
-    public function savemaplocations($lat,$long,$radius,$map_id)
+    public function savestatemap($state,$map_id)
     {
-        $maploc = new maplocations();
-        $maploc->map_id = $map_id;
-        $maploc->lat = $lat;
-        $maploc->long = $long;
-        $maploc->radius = $radius;
-        $maploc->save();
+        $check  = maplocations::where('state' , $state)->where('map_id',$map_id);
+        if($check->count() > 0)
+        {
+            maplocations::where('state' , $state)->where('map_id',$map_id)->delete();
+        }
+        else
+        {
+            $maploc = new maplocations();
+            $maploc->map_id = $map_id;
+            $maploc->state = $state;
+            $maploc->save();
+        }
     }
     public function updatepetpolicy(Request $request)
     {
