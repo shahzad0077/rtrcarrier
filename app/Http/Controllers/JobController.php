@@ -226,13 +226,22 @@ class JobController extends Controller
             'live_load' => 'required',
             'driver_load' => 'required',
         ]);
+
+        $url = Cmf::shorten_url($request->job_tittle);
+        $checkurl = jobs::where('url' , $url)->count();
+        if($checkurl > 0)
+        {
+            $url = $url.'-'.$request->job_id;
+        }else{
+            $url = $url;
+        }
         $addnewjob = jobs::find($request->job_id);
         $addnewjob->how_often_will_driver_get_home = $request->how_often_will_driver_get_home;
         $addnewjob->custom_home_time = $request->custom_home_time;
         $addnewjob->job_tittle = $request->job_tittle;
         $addnewjob->hiring_area = $request->hiring_area;
         $addnewjob->operating_area = $request->operating_area;
-        $addnewjob->url = Cmf::shorten_url($request->job_tittle);
+        $addnewjob->url = $url;
         $addnewjob->driver_type = $request->driver_type;
         $addnewjob->home_time = $request->home_time;
         $addnewjob->freight_type = $request->freight_type;

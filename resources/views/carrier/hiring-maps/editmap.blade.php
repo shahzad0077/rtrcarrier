@@ -339,8 +339,11 @@
           state_drwa('{{ $r->state }}')
           @endforeach
           for(var i=0;i<us_states.length;i++){
+
             str=str+'<label for="'+us_states[i].name+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
             $('#states_chkbx_div').html(str);
+
+            
           }
 
           $('.stchk').change(function(event) {

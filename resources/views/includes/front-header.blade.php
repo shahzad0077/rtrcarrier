@@ -9,12 +9,16 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto my-main-menu-two">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{ url('') }}">Home</a></li>
                             <li><a href="#">For Drivers</a></li>
                             <li><a href="#">For Carriers</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Post a job</a></li>
-                            <li><a href="#">Login / Sign up</a></li>
+                            <li><a href="{{ url('job/add') }}">Post a job</a></li>
+                            @if(Auth::check())
+                            <li><a href="{{ url('dashboard') }}">Dashboard</a></li>
+                            @else
+                            <li><a href="{{ url('') }}">Login / Sign up</a></li>
+                            @endif
                             <!-- <li>
                                 <div class="main-header-contact">
                                     <div class="head-contact-icon">

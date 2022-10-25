@@ -15,6 +15,10 @@
         <div id="collapseOne6" class="collapse show" data-parent="#accordionExample6">
             <div class="card-body p-10">
                 <div class="row">
+                    <div class="col-md-12">
+                        <b>Title</b>
+                        <p class="mt-2">{{ $job->job_tittle }}</p>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <b>How often will the driver get home?</b>
                         <p class="mt-2">{{ $job->how_often_will_driver_get_home }}</p>
@@ -24,10 +28,7 @@
                         <p class="mt-2">{{ $job->custom_home_time }}</p>
                     </div>
 
-                    <div class="col-md-6">
-                        <b>Title</b>
-                        <p class="mt-2">{{ $job->job_tittle }}</p>
-                    </div>
+                    
                     <div class="col-md-6 mb-3">
                         <b>Driver Type</b>
                         <p class="mt-2">{{ $job->driver_type }}</p>
@@ -166,9 +167,9 @@
                         <p class="mt-2">{{ $template->license_suspensions }}</p>
                     </div>
                     @else
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <b>License Suspensions</b>
-                        <p class="mt-2">{{ $template->license_suspensions_field }}</p>
+                        <p class="mt-2">{!! $template->license_suspensions_field !!}</p>
                     </div>
                     @endif
                     <div class="col-md-6 mb-3">
@@ -198,9 +199,9 @@
                         <b>Ticket Incedent</b>
                         <p class="mt-2">{{ $template->ticket_incedent }}</p>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <b>specify in a free form fill</b>
-                        <p class="mt-2">{{ $template->specify_in_a_free_form_fill }}</p>
+                        <p class="mt-2">{!! $template->specify_in_a_free_form_fill !!}</p>
                     </div>
                     <div class="col-md-6 mb-3">
                         <b>maximum jobs no more than</b>
@@ -214,9 +215,9 @@
                         <b>Unemployment</b>
                         <p class="mt-2">{{ $template->unemployment }}</p>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <b>Maximum jobs additional infomation</b>
-                        <p class="mt-2">{{ $template->maximum_jobs_additional_infomation }}</p>
+                        <p class="mt-2">{!! $template->maximum_jobs_additional_infomation !!}</p>
                     </div>
 
                     <div class="col-md-12 mb-3">
@@ -317,7 +318,7 @@
         </div>
         <div id="collapseFour6" class="collapse" data-parent="#accordionExample6">
             <div class="card-body p-10">
-                ...
+                
             </div>
         </div>
     </div>

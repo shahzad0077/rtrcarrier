@@ -1138,7 +1138,7 @@ a.share-btn {
     background: transparent;
     line-height: 25px;
     border-top: 1px solid #E6E6E6;
-    padding: 30px 25px;
+    padding: 15px 0px;
 }
 nav > div a.nav-item.nav-link, nav > div a.nav-item.nav-link {
     border: none;
@@ -1706,7 +1706,6 @@ iframe#gmap_canvas {
 }
 .relareds-card {
     border: none;
-        padding-left: 12px;
 }
 .relateds-title h2 {
     font-family: 'Open Sans';

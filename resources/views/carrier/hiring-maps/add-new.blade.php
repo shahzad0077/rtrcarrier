@@ -340,10 +340,10 @@
         setTimeout(function(){
           var str='';
           str=str+'<h5>--Select State--</h5>';
-          str=str+'<label for="Alabama" ><input type="checkbox" class="stchk" name="statechk" value="AL" id="AL" checked>Alabama</label>&nbsp<br>'
-          str=str+'<label for="Arizona" ><input type="checkbox" class="stchk" name="statechk" value="AZ" id="AZ" checked>Arizona</label>&nbsp<br>'
-          state_drwa('AL')
-          state_drwa('AZ')
+          // str=str+'<label for="Alabama" ><input type="checkbox" class="stchk" name="statechk" value="AL" id="AL" checked>Alabama</label>&nbsp<br>'
+          // str=str+'<label for="Arizona" ><input type="checkbox" class="stchk" name="statechk" value="AZ" id="AZ" checked>Arizona</label>&nbsp<br>'
+          // state_drwa('AL')
+          // state_drwa('AZ')
           for(var i=0;i<us_states.length;i++){
 
             str=str+'<label for="'+us_states[i].name+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'

@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('public/front/assets/css/responsive.css') }}" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="shortcut icon" href="{{asset('public/front/assets/images/logo.png')}}" />
         @yield('title')
     </head>
     <body class="bg-white">

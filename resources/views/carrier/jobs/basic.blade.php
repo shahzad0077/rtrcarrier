@@ -148,7 +148,7 @@
                     <select required name="hiring_area" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Hiring Map</option>
                         @foreach(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
-                        <option value="{{ $r->id }}" @if($job->hiring_area == $r->id) selected @elseif(old('hiring_area') == $r->id) selected @endif>{{ $r->tittle }} ({{ $r->state }} | {{ $r->city }})</option>
+                        <option value="{{ $r->id }}" @if($job->hiring_area == $r->id) selected @elseif(old('hiring_area') == $r->id) selected @endif>{{ $r->tittle }}</option>
                         @endforeach
                     </select>
                     @error('hiring_area')
@@ -165,7 +165,7 @@
                     <select required name="operating_area" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Hiring Map</option>
                         @foreach(DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
-                        <option value="{{ $r->id }}" @if($job->operating_area == $r->id) selected @elseif(old('operating_area') == $r->id) selected @endif>{{ $r->tittle }} ({{ $r->state }} | {{ $r->city }})</option>
+                        <option value="{{ $r->id }}" @if($job->operating_area == $r->id) selected @elseif(old('operating_area') == $r->id) selected @endif>{{ $r->tittle }} </option>
                         @endforeach
                     </select>
                     @error('operating_area')
