@@ -151,7 +151,13 @@ class CarrierController extends Controller
             $map->zipcode = implode(',', $request->zipcode);
         }
         $map->save();
-        return redirect()->back()->with('message', 'Map Added Successfully');
+        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
+        if($check->count() > 0)
+        {
+            return redirect()->route('addnewjob')->with('success','Map Added Successfully');
+        }else{
+            return redirect()->back()->with('message', 'Map Added Successfully');
+        }
     }
     public function updatehiringmap(Request $request)
     {

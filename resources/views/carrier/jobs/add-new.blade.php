@@ -15,6 +15,7 @@
                             </div>
                         </div>
                         <!-- End Progress bar -->
+                        @if(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() != 0 && DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count() != 0)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -87,18 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count()  == 0)
-                          <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>Warning!</strong>You have not Added any hiring Area Map Please Add Mapp Before Starting Job
-                          </div>
-                        @endif
-                        @if(DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count()  == 0)
-                          <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            <strong>Warning!</strong>You have not Added any hiring Area Map Please Add Mapp Before Starting Job
-                          </div>
-                        @endif
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="tab-content" id="myTabContent2">
@@ -348,6 +338,26 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+
+                        <div class="card card-custom card-stretch">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 successfully-content">
+                                        <img width="120" src="{{asset('public/carrier/assets/media/custom/warning.png')}}">
+                                        <h2>Warning !!</h2>
+                                        <p>You have not Added any Hiring Area or Operating Area Map Please Add Mapp Before Starting Job</p>
+                                        <div class="dashboad-btn-main">
+                                            <div class="dashboad-btn">
+                                                <a href="{{ url('map/add-new') }}" type="reset" class="btn btn-primary mr-2 post-inner-btn">Add New Map</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @endif
                     </div>
                 </div>
             </div>

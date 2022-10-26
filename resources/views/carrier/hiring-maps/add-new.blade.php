@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="col-md-6 logo-preview">
                                                     <div class="image-input" id="kt_image_2">
-                                                        <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_2.jpg)"></div>
+                                                        <div class="image-input-wrapper" style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')"></div>
                                                         <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                                             <i class="fa fa-pen icon-sm text-muted"></i>
                                                             <input type="file" name="logo" accept=".png, .jpg, .jpeg">
@@ -340,13 +340,9 @@
         setTimeout(function(){
           var str='';
           str=str+'<h5>--Select State--</h5>';
-          // str=str+'<label for="Alabama" ><input type="checkbox" class="stchk" name="statechk" value="AL" id="AL" checked>Alabama</label>&nbsp<br>'
-          // str=str+'<label for="Arizona" ><input type="checkbox" class="stchk" name="statechk" value="AZ" id="AZ" checked>Arizona</label>&nbsp<br>'
-          // state_drwa('AL')
-          // state_drwa('AZ')
           for(var i=0;i<us_states.length;i++){
 
-            str=str+'<label for="'+us_states[i].name+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
+            str=str+'<label for="'+us_states[i].value+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
 
             $('#states_chkbx_div').html(str);
           }

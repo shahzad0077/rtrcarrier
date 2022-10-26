@@ -63,7 +63,7 @@
   <script src="{{ asset('public/carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
 
   <script src="{{ asset('public/carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
-
+  <script type="text/javascript" src="{{ url('public/carrier/assets/js/pages/crud/file-upload/image-input.js') }}"></script>
  <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>
   
   <script>

@@ -157,7 +157,7 @@
                         </span>
                     @enderror
                 </div>
-                <a target="_blank" href="{{ url('map/add-new') }}">Create New Hiring Map</a>
+                <a href="{{ url('map/add-new') }}">Create New Hiring Map</a>
             </div>
             <div class="col-md-6 map-content">
                 <div class="form-group">
@@ -174,7 +174,7 @@
                         </span>
                     @enderror
                 </div>
-                <a target="_blank" href="{{ url('map/add-new') }}">Create New Hiring Map</a>
+                <a href="{{ url('map/add-new') }}">Create New Hiring Map</a>
             </div>
         </div>
     </div>
