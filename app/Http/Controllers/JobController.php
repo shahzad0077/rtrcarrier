@@ -485,10 +485,6 @@ class JobController extends Controller
 
     public function hiringreq(Request $request)
     {
-        $this->validate($request, [
-            'template_id' => 'required',
-        ]);
-
         $link  = new linktemplatewithjobs();
         $link->template_id = $request->hiring_template;
         $link->job_id = $request->job_id;
