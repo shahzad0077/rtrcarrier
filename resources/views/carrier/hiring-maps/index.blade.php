@@ -44,6 +44,7 @@
                                                         <!--end::Svg Icon--></span> </th>
                                                 <th style="min-width: 120px">Map Type</th>
                                                 <th style="min-width: 120px">Status</th>
+                                                <th style="min-width: 120px">Logo</th>
                                                 <th class="pr-0 text-right" style="min-width: 160px">Action</th>
                                             </tr>
                                         </thead>
@@ -68,6 +69,7 @@
                                                         {{ $r->type }}
                                                     </span>
                                                 </td>
+
                                                 <td>
                                                     @if($r->status == 1)
                                                     <span class="label label-lg label-light-primary label-inline">Published</span>
@@ -75,6 +77,11 @@
                                                     <span class="label label-lg label-light-danger label-inline">Not Published</span>
                                                     @endif
 
+                                                </td>
+                                                <td>
+                                                    @if($r->logo)
+                                                    <img width="120" src="{{ url('public/images') }}/{{ $r->logo }}">
+                                                    @endif
                                                 </td>
                                                 <td class="pr-0 text-right">
                                                     <a href="{{ url('editmap') }}/{{ $r->id }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
