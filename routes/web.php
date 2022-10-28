@@ -59,6 +59,7 @@ Route::POST('/updateriderpolicy', [CarrierController::class, 'updateriderpolicy'
 Route::get('/companyinfo/{id}', [CarrierController::class, 'companyinfo']);
 Route::POST('/updatecompanyinfo', [CarrierController::class, 'updatecompanyinfo']);
 Route::get('/help', [CarrierController::class, 'carrierhelp']);
+Route::get('/helpsearch', [CarrierController::class, 'helpsearch']);
 Route::get('/add-new-post', [CarrierController::class, 'addnewpost']);
 Route::get('/all-posts', [CarrierController::class, 'allposts']);
 Route::get('/editpost/{id}', [CarrierController::class, 'editpost']);
@@ -116,9 +117,15 @@ Route::get('/deletejob/{id}', [JobController::class, 'deletejob']);
 Route::get('/jobedit/{id}', [JobController::class, 'jobedit']);
 Route::get('/carrierjobdetail/{id}', [JobController::class, 'carrierjobdetail']);
 Route::get('/hiring-templates', [JobController::class, 'hiringtemplates']);
+Route::get('/edithiringtemplate/{id}', [JobController::class, 'edithiringtemplate']);
+
+
 Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);
 Route::get('/add-new-hiring-template', [JobController::class, 'addnewhiringtemplate']);
 Route::post('/addnewhiringtemplate', [JobController::class, 'createnewhiringtemplate']);
+Route::post('/updatehiringtemplate', [JobController::class, 'updatehiringtemplate']);
+
+
 Route::POST('/paypal', [JobController::class, 'postPaymentWithpaypal'])->name('paypal');
 Route::get('/paypal', [JobController::class, 'getPaymentStatus'])->name('status');
 Route::post('stripe', [JobController::class, 'stripePost'])->name('stripe.post');

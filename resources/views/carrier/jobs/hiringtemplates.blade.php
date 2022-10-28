@@ -42,7 +42,7 @@
                                     {{ $r->updated_at }}
                                 </td>
                                 <td nowrap="">
-                                    <a href="{{ url('editpost') }}/{{ $r->id }}" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
+                                    <a href="{{ url('edithiringtemplate') }}/{{ $r->id }}" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
                                     <a data-toggle="modal" data-target="#deleteModal{{ $r->id }}" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
                                 </td>
                             </tr>

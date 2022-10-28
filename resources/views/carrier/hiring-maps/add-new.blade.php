@@ -108,26 +108,9 @@
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
-                                                <div class="col-md-2">
-                                                    <h3>Upload Logo</h3>
-                                                    <div class="dropzone dropzone-default dz-clickable my-files" id="kt_dropzone_1">
-                                                        <div class="dropzone-msg dz-message needsclick up-arrow">
-                                                            <h3 class="dropzone-msg-title"><i class="icon-2x text-dark-50 flaticon2-up"></i></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-md-6 logo-preview">
-                                                    <div class="image-input" id="kt_image_2">
-                                                        <div class="image-input-wrapper" style="background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')"></div>
-                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
-                                                            <i class="fa fa-pen icon-sm text-muted"></i>
-                                                            <input type="file" name="logo" accept=".png, .jpg, .jpeg">
-                                                            <input type="hidden" name="profile_avatar_remove">
-                                                        </label>
-                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
-                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
-                                                        </span>
-                                                    </div>
+                                                    <label>Map Logo</label>
+                                                    <input class="form-control" type="file" name="logo" accept=".png, .jpg, .jpeg">
                                                 </div>
                                             </div>
                                         </div>
@@ -136,8 +119,6 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
-                                                <button type="button" class="btn btn-secondary mr-2">Preview</button>
-                                                <button type="button" class="btn btn-outline-primary mr-2">Download as PDF</button>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>

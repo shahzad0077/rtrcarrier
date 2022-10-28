@@ -244,6 +244,7 @@
             </div>
             <form id="addpayoutschedule" method="POST" action="{{ url('job/addpayoutschedule') }}"> 
                 @csrf
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
             <div class="modal-body ">
                 <div id="payoutschedule">
                     <div class="row mb-3">

@@ -17,6 +17,10 @@ use App\Models\education_articles;
 use App\Models\maplocations;
 use App\Models\hiring_maps;
 use App\Models\recuring_tips;
+use App\Models\advance_equipment_values;
+use App\Models\advance_pay_options;
+use App\Models\equipment_jobs;
+use App\Models\job_equipments;
 use Validator;
 use Auth;
 use DB;
@@ -154,7 +158,18 @@ class CarrierController extends Controller
         $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
         if($check->count() > 0)
         {
-            return redirect()->route('addnewjob')->with('success','Map Added Successfully');
+            if(hiring_maps::where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
+            {
+                if(hiring_maps::where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
+                {
+                    return redirect()->route('addnewjob')->with('success','Map Added Successfully');
+                }else{
+                    return redirect()->back()->with('warning', 'Please Add Operating Map');
+                }
+            }else{
+                return redirect()->back()->with('warning', 'Please Add Hiring Map');
+            }
+            
         }else{
             return redirect()->back()->with('message', 'Map Added Successfully');
         }
@@ -193,6 +208,39 @@ class CarrierController extends Controller
     }
     public function deletemap($id)
     {
+        $map = hiring_maps::find($id);
+        $map_type = $map->type;
+        if($map_type == 'Hiring Map')
+        {
+            $jobs = jobs::where('hiring_area' , $id)->first();
+            if($jobs)
+            {
+                linktemplatewithjobs::where('job_id' , $jobs->id)->delete();
+                advance_equipment_values::where('job_id' , $jobs->id)->delete();
+                advance_pay_options::where('job_id' , $jobs->id)->delete();
+                equipment_jobs::where('job_id' , $jobs->id)->delete();
+                jobsubmissionsrequests::where('job_id' , $jobs->id)->delete();
+                job_equipments::where('job_id' , $jobs->id)->delete();
+                jobs::where('id' , $jobs->id)->delete();
+            }
+            
+        }
+        if($map_type == 'Operating Map')
+        {
+            $jobs = jobs::where('operating_area' , $id)->first();
+            if($jobs)
+            {
+                linktemplatewithjobs::where('job_id' , $jobs->id)->delete();
+                advance_equipment_values::where('job_id' , $jobs->id)->delete();
+                advance_pay_options::where('job_id' , $jobs->id)->delete();
+                equipment_jobs::where('job_id' , $jobs->id)->delete();
+                jobsubmissionsrequests::where('job_id' , $jobs->id)->delete();
+                job_equipments::where('job_id' , $jobs->id)->delete();
+                jobs::where('id' , $jobs->id)->delete();
+            }
+            
+        }
+
         maplocations::where('map_id' , $id)->delete();
         hiring_maps::where('id' , $id)->delete();
         return redirect()->back()->with('message', 'Map Deleted Successfully');
@@ -276,6 +324,17 @@ class CarrierController extends Controller
     {
         $data = help_categories::where('status' , 'published')->orderby('order' , 'ASC')->get();
         return view('carrier/help/index')->with(array('data'=>$data));
+    }
+    public function helpsearch(Request $request)
+    {
+        $input = $request->all();
+        $q = help_articles::select('help_articles.id','help_articles.tittle','help_articles.answer');
+        if ($input['keyword'])
+        {
+            $q->where('help_articles.tittle','like', '%' . $input['keyword'] . '%' );
+        }
+        $data = $q->orderby('order' , 'ASC')->get();
+        return view('carrier/help/helpsearch')->with(array('data'=>$data));
     }
     public function addnewpost()
     {

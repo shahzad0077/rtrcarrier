@@ -318,7 +318,29 @@
         </div>
         <div id="collapseFour6" class="collapse" data-parent="#accordionExample6">
             <div class="card-body p-10">
-                
+                @if($job->plan_id)
+                @php
+                    $plan = DB::table('subscription_plans')->where('id' , $job->plan_id)->first();
+
+                @endphp
+                <div  style="margin-bottom:20px;" class="col-md-6">
+                    <div class="card my-left card activeplan">
+                        <div class="card-body post-jobs-titles">
+                            <h2>{{ $plan->name }} (${{$plan->price}})</h2>
+                            <div class="correct-pin">
+                                @foreach(explode(',' , $plan->key_points) as $k)
+                                <div class="my-icon">
+                                    <i class="icon-2x text-dark-50 flaticon2-check-mark"></i>
+                                </div>
+                                <div class="post-icon-title">
+                                    <p>{{$k}}</p>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

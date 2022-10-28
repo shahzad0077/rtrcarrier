@@ -145,12 +145,6 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="lable-control">Password</label>
-                            <input required type="password" class="form-control input-lg" name="password">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
                             <label class="lable-control">Note</label>
                             <input type="text" class="form-control input-lg" name="note">
                         </div>

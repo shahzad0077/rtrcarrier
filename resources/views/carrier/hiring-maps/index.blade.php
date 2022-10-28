@@ -29,6 +29,7 @@
                                     <table id="example" class="table table-separate table-head-custom table-checkable">
                                         <thead>
                                             <tr class="text-left">
+                                                <th style="min-width: 120px">Logo</th>
                                                 <th class="pl-0" style="min-width: 120px">Map ID</th>
                                                 <th style="min-width: 110px">Map Title</th>
                                                 <th style="min-width: 110px">
@@ -44,13 +45,18 @@
                                                         <!--end::Svg Icon--></span> </th>
                                                 <th style="min-width: 120px">Map Type</th>
                                                 <th style="min-width: 120px">Status</th>
-                                                <th style="min-width: 120px">Logo</th>
+                                                
                                                 <th class="pr-0 text-right" style="min-width: 160px">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($data as $r)
                                             <tr>
+                                                <td>
+                                                    @if($r->logo)
+                                                    <img width="120" height="120" src="{{ url('public/images') }}/{{ $r->logo }}">
+                                                    @endif
+                                                </td>
                                                 <td class="pl-0">
                                                     <a href="javascript::void(0)" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{ $r->id }}</a>
                                                 </td>
@@ -78,11 +84,7 @@
                                                     @endif
 
                                                 </td>
-                                                <td>
-                                                    @if($r->logo)
-                                                    <img width="120" src="{{ url('public/images') }}/{{ $r->logo }}">
-                                                    @endif
-                                                </td>
+                                                
                                                 <td class="pr-0 text-right">
                                                     <a href="{{ url('editmap') }}/{{ $r->id }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                                         <span class="svg-icon svg-icon-md svg-icon-primary">
@@ -117,8 +119,8 @@
                                                                                 <i aria-hidden="true" class="ki ki-close"></i>
                                                                             </button>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                            Are you Sure You want to delete this. 
+                                                                        <div style="text-align: left;" class="modal-body">
+                                                                           <b style="color:red;"> Are you Sure You want to delete this.If you Delete Map Then Job Will be Automaticaly Deleted Against This Map</b> 
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>

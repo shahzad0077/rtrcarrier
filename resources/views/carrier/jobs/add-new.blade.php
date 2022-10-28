@@ -191,7 +191,7 @@
                                                 <!--begin::Header-->
                                                 <div class="card-header">
                                                     <div class="card-title">
-                                                        <h3 class="card-label font-weight-bolder text-dark">Payement Of {{ $plan->name }} Plan</h3>
+                                                        <h3 class="card-label font-weight-bolder text-dark">Payement Of {{ $plan->name }} Plan price is (${{$plan->price}})</h3>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">

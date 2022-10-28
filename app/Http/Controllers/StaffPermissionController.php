@@ -75,11 +75,12 @@ class StaffPermissionController extends Controller
     }
     public function addnewcarrierstaff(Request $request)
     {
+        $randompassword = rand(123456789,987654321);
         $newuser = new User();
         $newuser->name = $request->name;
         $newuser->email = $request->email;
         $newuser->phonenumber = $request->phone_number;
-        $newuser->password = Hash::make($request->password);
+        $newuser->password = Hash::make($randompassword);
         $newuser->type = 'carrier_sub_account';
         $newuser->approved_status = 1;
         $newuser->save();
@@ -90,7 +91,7 @@ class StaffPermissionController extends Controller
         $company = staff_permissions::where('id' , $request->role_id)->get()->first();
         $companyname = companies::where('id' , $company->company_id)->first()->company_name;
         $subject = 'Welcome To '.env('APP_NAME').'';
-        Mail::send('email.inviteuser', ['email' => $request->email,'password' => $request->password,'name' => $request->name,'role' => $company->name,'companyname' => $companyname], function($message) use($request , $subject){
+        Mail::send('email.inviteuser', ['email' => $request->email,'password' => $randompassword,'name' => $request->name,'role' => $company->name,'companyname' => $companyname], function($message) use($request , $subject){
             $message->to($request->email);
             $message->subject($subject);
         });

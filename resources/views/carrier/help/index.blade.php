@@ -8,10 +8,14 @@
         <div id="kt_content_container" class="container-xxl">
             
             <div class="row m-10">
-                <div class="col-md-6 mx-auto text-center">
-                    <h1 class="fw-bold fs-4 fs-lg-1 text-gray-800 mb-3 mb-lg-6 p-4">How Can We Help You?</h1>
-                    <input type="text" class="form-control " style="min-height:62px; box-shadow: 4px 10px 4px 10px #f1f1f1; border-radius:100px" placeholder="Search for a Question" name="">
-                </div>
+                
+                    <div class="col-md-6 mx-auto text-center">
+                        <h1 class="fw-bold fs-4 fs-lg-1 text-gray-800 mb-3 mb-lg-6 p-4">How Can We Help You?</h1>
+                        <form method="GET" action="{{ url('helpsearch') }}">
+                        <input type="text" class="form-control " style="min-height:62px; box-shadow: 4px 10px 4px 10px #f1f1f1; border-radius:100px" placeholder="Search for a Question" name="keyword">
+                        </form>
+                    </div>
+                
             </div>
 
             <!--begin::Row-->
