@@ -524,111 +524,47 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h5 class="mb-5">Equipments</h5>
+                        <h5 class="mb-5">Freight Type</h5>
                     </div>
+                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
                     <div class="col-md-3">
                         <label class="checkbox checkbox-lg">
                             <input type="checkbox" name="Checkboxes1" />
                             <span class="mr-3"></span>
-                            Truck make
+                            {{$r}}
                         </label>
                     </div>
-
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            Model
-                        </label>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            Year
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
-
                 <div class="row mt-7">
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Zip code</h5>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Enter zip code" name="" />
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Enter zip code" name="" />
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary btn-block">
-                            Add new
-                        </button>
-                    </div>
-                </div>
 
-                <div class="row mt-7">
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Solo or team</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            Solo
-                        </label>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            Team
-                        </label>
-                    </div>
-                </div>
-
-                <div class="row mt-7">
                     <div class="col-md-12">
                         <h5 class="mb-5">Home time</h5>
                     </div>
+                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 123)->first()->options) as $r)
                     <div class="col-md-3">
                         <label class="checkbox checkbox-lg">
                             <input type="checkbox" name="Checkboxes1" />
                             <span class="mr-3"></span>
-                            daily
+                            {{$r}}
                         </label>
                     </div>
-
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            bi-weekly
-                        </label>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            21+ days out
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
-
                 <div class="row mt-7">
+
                     <div class="col-md-12">
-                        <h5 class="mb-5">Endorsements</h5>
+                        <h5 class="mb-5">Driver Type</h5>
                     </div>
-                    <div class="col-md-6">
+                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
+                    <div class="col-md-3">
                         <label class="checkbox checkbox-lg">
                             <input type="checkbox" name="Checkboxes1" />
                             <span class="mr-3"></span>
-                            no additional endorsements
+                            {{$r}}
                         </label>
                     </div>
+                    @endforeach
                 </div>
             </div>
             <div class="modal-footer">
