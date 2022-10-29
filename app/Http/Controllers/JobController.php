@@ -232,7 +232,7 @@ class JobController extends Controller
         $job = jobs::find($id);
         $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
         $attribute = jot_attributes::all();
-        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        return view('carrier/jobs/jobedit')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
     public function carrierjobdetail($id)
     {

@@ -1,5 +1,5 @@
 @extends('admin.layouts.main-layout')
-@section('title','Add New Post')
+@section('title','Edit Post')
 @section('content')
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -13,7 +13,7 @@
                 <div class="card-header flex-wrap py-5">
                     <div class="card-title">
                         <h3 class="card-label">
-                            Add New Post
+                            Edit Post : {{ $data->tittle }}
                         </h3>
                     </div>
                 </div>

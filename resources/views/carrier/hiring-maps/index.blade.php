@@ -29,24 +29,13 @@
                                     <table id="example" class="table table-separate table-head-custom table-checkable">
                                         <thead>
                                             <tr class="text-left">
-                                                <th style="min-width: 120px">Logo</th>
-                                                <th class="pl-0" style="min-width: 120px">Map ID</th>
-                                                <th style="min-width: 110px">Map Title</th>
-                                                <th style="min-width: 110px">
-                                                    <span class="text-info">Date</span>
-                                                    <span class="svg-icon svg-icon-sm svg-icon-primary">
-                                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Down-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <polygon points="0 0 24 0 24 24 0 24"></polygon>
-                                                                <rect fill="#000000" opacity="0.3" x="11" y="4" width="2" height="10" rx="1"></rect>
-                                                                <path d="M6.70710678,19.7071068 C6.31658249,20.0976311 5.68341751,20.0976311 5.29289322,19.7071068 C4.90236893,19.3165825 4.90236893,18.6834175 5.29289322,18.2928932 L11.2928932,12.2928932 C11.6714722,11.9143143 12.2810586,11.9010687 12.6757246,12.2628459 L18.6757246,17.7628459 C19.0828436,18.1360383 19.1103465,18.7686056 18.7371541,19.1757246 C18.3639617,19.5828436 17.7313944,19.6103465 17.3242754,19.2371541 L12.0300757,14.3841378 L6.70710678,19.7071068 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000003, 15.999999) scale(1, -1) translate(-12.000003, -15.999999) "></path>
-                                                            </g>
-                                                        </svg>
-                                                        <!--end::Svg Icon--></span> </th>
-                                                <th style="min-width: 120px">Map Type</th>
-                                                <th style="min-width: 120px">Status</th>
-                                                
-                                                <th class="pr-0 text-right" style="min-width: 160px">Action</th>
+                                                <th>Logo</th>
+                                                <th>Map ID</th>
+                                                <th>Map Title</th>
+                                                <th>Date</th>
+                                                <th>Map Type</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -33,7 +33,7 @@
                                     </a>
                                     @endif
                                     <div class="m-0">
-                                        <a href="{{ url('detail') }}/{{ $a->id }}" class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">{!! \Illuminate\Support\Str::limit($a->tittle, 100, $end='...') !!}</a>
+                                        <a href="{{ url('detail') }}/{{ $a->url }}" class="fs-4 text-dark fw-bold text-hover-primary text-dark lh-base">{!! \Illuminate\Support\Str::limit($a->tittle, 100, $end='...') !!}</a>
                                         <div class="fw-semibold fs-5 text-gray-600 text-dark mt-4">
                                             {!! \Illuminate\Support\Str::limit($a->content, 450, $end='...') !!}
                                         </div>

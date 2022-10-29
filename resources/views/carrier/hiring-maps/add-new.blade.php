@@ -110,7 +110,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 logo-preview">
                                                     <label>Map Logo</label>
-                                                    <input class="form-control" type="file" name="logo" accept=".png, .jpg, .jpeg">
+                                                    <input required class="form-control" type="file" name="logo" accept=".png, .jpg, .jpeg">
                                                 </div>
                                             </div>
                                         </div>

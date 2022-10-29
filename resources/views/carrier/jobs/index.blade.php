@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-3">
                         <select name="freighttype" class="form-control">
-                            <option value="">Select Freight Type</option>
+                            <option value="">All Type</option>
                             @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
                             <option value="{{ $r }}">{{ $r }}</option>
                             @endforeach

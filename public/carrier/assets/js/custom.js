@@ -1,3 +1,6 @@
+function savebasicform() {
+    $('#savebasicform').submit();
+}
 function geturl()
 {
 	return $('#app_url').val();
