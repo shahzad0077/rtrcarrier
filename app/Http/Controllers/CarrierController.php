@@ -347,6 +347,7 @@ class CarrierController extends Controller
         $add = new education_articles();
         $add->category_id = $request->category_id;
         $add->tittle = $request->tittle;
+        $add->url = Cmf::shorten_url($request->tittle);
         if($request->image)
         {
             $add->image = Cmf::sendimagetodirectory($request->image);
@@ -391,6 +392,7 @@ class CarrierController extends Controller
         $add = education_articles::find($request->id);
         $add->category_id = $request->category_id;
         $add->tittle = $request->tittle;
+        $add->url = Cmf::shorten_url($request->tittle);
         if($request->image)
         {
             $add->image = Cmf::sendimagetodirectory($request->image);

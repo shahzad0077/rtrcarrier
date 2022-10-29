@@ -6,7 +6,7 @@
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
-        <div class=" container ">
+        <div class=" container-fluid ">
             <!--begin::Card-->
             @include('alerts.index')
             <div class="card card-custom mt-5">
@@ -39,7 +39,11 @@
                                     {{ DB::table('education_categories')->where('id' , $r->category_id)->first()->name }}
                                 </td>
                                 <td>
-                                    {{ DB::table('users')->where('id' , $r->added_by)->first()->name }}
+                                    @if($r->added_by)
+                                        {{ DB::table('users')->where('id' , $r->added_by)->first()->name }}
+                                    @else
+                                        {{DB::table('companies')->where('id'  ,$r->carrier_id)->first()->company_name}}
+                                    @endif
                                 </td>
                                 <td>
                                     @if($r->status == 'Published')
