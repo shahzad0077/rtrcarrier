@@ -208,6 +208,7 @@ class AdminController extends Controller
     {
         $add = new education_categories();
         $add->name = $request->name;
+        $add->url = Cmf::shorten_url($request->name);
         $add->status = 'Published';
         $add->save();
         return redirect()->back()->with('message', 'Category Added Successfully');
@@ -216,6 +217,7 @@ class AdminController extends Controller
     {
         $add = education_categories::find($request->id);
         $add->name = $request->name;
+        $add->url = Cmf::shorten_url($request->name);
         $add->status = $request->status;
         $add->order = $request->order;
         $add->save();
@@ -269,6 +271,7 @@ class AdminController extends Controller
         $add = new education_articles();
         $add->category_id = $request->category_id;
         $add->tittle = $request->tittle;
+        $add->url = Cmf::shorten_url($request->tittle);
         if($request->image)
         {
             $add->image = Cmf::sendimagetodirectory($request->image);
@@ -286,6 +289,7 @@ class AdminController extends Controller
         $add = education_articles::find($request->id);
         $add->category_id = $request->category_id;
         $add->tittle = $request->tittle;
+        $add->url = Cmf::shorten_url($request->tittle);
         if($request->image)
         {
             $add->image = Cmf::sendimagetodirectory($request->image);

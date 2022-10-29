@@ -361,10 +361,16 @@ class CarrierController extends Controller
     }
     public function educationcenter()
     {
-        $categories = education_categories::where('status' , 'Published')->get();
+        $categories = education_articles::select('education_categories.name','education_categories.id','education_categories.url')->leftJoin('education_categories','education_articles.category_id','=','education_categories.id')->groupby('education_categories.name')->get();
         $rtrposts = education_articles::where('status' , 'Published')->where('type' , 'rtr');
         $carrierposts = education_articles::where('status' , 'Published')->where('carrier_id' , Cmf::getusercompany()->id)->where('type' , 'carrier');
         return view('carrier/education-center/index')->with(array('categories'=>$categories,'carrierposts'=>$carrierposts,'rtrposts'=>$rtrposts));
+    }
+    public function educationcenterbycategory($id)
+    {
+        $category = education_categories::where('url' , $id)->first();
+        $posts = education_articles::where('status' , 'Published')->where('type' , 'rtr')->where('category_id' , $category->id)->get();
+        return view('carrier/education-center/bycategory')->with(array('category'=>$category,'data'=>$posts));
     }
 
     public function allposts()
@@ -398,7 +404,7 @@ class CarrierController extends Controller
     public function detailpost($id)
     {
         $categories = education_categories::where('status' , 'Published')->get();
-        $data = education_articles::where('status' , 'Published')->where('id' , $id)->get()->first();
+        $data = education_articles::where('status' , 'Published')->where('url' , $id)->get()->first();
         return view('carrier/education-center/detail')->with(array('categories'=>$categories,'data'=>$data));
     }
     

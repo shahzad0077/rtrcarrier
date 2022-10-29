@@ -15,21 +15,15 @@
                         </div>
                         <div class="separator separator-dashed mb-9"></div>
                     </div>
-                    @foreach($categories as $r)
                     <div class="mb-17">
                         <div class="d-flex mb-5">
-                              <div>
-                                  <h3 class="text-dark">{{ $r->name }}</h3>
-                              </div>
-                              @if(DB::table('education_articles')->where('category_id' , $r->id)->count() > 4)
-                              <div class="ml-auto">
-                                  <a href="{{ url('education-center') }}/{{ $r->url }}" class="fs-6 fw-semibold link-primary ml-auto">View All</a>
-                              </div>
-                              @endif
+                          <div>
+                              <h3 class="text-dark">{{ $category->name }}</h3>
+                          </div>
                         </div>
                         <div class="separator separator-dashed mb-9"></div>
                         <div class="row g-10">
-                            @foreach(DB::table('education_articles')->where('category_id' , $r->id)->orderby('created_at' , 'desc')->limit(4)->get() as $a)
+                            @foreach($data as $a)
                             <div class="col-md-3">
                                 <div class="card-xl-stretch me-md-6">
                                     @if($a->youtube)
@@ -51,7 +45,6 @@
                         </div>
                         <!--end::Row-->
                     </div>
-                    @endforeach                
                 </div>
                 <!--end::Body-->
             </div>

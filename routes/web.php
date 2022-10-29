@@ -65,6 +65,7 @@ Route::get('/all-posts', [CarrierController::class, 'allposts']);
 Route::get('/editpost/{id}', [CarrierController::class, 'editpost']);
 Route::post('/addneweducationarticle', [CarrierController::class, 'addneweducationarticle']);
 Route::get('/education-center', [CarrierController::class, 'educationcenter']);
+Route::get('/education-center/{id}', [CarrierController::class, 'educationcenterbycategory']);
 Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducationarticle']);
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);

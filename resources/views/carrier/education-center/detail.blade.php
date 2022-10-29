@@ -93,7 +93,7 @@
                             <h4 class="text-dark mb-7">Categories</h4>
                             @foreach($categories as $r)
                             <div class="d-flex flex-stack fw-semibold fs-5 text-muted mb-4">
-                                <a href="#" class="text-muted text-hover-primary pe-2">{{ $r->name }}</a>
+                                <a href="{{ url('education-center') }}/{{ $r->url }}" class="text-muted text-hover-primary pe-2">{{ $r->name }}</a>
                             </div>
                             @endforeach
                             
