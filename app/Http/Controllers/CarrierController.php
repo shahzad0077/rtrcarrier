@@ -26,6 +26,7 @@ use Validator;
 use Auth;
 use DB;
 use Stripe;
+use PDF;
 class CarrierController extends Controller
 {
     public function __construct()
@@ -60,8 +61,11 @@ class CarrierController extends Controller
     public function downloadinvoice($id)
     {
         $data = payements::find($id);
-
-        
+        $job = jobs::find($data->job_id);
+        $company = companies::find($job->company_id);
+        $user = user::find($company->user_id);
+        $pdf = PDF::loadView('carrier.billing.invoicetwo', ['data'=>$data,'user'=>$user]);
+        return $pdf->download('articles.pdf');
     }
     public function carrierprofile()
     {
