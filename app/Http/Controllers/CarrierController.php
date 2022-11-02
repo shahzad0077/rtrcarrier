@@ -21,6 +21,7 @@ use App\Models\advance_equipment_values;
 use App\Models\advance_pay_options;
 use App\Models\equipment_jobs;
 use App\Models\job_equipments;
+use App\Models\payements;
 use Validator;
 use Auth;
 use DB;
@@ -40,6 +41,27 @@ class CarrierController extends Controller
             $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
+    }
+    public function searchcity($id)
+    {
+        $data = DB::table('us_cities')->where('CITY','like', '%' . $id . '%' )->get();
+        foreach ($data as $r) {
+            echo '<div class="col-md-4">
+                    <input onchange="city_drawn('.$r->CITY.')" type="checkbox" id="'.$r->ID.'" >
+                    <label for="'.$r->ID.'">'.$r->CITY.'</label>
+                </div>';
+        }
+    }
+    public function billing()
+    {
+        $data = payements::orderby('created_at' , 'DESC')->get();
+        return view('carrier.billing.index')->with(array('data'=>$data));
+    }
+    public function downloadinvoice($id)
+    {
+        $data = payements::find($id);
+
+        
     }
     public function carrierprofile()
     {

@@ -52,9 +52,9 @@
                                                 <div class="col-md-2">
                                                     <button type="button" class="form-control btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
                                                 </div>
-                                                <!-- <div class="col-md-2">
+                                                <div class="col-md-2">
                                                     <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-                                                </div> -->
+                                                </div>
                                                 <!-- <div class="col-md-2">
                                                     <button type="button" class="btn form-control btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
                                                 </div>
@@ -167,10 +167,21 @@
     </div>
 </div>
 
-
+<style type="text/css">
+    #loadingDiv{
+    position: absolute;
+    text-align: center;
+    top: 200px;
+    left: 300px;
+    z-index: 1000000;
+}
+.blurclass{
+    filter: blur(5px);
+}
+</style>
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -183,14 +194,22 @@
                 </button>
             </div>
             <div class="modal-body">
+                <div style="display: none;" id="loadingDiv"><div class="loader">LOADING...</div></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="city" type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter City">
+                        <input type="text" onkeyup="searchcity(this.value)" class="form-control" placeholder="Search City" id="searchcity">
                     </div>
+                </div>
+                <div style="margin-top:25px;" class="row" id="citiesdiv">
+                    @foreach(DB::table('us_cities')->groupby('CITY')->limit(33)->get() as $r)
+                    <div class="col-md-4">
+                        <input onchange="city_drawn('{{ $r->CITY }}')" type="checkbox" id="{{ $r->ID }}" >
+                        <label for="{{ $r->ID }}">{{ $r->CITY }}</label>
+                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
                 <button onclick="addnewcity()" type="button" class="btn btn-primary font-weight-bold">Save</button>
             </div>
         </div>
@@ -200,7 +219,7 @@
 
 <!-- Add State-->
 <div class="modal fade" id="addState" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -213,13 +232,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="states_div">
-                          <div id="states_chkbx_div" style=" max-height: 300px; padding: 5%; overflow: auto; background-color: aliceblue;">
-                          </div>
-                        </div>
+                <div style="margin-top:25px;" class="row">
+                    @foreach(DB::table('us_states')->orderby('STATE_NAME' , 'ASC')->get() as $r)
+                    <div class="col-md-4">
+                        <input class="states" value="{{ $r->STATE_CODE }}" type="checkbox" id="{{ $r->ID }}" >
+                        <label for="{{ $r->ID }}">{{ $r->STATE_NAME }}</label>
                     </div>
+                    @endforeach
                 </div>
             </div>
             <div class="modal-footer">
@@ -237,6 +256,9 @@
 
 @section('scripts')
     <script>
+
+
+
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
         }, 500);
@@ -282,10 +304,10 @@
             position: 'topright',
             draw:{
               polygon : {
-                          allowIntersection: false,
-                          showLength: true,
-                          metric:['km', 'm']
-                      },
+                  allowIntersection: false,
+                  showLength: true,
+                  metric:['km', 'm']
+              },
               polyline:false,
               marker: true,
               squire: false,
@@ -317,25 +339,14 @@
         });   
 
         var eachlyr_arr =  Array();
+        var city_arr = Array();
 
-        setTimeout(function(){
-          var str='';
-          str=str+'<h5>--Select State--</h5>';
-          for(var i=0;i<us_states.length;i++){
 
-            str=str+'<label for="'+us_states[i].value+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
-
-            $('#states_chkbx_div').html(str);
-          }
-
-          $('.stchk').change(function(event) {
+          $('.states').change(function(event) {
             var valname =$(event.target).val();
-            
             var checked = $(this).is(':checked')
             if(checked==true){
-
               savelocation(valname);
-              // console.log("chkd")
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
                 console.log(data);
@@ -366,7 +377,7 @@
               }   
             }  
           });
-        }, 400); 
+  
         
         
 
@@ -374,7 +385,7 @@
         function state_drwa(valname){
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
-                console.log(data);
+                // console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -397,6 +408,32 @@
             
         }
 
+        function city_drawn(valname)
+        {
+            var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+valname+'&polygon_geojson=1&format=geojson'
+            console.log(nurl);
+              $.getJSON(nurl, function(data) {
+                console.log(data);
+                var lyrname=L.geoJSON(data, {
+                  style: (feature) => {
+                    return {
+                      stroke: true,
+                      color: "#9933ff",
+                      weight: 2,
+                      opacity: 0.7,
+                      fill: true,
+                      fillColor: "#7300e6",
+                      fillOpacity: 0.15,
+                      smoothFactor: 0.5,
+                      interactive: false,
+                    };
+                  },
+                })
+                city_arr.push(valname)
+                city_arr[valname]=lyrname
+                city_arr[valname].addTo(map)
+              });
+        }
 
 
          
@@ -423,6 +460,7 @@
               var searchTxt = $('div.leaflet-control-geocoder-form input').val();
               console.log(searchTxt);
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
+              console.log(nurl);
               $.getJSON(nurl, function(data) {
                 console.log(data);
                 var lyrname=L.geoJSON(data, {
@@ -461,11 +499,8 @@
         }
         function addnewcity()
         {
-            var city = $('#city').val();
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="city'+value1+' btn btn-secondary map-delete-btn">'+city+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletecity('+value1+')"></i></button><input type="hidden" value="'+city+'" name="city[]" id="city'+value1+'">');
-            $('#city').val('')
-            $('#addCity').modal('hide');
+            var city = $('.city').val();
+            city_drawn(city);
         }
         function deletecity(id)
         {
@@ -484,6 +519,22 @@
         {
             $('.zipcode'+id).hide();
             $('#zipcode'+id).val('');
+        }
+        function searchcity(id)
+        {
+            $('#loadingDiv').show();
+            $('#citiesdiv').addClass('blurclass');
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/searchcity/"+id, 
+                type:"get",
+                success:function(res){
+                   $('#citiesdiv').html(res);
+                   $('#loadingDiv').hide();
+                   $('#citiesdiv').removeClass('blurclass');
+                }
+            })
         }
         function savelocation(value)
         {

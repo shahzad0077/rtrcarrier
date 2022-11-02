@@ -76,6 +76,9 @@ Route::get('/deletemap/{id}', [CarrierController::class, 'deletemap']);
 Route::get('/changestatusofmap/{id}', [CarrierController::class, 'changestatusofmap']);
 Route::get('/editmap/{id}', [CarrierController::class, 'editmap']);
 Route::post('/updatehiringmap', [CarrierController::class, 'updatehiringmap']);
+Route::get('/billing', [CarrierController::class, 'billing']);
+Route::get('/searchcity/{id}', [CarrierController::class, 'searchcity']);
+Route::get('/downloadinvoice', [CarrierController::class, 'downloadinvoice']);
 
 
 
@@ -158,12 +161,6 @@ Route::get('/integrations', function () {
 
 Route::get('/advertise', function () {
     return view('carrier/advertise/index');
-});
-
-
-
-Route::get('/billing', function () {
-    return view('carrier/billing/index');
 });
 
 
