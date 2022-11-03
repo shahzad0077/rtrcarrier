@@ -79,6 +79,7 @@ Route::post('/updatehiringmap', [CarrierController::class, 'updatehiringmap']);
 Route::get('/billing', [CarrierController::class, 'billing']);
 Route::get('/searchcity/{id}', [CarrierController::class, 'searchcity']);
 Route::get('/downloadinvoice/{id}', [CarrierController::class, 'downloadinvoice']);
+Route::get('/advertise', [CarrierController::class, 'advertise']);
 
 
 
@@ -159,9 +160,6 @@ Route::get('/integrations', function () {
 
 
 
-Route::get('/advertise', function () {
-    return view('carrier/advertise/index');
-});
 
 
 

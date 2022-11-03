@@ -32,6 +32,10 @@
                         </thead>
                         <tbody>
                             @foreach($data as $r)
+                            @php
+                                $job = DB::table('jobs')->where('id' , $r->job_id)->first();
+                            @endphp
+                                @if($job->company_id == Cmf::getusercompany()->id)
                                 <tr>
                                     <td>RTR00{{ $r->id }}</td>
                                     <td> <a class="btn btn-primary btn-sm" target="_blank" href="{{ url('job-detail') }}/{{ DB::table('jobs')->where('id' , $r->job_id)->first()->url }}"> <i class="fa fa-eye"></i> View Job</a></td>
@@ -41,6 +45,7 @@
                                     <td>{{ $r->created_at }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="{{ url('downloadinvoice') }}/{{ $r->id }}"><i class="fa fa-download"></i> Download Invoice</a></td>
                                 </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
