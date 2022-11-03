@@ -34,7 +34,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-xl-2 col-lg-2">Avatar</label>
                                                     <div class="col-lg-9 col-xl-6">
-                                                        <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url(assets/media/users/blank.png)">
+                                                        <div class="image-input image-input-outline" id="kt_profile_avatar">
 
                                                             @if(Auth::user()->profile_picture)
                                                             <div class="image-input-wrapper" style="background-image: url('{{ asset('public/') }}/images/{{ Auth::user()->profile_picture }}')"></div>
