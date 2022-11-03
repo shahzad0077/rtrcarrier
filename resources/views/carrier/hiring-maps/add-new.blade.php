@@ -501,6 +501,7 @@
         {
             var city = $('.city').val();
             city_drawn(city);
+            $('#addCity').modal('hide');
         }
         function deletecity(id)
         {
