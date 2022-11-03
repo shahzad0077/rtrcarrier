@@ -410,10 +410,12 @@
 
         function city_drawn(valname)
         {
-            var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+valname+'&polygon_geojson=1&format=geojson'
-            console.log(nurl);
+            var searchTxt = valname;
+              console.log(searchTxt);
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
+              // console.log(nurl);
               $.getJSON(nurl, function(data) {
-                console.log(data);
+                // console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -428,11 +430,14 @@
                       interactive: false,
                     };
                   },
-                })
-                city_arr.push(valname)
-                city_arr[valname]=lyrname
-                city_arr[valname].addTo(map)
+                }).addTo(map);  
+                // var marker = new L.Marker([lat,long]);
+                // marker.addTo(map);      
+                
               });
+                // console.log(lat)
+                // console.log(long)
+                
         }
 
 
@@ -501,7 +506,6 @@
         {
             var city = $('.city').val();
             city_drawn(city);
-            $('#addCity').modal('hide');
         }
         function deletecity(id)
         {

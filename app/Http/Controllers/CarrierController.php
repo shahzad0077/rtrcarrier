@@ -45,10 +45,12 @@ class CarrierController extends Controller
     }
     public function searchcity($id)
     {
-        $data = DB::table('us_cities')->where('CITY','like', '%' . $id . '%' )->get();
+        $data = DB::table('us_cities')->groupby('CITY')->where('CITY','like', '%' . $id . '%' )->get();
         foreach ($data as $r) {
+            $city = "'".$r->CITY."'";
+
             echo '<div class="col-md-4">
-                    <input onchange="city_drawn('.$r->CITY.')" type="checkbox" id="'.$r->ID.'" >
+                    <input onchange="city_drawn('.$city.')" type="checkbox" id="'.$r->ID.'" >
                     <label for="'.$r->ID.'">'.$r->CITY.'</label>
                 </div>';
         }
