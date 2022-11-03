@@ -1,259 +1,175 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <title>
+        <title>A simple, clean, and responsive HTML invoice template</title>
 
-    </title>
-    <!--[if !mso]><!-- -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--<![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-        #outlook a {
-            padding: 0;
-        }
+        <!-- Favicon -->
+        <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
 
-        .ReadMsgBody {
-            width: 100%;
-        }
-
-        .ExternalClass {
-            width: 100%;
-        }
-
-        .ExternalClass * {
-            line-height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
-        table,
-        td {
-            border-collapse: collapse;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-            -ms-interpolation-mode: bicubic;
-        }
-
-        p {
-            display: block;
-            margin: 13px 0;
-        }
-    </style>
-    <!--[if !mso]><!-->
-    <style type="text/css">
-        @media only screen and (max-width:480px) {
-            @-ms-viewport {
-                width: 320px;
+        <!-- Invoice styling -->
+        <style>
+            body {
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #777;
             }
-            @viewport {
-                width: 320px;
+
+            body h1 {
+                font-weight: 300;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+                color: #000;
             }
-        }
-    </style>
-    <!--<![endif]-->
-    <!--[if mso]>
-        <xml>
-        <o:OfficeDocumentSettings>
-          <o:AllowPNG/>
-          <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-        </xml>
-        <![endif]-->
-    <!--[if lte mso 11]>
-        <style type="text/css">
-          .outlook-group-fix { width:100% !important; }
+
+            body h3 {
+                font-weight: 300;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-style: italic;
+                color: #555;
+            }
+
+            body a {
+                color: #06f;
+            }
+
+            .invoice-box {
+                max-width: 800px;
+                margin: auto;
+                padding: 30px;
+                border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+                font-size: 16px;
+                line-height: 24px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #555;
+            }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+                border-collapse: collapse;
+            }
+
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+            }
+
+            .invoice-box table tr.top table td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.top table td.title {
+                font-size: 45px;
+                line-height: 45px;
+                color: #333;
+            }
+
+            .invoice-box table tr.information table td {
+                padding-bottom: 40px;
+            }
+
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.item td {
+                border-bottom: 1px solid #eee;
+            }
+
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
         </style>
-        <![endif]-->
+    </head>
+
+    <body>
+        <div class="invoice-box">
+            <table>
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img src="https://i0.wp.com/classaclub.com/wp-content/uploads/2022/03/logo.png" alt="Company logo" style="width: 100%; max-width: 300px" />
+                                </td>
+
+                                <td>
+                                    Invoice #: RTR00{{ $data->id }}<br />
+                                    Created: {{ $data->created_at }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    {{ $user->name }}<br />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
 
-    <style type="text/css">
-        @media only screen and (min-width:480px) {
-            .mj-column-per-100 {
-                width: 100% !important;
-            }
-        }
-    </style>
+                <tr class="heading">
+                    <td>Item</td>
+
+                    <td>Price</td>
+                </tr>
+
+                <tr class="item">
+                    <td>{{ DB::table('subscription_plans')->where('id' , $data->plan_id)->first()->name  }}</td>
+
+                    <td>${{ $data->amount }}</td>
+                </tr>
 
 
-    <style type="text/css">
-    </style>
 
-</head>
+                <tr class="total">
+                    <td></td>
 
-<body style="background-color:#f9f9f9;">
-
-
-    <div style="background-color:#f9f9f9;">
-
-
-        <!--[if mso | IE]>
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-
-
-        <div style="background:#f9f9f9;background-color:#f9f9f9;">
-
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#f9f9f9;background-color:#f9f9f9;width:100%;">
-                <tbody>
-                    <tr>
-                        <td style="border-bottom:#F08089 solid 5px;direction:ltr;font-size:0px;text-align:center;vertical-align:top;">
-                            <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                
-        <tr>
-      
-        </tr>
-      
-                  </table>
-                <![endif]-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-
-        <!--[if mso | IE]>
-          </td>
-        </tr>
-      </table>
-      
-      <table
-         align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;" width="600"
-      >
-        <tr>
-          <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-
-
-        <div style="background: #13151b;background-color: #13151b;Margin:0px auto;">
-
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#13151b;background-color:#13151b;width:100%;">
-                <tbody>
-                    <tr>
-                        <td style="border:#dddddd solid 1px;border-top:0px;direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
-                            <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                
-        <tr>
-      
-            <td
-               style="vertical-align:bottom;width:600px;"
-            >
-          <![endif]-->
-
-                            <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:bottom;width:100%;">
-
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:bottom;" width="100%">
-
-                                    <tr>
-                                        <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-                                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="width:200px;">
-
-                                                            <img height="auto" src="https://i0.wp.com/classaclub.com/wp-content/uploads/2022/03/logo.png" style="border:0;display:block;outline:none;text-decoration:none;width:100%;" width="64" />
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </td>
-                                    </tr>
-<tr>
-    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-        <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:24px;font-weight:bold;line-height:22px;text-align:center;color:white;">
-            Thank you for Purchasing Plan
-        </div>
-
-    </td>
-</tr>
-<tr>
-    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-        <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:22px;text-align:left;color:white;">
-            <p>Hi {{ $user->name }},</p>
-            <p>We are Happy that You Purchased {{ DB::table('subscription_plans')->where('id' , $data->plan_id)->first()->name  }}.</p>
-        </div>
-
-    </td>
-</tr>
-
-<tr>
-    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-
-        <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:white;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;">
-            <tr style="border-bottom:1px solid #ecedee;text-align:left;">
-                <th style="padding: 0 15px 10px 0;">Item</th>
-                <th style="padding: 0 15px;">Qt.</th>
-                <th style="padding: 0 0 0 15px;" align="right">Price</th>
-            </tr>
-            <tr>
-                <td style="padding: 5px 15px 5px 0;">{{ DB::table('subscription_plans')->where('id' , $data->plan_id)->first()->name  }}</td>
-                <td style="padding: 0 15px;">1</td>
-                <td style="padding: 0 0 0 15px;" align="right">${{ $data->amount }}</td>
-            </tr>
-            <tr style="border-bottom:2px solid #ecedee;text-align:left;padding:15px 0;">
-                <td style="padding: 5px 15px 5px 0; font-weight:bold">TOTAL</td>
-                <td style="padding: 0 15px;"></td>
-                <td style="padding: 0 0 0 15px; font-weight:bold" align="right">${{ $data->amount }}</td>
-            </tr>
-        </table>
-
-    </td>
-</tr>
-<tr>
-    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-        <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:14px;line-height:20px;text-align:left;color:white;">
-            Best regards,<br><br> Csaba Kissi<br>Elerion ltd., CEO and Founder<br>
-            <a href="{{ url('') }}" style="color:#2F67F6">{{ url('') }}</a>
-        </div>
-    </td>
-</tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                    <td>Total: ${{ $data->amount }}</td>
+                </tr>
             </table>
         </div>
-<div style="Margin:0px auto;max-width:600px;">
-    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-        <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
-
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-    </div>
-</body>
-
+    </body>
 </html>
