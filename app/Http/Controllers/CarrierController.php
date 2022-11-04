@@ -45,14 +45,12 @@ class CarrierController extends Controller
     }
     public function searchcity($id)
     {
-        $data = DB::table('us_cities')->groupby('CITY')->where('CITY','like', '%' . $id . '%' )->get();
+        $data = DB::table('us_cities')->groupby('CITY')->where('CITY','like', '%' . $id . '%' )->limit(5)->get();
         foreach ($data as $r) {
+            $state = DB::table('us_states')->where('ID' , $r->ID_STATE)->first()->STATE_CODE;
             $city = "'".$r->CITY."'";
 
-            echo '<div class="col-md-4">
-                    <input onchange="city_drawn('.$city.')" type="checkbox" id="'.$r->ID.'" >
-                    <label for="'.$r->ID.'">'.$r->CITY.'</label>
-                </div>';
+            echo '<li onclick="selectcity('.$city.')" class="prediction">'.$r->CITY.' , '.$state.'</li>';
         }
     }
     public function advertise()
@@ -301,18 +299,18 @@ class CarrierController extends Controller
         $map->save();
         return redirect()->back()->with('message', 'Map status Updated Successfully');
     }
-    public function savestatemap($state,$map_id)
+    public function savestatemap($state,$map_id,$colum)
     {
-        $check  = maplocations::where('state' , $state)->where('map_id',$map_id);
+        $check  = maplocations::where($colum , $state)->where('map_id',$map_id);
         if($check->count() > 0)
         {
-            maplocations::where('state' , $state)->where('map_id',$map_id)->delete();
+            maplocations::where($colum , $state)->where('map_id',$map_id)->delete();
         }
         else
         {
             $maploc = new maplocations();
             $maploc->map_id = $map_id;
-            $maploc->state = $state;
+            $maploc->$colum = $state;
             $maploc->save();
         }
     }

@@ -181,7 +181,7 @@
 </style>
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -193,20 +193,49 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div style="height:400px;" class="modal-body">
                 <div style="display: none;" id="loadingDiv"><div class="loader">LOADING...</div></div>
                 <div class="row">
                     <div class="col-md-12">
                         <input type="text" onkeyup="searchcity(this.value)" class="form-control" placeholder="Search City" id="searchcity">
                     </div>
                 </div>
-                <div style="margin-top:25px;" class="row" id="citiesdiv">
-                    @foreach(DB::table('us_cities')->groupby('CITY')->limit(33)->get() as $r)
-                    <div class="col-md-4">
-                        <input onchange="city_drawn('{{ $r->CITY }}')" type="checkbox" id="{{ $r->ID }}" >
-                        <label for="{{ $r->ID }}">{{ $r->CITY }}</label>
+                <style type="text/css">
+                    .predictions{
+                        position: absolute;
+                        left: 0;
+                        z-index: 3;
+                        padding: 0;
+                        margin: 0;
+                        max-height: 300px;
+                        -webkit-box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+                        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
+                        overflow: auto;
+                        width: 100%;
+                        background-color: #fff;
+                        border-radius: 4px;
+                    }
+                    .prediction{
+                        font-size: 1rem;
+                        -webkit-transition: background-color .3s ease;
+                        transition: background-color .3s ease;
+                        list-style: none;
+                        text-align: left;
+                        cursor: pointer;
+                        background-color: #fff;
+                        padding: 1rem;
+                    }
+                    .prediction:hover{
+                        color: white;
+                        background-color: #188ebf;
+                    }
+                </style>
+                <div style="margin-top:25px;" class="row" >
+                    <div class="col-md-12">
+                        <ul id="citiesdiv" class="predictions">
+                            
+                        </ul>
                     </div>
-                    @endforeach
                 </div>
             </div>
             <div class="modal-footer">
@@ -346,7 +375,7 @@
             var valname =$(event.target).val();
             var checked = $(this).is(':checked')
             if(checked==true){
-              savelocation(valname);
+              savelocation(valname , 'state');
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
                 console.log(data);
@@ -370,7 +399,7 @@
                 eachlyr_arr[valname].addTo(map)
               });
             }else{
-              savelocation(valname);
+              savelocation(valname , 'state');
               // console.log("un chkd")
               if(map.hasLayer(eachlyr_arr[valname])){
                 map.removeLayer(eachlyr_arr[valname])
@@ -430,7 +459,12 @@
                       interactive: false,
                     };
                   },
-                }).addTo(map);  
+                }).addTo(map);
+                var bounds = lyrname.getBounds();
+                map.fitBounds(bounds)
+                console.log(bounds);
+                var center = bounds.getCenter()
+                map.panTo(center)
                 // var marker = new L.Marker([lat,long]);
                 // marker.addTo(map);      
                 
@@ -491,6 +525,11 @@
 
 
     <script type="text/javascript">
+        function selectcity(id)
+        {
+            $('#searchcity').val(id);
+
+        }
         function addnewstate(value)
         {
             // $('#appenddivs').append('<button type="button" class="state'+value+' btn btn-secondary map-delete-btn">'+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+value1+')"></i></button><input type="hidden" value="'+state+'" name="state[]" id="state'+value1+'">');
@@ -504,8 +543,10 @@
         }
         function addnewcity()
         {
-            var city = $('.city').val();
+            var city = $('#searchcity').val();
             city_drawn(city);
+            savelocation(city , 'city');
+            $('#addCity').modal('hide');
         }
         function deletecity(id)
         {
@@ -541,12 +582,12 @@
                 }
             })
         }
-        function savelocation(value)
+        function savelocation(value , column)
         {
             var app_url = geturl();
             var map_id = '{{ $map_id }}';
             $.ajax({
-                url:app_url+"/savestatemap/"+value+"/"+map_id, 
+                url:app_url+"/savestatemap/"+value+"/"+map_id+"/"+column, 
                 type:"get",
                 success:function(res){
                    
