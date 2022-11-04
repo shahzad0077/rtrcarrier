@@ -53,6 +53,11 @@ class CarrierController extends Controller
             echo '<li onclick="selectcity('.$city.','.$state_apend.')" class="prediction">'.$r->CITY.' , '.$state.'</li>';
         }
     }
+    public function mappreview($id)
+    {
+        $data = maplocations::where('map_id' , $id)->get();
+        return view('carrier.hiring-maps.preview')->with(array('data'=>$data));
+    }
     public function advertise()
     {
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();

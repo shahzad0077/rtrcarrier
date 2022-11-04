@@ -119,6 +119,7 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
+                                                <a target="_blank" style="padding: 14px 28px;" href="{{ url('mappreview') }}/{{ $map_id }}" type="button" class="btn btn-primary">Map Preview</a>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
@@ -181,7 +182,7 @@
 </style>
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -193,7 +194,7 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <div style="height:400px;" class="modal-body">
+            <div style="height:300px;" class="modal-body">
                 <div style="display: none;" id="loadingDiv"><div class="loader">LOADING...</div></div>
                 <div class="row">
                     <div class="col-md-12">

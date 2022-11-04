@@ -120,6 +120,7 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
+                                                <button type="button" class="btn btn-primary">Download MAP</button>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
