@@ -198,6 +198,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <input type="text" onkeyup="searchcity(this.value)" class="form-control" placeholder="Search City" id="searchcity">
+                        <input type="hidden" id="statehidden" name="">
                     </div>
                 </div>
                 <style type="text/css">
@@ -437,14 +438,17 @@
             
         }
 
-        function city_drawn(valname)
+        function city_drawn(valname , state)
         {
-            var searchTxt = valname;
-              console.log(searchTxt);
-              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
-              // console.log(nurl);
+            var j = valname;
+            var searchTxt = j.replace(" ", "-");
+            var city = searchTxt.toLowerCase();
+            var state_apend = state.toLowerCase();
+              console.log(j);
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&state='+state_apend+'&format=geojson'
+                console.log(nurl);
               $.getJSON(nurl, function(data) {
-                // console.log(data);
+                console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -465,25 +469,12 @@
                 console.log(bounds);
                 var center = bounds.getCenter()
                 map.panTo(center)
-                // var marker = new L.Marker([lat,long]);
-                // marker.addTo(map);      
-                
               });
-                // console.log(lat)
-                // console.log(long)
                 
         }
 
 
-         
-          // var lgeocoder=L.Control.geocoder({collapsed:false,position:"topleft", placeholder:"Enter Zip Code Here..."}).addTo(map);
-         
-       
-
-
-
-
-
+        
           var geocoder=L.Control.geocoder({
           // defaultMarkGeocode: false,
             collapsed:false,
@@ -525,9 +516,10 @@
 
 
     <script type="text/javascript">
-        function selectcity(id)
+        function selectcity(id, state)
         {
             $('#searchcity').val(id);
+            $('#statehidden').val(state)
             $('#citiesdiv').hide();
         }
         function addnewstate(value)
@@ -544,8 +536,10 @@
         function addnewcity()
         {
             var city = $('#searchcity').val();
-            city_drawn(city);
+            var statehidden = $('#statehidden').val();
+            city_drawn(city , statehidden);
             savelocation(city , 'city');
+            $('#searchcity').val('');
             $('#addCity').modal('hide');
         }
         function deletecity(id)

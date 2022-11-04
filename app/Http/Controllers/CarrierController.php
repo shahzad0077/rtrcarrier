@@ -49,8 +49,8 @@ class CarrierController extends Controller
         foreach ($data as $r) {
             $state = DB::table('us_states')->where('ID' , $r->ID_STATE)->first()->STATE_CODE;
             $city = "'".$r->CITY."'";
-
-            echo '<li onclick="selectcity('.$city.')" class="prediction">'.$r->CITY.' , '.$state.'</li>';
+            $state_apend = "'".$state."'";
+            echo '<li onclick="selectcity('.$city.','.$state_apend.')" class="prediction">'.$r->CITY.' , '.$state.'</li>';
         }
     }
     public function advertise()
