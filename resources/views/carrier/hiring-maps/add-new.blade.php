@@ -119,7 +119,6 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
-                                                <a target="_blank" style="padding: 14px 28px;" href="{{ url('mappreview') }}/{{ $map_id }}" type="button" class="btn btn-primary">Map Preview</a>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
@@ -308,24 +307,11 @@
                     maxZoom: 20,
                     subdomains:['mt0','mt1','mt2','mt3']
                 })  
-      L.simpleMapScreenshoter({position:'topright'}).addTo(map)
 
       L.control.browserPrint({position:'topright'}).addTo(map);
       map.zoomControl.setPosition('topright');
      
 
-    var baseLayers = {
-    "Google Street Map": googlestreet,
-    "Google Sattellite Map": googleSat,
-    "Dark Map": dark,
-    };
-    var overLays = {
-    // "Land_Plots": Land_Plots,
-    // "Trees & Graphics": trees_layer,
-    // "Clouds": clouds_layer
-    };
-
-    var mylayercontrol= L.control.layers(baseLayers,overLays).addTo(map);
 
 
       var drawnItems = new L.FeatureGroup();
@@ -340,7 +326,7 @@
                   metric:['km', 'm']
               },
               polyline:false,
-              marker: true,
+              marker: false,
               squire: false,
               circlemarker: false,
               rectangle: false,
