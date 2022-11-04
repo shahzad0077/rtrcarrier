@@ -528,7 +528,7 @@
         function selectcity(id)
         {
             $('#searchcity').val(id);
-
+            $('#citiesdiv').hide();
         }
         function addnewstate(value)
         {
@@ -576,6 +576,7 @@
                 url:app_url+"/searchcity/"+id, 
                 type:"get",
                 success:function(res){
+                   $('#citiesdiv').show();
                    $('#citiesdiv').html(res);
                    $('#loadingDiv').hide();
                    $('#citiesdiv').removeClass('blurclass');
