@@ -41,7 +41,7 @@
                                            {{ $r->tagline }}
                                         </td>
                                         <td>
-                                            {{ $r->price }}
+                                            ${{ $r->price }}
                                         </td>
                                         <td>
                                             @if($r->status == 1)

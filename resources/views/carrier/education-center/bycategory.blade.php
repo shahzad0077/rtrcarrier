@@ -10,7 +10,7 @@
                     <div class="mb-17">
                         <div class="d-flex mb-5">
                           <div>
-                              <h3 class="text-dark">Education Center</h3>
+                              <a href="{{ url('education-center') }}" class="btn btn-primary">All Posts</a>
                           </div>
                         </div>
                         <div class="separator separator-dashed mb-9"></div>

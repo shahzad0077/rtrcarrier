@@ -47,11 +47,11 @@ class RegisterController extends Controller
         $company->company_name = $request->company_name;
         $company->company_link = Cmf::shorten_url($request->company_name);
         $company->save();
-        $subject = 'Welcome To '.env('APP_NAME').' Your Request Submited Successfully';
-        Mail::send('email.userrequest', ['name' => $request->name], function($message) use($request , $subject){
-            $message->to($request->email);
-            $message->subject($subject);
-        });
+        // $subject = 'Welcome To '.env('APP_NAME').' Your Request Submited Successfully';
+        // Mail::send('email.userrequest', ['name' => $request->name], function($message) use($request , $subject){
+        //     $message->to($request->email);
+        //     $message->subject($subject);
+        // });
         Auth::login($carrier);
         return redirect()->route('verification.notice')->with('email', $request->email);
     }

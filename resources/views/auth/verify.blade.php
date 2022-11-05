@@ -1,5 +1,5 @@
 @extends('layouts.layout-second')
-@section('title','Login')
+@section('title','Verify your Account')
 @section('content')
 <!--begin::Main-->
 <div class="d-flex flex-column flex-root">

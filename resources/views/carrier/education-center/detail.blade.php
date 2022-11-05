@@ -1,5 +1,9 @@
 @extends('layouts.main-layout')
-@section('title','Post Detail')
+
+@php
+    $tittle = $data->tittle;
+@endphp
+@section('title',$tittle)
 @section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->
@@ -113,7 +117,7 @@
                                 <!--begin::Title-->
                                 <div class="m-0">
                                     <a href="javascript::void(0)" class="text-dark fw-bold text-hover-primary fs-6">@if($r->type == 'rtr') From RTR @else Any Carrier @endif</a>
-                                    <span class="text-gray-600 fw-semibold d-block pt-1 fs-7">{{ $r->tittle }}</span>
+                                    <a href="{{ url('detail') }}/{{ $r->url }}" class="text-gray-600 fw-semibold d-block pt-1 fs-7">{!! \Illuminate\Support\Str::limit($r->tittle, 50, $end='...') !!}</a>
                                 </div>
                                 <!--end::Title-->
                             </div>
