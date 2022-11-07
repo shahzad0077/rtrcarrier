@@ -83,33 +83,13 @@
                                             width: 15px; 
                                             height: 15px; 
                                           }
-                                          .leaflet-control-easyPrint {display: none;}
+                                          .leaflet-control-browser-print{display: none;}
 
-                                            /* .leaflet-draw-tooltip{
-                                            display: none !important;
-                                            } */
+                                            .leaflet-draw-toolbar-top{
+                                                display: none;
+                                            }
                                             
-                                            .leaflet-draw-draw-polygon {
-                                            display: none !important;
-                                            }
-
-                                            .leaflet-draw-section{
-                                              display: none !important;
-                                            }
-                                              .leaflet-draw-edit-edit {
-                                              display: none !important;
-                                            }
-                                            .leaflet-draw-edit-remove {
-                                              display: none !important;
-                                            }
-                                            .leaflet-control-fullscreen-button {
-                                              display: none !important;
-                                            }
-
-                                            .draw-control-disabled {
-                                                filter: contrast(22%) brightness(157%);
-                                                pointer-events:none;
-                                            }
+                                        
                                         </style>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
                                         <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
@@ -206,6 +186,19 @@
 .blurclass{
     filter: blur(5px);
 }
+.pac-container {
+    background-color: #FFF;
+    z-index: 2001;
+    position: fixed;
+    display: inline-block;
+    float: left;
+}
+.modal{
+    z-index: 2000;
+}
+.modal-backdrop{
+    z-index: 1000;
+}
 </style>
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -222,48 +215,12 @@
                 </button>
             </div>
             <div style="height:300px;" class="modal-body">
-                <div style="display: none;" id="loadingDiv"><div class="loader">LOADING...</div></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="text" onkeyup="searchcity(this.value)" class="form-control" placeholder="Search City" id="searchcity">
-                        <input type="hidden" id="statehidden" name="">
-                    </div>
-                </div>
-                <style type="text/css">
-                    .predictions{
-                        position: absolute;
-                        left: 0;
-                        z-index: 3;
-                        padding: 0;
-                        margin: 0;
-                        max-height: 300px;
-                        -webkit-box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
-                        box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
-                        overflow: auto;
-                        width: 100%;
-                        background-color: #fff;
-                        border-radius: 4px;
-                    }
-                    .prediction{
-                        font-size: 1rem;
-                        -webkit-transition: background-color .3s ease;
-                        transition: background-color .3s ease;
-                        list-style: none;
-                        text-align: left;
-                        cursor: pointer;
-                        background-color: #fff;
-                        padding: 1rem;
-                    }
-                    .prediction:hover{
-                        color: white;
-                        background-color: #188ebf;
-                    }
-                </style>
-                <div style="margin-top:25px;" class="row" >
-                    <div class="col-md-12">
-                        <ul id="citiesdiv" class="predictions">
-                            
-                        </ul>
+                        <div id="pac-container">
+                            <input class="form-control w-100" id="pac-input" type="text" placeholder="Search City">
+                            <div id="location-error"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -574,9 +531,10 @@
         }
         function addnewcity()
         {
-            var city = $('#searchcity').val();
-            var statehidden = $('#statehidden').val();
-            city_drawn(city , statehidden);
+            var array = $('#pac-input').val().split(",");
+            var city = array[0];
+            var state = array[1];
+            city_drawn(city , state);
             savelocation(city , 'city');
             $('#searchcity').val('');
             $('#addCity').modal('hide');
