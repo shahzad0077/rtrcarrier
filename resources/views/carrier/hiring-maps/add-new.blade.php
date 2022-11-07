@@ -55,12 +55,13 @@
                                                 <div class="col-md-2">
                                                     <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
                                                 </div>
-                                                <!-- <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
+                                                <div class="col-md-2">
+                                                    <button onclick="drawmap()" type="button" class="btn form-control btn-secondary map-model-btn zip-btns">+ Draw Map</button>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" placeholder="Search..." name="" class="form-control">
-                                                </div> -->
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-2">
+                                                    <button class="btn form-control btn-secondary map-model-btn zip-btns" type="button" onclick="manualPrint()" id="custom_print_button"><i class="fa fa-print"></i> Print Map</button>
+                                                </div>
                                             </div>
                                         </div>
                                         <style>
@@ -82,6 +83,33 @@
                                             width: 15px; 
                                             height: 15px; 
                                           }
+                                          .leaflet-control-easyPrint {display: none;}
+
+                                            /* .leaflet-draw-tooltip{
+                                            display: none !important;
+                                            } */
+                                            
+                                            .leaflet-draw-draw-polygon {
+                                            display: none !important;
+                                            }
+
+                                            .leaflet-draw-section{
+                                              display: none !important;
+                                            }
+                                              .leaflet-draw-edit-edit {
+                                              display: none !important;
+                                            }
+                                            .leaflet-draw-edit-remove {
+                                              display: none !important;
+                                            }
+                                            .leaflet-control-fullscreen-button {
+                                              display: none !important;
+                                            }
+
+                                            .draw-control-disabled {
+                                                filter: contrast(22%) brightness(157%);
+                                                pointer-events:none;
+                                            }
                                         </style>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
                                         <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
@@ -287,7 +315,7 @@
 @section('scripts')
     <script>
 
-
+ 
 
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
@@ -311,8 +339,26 @@
       L.control.browserPrint({position:'topright'}).addTo(map);
       map.zoomControl.setPosition('topright');
      
+      var simpleMapScreenshoter = L.simpleMapScreenshoter({
+          hidden: true,
+      }).addTo(map)
 
-
+      function manualPrint () {
+      $("#filterdiv").hide();
+      simpleMapScreenshoter.takeScreen('blob', {
+        caption: function () {
+                        return 'Map Logo copyright 2022'
+                    }
+      }).then(blob => {
+          saveAs(blob, 'Map_Print.png')
+      }).catch(e => {
+          alert(e.toString())
+      })
+      setTimeout(function(){
+        $("#filterdiv").show();
+      }, 3000);
+     
+        }
 
       var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
@@ -503,6 +549,12 @@
 
 
     <script type="text/javascript">
+        
+        function drawmap () {
+      $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
+      $('.leaflet-draw-draw-polygon')[0].click()
+     
+        }
         function selectcity(id, state)
         {
             $('#searchcity').val(id);

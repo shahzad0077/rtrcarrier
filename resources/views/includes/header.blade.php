@@ -41,6 +41,15 @@
                     </div>
                 </div>
 
+                <div class="topbar-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat" data-placement="left">
+                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+                        <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
+                            <i class="flaticon2-chat-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+
                 <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
                         <span class="svg-icon svg-icon-xl svg-icon-primary">
