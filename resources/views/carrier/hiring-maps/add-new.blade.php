@@ -537,6 +537,7 @@
             city_drawn(city , state);
             savelocation(city , 'city');
             $('#searchcity').val('');
+            $('#pac-input').val('')
             $('#addCity').modal('hide');
         }
         function deletecity(id)
