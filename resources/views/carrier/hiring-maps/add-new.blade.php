@@ -434,9 +434,7 @@
             var searchTxt = j.replace(" ", "-");
             var city = searchTxt.toLowerCase();
             var state_apend = state.toLowerCase();
-              console.log(j);
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&state='+state_apend+'&format=geojson'
-                console.log(nurl);
               $.getJSON(nurl, function(data) {
                 console.log(data);
                 var lyrname=L.geoJSON(data, {
@@ -456,7 +454,6 @@
                 }).addTo(map);
                 var bounds = lyrname.getBounds();
                 map.fitBounds(bounds)
-                console.log(bounds);
                 var center = bounds.getCenter()
                 map.panTo(center)
               });
@@ -539,6 +536,9 @@
             $('#searchcity').val('');
             $('#pac-input').val('')
             $('#addCity').modal('hide');
+
+            let value1 = Math.floor(Math.random() * 10000);;
+            $('#appenddivs').append('<button type="button" class="zipcode'+city+' btn btn-secondary map-delete-btn">'+city+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+city+')"></i></button><input type="hidden" value="'+zipcode+'" name="zipcode[]" id="zipcode'+city+'">');
         }
         function deletecity(id)
         {
