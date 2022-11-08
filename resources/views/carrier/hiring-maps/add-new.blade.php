@@ -505,9 +505,8 @@
     <script type="text/javascript">
         
         function drawmap () {
-      $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
-      $('.leaflet-draw-draw-polygon')[0].click()
-     
+            $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
+            $('.leaflet-draw-draw-polygon')[0].click();
         }
         function selectcity(id, state)
         {
@@ -517,8 +516,6 @@
         }
         function addnewstate(value)
         {
-            // $('#appenddivs').append('<button type="button" class="state'+value+' btn btn-secondary map-delete-btn">'+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+value1+')"></i></button><input type="hidden" value="'+state+'" name="state[]" id="state'+value1+'">');
-            // $('#state').val('')
             $('#addState').modal('hide');
         }
         function deletestate(id)
@@ -532,13 +529,10 @@
             var city = array[0];
             var state = array[1];
             city_drawn(city , state);
-            savelocation(city , 'city');
+            savecitymaplocation(city , state);
             $('#searchcity').val('');
             $('#pac-input').val('')
             $('#addCity').modal('hide');
-
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="zipcode'+city+' btn btn-secondary map-delete-btn">'+city+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+city+')"></i></button><input type="hidden" value="'+zipcode+'" name="zipcode[]" id="zipcode'+city+'">');
         }
         function deletecity(id)
         {
@@ -558,23 +552,6 @@
             $('.zipcode'+id).hide();
             $('#zipcode'+id).val('');
         }
-        function searchcity(id)
-        {
-            $('#loadingDiv').show();
-            $('#citiesdiv').addClass('blurclass');
-            var app_url = geturl();
-            var map_id = '{{ $map_id }}';
-            $.ajax({
-                url:app_url+"/searchcity/"+id, 
-                type:"get",
-                success:function(res){
-                   $('#citiesdiv').show();
-                   $('#citiesdiv').html(res);
-                   $('#loadingDiv').hide();
-                   $('#citiesdiv').removeClass('blurclass');
-                }
-            })
-        }
         function savelocation(value , column)
         {
             var app_url = geturl();
@@ -586,6 +563,27 @@
                    
                 }
             })
+        }
+
+
+        function savecitymaplocation(city , state)
+        {
+            var cityshow = city;
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
+
+            var j = city;
+            var searchTxt = j.replace(" ", "-");
+            var city = searchTxt.toLowerCase();
+            var state_apend = state.toLowerCase();
+            $('#appenddivs').append('<button type="button" class="city'+city+' btn btn-secondary map-delete-btn">'+cityshow+' '+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletecity('+city+' , '+state+')"></i></button>');
         }
     </script>
 @endsection

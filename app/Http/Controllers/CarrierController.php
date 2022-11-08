@@ -43,16 +43,6 @@ class CarrierController extends Controller
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
     }
-    public function searchcity($id)
-    {
-        $data = DB::table('us_cities')->groupby('CITY')->where('CITY','like', '%' . $id . '%' )->limit(5)->get();
-        foreach ($data as $r) {
-            $state = DB::table('us_states')->where('ID' , $r->ID_STATE)->first()->STATE_CODE;
-            $city = "'".$r->CITY."'";
-            $state_apend = "'".$state."'";
-            echo '<li onclick="selectcity('.$city.','.$state_apend.')" class="prediction">'.$r->CITY.' , '.$state.'</li>';
-        }
-    }
     public function advertise()
     {
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
@@ -311,6 +301,22 @@ class CarrierController extends Controller
             $maploc = new maplocations();
             $maploc->map_id = $map_id;
             $maploc->$colum = $state;
+            $maploc->save();
+        }
+    }
+    public function savecitymaplocation($city,$state,$map_id)
+    {
+        $check  = maplocations::where('state' , $state)->where('city' , $city)->where('map_id',$map_id);
+        if($check->count() > 0)
+        {
+            maplocations::where('state' , $state)->where('city' , $city)->where('map_id',$map_id)->delete();
+        }
+        else
+        {
+            $maploc = new maplocations();
+            $maploc->map_id = $map_id;
+            $maploc->state = $state;
+            $maploc->city = $city;
             $maploc->save();
         }
     }

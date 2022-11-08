@@ -70,6 +70,7 @@ Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducati
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
+Route::get('/savecitymaplocation/{id}/{two}/{three}', [CarrierController::class, 'savecitymaplocation']);
 Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
 Route::get('/hirig-maps', [CarrierController::class, 'hiringmaps']);
 Route::get('/deletemap/{id}', [CarrierController::class, 'deletemap']);
@@ -77,7 +78,6 @@ Route::get('/changestatusofmap/{id}', [CarrierController::class, 'changestatusof
 Route::get('/editmap/{id}', [CarrierController::class, 'editmap']);
 Route::post('/updatehiringmap', [CarrierController::class, 'updatehiringmap']);
 Route::get('/billing', [CarrierController::class, 'billing']);
-Route::get('/searchcity/{id}', [CarrierController::class, 'searchcity']);
 Route::get('/downloadinvoice/{id}', [CarrierController::class, 'downloadinvoice']);
 Route::get('/advertise', [CarrierController::class, 'advertise']);
 
