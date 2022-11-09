@@ -64,33 +64,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <style>
-                                          html, body, #map { 
-                                            width:100%; 
-                                            height:100%; 
-                                            margin:0; 
-                                            padding:0; 
-                                            z-index: 5;
-                                          }
-                                          #filterdiv{
-                                            margin-top: 25%;
-                                            margin-left: 10px;
-                                            z-index: 20000;
-                                            position: relative;
-                                            width: 200px;
-                                          }
-                                          .chk{
-                                            width: 15px; 
-                                            height: 15px; 
-                                          }
-                                          .leaflet-control-browser-print{display: none;}
-
-                                            .leaflet-draw-toolbar-top{
-                                                display: none;
-                                            }
-                                            
-                                        
-                                        </style>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
                                         <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
                                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
@@ -116,9 +89,26 @@
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
+                                                <div class="col-md-2">
+                                                    <h3>Upload Logo</h3>
+                                                    <div class="dropzone dropzone-default dz-clickable my-files" id="kt_dropzone_1">
+                                                        <div class="dropzone-msg dz-message needsclick up-arrow">
+                                                            <h3 class="dropzone-msg-title"><i class="icon-2x text-dark-50 flaticon2-up"></i></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-6 logo-preview">
-                                                    <label>Map Logo</label>
-                                                    <input required class="form-control" type="file" name="logo" accept=".png, .jpg, .jpeg">
+                                                    <div class="image-input" id="kt_image_2">
+                                                        <div class="image-input-wrapper" style="background-image: url('{{ url('') }}/public/images/rtrsmalllogo.png')"></div>
+                                                        <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg">
+                                                            <input type="hidden" name="profile_avatar_remove">
+                                                        </label>
+                                                        <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
+                                                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -174,32 +164,6 @@
             </div>
     </div>
 </div>
-
-<style type="text/css">
-    #loadingDiv{
-    position: absolute;
-    text-align: center;
-    top: 200px;
-    left: 300px;
-    z-index: 1000000;
-}
-.blurclass{
-    filter: blur(5px);
-}
-.pac-container {
-    background-color: #FFF;
-    z-index: 2001;
-    position: fixed;
-    display: inline-block;
-    float: left;
-}
-.modal{
-    z-index: 2000;
-}
-.modal-backdrop{
-    z-index: 1000;
-}
-</style>
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -234,7 +198,7 @@
 
 <!-- Add State-->
 <div class="modal fade" id="addState" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -247,13 +211,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div style="margin-top:25px;" class="row">
+                <div id="list1" class="dropdown-check-list" tabindex="100">
+                  <span class="anchor">Select States</span>
+                  <ul class="items">
                     @foreach(DB::table('us_states')->orderby('STATE_NAME' , 'ASC')->get() as $r)
-                    <div class="col-md-4">
-                        <input class="states" value="{{ $r->STATE_CODE }}" type="checkbox" id="{{ $r->ID }}" >
-                        <label for="{{ $r->ID }}">{{ $r->STATE_NAME }}</label>
-                    </div>
+                    <li id="removestatefromli{{ $r->ID }}" onclick="selectdropdown({{ $r->ID }},'{{ $r->STATE_NAME }}' , '{{ $r->STATE_CODE }}')"><input class="states" value="{{ $r->STATE_CODE }}" type="checkbox" id="checkbox{{ $r->ID }}" ><label class="label{{ $r->ID }}" for="checkbox{{ $r->ID }}">{{ $r->STATE_NAME }}</label> </li>
                     @endforeach
+                  </ul>
                 </div>
             </div>
             <div class="modal-footer">
@@ -271,9 +235,31 @@
 
 @section('scripts')
     <script>
-
- 
-
+        function selectdropdown(id , value , code) 
+        {
+            var checkList = document.getElementById('list1');
+            checkList.classList.remove('visible');
+            var html = '<input class="states" value="'+value+'" type="hidden" id="selectedstatename" ><input class="states" value="'+id+'" type="hidden" id="selectedstates" >'+value+'';
+            $('.anchor').html(html);
+        }
+        function addnewstate()
+        {
+            var id = $('#selectedstates').val();
+            var value = $('#selectedstatename').val();
+            $('.label'+id).click();
+            $('#appenddivs').append('<button type="button" class="states'+id+' btn btn-secondary map-delete-btn">'+value+'<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+id+')"></i></button>');
+            var html = 'Select State';
+            $('.anchor').html(html);
+            $('#removestatefromli'+id).hide();
+            $('#addState').modal('hide');
+        }
+        function deletestate(id) {
+            $('.label'+id).click();
+            $('.states'+id).remove();
+            var html = 'Select State';
+            $('.anchor').html(html);
+            $('#removestatefromli'+id).show();
+        }
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
         }, 500);
@@ -514,15 +500,7 @@
             $('#statehidden').val(state)
             $('#citiesdiv').hide();
         }
-        function addnewstate(value)
-        {
-            $('#addState').modal('hide');
-        }
-        function deletestate(id)
-        {
-            $('.state'+id).hide();
-            $('#state'+id).val('');
-        }
+        
         function addnewcity()
         {
             var array = $('#pac-input').val().split(",");

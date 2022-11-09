@@ -98223,3 +98223,132 @@ padding-right: 7px;
 text-shadow: 0 1px 0 #FFD699;
 z-index: 2;
 }
+
+.dropdown-check-list {
+  display: inline-block;
+}
+
+.dropdown-check-list .anchor {
+    position: relative;
+    padding: 12px;
+    display: block;
+    width: 100%;
+    height: calc(2.1em + 1.3rem + 2px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3F4254;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #E4E6EF;
+    border-radius: 0.42rem;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.dropdown-check-list .anchor:after {
+  position: absolute;
+  content: "";
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  padding: 5px;
+  right: 10px;
+  top: 20%;
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+  right: 8px;
+  top: 21%;
+}
+
+.dropdown-check-list ul.items {
+  padding: 2px;
+  display: none;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.dropdown-check-list ul.items li {
+  list-style: none;
+  font-size: 20px;
+}
+
+.dropdown-check-list ul.items li:hover {
+    background-color: #18A4DE;
+    border-radius: 6px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.dropdown-check-list.visible .anchor {
+  color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+  display: block;
+}
+.items{
+    height: 300px;
+    overflow: auto;
+}
+#list1{
+    width: 100%;
+}
+ul.items input {
+    display: none;
+}
+ul.items label {
+    margin-left: 10px;
+    font-size: 15px;
+}
+ul.items li {
+    padding: 5px;
+}
+.pac-container {
+    background-color: #FFF;
+    z-index: 2001;
+    position: fixed;
+    display: inline-block;
+    float: left;
+}
+.modal{
+    z-index: 2000;
+}
+.modal-backdrop{
+    z-index: 1000;
+}
+#map { 
+    width:100%; 
+    height:100%; 
+    margin:0; 
+    padding:0; 
+    z-index: 5;
+  }
+  #filterdiv{
+    margin-top: 25%;
+    margin-left: 10px;
+    z-index: 20000;
+    position: relative;
+    width: 200px;
+  }
+  .chk{
+    width: 15px; 
+    height: 15px; 
+  }
+  .leaflet-control-browser-print{display: none;}
+
+    .leaflet-draw-toolbar-top{
+        display: none;
+    }
+    
