@@ -98352,3 +98352,21 @@ ul.items li {
         display: none;
     }
     
+.upload-logo{
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px dashed #EBEDF3;
+    border-radius: 0.42rem;
+    width: 70px !important;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.logoicon{
+    color: #3F4254;
+    margin: 0 0 5px 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+}

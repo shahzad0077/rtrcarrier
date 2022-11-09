@@ -471,3 +471,12 @@ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
   else
     checkList.classList.add('visible');
 }
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(".upload-logo").css("background-image", "url(" + e.target.result + ")");
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
