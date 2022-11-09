@@ -34,7 +34,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
-                                                <input type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <input onkeyup="maptittle()" id="map_tittle" type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <div style="display:none;" class="map_tittle_error text-danger">This Field is Required for Print Map</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -234,9 +235,19 @@
 
 @section('scripts')
     <script>
+        function maptittle() {
+            $('.map_tittle_error').hide();
+        }
         function shownewtab() {
-            var url = '{{ url("printmap") }}/{{ $map_id }}'
-            window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
+            var tittle = $('#map_tittle').val();
+            if(tittle == '')
+            {
+                $('.map_tittle_error').show();
+            }else{
+                var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
+                window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
+            }
+            
         }
         function selectimageformap() {
             alert('ok');

@@ -155,10 +155,10 @@ class CarrierController extends Controller
     {
         return view('carrier/hiring-maps/add-new');
     }
-    public function printmap($id)
+    public function printmap($id , $tittle)
     {
         $data = maplocations::where('map_id' , $id)->get();
-        return view('carrier.hiring-maps.printmap')->with(array('data'=>$data));
+        return view('carrier.hiring-maps.printmap')->with(array('data'=>$data,'tittle'=>$tittle));
     }
     public function addnewhiringmap(Request $request)
     {

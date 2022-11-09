@@ -139,7 +139,7 @@
           console.log('ok');
           simpleMapScreenshoter.takeScreen('blob', {
             caption: function () {
-                return 'Map Logo copyright 2022'
+                return '{{ $tittle }}'
             }
           }).then(blob => {
               saveAs(blob, 'Map_Print.png')
