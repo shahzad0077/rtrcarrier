@@ -60,8 +60,14 @@
                                                 </div>
                                                 <div class="col-md-4"></div>
                                                 <div class="col-md-2">
-                                                    <button class="btn form-control btn-secondary map-model-btn zip-btns" type="button" onclick="manualPrint()" id="custom_print_button"><i class="fa fa-print"></i> Print Map</button>
+                                                    <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
                                                 </div>
+                                                <!-- <div class="col-md-2">
+                                                    <a target="_blank" href="{{ url('printmap') }}/{{ $map_id }}" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
+                                                </div> -->
+                                                <!-- <div class="col-md-2">
+                                                    <button class="btn form-control btn-secondary map-model-btn zip-btns" type="button" onclick="manualPrint()" id="custom_print_button"><i class="fa fa-print"></i> Print Map</button>
+                                                </div> -->
                                             </div>
                                         </div>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
@@ -228,6 +234,10 @@
 
 @section('scripts')
     <script>
+        function shownewtab() {
+            var url = '{{ url("printmap") }}/{{ $map_id }}'
+            window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
+        }
         function selectimageformap() {
             alert('ok');
         }

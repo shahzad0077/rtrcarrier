@@ -69,6 +69,9 @@ Route::get('/education-center/{id}', [CarrierController::class, 'educationcenter
 Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducationarticle']);
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
+Route::get('/printmap/{id}', [CarrierController::class, 'printmap']);
+
+
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
 Route::get('/savecitymaplocation/{id}/{two}/{three}', [CarrierController::class, 'savecitymaplocation']);
 Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
