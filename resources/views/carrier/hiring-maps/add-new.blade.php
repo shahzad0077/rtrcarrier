@@ -63,12 +63,6 @@
                                                 <div class="col-md-2">
                                                     <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
                                                 </div>
-                                                <!-- <div class="col-md-2">
-                                                    <a target="_blank" href="{{ url('printmap') }}/{{ $map_id }}" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
-                                                </div> -->
-                                                <!-- <div class="col-md-2">
-                                                    <button class="btn form-control btn-secondary map-model-btn zip-btns" type="button" onclick="manualPrint()" id="custom_print_button"><i class="fa fa-print"></i> Print Map</button>
-                                                </div> -->
                                             </div>
                                         </div>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
@@ -428,7 +422,6 @@
                 eachlyr_arr[valname]=lyrname
                 eachlyr_arr[valname].addTo(map)
               });
-            
         }
 
         function city_drawn(valname , state)
@@ -439,7 +432,6 @@
             var state_apend = state.toLowerCase();
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&state='+state_apend+'&format=geojson'
               $.getJSON(nurl, function(data) {
-                console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -455,6 +447,9 @@
                     };
                   },
                 }).addTo(map);
+                eachlyr_arr.push(city)
+                eachlyr_arr[city]=lyrname
+                // console.log(eachlyr_arr);
                 var bounds = lyrname.getBounds();
                 map.fitBounds(bounds)
                 var center = bounds.getCenter()
@@ -463,7 +458,15 @@
                 
         }
 
+        function deletecity(valname)
+        {
+            var city = valname.toLowerCase();
+            if(map.hasLayer(eachlyr_arr[city])){
+                map.removeLayer(eachlyr_arr[city])
+            }
 
+            $('.city'+valname).remove();
+        }
         
           var geocoder=L.Control.geocoder({
           // defaultMarkGeocode: false,
@@ -529,11 +532,7 @@
             $('#pac-input').val('')
             $('#addCity').modal('hide');
         }
-        function deletecity(id)
-        {
-            $('.city'+id).hide();
-            $('#city'+id).val('');
-        }
+        
         function addnewzip()
         {
             var zipcode = $('#zipcode').val();
@@ -563,22 +562,16 @@
 
         function savecitymaplocation(city , state)
         {
-            var cityshow = city;
             var app_url = geturl();
             var map_id = '{{ $map_id }}';
             $.ajax({
                 url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id, 
                 type:"get",
                 success:function(res){
-                   
+                 $('#appenddivs').append(res);      
                 }
             })
-
-            var j = city;
-            var searchTxt = j.replace(" ", "-");
-            var city = searchTxt.toLowerCase();
-            var state_apend = state.toLowerCase();
-            $('#appenddivs').append('<button type="button" class="city'+city+' btn btn-secondary map-delete-btn">'+cityshow+' '+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletecity('+city+' , '+state+')"></i></button>');
+            
         }
     </script>
 @endsection

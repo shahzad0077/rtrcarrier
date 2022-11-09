@@ -324,6 +324,11 @@ class CarrierController extends Controller
             $maploc->city = $city;
             $maploc->save();
         }
+        $string = $new_str = str_replace(' ', '-', $city); 
+        $cityforclass = $string;
+        $string = "'".$string."'";
+
+        echo '<button type="button" class="city'.$cityforclass.' btn btn-secondary map-delete-btn">'.$city.' '.$state.' <i onclick="deletecity('.$string.')" class="icon-2x text-dark-50 flaticon-delete-1" ></i></button>';
     }
     public function updatepetpolicy(Request $request)
     {
