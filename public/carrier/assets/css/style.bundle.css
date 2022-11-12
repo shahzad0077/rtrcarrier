@@ -54611,7 +54611,7 @@ i {
 
 .card.card-custom .card-scroll {
     position: relative;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .card.card-custom.card-collapsed>form,
@@ -91774,7 +91774,10 @@ code {
     position: relative;
     overflow: hidden;
 }
-
+.scroll-pull{
+    height: 375px !important;
+    overflow-y: auto;
+}
 .scroll.scroll-pull {
     padding-right: 12px;
     margin-right: -12px;
@@ -98372,4 +98375,58 @@ ul.items li {
 }
 a.leaflet-browser-print {
     display: none !important;
+}
+
+
+
+.loader {
+   width:50px;
+   height:50px;
+   display:inline-block;
+   padding:0px;
+   opacity:0.5;
+   border:3px solid #18a4de;
+   -webkit-animation: loader 1s ease-in-out infinite alternate;
+   animation: loader 1s ease-in-out infinite alternate;
+}
+
+.loader:before {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 3px solid #18a4de;
+}
+
+.loader:after {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 3px solid #18a4de;
+}
+
+@keyframes loader {
+   from {transform: rotate(0deg) scale(1,1);border-radius:0px;}
+   to {transform: rotate(360deg) scale(0, 0);border-radius:50px;}
+}
+@-webkit-keyframes loader {
+   from {-webkit-transform: rotate(0deg) scale(1, 1);border-radius:0px;}
+   to {-webkit-transform: rotate(360deg) scale(0,0 );border-radius:50px;}
+}
+
+.newmessageclass{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }

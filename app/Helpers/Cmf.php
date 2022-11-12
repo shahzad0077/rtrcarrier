@@ -10,6 +10,7 @@ use App\Models\set_roles;
 use App\Models\role_users;
 use App\Models\companies;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 class Cmf
 {
     public static function sendimagetodirectory($imagename)
@@ -56,7 +57,15 @@ class Cmf
         }
         return $companyid;
     }
+    public static function create_time_ago($time)
+    {
 
+        $year = date('Y', strtotime($time));
+        $month = date('m', strtotime($time));
+        $day = date('d', strtotime($time));
+        $datetime = Carbon::parse($time);
+        return $datetime->diffForHumans();
+    }
     public static function getuserrole($id)
     {
         $roleid = role_users::where('user_id' , $id)->first();

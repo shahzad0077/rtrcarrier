@@ -1,3 +1,111 @@
+function filterusers(id) {
+    var value = $('#searchuserinput').val();
+    if(value == '')
+    {
+        $('#searchusers').hide();
+        $('#alreadyusers').show();
+    }else{
+        $('#alreadyusers').hide();
+        var app_url = geturl();
+        $.ajax({
+            url:app_url+"/chat/filterusers/"+id, 
+            type:"get",
+            success:function(res){
+                if(res == 2)
+                {
+                    $('#searchusers').hide();
+                    $('#alreadyusers').show();
+                }else{
+                    $('#searchusers').show();
+                    $('#searchusers').html(res);
+                }
+                
+            }
+        })
+        
+    }
+}
+function statuschange(id) {
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/chat_status_change/"+id, 
+        type:"get",
+        success:function(res){
+            $('#chat_status').html(id);
+        }
+    })
+}
+function chatshow() {
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/chatshow", 
+        type:"get",
+        success:function(res){
+           
+        }
+    })
+}
+function startchatwith(id) {
+
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/startchatwith/"+id, 
+        type:"get",
+        success:function(res){
+            $('#mainchatall').hide();
+            $('#singlechat').html(res);
+            $('#messagesuser').addClass('newmessageclass');
+            $('#messagesuser').html('<div class="loader"></div>');
+            getchatbyuser(id);
+        }
+    })
+}
+function getchatbyuser(id) {
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/getchatbyuser/"+id, 
+        type:"get",
+        success:function(res){
+            $('#messagesuser').removeClass('newmessageclass');
+            $('#messagesuser').html(res);
+            $('#messagesuser').scrollTop($('#messagesuser').get(0).scrollHeight);
+        }
+    })
+}
+
+function sendchatroomMessage(){
+    var app_url = geturl();
+    var file_data = $('#file-input').prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    form_data.append('sendBy', $('#sendBy').val());
+    form_data.append('sendTo', $('#sendTo').val());
+    form_data.append('_token', $('meta[name="csrf-token"]').attr('content'));
+    form_data.append('message',$('#inputMessage').val());
+    if($('#inputMessage').val()!='' || file_data!=undefined){
+        $.ajax({
+            type: "POST",
+            url:app_url+"/chat/savechat", 
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                $('#messagesuser').removeClass('newmessageclass');
+                $('#inputMessage').val('')
+                $('#file-input').val('')
+                $('#messagesuser').html(res);
+                $('#messagesuser').scrollTop($('#messagesuser').get(0).scrollHeight);
+            }
+        });
+    }
+}
+
+
+function backtoallchats() {
+    $('#singlechat').html('');
+    $('#mainchatall').show();
+}
 function savebasicform() {
     $('#savebasicform').submit();
 }

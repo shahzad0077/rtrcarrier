@@ -67,7 +67,7 @@ $(document).ready(function () {
 
  
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
   <script src="{{ asset('public/carrier/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="{{ asset('public/carrier/assets/js/scripts.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   @yield('scripts')
@@ -78,7 +78,7 @@ $(document).ready(function () {
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <script src="{{ asset('public/carrier/assets/js/pages/crud/datatables/advanced/column-rendering.js?v=7.0.6') }}" type="text/javascript"></script>
   <script src="{{ asset('public/carrier/assets/js/pages/crud/forms/widgets/select2.js?v=7.0.6') }}" type="text/javascript"></script>
-
+  <script src="{{asset('public/carrier/assets/js/pages/custom/chat/chat.js') }}"></script>
   <script src="{{ asset('public/carrier/assets/plugins/custom/datatables/datatables.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
   <script type="text/javascript" src="{{ url('public/carrier/assets/js/pages/crud/file-upload/image-input.js') }}"></script>
  <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>

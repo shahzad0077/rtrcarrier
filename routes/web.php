@@ -8,6 +8,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\StaffPermissionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\JobController; 
+use App\Http\Controllers\ChatController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -140,6 +141,16 @@ Route::post('stripe', [JobController::class, 'stripePost'])->name('stripe.post')
 
 
 
+
+Route::name('chat.')->prefix('chat')->group(function(){
+    Route::get('/chat_status_change/{id}',[ChatController::class, 'chat_status_change']);
+    Route::get('/startchatwith/{id}',[ChatController::class, 'startchatwith']);
+    Route::get('/chatshow',[ChatController::class, 'chatshow']);
+    Route::get('/filterusers/{id}',[ChatController::class, 'filterusers']);
+    Route::get('/getchatbyuser/{id}',[ChatController::class, 'getchatbyuser']);
+    Route::post('/savechat',[ChatController::class, 'savechat']);
+    Route::post('/creategroup',[ChatController::class, 'creategroup']);
+});
 
 
 // Hiring Maps

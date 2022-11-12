@@ -10096,57 +10096,24 @@ var KTLayoutChat = function () {
 
 		var node = document.createElement("DIV");
 		KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-end');
-
+        var profileimage = $('#profileimageuser').val();
+        var profilenameuser = $('#profilenameuser').val();
 		var html = '';
 		html += '<div class="d-flex align-items-center">';
 		html += '	<div>';
-		html += '		<span class="text-muted font-size-sm">2 Hours</span>';
-		html += '		<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>';
+		html += '		<a href="javascript:void(0)" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">'+profilenameuser+'</a>';
 		html += '	</div>';
 		html += '	<div class="symbol symbol-circle symbol-40 ml-3">';
-		html += '		<img alt="Pic" src="assets/media/users/300_12.jpg"/>';
+		html += '		<img alt="Pic" src="'+profileimage+'"/>';
 		html += '	</div>';
 		html += '</div>';
 		html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.value + '</div>';
-
+        $('#inputMessage').val(textarea.value)
 		KTUtil.setHTML(node, html);
 		messagesEl.appendChild(node);
 		textarea.value = '';
 		scrollEl.scrollTop = parseInt(KTUtil.css(messagesEl, 'height'));
-
-		var ps;
-		if (ps = KTUtil.data(scrollEl).get('ps')) {
-			ps.update();
-		}
-
-		setTimeout(function() {
-			var node = document.createElement("DIV");
-			KTUtil.addClass(node, 'd-flex flex-column mb-5 align-items-start');
-
-			var html = '';
-			html += '<div class="d-flex align-items-center">';
-			html += '	<div class="symbol symbol-circle symbol-40 mr-3">';
-			html += '		<img alt="Pic" src="assets/media/users/300_12.jpg"/>';
-			html += '	</div>';
-			html += '	<div>';
-			html += '		<a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>';
-			html += '		<span class="text-muted font-size-sm">Just now</span>';
-			html += '	</div>';
-			html += '</div>';
-			html += '<div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">';
-			html += 'Right before vacation season we have the next Big Deal for you.';
-			html += '</div>';
-
-			KTUtil.setHTML(node, html);
-			messagesEl.appendChild(node);
-			textarea.value = '';
-			scrollEl.scrollTop = parseInt(KTUtil.css(messagesEl, 'height'));
-
-			var ps;
-			if (ps = KTUtil.data(scrollEl).get('ps')) {
-				ps.update();
-			}
-		}, 2000);
+        sendchatroomMessage();	
 	}
 
 	// Public methods

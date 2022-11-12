@@ -9,6 +9,7 @@ use App\Models\companies;
 use App\Models\staff_permissions;
 use App\Models\set_roles;
 use App\Models\role_users;
+use App\Models\chat_messages;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
@@ -82,6 +83,7 @@ class StaffPermissionController extends Controller
         $newuser->phonenumber = $request->phone_number;
         $newuser->password = Hash::make($randompassword);
         $newuser->type = 'carrier_sub_account';
+        $newuser->company_id = Cmf::getusercompany()->id;
         $newuser->approved_status = 1;
         $newuser->save();
         $addrole = new role_users();
@@ -95,6 +97,13 @@ class StaffPermissionController extends Controller
             $message->to($request->email);
             $message->subject($subject);
         });
+
+        $chat = new chat_messages();
+        $chat->message = 'Available for Chat';
+        $chat->sendBy = Auth::user()->id;
+        $chat->sendTo = $newuser->id;
+        $chat->first_message = 1;
+        $chat->save();
         return redirect()->back()->with('message', 'New User Added Successfully');
     }
 }
