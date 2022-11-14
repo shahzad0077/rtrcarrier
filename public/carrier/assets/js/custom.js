@@ -69,9 +69,35 @@ function getchatbyuser(id) {
             $('#messagesuser').removeClass('newmessageclass');
             $('#messagesuser').html(res);
             $('#messagesuser').scrollTop($('#messagesuser').get(0).scrollHeight);
+            checkchatmessage();
         }
     })
 }
+
+$( document ).ready(function() {
+    checkchatmessage();
+});
+
+function checkchatmessage()
+{
+    $.ajax({
+        type: "GET",
+        url: geturl()+'/chat/checkchatmessage/',
+        success: function(resp) {
+
+            if(resp > 0)
+            {
+                var value = $('#chatuserid').val();
+                getchatbyuser(value);
+            }
+            setTimeout(function() { 
+                checkchatmessage();
+            }, 2000);
+        }
+    });
+}
+
+
 
 function sendchatroomMessage(){
     var app_url = geturl();
@@ -94,6 +120,7 @@ function sendchatroomMessage(){
                 $('#messagesuser').removeClass('newmessageclass');
                 $('#inputMessage').val('')
                 $('#file-input').val('')
+                $('#blah').hide();
                 $('#messagesuser').html(res);
                 $('#messagesuser').scrollTop($('#messagesuser').get(0).scrollHeight);
             }
@@ -584,6 +611,16 @@ function readURL(input) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $(".upload-logo").css("background-image", "url(" + e.target.result + ")");
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function showpreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            $('#blah').show();
         };
         reader.readAsDataURL(input.files[0]);
     }

@@ -135,7 +135,7 @@ class ChatController extends Controller
         $usertwo = DB::table('users')->where('id' , $id)->get()->first();
 
 
-        echo '<input type="hidden" value="'.Auth::user()->name.'" id="profilenameuser"><input type="hidden" value="'.url("public/images").'/'.Auth::user()->profile_picture.'" id="profileimageuser"><div class="card card-custom rounded" id="user-messages">
+        echo '<input type="hidden" value="'.$id.'" id="chatuserid"><input type="hidden" value="'.url("public/images").'/'.Auth::user()->profile_picture.'" id="profileimageuser"><div class="card card-custom rounded" id="user-messages">
     <div class="card-header align-items-center px-8 py-4">
         <div>
             <div class="symbol symbol-circle symbol-40 mr-3">';
@@ -179,10 +179,10 @@ class ChatController extends Controller
                         <i class="flaticon2-photo-camera icon-lg"></i>
                     </label>
                 </a>
-                <input style="display:none;" id="file-input" type="file" />
+                <img id="blah" style="display:none; width: 50px; height: 50px; margin-left: 15px; border: 1px solid #ddd; padding: 2px; " src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">
+                <input onchange="showpreview(this);" style="display:none;" id="file-input" type="file" />
             </div>
-            <div>
-                <button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
+            <button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
             </div>
         </div>
         </form>
@@ -205,38 +205,68 @@ class ChatController extends Controller
                 $user = user::find($r->sendBy);
                 echo '<div class="d-flex flex-column mb-5 align-items-start">
                     <div class="d-flex align-items-center">
-                        <div class="symbol symbol-circle symbol-40 ml-3">';
-                        if($user->profile_picture){
-                        echo '<img alt="'.$user->name.'" src="'.url('public/images').'/'.$user->profile_picture.'">';
-                        }else{
-                           echo '<img alt="'.$user->name.'" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">';
-                        }
+                        <div class="symbol symbol-circle symbol-40 mr-3">';
+                            if($user->profile_picture)
+                            {
+                                echo '<img alt="Pic" src="'.url('public/images').'/'.$user->profile_picture.'" />';
+                            }else{
+                                echo '<img alt="Pic" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg" />';
+                            }
+                            
                         echo '</div>
+                        <div>
+                            <!-- <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a> -->
+
+                            <div class="mt-2 rounded-full p-5 bg-light-secondary text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">';
+
+                            if($r->image)
+                            {
+                                echo '<div class="meessage_image"><img style="max-width: 100%;max-height: 100%;" src="'.asset('images').'/'.$r->image.'"></div>
+                                <p>'.$r->message.'</p>';
+                            }else{
+                                echo $r->message;
+                            }
+
+
+                            echo '</div>
+                            <span class="text-muted font-size-sm">'.Cmf::create_time_ago($r->created_at).'</span>
+                        </div>
                     </div>
-                    <div>
-                        <div class="mt-2 rounded-full p-5 bg-light-secondary text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">'.$r->message.'</div>
-                        <span class="text-muted font-size-sm">'.Cmf::create_time_ago($r->created_at).'</span>
-                    </div>
-                </div>
-                ';
+                    
+                </div>';
             }else{
                 $user = Auth::user();
                 echo '<div class="d-flex flex-column mb-5 align-items-end">
                     <div class="d-flex align-items-center">
                         <div>
-                            <div class="mt-2 rounded-full-alt p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">'.$r->message.'</div>
+                            <div class="mt-2 rounded-full-alt p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">';
+
+                            if($r->image)
+                            {
+                                echo '<div class="meessage_image"><img style="max-width: 100%;max-height: 100%;" src="'.asset('images').'/'.$r->image.'"></div>
+                                <p>'.$r->message.'</p>';
+                            }else{
+                                echo $r->message;
+                            }
+
+
+                            echo '</div>
+
+
+
                             <span class="text-muted text-right font-size-sm">'.Cmf::create_time_ago($r->created_at).'</span>
                         </div>
                         <div class="symbol symbol-circle symbol-40 ml-3">';
-                        if($user->profile_picture){
-                        echo '<img  alt="'.$user->name.'" src="'.url('public/images').'/'.$user->profile_picture.'">';
-                        }else{
-                           echo '<img alt="'.$user->name.'" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">';
-                        }
+                            if($user->profile_picture)
+                            {
+                                echo '<img alt="Pic" src="'.url('public/images').'/'.$user->profile_picture.'" />';
+                            }else{
+                                echo '<img alt="Pic" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg" />';
+                            }
+                            
                         echo '</div>
                     </div>
                 </div>';
-
              }
             
         }
@@ -260,6 +290,13 @@ class ChatController extends Controller
         }
         $obj->save();
         $this->getchatmessages($request->sendTo);
+    }
+
+    public function checkchatmessage()
+    {
+        $id = Auth::user()->id;
+        $count =  chat_messages::where('sendTo' , $id)->where('read' , 0)->count();
+        echo $count;
     }
     
 }

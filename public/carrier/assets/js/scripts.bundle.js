@@ -10100,9 +10100,6 @@ var KTLayoutChat = function () {
         var profilenameuser = $('#profilenameuser').val();
 		var html = '';
 		html += '<div class="d-flex align-items-center">';
-		html += '	<div>';
-		html += '		<a href="javascript:void(0)" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">'+profilenameuser+'</a>';
-		html += '	</div>';
 		html += '	<div class="symbol symbol-circle symbol-40 ml-3">';
 		html += '		<img alt="Pic" src="'+profileimage+'"/>';
 		html += '	</div>';
