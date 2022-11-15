@@ -98432,7 +98432,7 @@ a.leaflet-browser-print {
 }
 .range-slider__range {
   -webkit-appearance: none;
-  width: calc(100% - (53px));
+  width: calc(100% - (63px));
   height: 8px;
   border-radius: 5px;
   background: none;

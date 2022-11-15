@@ -186,7 +186,7 @@
 
                         <div class="range-slider">
                             <label>Select Radius</label>
-                          <input class="range-slider__range" type="range" value="0" min="0" max="100">
+                          <input class="range-slider__range" type="range" value="0" min="0" max="1000">
                           <span class="range-slider__value">0</span>
                         </div>
                     </div>
@@ -487,7 +487,9 @@
             if(map.hasLayer(eachlyr_arr[city])){
                 map.removeLayer(eachlyr_arr[city])
             }
-
+            if(map.hasLayer(circlelayer)){
+                map.removeLayer(circlelayer)
+            }
             $('.city'+valname).remove();
         }
         
