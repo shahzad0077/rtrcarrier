@@ -30,7 +30,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBQAdBoWGWwdne8WSvfQRlQv58Hyz-BVQw"></script>
      <script src="{{ asset('public/carrier/assets/plugins/global/plugins.bundle.js?v=7.0.6') }}" type="text/javascript"></script>
 <script>
-   var searchInput = 'pac-input';
+var searchInput = 'pac-input';
 
 $(document).ready(function () {
     var options = {
@@ -39,6 +39,13 @@ $(document).ready(function () {
     };
    var input = document.getElementById('pac-input');
    var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        console.log(place.name);
+        document.getElementById('cityLat').value = place.geometry.location.lat();
+        document.getElementById('cityLng').value = place.geometry.location.lng();
+    });
 });
 </script>
 </head>

@@ -180,6 +180,16 @@
                             <div id="location-error"></div>
                         </div>
                     </div>
+                    <input type="hidden" id="cityLat" name="">
+                    <input type="hidden" id="cityLng" name="">
+                    <div class="col-md-12">
+
+                        <div class="range-slider">
+                            <label>Select Radius</label>
+                          <input class="range-slider__range" type="range" value="0" min="0" max="100">
+                          <span class="range-slider__value">0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -424,6 +434,19 @@
               });
         }
 
+        var circlelayer= L.layerGroup();
+
+
+        function circle_draw(lat,lon,radius){
+            var rmile=radius * 1609.34
+            if(map.hasLayer(circlelayer)){
+                map.removeLayer(circlelayer)
+            }
+            circlelayer=L.circle([lat,lon], rmile, {color: 'red', opacity:.5});
+            circlelayer.addTo(map)
+        }
+
+
         function city_drawn(valname , state)
         {
             var j = valname;
@@ -509,7 +532,26 @@
 
 
     <script type="text/javascript">
-        
+        var rangeSlider = function() {
+          var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+            slider.each(function() {
+
+            value.each(function() {
+              var value = $(this).prev().attr('value');
+              $(this).html(value);
+            });
+
+            range.on('input', function() {
+              $(this).next(value).html(this.value);
+            });
+          });
+        };
+
+        rangeSlider();
+
         function drawmap () {
             $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
             $('.leaflet-draw-draw-polygon')[0].click();
@@ -528,6 +570,11 @@
             var state = array[1];
             city_drawn(city , state);
             savecitymaplocation(city , state);
+            var lat = $('#cityLat').val();
+            var lon = $('#cityLng').val();
+            var radius = $('.range-slider__value').text();
+            console.log(radius);
+            circle_draw(lat,lon,radius);
             $('#searchcity').val('');
             $('#pac-input').val('')
             $('#addCity').modal('hide');
