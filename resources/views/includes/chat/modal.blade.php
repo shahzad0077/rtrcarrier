@@ -18,13 +18,28 @@
                         <div class="text-left flex-grow-1">
                             <div class="text-dark-75 font-weight-bold font-size-h5">{{ Auth::user()->name }}</div>
                             <div class="dropdown">
-                                <span class="label label-dot label-success"></span>
+                                <span id="chatstatus" class="label label-dot">
+                                    @if(Auth::user()->chat_status)
+                                        @if(Auth::user()->chat_status == 'Available')
+                                        <span id="asid123nsajkd" class="label label-dot label-success"></span>
+                                        @endif
+                                        @if(Auth::user()->chat_status == 'In Meeting')
+                                        <span id="asid123nsajkd" class="label label-dot label-info"></span>
+                                        @endif
+                                        @if(Auth::user()->chat_status == 'Do Not disturb')
+                                        <span id="asid123nsajkd" class="label label-dot label-danger"></span>
+                                        @endif
+                                        @if(Auth::user()->chat_status == 'Away')
+                                        <span id="asid123nsajkd" class="label label-dot label-warning"></span>
+                                        @endif
+                                    @endif
+                                </span>
                                 <span style="cursor: pointer;" class="font-weight-bold text-muted font-size-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span id="chat_status">@if(Auth::user()->chat_status) {{ Auth::user()->chat_status }} @else Active @endif  </span>  <i class="fa fa-angle-down"></i></span>
                                 <div class="dropdown-menu p-0 m-0 dropdown-menu-right dropdown-menu-sm">
                                     <!--begin::Navigation-->
                                     <ul class="navi navi-hover py-5">
                                         <li class="navi-item">
-                                            <a onclick="statuschange('Available')" href="javascript::void(0)" class="navi-link">
+                                            <a onclick="statuschange('Available')" href="javascript:void(0)" class="navi-link">
                                                 <span class="navi-icon">
                                                     <span class="label label-dot label-success"></span>
                                                 </span>
@@ -32,7 +47,7 @@
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a onclick="statuschange('In Meeting')" href="javascript::void(0)" class="navi-link">
+                                            <a onclick="statuschange('In Meeting')" href="javascript:void(0)" class="navi-link">
                                                 <span class="navi-icon">
                                                     <span class="label label-dot label-info"></span>
                                                 </span>
@@ -40,7 +55,7 @@
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a onclick="statuschange('Do Not disturb')" href="javascript::void(0)" class="navi-link">
+                                            <a onclick="statuschange('Do Not disturb')" href="javascript:void(0)" class="navi-link">
                                                 <span class="navi-icon">
                                                     <span class="label label-dot label-danger"></span>
                                                 </span>
@@ -48,7 +63,7 @@
                                             </a>
                                         </li>
                                         <li class="navi-item">
-                                            <a onclick="statuschange('Away')" href="javascript::void(0)" class="navi-link">
+                                            <a onclick="statuschange('Away')" href="javascript:void(0)" class="navi-link">
                                                 <span class="navi-icon">
                                                     <span class="label label-dot label-warning"></span>
                                                 </span>

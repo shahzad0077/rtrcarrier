@@ -32,6 +32,35 @@ function statuschange(id) {
         type:"get",
         success:function(res){
             $('#chat_status').html(id);
+            $('#asid123nsajkd').hide();
+            if(id == 'Available')
+            {
+                $('#chatstatus').removeClass('label-warning');
+                $('#chatstatus').removeClass('label-danger');
+                $('#chatstatus').removeClass('label-info');
+                $('#chatstatus').addClass('label-success');
+            }
+            if(id == 'In Meeting')
+            {
+                $('#chatstatus').removeClass('label-warning');
+                $('#chatstatus').removeClass('label-danger');
+                $('#chatstatus').removeClass('label-success');
+                $('#chatstatus').addClass('label-info');
+            }
+            if(id == 'Do Not disturb')
+            {
+                $('#chatstatus').removeClass('label-warning');
+                $('#chatstatus').removeClass('label-success');
+                $('#chatstatus').removeClass('label-info');
+                $('#chatstatus').addClass('label-danger');
+            }
+            if(id == 'Away')
+            {
+                $('#chatstatus').removeClass('label-success');
+                $('#chatstatus').removeClass('label-danger');
+                $('#chatstatus').removeClass('label-info');
+                $('#chatstatus').addClass('label-warning');
+            }
         }
     })
 }
