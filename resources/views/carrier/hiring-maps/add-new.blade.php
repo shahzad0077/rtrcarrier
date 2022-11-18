@@ -59,7 +59,10 @@
                                                 <div class="col-md-2">
                                                     <button onclick="drawmap()" type="button" class="btn form-control btn-secondary map-model-btn zip-btns">+ Draw Map</button>
                                                 </div>
-                                                <div class="col-md-4"></div>
+                                                <div class="col-md-2">
+                                                    <button data-toggle="modal" data-target="#addzipcode" type="button" class="btn form-control btn-secondary map-model-btn zip-btns">+ Add Zip Code</button>
+                                                </div>
+                                                <div class="col-md-2"></div>
                                                 <div class="col-md-2">
                                                     <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
                                                 </div>
@@ -131,7 +134,7 @@
 
     
 <!-- Add Zipcode-->
-<div class="modal fade" id="addZip" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+<div class="modal fade" id="addzipcode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -148,6 +151,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <input id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="range-slider-two">
+                                <label>Select Radius</label>
+                              <input class="range-slider__range-two" type="range" value="0" min="0" max="1000">
+                              <span class="range-slider__value-two">0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -439,9 +450,9 @@
 
         function circle_draw(lat,lon,radius){
             var rmile=radius * 1609.34
-            if(map.hasLayer(circlelayer)){
-                map.removeLayer(circlelayer)
-            }
+            // if(map.hasLayer(circlelayer)){
+            //     map.removeLayer(circlelayer)
+            // }
             circlelayer=L.circle([lat,lon], rmile, {color: 'red', opacity:.5});
             circlelayer.addTo(map)
         }
@@ -492,43 +503,23 @@
             }
             $('.city'+valname).remove();
         }
-        
-          var geocoder=L.Control.geocoder({
-          // defaultMarkGeocode: false,
-            collapsed:false,
-            position:"topleft", 
-            placeholder:"Enter Zip Code Here...",
-            queryParams: {"countrycodes": "US"},
-            geocoder: new L.Control.Geocoder.Nominatim({
-            geocodingQueryParams: {
-                "countrycodes": "US"
+
+
+        function getlattitudeandlongitude(zipcode)
+        {
+            $.ajax({
+                url:"https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBQAdBoWGWwdne8WSvfQRlQv58Hyz-BVQw&address="+zipcode, 
+                type:"get",
+                success:function(res){
+                    latitude = res.results[0].geometry.location.lat;
+                    longitude= res.results[0].geometry.location.lng;
+                    var marker = L.marker([latitude, longitude]).addTo(map);
+                    var radius = $('.range-slider__value-two').text();
+                    circle_draw(latitude,longitude,radius);
+                    $('#zipcode').val('')
                 }
             })
-          }).on('markgeocode', function(e) {
-              var searchTxt = $('div.leaflet-control-geocoder-form input').val();
-              console.log(searchTxt);
-              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
-              console.log(nurl);
-              $.getJSON(nurl, function(data) {
-                console.log(data);
-                var lyrname=L.geoJSON(data, {
-                  style: (feature) => {
-                    return {
-                      stroke: true,
-                      color: "#9933ff",
-                      weight: 2,
-                      opacity: 0.7,
-                      fill: true,
-                      fillColor: "#7300e6",
-                      fillOpacity: 0.15,
-                      smoothFactor: 0.5,
-                      interactive: false,
-                    };
-                  },
-                }).addTo(map);
-              });
-          })
-          geocoder.addTo(map);
+        }
     </script>
 
 
@@ -552,7 +543,26 @@
           });
         };
 
-        rangeSlider();
+
+        var rangeSlidertwo = function() {
+          var slidertwo = $('.range-slider-two'),
+            rangetwo = $('.range-slider__range-two'),
+            value = $('.range-slider__value-two');
+
+            slidertwo.each(function() {
+
+            value.each(function() {
+              var value = $(this).prev().attr('value');
+              $(this).html(value);
+            });
+
+            rangetwo.on('input', function() {
+              $(this).next(value).html(this.value);
+            });
+          });
+        };
+
+        rangeSlidertwo();
 
         function drawmap () {
             $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
@@ -585,10 +595,8 @@
         function addnewzip()
         {
             var zipcode = $('#zipcode').val();
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="zipcode'+value1+' btn btn-secondary map-delete-btn">'+zipcode+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+value1+')"></i></button><input type="hidden" value="'+zipcode+'" name="zipcode[]" id="zipcode'+value1+'">');
-            $('#zipcode').val('')
-            $('#addZip').modal('hide');
+            getlattitudeandlongitude(zipcode);
+            $('#addzipcode').modal('hide')
         }
         function deletezipcode(id)
         {

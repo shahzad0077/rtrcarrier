@@ -98467,3 +98467,42 @@ a.leaflet-browser-print {
   border-bottom: 7px solid transparent;
   content: '';
 }
+
+
+.range-slider__range-two {
+  -webkit-appearance: none;
+  width: calc(100% - (63px));
+  height: 8px;
+  border-radius: 5px;
+  background: none;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.range-slider-two{
+    margin-top: 20px;
+}
+.range-slider__value-two {
+  display: inline-block;
+  position: relative;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: #2c3e50;
+  color: #fff;
+  padding: 5px 10px;
+  margin-left: 8px;
+}
+
+.range-slider__value-two:after {
+  position: absolute;
+  top: 8px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #2c3e50;
+  border-bottom: 7px solid transparent;
+  content: '';
+}
