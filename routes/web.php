@@ -71,6 +71,7 @@ Route::post('/updateeducationarticle', [CarrierController::class, 'updateeducati
 Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
 Route::get('/printmap/{id}/{tittle}', [CarrierController::class, 'printmap']);
+Route::get('/searchzipcode/{id}', [CarrierController::class, 'searchzipcode']);
 
 
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);

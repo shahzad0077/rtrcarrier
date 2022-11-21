@@ -132,7 +132,21 @@
     </div>
     <!--end::Content-->
 
-    
+    <style type="text/css">
+        #zipcodesuggesstions ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #ddd;
+            height: 300px;
+            overflow: auto;
+            display: none;
+        }
+        #zipcodesuggesstions ul li{
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
 <!-- Add Zipcode-->
 <div class="modal fade" id="addzipcode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -150,10 +164,14 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <input id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                            <input onkeyup="searchzipcode(this.value)" id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                            <div id="zipcodesuggesstions">
+                                <ul id="zipcodeul">
+                                    
+                                </ul>
+                            </div>
                         </div>
                         <div class="col-md-12">
-
                             <div class="range-slider-two">
                                 <label>Select Radius</label>
                               <input class="range-slider__range-two" type="range" value="0" min="0" max="1000">
@@ -250,6 +268,22 @@
 
 @section('scripts')
     <script>
+        function searchzipcode(id) {
+            var app_url = geturl();
+            $.ajax({
+                url:app_url+"/searchzipcode/"+id, 
+                type:"get",
+                success:function(res){
+                 $('#zipcodeul').show();   
+                 $('#zipcodeul').html(res);      
+                }
+            })
+        }
+        function selectzipcode(id) {
+            $('#zipcodeul').hide();
+            $('#zipcodeul').html('');
+            $('#zipcode').val(id);
+        }
         function maptittle() {
             $('.map_tittle_error').hide();
         }

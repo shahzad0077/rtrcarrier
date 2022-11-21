@@ -43,6 +43,13 @@ class CarrierController extends Controller
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
     }
+    public function searchzipcode($id)
+    {
+        $data = DB::table('zipcode')->where('zipcode','like', '%' . $id . '%' )->get();
+        foreach ($data as $r) {
+            echo '<li onclick="selectzipcode('.$r->zipcode.')">'.$r->zipcode.' , '.$r->city.', '.$r->state.'</li>';
+        }
+    }
     public function advertise()
     {
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
