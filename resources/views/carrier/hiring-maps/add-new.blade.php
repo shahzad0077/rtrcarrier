@@ -212,7 +212,6 @@
                     <input type="hidden" id="cityLat" name="">
                     <input type="hidden" id="cityLng" name="">
                     <div class="col-md-12">
-
                         <div class="range-slider">
                             <label>Select Radius</label>
                           <input class="range-slider__range" type="range" value="0" min="0" max="1000">
@@ -562,21 +561,22 @@
         var rangeSlider = function() {
           var slider = $('.range-slider'),
             range = $('.range-slider__range'),
-            value = $('.range-slider__value');
+            valuecity = $('.range-slider__value');
 
             slider.each(function() {
 
-            value.each(function() {
-              var value = $(this).prev().attr('value');
-              $(this).html(value);
+            valuecity.each(function() {
+              var valuecity = $(this).prev().attr('value');
+              $(this).html(valuecity);
             });
 
             range.on('input', function() {
-              $(this).next(value).html(this.value);
+              $(this).next(valuecity).html(this.value);
             });
           });
         };
 
+        rangeSlider();
 
         var rangeSlidertwo = function() {
           var slidertwo = $('.range-slider-two'),
