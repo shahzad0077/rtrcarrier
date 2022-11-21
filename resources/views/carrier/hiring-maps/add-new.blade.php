@@ -630,6 +630,8 @@
         {
             var zipcode = $('#zipcode').val();
             getlattitudeandlongitude(zipcode);
+
+            $('#appenddivs').append('<button type="button" class="zipcode'+zipcode+' btn btn-secondary map-delete-btn">'+zipcode+'<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+zipcode+')"></i></button>');
             $('#addzipcode').modal('hide')
         }
         function deletezipcode(id)
