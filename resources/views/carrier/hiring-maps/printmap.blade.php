@@ -21,9 +21,6 @@
 <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.js"></script>
 
 <script>
-        setTimeout(function(){
-          $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
-        }, 500);
         var map
         map = L.map('map', {
         center: [40.291, -95.78],
@@ -39,66 +36,7 @@
                     maxZoom: 20,
                     subdomains:['mt0','mt1','mt2','mt3']
                 })  
-      L.simpleMapScreenshoter({position:'topright'}).addTo(map)
-
-      L.control.browserPrint({position:'topright'}).addTo(map);
-      map.zoomControl.setPosition('topright');
      
-
-    var baseLayers = {
-    "Google Street Map": googlestreet,
-    "Google Sattellite Map": googleSat,
-    "Dark Map": dark,
-    };
-    var overLays = {
-    // "Land_Plots": Land_Plots,
-    // "Trees & Graphics": trees_layer,
-    // "Clouds": clouds_layer
-    };
-
-    var mylayercontrol= L.control.layers(baseLayers,overLays).addTo(map);
-
-
-      var drawnItems = new L.FeatureGroup();
-        map.addLayer(drawnItems);
-      
-          var drawControl = new L.Control.Draw({
-            position: 'topright',
-            draw:{
-              polygon : {
-                          allowIntersection: false,
-                          showLength: true,
-                          metric:['km', 'm']
-                      },
-              polyline:false,
-              marker: true,
-              squire: false,
-              circlemarker: false,
-              rectangle: false,
-              circle: false,
-               
-              },
-            edit: {
-              featureGroup: drawnItems,
-              remove: true,
-              edit: true,
-      
-            }
-          });
-        
-        map.addControl(drawControl);
-          
-        map.on(L.Draw.Event.CREATED, function (e) {
-          console.clear();
-          var type = e.layerType
-          var layer = e.layer;
-            drawnItems.addLayer(layer);
-        });
-      
-      
-        map.on('draw:editvertex', function (e) { 
-
-        });   
 
         var eachlyr_arr =  Array();
 
@@ -136,7 +74,6 @@
         }).addTo(map)
 
          function manualPrint () {
-          console.log('ok');
           simpleMapScreenshoter.takeScreen('blob', {
             caption: function () {
                 return '{{ $tittle }}'

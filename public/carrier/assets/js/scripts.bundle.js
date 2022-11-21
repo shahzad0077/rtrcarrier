@@ -10099,12 +10099,7 @@ var KTLayoutChat = function () {
         var profileimage = $('#profileimageuser').val();
         var profilenameuser = $('#profilenameuser').val();
 		var html = '';
-		html += '<div class="d-flex align-items-center">';
-		html += '	<div class="symbol symbol-circle symbol-40 ml-3">';
-		html += '		<img alt="Pic" src="'+profileimage+'"/>';
-		html += '	</div>';
-		html += '</div>';
-		html += '<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">' + textarea.value + '</div>';
+		html += '<div class="d-flex flex-column mb-5 align-items-end"> <div class="d-flex align-items-center"> <div> <div class="mt-2 rounded-full-alt p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">'+textarea.value+'</div> <span class="text-muted text-right font-size-sm">1 second ago</span> </div> <div class="symbol symbol-circle symbol-40 ml-3"><img alt="Pic" src="'+profileimage+'"></div> </div> </div>'
         $('#inputMessage').val(textarea.value)
 		KTUtil.setHTML(node, html);
 		messagesEl.appendChild(node);

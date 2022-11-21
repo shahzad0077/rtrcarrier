@@ -135,7 +135,15 @@ class ChatController extends Controller
         $usertwo = DB::table('users')->where('id' , $id)->get()->first();
 
 
-        echo '<input type="hidden" value="'.$id.'" id="chatuserid"><input type="hidden" value="'.url("public/images").'/'.Auth::user()->profile_picture.'" id="profileimageuser"><div class="card card-custom rounded" id="user-messages">
+        echo '<input type="hidden" value="'.$id.'" id="chatuserid">';
+        if(Auth::user()->profile_picture)
+        {
+            echo '<input type="hidden" value="'.url("public/images").'/'.Auth::user()->profile_picture.'" id="profileimageuser">';    
+        }else{
+            echo '<input type="hidden" value="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg" id="profileimageuser">';
+        }
+        
+   echo '<div class="card card-custom rounded" id="user-messages">
     <div class="card-header align-items-center px-8 py-4">
         <div>
             <div class="symbol symbol-circle symbol-40 mr-3">';

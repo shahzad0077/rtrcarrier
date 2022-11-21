@@ -97,8 +97,8 @@ function getchatbyuser(id) {
         success:function(res){
             $('#messagesuser').removeClass('newmessageclass');
             $('#messagesuser').html(res);
-            $('#messagesuser').scrollTop($('#messagesuser').get(0).scrollHeight);
-            checkchatmessage();
+            var div = $(".scroll-pull");
+            div.scrollTop(div.prop('scrollHeight'));
         }
     })
 }
