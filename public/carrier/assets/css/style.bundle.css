@@ -98506,3 +98506,11 @@ a.leaflet-browser-print {
   border-bottom: 7px solid transparent;
   content: '';
 }
+
+
+.meessage_image img
+{
+    width: 250px !important;
+    height: 150px !important;
+    object-fit: cover !important;
+}
