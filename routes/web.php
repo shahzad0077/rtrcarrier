@@ -149,11 +149,13 @@ Route::name('chat.')->prefix('chat')->group(function(){
     Route::get('/chatshow',[ChatController::class, 'chatshow']);
     Route::get('/filterusers/{id}',[ChatController::class, 'filterusers']);
     Route::get('/getchatbyuser/{id}',[ChatController::class, 'getchatbyuser']);
-
     Route::get('/checkchatmessage',[ChatController::class, 'checkchatmessage']);
-
     Route::post('/savechat',[ChatController::class, 'savechat']);
     Route::post('/creategroup',[ChatController::class, 'creategroup']);
+    Route::get('/startgroupchat/{id}',[ChatController::class, 'startgroupchat']);
+    Route::get('/getchatbygroup/{id}',[ChatController::class, 'getchatbygroup']);
+    Route::post('/updategroup',[ChatController::class, 'updategroup']);
+    Route::get('/getgroupdetailsforsettings/{id}',[ChatController::class, 'getgroupdetailsforsettings']);
 });
 
 

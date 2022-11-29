@@ -1,3 +1,50 @@
+function deletegroup(id) {
+    alert('ok');
+}
+function showmodalforgroupsettings(id) {
+    $('#groupsettings').modal('show');
+    $('#groupidforupdate').val(id);
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/getgroupdetailsforsettings/"+id, 
+        type:"get",
+        success:function(res){
+            $('#group_name_for_update').val(res.name);
+            var image = app_url+"/public/images/"+res.image;
+            $('#groupiconupdate').attr('src' , image);
+        }
+    })
+
+}
+function startgroupchat(id) 
+{
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/startgroupchat/"+id, 
+        type:"get",
+        success:function(res){
+            $('#mainchatall').hide();
+            $('#singlechat').html(res);
+            $('#messagesuser').addClass('newmessageclass');
+            $('#messagesuser').html('<div class="loader"></div>');
+            getchatbygroup(id);
+        }
+    })
+}
+function getchatbygroup(id) 
+{
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/chat/getchatbygroup/"+id, 
+        type:"get",
+        success:function(res){
+            $('#messagesuser').removeClass('newmessageclass');
+            $('#messagesuser').html(res);
+            var div = $(".scroll-pull");
+            div.scrollTop(div.prop('scrollHeight'));
+        }
+    })
+}
 function filterusers(id) {
     var value = $('#searchuserinput').val();
     if(value == '')
@@ -18,11 +65,9 @@ function filterusers(id) {
                 }else{
                     $('#searchusers').show();
                     $('#searchusers').html(res);
-                }
-                
+                }      
             }
-        })
-        
+        }) 
     }
 }
 function statuschange(id) {

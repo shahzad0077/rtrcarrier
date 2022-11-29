@@ -122,6 +122,124 @@ class ChatController extends Controller
         
 
     }
+    public function startgroupchat($id)
+    {
+        $getgroup = groups::where('id' , $id)->get()->first();
+        group_members::where('group_member' , Auth::user()->id)->where('group_id' , $id)->update(array('readcount' =>0));
+        echo '<input type="hidden" value="'.$id.'" id="chatuserid">';
+        if(Auth::user()->profile_picture)
+        {
+            echo '<input type="hidden" value="'.url("public/images").'/'.Auth::user()->profile_picture.'" id="profileimageuser">';    
+        }else{
+            echo '<input type="hidden" value="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg" id="profileimageuser">';
+        }
+            
+       echo '<div class="card card-custom rounded" id="user-messages">
+        <div class="card-header align-items-center px-8 py-4">
+            <div>
+                <div class="symbol symbol-circle symbol-40 mr-3">';
+                    if($getgroup->image){
+                    echo '<img alt="'.$getgroup->name.'" src="'.url('public/images').'/'.$getgroup->image.'">';
+                    }else{
+                       echo '<img alt="'.$getgroup->name.'" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">';
+                    }
+                echo '</div>
+            </div>
+            <div class="text-left flex-grow-1">
+                <div class="text-dark-75 font-weight-bold font-size-h5">'.$getgroup->name.'</div>
+            </div>
+            <div class="text-right flex-grow-1">
+            <div class="dropdown dropdown-inline">
+                <a href="javascript:void(0)" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ki ki-bold-more-hor"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right" style="">
+                    <!--begin::Navigation-->
+                    <ul class="navi navi-hover py-5">
+                        <li class="navi-item">
+                            <a onclick="showmodalforgroupsettings('.$getgroup->id.')" href="javascript:void(0)" class="navi-link">
+                                <span class="navi-icon"><i class="flaticon2-gear"></i></span>
+                                <span class="navi-text">Settings</span>
+                            </a>
+                        </li>
+                        <li class="navi-item">
+                            <a data-toggle="modal" data-target="#addnewuser" href="javascript:void()" class="navi-link">
+                                <span class="navi-icon"><i class="flaticon2-plus"></i></span>
+                                <span class="navi-text">Add Member</span>
+                            </a>
+                        </li>
+                        <li class="navi-item">
+                            <a onclick="deletegroup('.$getgroup->id.')" href="javascript:void()" class="navi-link">
+                                <span class="navi-icon"><i class="flaticon2-trash"></i></span>
+                                <span class="navi-text">Delete Group</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end::Navigation-->
+                </div>
+            </div>
+                <button onclick="backtoallchats()" type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md">
+                   <i class="fa fa-light fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="scroll scroll-pull" data-height="375" data-mobile-height="300">
+                <div class="messages" id="messagesuser">
+                   
+                </div>
+            </div>
+        </div>
+        <div class="card-footer align-items-center">
+            <form class="needs-validation" novalidate="" onsubmit="event.preventDefault();" name="chatroom-form" id="chatroom-form">
+            <input type="hidden" value="'.Auth::user()->id.'" id="sendBy">
+            <input type="hidden" id="sendTo" value="'.$id.'" name="sendTo">
+            <input autocomplete="off" type="hidden" id="inputMessage" class="form-control" placeholder="Write your text here.....">
+            <textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
+            <div class="d-flex align-items-center justify-content-between mt-5">
+                <div class="mr-3">
+                    <a href="javascript:void(0)" class="btn btn-clean btn-icon btn-md mr-1">
+                        <label for="file-input">
+                            <i class="flaticon2-photo-camera icon-lg"></i>
+                        </label>
+                    </a>
+                    <img id="blah" style="display:none; width: 50px; height: 50px; margin-left: 15px; border: 1px solid #ddd; padding: 2px; " src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">
+                    <input onchange="showpreview(this);" style="display:none;" id="file-input" type="file" />
+                </div>
+                <button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!--end::Card-->';
+    }
+    public function getchatbygroup($id)
+    {
+        
+    }
+    public function updategroup(Request $request)
+    {
+        $group =  groups::find($request->id);
+        $group->name = $request->group_name;
+        if($request->group_logo)
+        {
+            $group->image = Cmf::sendimagetodirectory($request->group_logo);
+        }
+        $group->save();
+
+        $company = Cmf::getusercompany();
+        $notify = new group_messages();
+        $notify->group_id = $group->id;
+        $notify->message = $company->company_name. ' Updated Group Settings';
+        $notify->type = 'notify';
+        $notify->save();
+        return redirect()->back()->with('groupupdate', $group->id);
+    }
+    public function getgroupdetailsforsettings($id)
+    {
+        return groups::find($id);
+    }
     public function startchatwith($id)
     {
 

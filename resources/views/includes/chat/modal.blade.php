@@ -176,23 +176,23 @@
                                             </div>
                                          </div>
                                         <div class="tab-pane fade @if(session()->has('groupcreated')) show active @endif" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
-                                            <div class="input-group input-group-solid mb-7">
+                                            <!-- <div class="input-group input-group-solid mb-7">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">
                                                         <span class="svg-icon svg-icon-lg">
-                                                            <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                                     <rect x="0" y="0" width="24" height="24"></rect>
                                                                     <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
                                                                     <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"></path>
                                                                 </g>
                                                             </svg>
-                                                            <!--end::Svg Icon--></span> </span>
+                                                        </span> </span>
                                                 </div>
                                                 <input type="text" class="form-control py-4 h-auto" placeholder="Search user">
-                                            </div>
+                                            </div> -->
                                             @foreach(DB::table('group_members')->where('group_member' , Auth::user()->id)->orderby('id' , 'desc')->get() as $r)
-                                            <div class="d-flex align-items-center justify-content-between mb-5">
+                                            <div onclick="startgroupchat({{ $r->group_id }})" class="d-flex align-items-center justify-content-between mb-5">
                                                 <div class="d-flex align-items-center">
                                                     <div class="symbol symbol-circle symbol-50 mr-3">
                                                         <img alt="Pic" src="{{ asset('public/images') }}/{{ DB::table('groups')->where('id' , $r->group_id)->get()->first()->image }}">
@@ -223,7 +223,110 @@
 </div>
 
 @if(Auth::user()->type == 'carrier')
-<!-- Modal -->
+<div class="modal fade" id="groupsettings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Group Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form enctype="multipart/form-data" method="POST" action="{{ url('chat/updategroup') }}">
+          @csrf
+          <input type="hidden" id="groupidforupdate" name="id">
+            <div class="modal-body" style="height: 50vh; overflow-y: auto;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="lable-control">Group Name</label>
+                        <div class="input-group input-group-solid">
+                            <input id="group_name_for_update" name="group_name" required type="text" class="form-control py-4 h-auto">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="lable-control">Group Icon</label>
+                        <div class="input-group input-group-solid">
+                            <input type="file"  name="group_logo" class="form-control py-4 h-auto" placeholder="Group Title">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="groupiconimge">
+                            <img id="groupiconupdate" src="https://preview.keenthemes.com/html/keen/docs/assets/media/logos/keen.svg" width="120px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="addnewuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Member</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form enctype="multipart/form-data" method="POST" action="{{ url('chat/creategroup') }}">
+        @csrf
+      <div class="modal-body" style="height: 50vh; overflow-y: auto;">
+        <div class="row">
+                @foreach(DB::table('users')->where('company_id' , Cmf::getusercompany()->id)->where('type' , 'carrier_sub_account')->get() as $r)
+                <div class="col-md-12">
+                <label for="selectedcheckbox{{ $r->id }}">
+                <div for="selectedcheckbox{{ $r->id }}" class="d-flex align-items-center justify-content-between mb-5">
+                    <div class="d-flex align-items-center">
+                        <div class="checkbox-inline">
+                            <label class="checkbox checkbox-lg">
+                                <input id="selectedcheckbox{{ $r->id }}" value="{{  $r->id }}"  type="checkbox" name="users[]"/>
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="symbol symbol-circle symbol-50 mr-3">
+                            @if($r->profile_picture)
+                            <img alt="Pic" src="{{ asset('public/images') }}/{{ $r->profile_picture }}">
+                            @else
+                            <img alt="Pic" src="https://cdn3.vectorstock.com/i/thumb-large/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg">
+                            @endif
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-lg">{{ $r->name }}</a>
+                            <span class="text-muted font-weight-bold font-size-sm">
+                                @php
+                                    $role = DB::table('role_users')->where('user_id' , $r->id)->first();
+                                    $rolename = DB::table('staff_permissions')->where('id' , $role->role_id)->first();
+                                @endphp
+                            {{ $rolename->name }}</span>
+                        </div>
+                    </div>
+                </div>
+                </label>
+                </div>
+                @endforeach
+            
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -246,7 +349,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <label class="lable-control">Add Logo</label>
+                <label class="lable-control">Group Icon</label>
                 <div class="input-group input-group-solid">
                     <input type="file" required name="group_logo" class="form-control py-4 h-auto" placeholder="Group Title">
                 </div>
@@ -299,3 +402,14 @@
   </div>
 </div>
 @endif
+
+@if(session()->has('groupupdate'))
+    @section('scripts')
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                var groupid = '{{ session()->get("groupupdate") }}';
+                startgroupchat(groupid) 
+            });
+        </script>
+    @endsection
+@endif 
