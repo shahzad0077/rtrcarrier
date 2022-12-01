@@ -358,19 +358,27 @@ $("#updatecoverinput").change(function(){
 $("#profile_avatar").change(function(){   
     $('#profileavatarform').submit();
 });
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 function appendbenifit()
 {
+    var number = randomIntFromInterval(100, 60000)
     var value = $('#bennifitnew').val();
-    if(value)
+    if(value == '')
     {
-        $('#bennifitnew').removeClass('is-invalid')
-        $('#appendbenifitindiv').append('<div class="col-md-6"><label class="checkbox checkbox-lg mb-3"><input checked value="'+value+'" type="checkbox" name="custombenifits[]" /><span class="mr-3"></span>'+value+'</label></div>');
-        $('#bennifitnew').val(' ');
+        $('#bennifitnew').addClass('is-invalid') 
+        
     }else{
-        $('#bennifitnew').addClass('is-invalid')
+        $('#bennifitnew').removeClass('is-invalid')
+        $('#appendbenifitindiv').append('<div class="col-md-6 benfit'+number+'"><label class="checkbox checkbox-lg mb-3"><input id="checkbox'+number+'" checked value="'+value+'" type="checkbox" name="custombenifits[]" /><span class="mr-3"></span>'+value+'</label><span onclick="removebenifit('+number+')" class="badge badge-light">&times;</span></div>');
+        $('#bennifitnew').val('');
     }
 }
-
+function removebenifit(id) {
+    $('.benfit'+id).remove();
+    $("#checkbox"+id).prop("checked", false);
+}
 $('#advance_detail_submit_form').on('submit',(function(e) {
     $('#advance_detail_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
     $(".advance-feedback").css('display','none');

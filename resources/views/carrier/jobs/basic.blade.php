@@ -326,11 +326,12 @@
                 <div class="row" id="appendbenifitindiv">
                     @foreach(explode(',' , $attribute->where('id' , 133)->first()->options) as $r)
                     <div class="col-md-6">
-                        <label class="checkbox checkbox-lg mb-3">
+                        <label class="checkbox checkbox-lg mb-3 ">
                             <input @foreach(explode(',' , $job->benifits) as $b) @if($b == $r) checked @endif @endforeach type="checkbox" value="{{ $r }}" name="benifits[]" />
                             <span class="mr-3"></span>
                             {{ $r }}
                         </label>
+                        
                     </div>
                     @endforeach
                     @if($job->custombenifits)
@@ -356,10 +357,6 @@
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <button type="button" class="btn btn-primary">
-                      Benefit<span class="badge badge-light">&times;</span>
-                      <span class="sr-only">unread messages</span>
-                    </button>
                     <div class="col-md-12">
                         <span onclick="appendbenifit()" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Add New
