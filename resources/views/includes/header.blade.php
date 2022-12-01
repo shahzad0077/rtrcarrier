@@ -15,9 +15,7 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="all-jobs" class="text-muted"></a>
-                </li>
+                @yield('pagename')
             </ul>
             <!--end::Page Title-->
             <!--begin::Header Menu Wrapper-->
@@ -41,7 +39,7 @@
                     </div>
                 </div>
 
-                <div onclick="chatshow()" class="topbar-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat" data-placement="left">
+                <div onclick="chatshow('open')" class="topbar-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat" data-placement="left">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
                         <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
                             <i class="flaticon2-chat-1"></i>

@@ -87,7 +87,7 @@
                                 </svg><!--end::Svg Icon--></span>                        
                             </button>
                             @endif
-                            <button onclick="chatshow()" type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-dismiss="modal">
+                            <button onclick="chatshow('close')" type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-dismiss="modal">
                                 <i class="ki ki-close icon-1x"></i>
                             </button>
                         </div>
@@ -192,7 +192,7 @@
                                                 <input type="text" class="form-control py-4 h-auto" placeholder="Search user">
                                             </div> -->
                                             @foreach(DB::table('group_members')->where('group_member' , Auth::user()->id)->orderby('id' , 'desc')->get() as $r)
-                                            <div onclick="startgroupchat({{ $r->group_id }})" class="d-flex align-items-center justify-content-between mb-5">
+                                            <div style="cursor:pointer;" onclick="startgroupchat({{ $r->group_id }})" class="d-flex align-items-center justify-content-between mb-5">
                                                 <div class="d-flex align-items-center">
                                                     <div class="symbol symbol-circle symbol-50 mr-3">
                                                         <img alt="Pic" src="{{ asset('public/images') }}/{{ DB::table('groups')->where('id' , $r->group_id)->get()->first()->image }}">
@@ -224,7 +224,7 @@
 
 @if(Auth::user()->type == 'carrier')
 <div class="modal fade" id="groupsettings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Group Settings</h5>
@@ -235,7 +235,7 @@
       <form enctype="multipart/form-data" method="POST" action="{{ url('chat/updategroup') }}">
           @csrf
           <input type="hidden" id="groupidforupdate" name="id">
-            <div class="modal-body" style="height: 50vh; overflow-y: auto;">
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <label class="lable-control">Group Name</label>

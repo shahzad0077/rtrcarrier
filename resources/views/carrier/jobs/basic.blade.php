@@ -356,6 +356,10 @@
                     </div>
                 </div>
                 <div class="row mb-4">
+                    <button type="button" class="btn btn-primary">
+                      Benefit<span class="badge badge-light">&times;</span>
+                      <span class="sr-only">unread messages</span>
+                    </button>
                     <div class="col-md-12">
                         <span onclick="appendbenifit()" class="btn btn-primary">
                             <i class="fa fa-plus"></i> Add New

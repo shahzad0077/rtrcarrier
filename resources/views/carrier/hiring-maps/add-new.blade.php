@@ -49,23 +49,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <button type="button" class="form-control btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <button type="button" class="btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
+                                                    </div>
+                                                    <div>
+                                                        <button onclick="drawmap()" type="button" class="btn btn-secondary map-model-btn zip-btns">+ Draw Map</button>
+                                                    </div>
+                                                    <div>
+                                                        <button data-toggle="modal" data-target="#addzipcode" type="button" class="btn btn-secondary map-model-btn zip-btns">+ Add Zip Code</button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button onclick="drawmap()" type="button" class="btn form-control btn-secondary map-model-btn zip-btns">+ Draw Map</button>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <button data-toggle="modal" data-target="#addzipcode" type="button" class="btn form-control btn-secondary map-model-btn zip-btns">+ Add Zip Code</button>
-                                                </div>
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-2">
+                                                <div>
                                                     <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
@@ -173,9 +175,11 @@
                         </div>
                         <div class="col-md-12">
                             <div class="range-slider-two">
-                                <label>Select Radius</label>
-                              <input class="range-slider__range-two" type="range" value="0" min="0" max="1000">
-                              <span class="range-slider__value-two">0</span>
+                              <label>Select Radius</label>
+                              <div class="d-flex flex-row">
+                                  <input style="margin-top:10px;" class="range-slider__range-two" type="range" value="0" min="0" max="1000">
+                                  <input style="width:70px;height: 30px;" type="number" class="range-slider__value-two" value="0" name="">
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -213,9 +217,11 @@
                     <input type="hidden" id="cityLng" name="">
                     <div class="col-md-12">
                         <div class="range-slider">
-                            <label>Select Radius</label>
-                          <input class="range-slider__range" type="range" value="0" min="0" max="1000">
-                          <span class="range-slider__value">0</span>
+                          <label>Select Radius</label>
+                          <div class="d-flex flex-row">
+                              <input style="margin-top:10px;" class="range-slider__range" type="range" value="0" min="0" max="1000">
+                              <input style="width:70px;height: 30px;" type="number" class="range-slider__value" value="0" name="">
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -547,7 +553,7 @@
                     latitude = res.results[0].geometry.location.lat;
                     longitude= res.results[0].geometry.location.lng;
                     var marker = L.marker([latitude, longitude]).addTo(map);
-                    var radius = $('.range-slider__value-two').text();
+                    var radius = $('.range-slider__value-two').val();
                     circle_draw(latitude,longitude,radius);
                     $('#zipcode').val('')
                 }
@@ -567,11 +573,11 @@
 
             valuecity.each(function() {
               var valuecity = $(this).prev().attr('value');
-              $(this).html(valuecity);
+              $(this).val(valuecity);
             });
 
             range.on('input', function() {
-              $(this).next(valuecity).html(this.value);
+              $(this).next(valuecity).val(this.value);
             });
           });
         };
@@ -587,11 +593,11 @@
 
             value.each(function() {
               var value = $(this).prev().attr('value');
-              $(this).html(value);
+              $(this).val(value);
             });
 
             rangetwo.on('input', function() {
-              $(this).next(value).html(this.value);
+              $(this).next(value).val(this.value);
             });
           });
         };
@@ -618,7 +624,7 @@
             savecitymaplocation(city , state);
             var lat = $('#cityLat').val();
             var lon = $('#cityLng').val();
-            var radius = $('.range-slider__value').text();
+            var radius = $('.range-slider__value').val();
             console.log(radius);
             circle_draw(lat,lon,radius);
             $('#searchcity').val('');

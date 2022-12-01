@@ -27,13 +27,12 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Hiring Requirements Templates</label>
-                    <select required name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select onchange="gettemplate(this.value)" required name="hiring_template" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Hiring Requirements Template</option>
                         @foreach($template as $r)
                         <option @if(DB::table('linktemplatewithjobs')->where('job_id' , $job->id)->where('template_id' , $r->id)->count() > 0) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
                         @endforeach
                     </select>
-
                     @error('hiring_template')
                         <span class="invalid-feedback" role="alert">
                             <strong>Hiring Template Is Required</strong>
@@ -41,6 +40,28 @@
                     @enderror
                 </div>
             </div>
+            @foreach($template as $r)
+            <div style="display:none;" id="editbutton{{ $r->id }}" class="col-md-12 text-right editbutton">
+                <a onclick="showtemplate({{$r->id}})" href="javascript::void(0)">Edit Template</a>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>
+
+@section('scripts')
+    <script type="text/javascript">
+        function gettemplate(id) {
+            if(id =='')
+            {
+                $('.editbutton').hide();
+            }else{
+                $('#editbutton'+id).show();
+            }
+        }
+        function showtemplate(id) {
+            $('.alltemplate').hide();
+            $('#shotemplate'+id).fadeIn();
+        }
+    </script>
+@endsection

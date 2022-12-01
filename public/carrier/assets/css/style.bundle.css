@@ -11566,7 +11566,7 @@ button.bg-white:focus {
 
 .pt-5,
 .py-5 {
-    padding-top: 1.25rem !important;
+    padding-top: 0.4rem !important;
 }
 
 .pr-5,
@@ -11576,7 +11576,7 @@ button.bg-white:focus {
 
 .pb-5,
 .py-5 {
-    padding-bottom: 1.25rem !important;
+    padding-bottom: 0.4rem !important;
 }
 
 .pl-5,
@@ -54499,7 +54499,7 @@ i {
 }
 
 .card.card-custom>.card-body {
-    padding: 2rem 2.25rem;
+    padding: 1rem 2.25rem;
 }
 
 .card.card-custom>.card-footer {
@@ -89102,7 +89102,7 @@ code {
     width: 100% !important;
     border-collapse: initial !important;
     border-spacing: 0 !important;
-    margin: 1rem 0 !important;
+    margin: 0rem 0 !important;
     border-radius: 0.42rem;
 }
 
@@ -89117,7 +89117,7 @@ code {
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
     outline: none !important;
-    padding: 1rem 1rem;
+    padding: 0.4rem 0.4rem;
 }
 
 .dataTables_wrapper .dataTable th .checkbox,
@@ -96718,7 +96718,7 @@ body {
 }
 
 .aside-menu .menu-nav>.menu-item>.menu-link {
-    padding: 13px 25px;
+    padding: 6px 25px;
 }
 
 .aside-menu .menu-nav>.menu-item>.menu-submenu .menu-subnav .menu-content .menu-heading {

@@ -109,8 +109,16 @@ function statuschange(id) {
         }
     })
 }
-function chatshow() {
+function chatshow(id) {
     var app_url = geturl();
+    if(id == 'open')
+    {
+        $('.modal-sticky-bottom-right').show();
+    }
+    if(id == 'close')
+    {
+        $('.modal-sticky-bottom-right').hide();
+    }
     $.ajax({
         url:app_url+"/chat/chatshow", 
         type:"get",

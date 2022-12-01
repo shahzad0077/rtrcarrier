@@ -3,6 +3,14 @@
     $tittle = "Edit Job | ".$job->job_tittle;
 @endphp
 @section('title',$tittle)
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="{{ url('jobs') }}" class="text-muted">All Jobs</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Edit Job : {{ $job->job_tittle }}</a>
+</li>
+@endsection
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">

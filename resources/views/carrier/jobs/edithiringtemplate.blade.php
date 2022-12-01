@@ -1,5 +1,14 @@
 @extends('layouts.main-layout')
 @section('title','Add Hiring Template')
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="{{ url('hiring-templates') }}" class="text-muted">Hiring Templates</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Edit Template : {{ $data->name }}</a>
+</li>
+@endsection
+
 @section('content')
 
     <!--begin::Content-->
