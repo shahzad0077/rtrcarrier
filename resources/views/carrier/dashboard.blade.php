@@ -94,6 +94,78 @@
                         </div>
                         <!--end::Body-->
                     </div>
+                    <style type="text/css">
+                        .select {
+                          position: relative;
+                          width: 250px;
+                          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        }
+                        .select .selectBtn {
+                          background: var(--bg1);
+                          padding: 10px 40px;
+                          box-sizing: border-box;
+                          border-radius: 3px;
+                          width: 100%;
+                          cursor: pointer;
+                          position: relative;
+                          -webkit-user-select: none;
+                             -moz-user-select: none;
+                              -ms-user-select: none;
+                                  user-select: none;
+                          background: #fff;
+                        }
+                        .select .selectBtn:after {
+                          content: "";
+                          position: absolute;
+                          top: 45%;
+                          right: 15px;
+                          width: 6px;
+                          height: 6px;
+                          -webkit-transform: translateY(-50%) rotate(45deg);
+                                  transform: translateY(-50%) rotate(45deg);
+                          border-right: 2px solid #666;
+                          border-bottom: 2px solid #666;
+                          transition: 0.2s ease;
+                        }
+                        .select .selectBtn.toggle {
+                          border-radius: 3px 3px 0 0;
+                        }
+                        .select .selectBtn.toggle:after {
+                          -webkit-transform: translateY(-50%) rotate(-135deg);
+                                  transform: translateY(-50%) rotate(-135deg);
+                        }
+                        .select .selectDropdown {
+                          position: absolute;
+                          top: 100%;
+                          width: 100%;
+                          border-radius: 0 0 3px 3px;
+                          overflow: hidden;
+                          background: var(--bg1);
+                          border-top: 1px solid #eee;
+                          z-index: 1;
+                          background: #fff;
+                          -webkit-transform: scale(1, 0);
+                                  transform: scale(1, 0);
+                          -webkit-transform-origin: top center;
+                                  transform-origin: top center;
+                          visibility: hidden;
+                          transition: 0.2s ease;
+                          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+                        }
+                        .select .selectDropdown .option {
+                          padding: 10px;
+                          box-sizing: border-box;
+                          cursor: pointer;
+                        }
+                        .select .selectDropdown .option:hover {
+                          background: #f8f8f8;
+                        }
+                        .select .selectDropdown.toggle {
+                          visibility: visible;
+                          -webkit-transform: scale(1, 1);
+                                  transform: scale(1, 1);
+                        }
+                    </style>
                     <div class="card card-custom gutter-b">
                         <div class="card-body p-10">
                             <div class="card bg-light-gray">
@@ -108,12 +180,17 @@
                                             </div>
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
-                                                    <select name="freighttype" class="form-control border-none">
-                                                        <option value="">Select Freight Type</option>
-                                                        @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
-                                                        <option value="{{ $r }}">{{ $r }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                    
+                                                    <div class="select">
+                                                        <div class="selectBtn" data-type="firstOption">First option</div>
+                                                        <div class="selectDropdown">
+
+                                                            <div class="option" data-type="firstOption">Select Freight Type</div> 
+                                                            @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
+                                                            <div class="option" data-type="{{ $r }}">{{ $r }}</div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
                                                     <span><i class="fas fa-briefcase icon-md"></i></span>
                                                 </div>
                                             </div>
@@ -575,4 +652,29 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+    const select = document.querySelectorAll('.selectBtn');
+const option = document.querySelectorAll('.option');
+let index = 1;
+
+select.forEach(a => {
+    a.addEventListener('click', b => {
+        const next = b.target.nextElementSibling;
+        next.classList.toggle('toggle');
+        next.style.zIndex = index++;
+    })
+})
+option.forEach(a => {
+    a.addEventListener('click', b => {
+        b.target.parentElement.classList.remove('toggle');
+        
+        const parent = b.target.closest('.select').children[0];
+        parent.setAttribute('data-type', b.target.getAttribute('data-type'));
+        parent.innerText = b.target.innerText;
+    })
+})
+</script>
 @endsection
