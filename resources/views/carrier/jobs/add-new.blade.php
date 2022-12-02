@@ -125,7 +125,7 @@
 
                                         @include('carrier.jobs.hiringreq')
                                         <input type="hidden" value="{{ $job->id }}" name="job_id">
-                                            <div class="row mb-7">
+                                            <div id="submitbuttonforhiringreq" class="row mb-7">
                                                 <div class="col-md-12 ml-auto">
                                                     <div class="d-flex">
                                                         <div class="ml-auto">
@@ -140,6 +140,7 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        @include('carrier.jobs.hiringtemplateshow')
                                     </div>
                                     <div class="tab-pane fade @if($job->step == 2) active show @endif" id="three-2" role="tabpanel" aria-labelledby="three-tab-2">
                                         <form method="POST" action="{{ url('job/routingandtrans') }}">

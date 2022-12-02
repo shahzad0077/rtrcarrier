@@ -42,16 +42,18 @@
             </div>
             @foreach($template as $r)
             <div style="display:none;" id="editbutton{{ $r->id }}" class="col-md-12 text-right editbutton">
-                <a onclick="showtemplate({{$r->id}})" href="javascript::void(0)">Edit Template</a>
+                <a onclick="showtemplate({{$r->id}})" href="javascript:void(0)">Edit Template</a>
             </div>
             @endforeach
         </div>
     </div>
 </div>
-
 @section('scripts')
     <script type="text/javascript">
         function gettemplate(id) {
+            $('.editbutton').hide();
+            $('.alltemplate').hide();
+            $('#submitbuttonforhiringreq').show();
             if(id =='')
             {
                 $('.editbutton').hide();
@@ -60,8 +62,9 @@
             }
         }
         function showtemplate(id) {
+            $('#submitbuttonforhiringreq').hide();
             $('.alltemplate').hide();
-            $('#shotemplate'+id).fadeIn();
+            $('#showtemplatecard'+id).slideToggle(5000);
         }
     </script>
 @endsection
