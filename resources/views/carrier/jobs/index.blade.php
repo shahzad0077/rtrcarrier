@@ -19,10 +19,13 @@
             <form method="GET" action="{{ url('searchjobs') }}">
             <div class="row mt-4">
                 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <input type="text" class="form-control" placeholder="Search with title" name="keyword">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Search with Zipcode" name="">
+                    </div>
+                    <div class="col-md-2">
                         <select name="freighttype" class="form-control">
                             <option value="">All Type</option>
                             @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
@@ -30,10 +33,18 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary form-control"> <i class="fa fa-search"></i>Search Jobs</button>
+                    <div class="col-md-2">
+                        <select name="freighttype" class="form-control">
+                            <option value="">Driver Type</option>
+                            @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
+                            <option value="{{ $r }}">{{ $r }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-md-3 text-right">
+                    <div class="col-md-2 text-right">
+                        <button style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " class="btn btn-primary"> <i class="fa fa-search"></i>Search Jobs</button>
+                    </div>
+                    <div class="col-md-2 text-right">
                     <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
                 </div> 
             </div>

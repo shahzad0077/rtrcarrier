@@ -72,6 +72,7 @@ Route::get('/detail/{id}', [CarrierController::class, 'detailpost']);
 Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
 Route::get('/printmap/{id}/{tittle}', [CarrierController::class, 'printmap']);
 Route::get('/searchzipcode/{id}', [CarrierController::class, 'searchzipcode']);
+Route::get('/shonotifications', [CarrierController::class, 'shonotifications']);
 
 
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
@@ -276,7 +277,9 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::get('/editattribute/{id}','JobController@editattribute');
         Route::get('/getattributenameandid/{id}','JobController@getattributenameandid');
         Route::post('/updateattributes','JobController@updateattributes');
-
+        Route::post('/assigncarrier','JobController@assigncarrier');
+        Route::get('/addmap','JobController@addmap');
+        
     });
 
 });

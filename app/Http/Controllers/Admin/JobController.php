@@ -11,6 +11,7 @@ use App\Models\jot_attributes;
 use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
 use App\Models\jobs;
+use App\Models\assign_from_admin_jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 
@@ -85,5 +86,25 @@ class JobController extends Controller
         $attribute = jot_attributes::all();
         return view('admin/jobs/pending')->with(array('data'=>$jobs,'attribute'=>$attribute));
     }
-
+    public function assigncarrier(Request $request)
+    {
+        $check = assign_from_admin_jobs::where('company_id' , $request->company_id)->where('step' ,'!=' ,5);
+        if($check->count() > 0)
+        {
+            $job = $check->get()->first();
+        }else{
+            $rand = rand(123456789,987654321);
+            $job = new assign_from_admin_jobs();
+            $job->job_id = $rand;
+            $job->company_id = $request->company_id;
+            $job->step = 0;
+            $job->save();
+        }
+        $attribute = jot_attributes::all();
+        return view('admin.jobs.portion.addnewjob')->with(array('job_id'=>$job->id,'company_id'=>$job->company_id,'attribute'=>$attribute));
+    }
+    public function addmap()
+    {
+        return view('admin.jobs.addmap');
+    }
 }

@@ -1,5 +1,10 @@
 @extends('layouts.main-layout')
 @section('title','My Carrier Profile')
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">My Carrier Profile</a>
+</li>
+@endsection
 @section('content')
 @include('alerts.index')
     <!--begin::Content-->

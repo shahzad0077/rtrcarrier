@@ -15,9 +15,7 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="breadcrumb-item">
-                    <a href="all-jobs" class="text-muted"></a>
-                </li>
+                 @yield('pagename')
             </ul>
             <!--end::Page Title-->
             <!--begin::Header Menu Wrapper-->

@@ -22,6 +22,7 @@ use App\Models\advance_pay_options;
 use App\Models\equipment_jobs;
 use App\Models\job_equipments;
 use App\Models\payements;
+use App\Models\usernotifications;
 use Validator;
 use Auth;
 use DB;
@@ -42,6 +43,35 @@ class CarrierController extends Controller
             $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
+    }
+    public function shonotifications()
+    {
+        $data = usernotifications::where('read' , 0)->where('user_id' , Auth::user()->id)->orderby('created_at' , 'DESC')->get();
+        if($data->count() > 0)
+        {
+            foreach ($data as $r) {
+                echo '<div class="d-flex align-items-center mb-6">
+                        <!--begin::Symbol-->
+                        <div class="symbol symbol-40 symbol-light-secondary mr-5">
+                            <span class="symbol-label">
+                                <i class="fa '.$r->icon.'"></i>
+                            </span>
+                        </div>
+                        <!--end::Symbol-->
+                        <!--begin::Text-->
+                        <div class="d-flex flex-column font-weight-bold">
+                            <a href="'.url('').'/'.$r->url.'" class="text-dark text-hover-primary mb-1 font-size-lg">'.$r->heading.'</a>
+                            <span class="text-muted">'.$r->notification.'</span>
+                        </div>
+                        <!--end::Text-->
+                    </div>';
+            }
+        }else{
+            echo '<div style="margin-top:35%;" class="d-flex justify-content-center">
+                        <span style="font-size:22px;" class="text-muted">No Notification</span>
+                </div>';
+        }
+        
     }
     public function searchzipcode($id)
     {

@@ -1,5 +1,12 @@
 @extends('layouts.main-layout')
 @section('title','Advertising')
+
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Advertising</a>
+</li>
+@endsection
+
 @section('content')
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">

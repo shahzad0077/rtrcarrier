@@ -1,5 +1,10 @@
 @extends('layouts.main-layout')
 @section('title','Add Hiring Map')
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Add Hiring Map</a>
+</li>
+@endsection
 @section('content')
 
 @php

@@ -33,23 +33,23 @@
             <div class="dropdown">
                 <!--begin::Toggle-->
 
-                <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
+                <!-- <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
                     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
                         <img src="{{asset('public/carrier/assets/media/custom/sun.svg')}}">
                     </div>
-                </div>
+                </div> -->
 
                 <div onclick="chatshow('open')" class="topbar-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat" data-placement="left">
-                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-                        <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
+                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
+                        <a class="btn btn-sm btn-icon btn-icon-primary" href="#" data-toggle="modal" data-target="#kt_chat_modal">
                             <i class="flaticon2-chat-1"></i>
                         </a>
                     </div>
                 </div>
 
 
-                <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
-                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
+                <div onclick="shownotifications()" class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="false">
+                    <div data-toggle="tooltip" title="User Notifications" data-placement="right" class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1 pulse pulse-primary">
                         <span class="svg-icon svg-icon-xl svg-icon-primary">
                             <img src="{{asset('public/carrier/assets/media/custom/notification-bell.svg')}}">
                         </span>
@@ -73,97 +73,9 @@
                         <!--end::Header-->
                         <div class="p-6">
                             <!--begin::Scroll-->
-                            <div class="scroll pr-7 mr-n7 ps ps--active-y" data-scroll="true" data-height="300" data-mobile-height="200" style="height: 300px; overflow: hidden;">
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                                        <span class="symbol-label">
-                                            <img src="{{asset('public/carrier/assets/media/custom/account-drop.svg')}}">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Text-->
-                                    <div class="d-flex flex-column font-weight-bold">
-                                        <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">Profile update</a>
-                                        <span class="text-muted">Your profile is updated now</span>
-                                    </div>
-                                    <!--end::Text-->
-                                </div>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                                        <span class="symbol-label">
-                                            <img src="{{asset('public/carrier/assets/media/custom/billing-drop.svg')}}">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Text-->
-                                    <div class="d-flex flex-column font-weight-bold">
-                                        <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">Billing Detail</a>
-                                        <span class="text-muted">your invoice is ready...</span>
-                                    </div>
-                                    <!--end::Text-->
-                                </div>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                                        <span class="symbol-label">
-                                            <img src="{{asset('public/carrier/assets/media/custom/integration-drop.svg')}}">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Text-->
-                                    <div class="d-flex flex-column font-weight-bold">
-                                        <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">New Request</a>
-                                        <span class="text-muted">You have new applicant</span>
-                                    </div>
-                                    <!--end::Text-->
-                                </div>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                                        <span class="symbol-label">
-                                            <img src="{{asset('public/carrier/assets/media/custom/message-drop.svg')}}">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Text-->
-                                    <div class="d-flex flex-column font-weight-bold">
-                                        <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">New Message</a>
-                                        <span class="text-muted">Pase 1 Development</span>
-                                    </div>
-                                    <!--end::Text-->
-                                </div>
-                                <!--end::Item-->
-                                <!--begin::Item-->
-                                <div class="d-flex align-items-center mb-6">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                                        <span class="symbol-label">
-                                            <img src="{{asset('public/carrier/assets/media/custom/project-drop.svg')}}">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-                                    <!--begin::Text-->
-                                    <div class="d-flex flex-column font-weight-bold">
-                                        <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">Project Alice</a>
-                                        <span class="text-muted">Pase 1 Development</span>
-                                    </div>
-                                    <!--end::Text-->
-                                </div>
-                                <!--end::Item-->
-                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps__rail-y" style="top: 0px; right: 0px; height: 300px;">
-                                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 203px;"></div>
+                            <div id="shownotifications" class="scroll pr-7 mr-n7 ps ps--active-y" data-scroll="true" data-height="300" data-mobile-height="200" style="height: 300px; overflow: hidden;">
+                                <div style="margin-top: 35%;" class="d-flex justify-content-center">
+                                    <div><i style="font-size: 40px;" class="fa fa-spin fa-spinner"></i></div>
                                 </div>
                             </div>
                             <!--end::Scroll-->

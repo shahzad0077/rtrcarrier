@@ -1,9 +1,17 @@
 @extends('layouts.main-layout')
-
 @php
     $tittle = $data->tittle;
 @endphp
 @section('title',$tittle)
+
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Education Center</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">{{ $tittle }}</a>
+</li>
+@endsection
 @section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->

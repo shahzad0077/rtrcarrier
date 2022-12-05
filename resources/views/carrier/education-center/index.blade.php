@@ -1,5 +1,10 @@
 @extends('layouts.main-layout')
 @section('title','Education Center')
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Education Center</a>
+</li>
+@endsection
 @section('content')
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <div class="d-flex flex-column-fluid">

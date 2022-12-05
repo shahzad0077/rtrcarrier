@@ -1,5 +1,10 @@
 @extends('layouts.main-layout')
 @section('title','Add New Staff Role')
+@section('pagename')
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Add New Staff Role</a>
+</li>
+@endsection
 @section('content')
 
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
