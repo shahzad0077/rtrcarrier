@@ -40,31 +40,32 @@
                     @enderror
                 </div>
             </div>
-            @foreach($template as $r)
-            <div style="display:none;" id="editbutton{{ $r->id }}" class="col-md-12 text-right editbutton">
-                <a onclick="showtemplate({{$r->id}})" href="javascript:void(0)">Edit Template</a>
+            <div style="display: none;" id="hiringreqspinner" class="col-md-12 text-center">
+                <i style="font-size: 40px;" class="fa fa-spin fa-spinner"></i>
             </div>
-            @endforeach
         </div>
     </div>
 </div>
 @section('scripts')
     <script type="text/javascript">
         function gettemplate(id) {
-            $('.editbutton').hide();
-            $('.alltemplate').hide();
-            $('#submitbuttonforhiringreq').show();
-            if(id =='')
-            {
-                $('.editbutton').hide();
-            }else{
-                $('#editbutton'+id).show();
-            }
+            $('#hiringreqspinner').show();
+            $('.previewcard').css('display' , 'none');
+            $('.alltemplate').css('display' , 'none');
+            setTimeout(function() { 
+                $('#hiringreqspinner').hide();
+                $('#preview'+id).show();
+            }, 2000);
         }
-        function showtemplate(id) {
-            $('#submitbuttonforhiringreq').hide();
-            $('.alltemplate').hide();
-            $('#showtemplatecard'+id).slideToggle(5000);
+        function edittemplate(id) {
+            $('#hiringreqspinner').show();
+            $('.previewcard').css('display' , 'none');
+            $('.alltemplate').css('display' , 'none');
+            setTimeout(function() { 
+                $('#hiringreqspinner').hide();
+                $('#showtemplatecard'+id).show();
+            }, 2000);
+
         }
     </script>
 @endsection
