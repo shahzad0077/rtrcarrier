@@ -8,12 +8,15 @@
         <!--begin::Container-->
         <div class="container-fluid mt-5">
             <form method="GET" action="{{ url('searchjobs') }}">
-            <div class="row mt-4">
+                <div class="row mt-4">
                 
-                    <div class="col-md-3">
-                        <input type="text" value="{{ $_GET['keyword'] }}" class="form-control" placeholder="Search with title" name="keyword">
+                    <div class="col-md-2">
+                        <input type="text"  value="{{ $_GET['keyword'] }}" class="form-control" placeholder="Search with title" name="keyword">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Search with Zipcode" name="">
+                    </div>
+                    <div class="col-md-2">
                         <select name="freighttype" class="form-control">
                             <option value="">All Type</option>
                             @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
@@ -21,24 +24,40 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary form-control"> <i class="fa fa-search"></i>Search Jobs</button>
+                    <div class="col-md-2">
+                        <select name="freighttype" class="form-control">
+                            <option value="">Driver Type</option>
+                            @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
+                            <option value="{{ $r }}">{{ $r }}</option>
+                            @endforeach
+                        </select>
                     </div>
+                    <div class="col-md-2 text-right">
+                        <button style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " class="btn btn-primary"> <i class="fa fa-search"></i>Search Jobs</button>
+                    </div>
+                    <div class="col-md-2 text-right">
+                    <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
+                </div> 
             </div>
-            </form>
+            </form> 
             <div class="row mt-5">                                
                 @foreach($jobs as $index => $job)
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card job-card">
-                        <div class="card-body">
+                        <div class="card-body p-6">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h4><a class="text-black" href="{{url('job-detail')}}/{{ $job->job_id }}">{{ $job->job_tittle }}</a></h4>
+                                    <div class="d-flex flex-row">
+                                        <div>
+                                            <h4><a target="_blank" class="text-black" href="{{url('job-detail')}}/{{ $job->url }}">{{ $job->job_tittle }}</a></h4>
+                                        </div>
+                                        <div>
+                                            <span class="job-type ml-5">{{ $job->job_status }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
-                                    <span class="job-type">{{ $job->job_status }}</span>
-                                </div>
-                                <div>
+                                    
                                     <div class="dropdown dropdown-inline">
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ki ki-bold-more-hor"></i>
@@ -55,7 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex flex-row mt-3">
+                           <!--  <div class="d-flex flex-row mt-1">
                                 <div class="head-down">
                                     <a href="javascript:void(0)" class="text-primary">
                                         <i class="fa fa-map-marker-alt"></i>
@@ -64,12 +83,16 @@
                                 </div>
                                 <div class="head-down">
                                     <i class="fas fa-dollar-sign"></i>
-                                    {{ $job->avgerage_weekly_pay }} a week
+                                    
                                 </div>
-                            </div>
-                            <div class="row mt-4">
+                            </div> -->
+                            <div class="row mt-1">
                                 <div class="col-md-12">
                                     <div class="d-flex flex-row mt-3">
+                                        <div class="job-detail">
+                                            <p>Average Weekly Pay</p>
+                                            <b>{{ $job->avgerage_weekly_pay }} a week</b>
+                                        </div>
                                         <div class="job-detail">
                                             <p>Freight type</p>
                                             <b>{{ $job->freight_type }}</b>
@@ -90,10 +113,6 @@
                                             <p>Experience</p>
                                             <b>{{ $job->hirring->minimum_expereince }}</b>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mt-3">
-                                    <div class="d-flex flex-row">
                                         <div class="job-detail">
                                             <p>Open Seats</p>
                                             <b>200</b>
@@ -108,45 +127,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 @endforeach
-           <!--  <div class="row mt-5 mb-5">
-                <div class="col-md-12">
-                    <div class="card card-custom">
-                        <div class="card-body py-7">
-                            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                <div class="d-flex flex-wrap mr-3">
-                                    <a href="#" class="btn btn-icon btn-sm btn-light-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-back icon-xs"></i></a>
-                                    <a href="#" class="btn btn-icon btn-sm btn-light-primary mr-2 my-1"><i class="ki ki-bold-arrow-back icon-xs"></i></a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">...</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">23</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary active mr-2 my-1">24</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">25</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">26</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">27</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">28</a>
-                                    <a href="#" class="btn btn-icon btn-sm border-0 btn-hover-primary mr-2 my-1">...</a>
-                                    <a href="#" class="btn btn-icon btn-sm btn-light-primary mr-2 my-1"><i class="ki ki-bold-arrow-next icon-xs"></i></a>
-                                    <a href="#" class="btn btn-icon btn-sm btn-light-primary mr-2 my-1"><i class="ki ki-bold-double-arrow-next icon-xs"></i></a>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <select class="form-control form-control-sm text-primary font-weight-bold mr-4 border-0 bg-light-primary" style="width: 75px;">
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="30">30</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                    <span class="text-muted">Displaying 10 of 230 records</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
         <!--end::Container-->
     </div>
