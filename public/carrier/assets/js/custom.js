@@ -10,6 +10,26 @@ function shownotifications() {
         }
     })
 }
+function showpreviewofhiringreq(id) {
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/showpreviewofhiringreq/"+id, 
+        type:"get",
+        success:function(res){
+            $('.previewcard').css('display' , 'none');
+            $('.alltemplate').css('display' , 'none');
+            $('#preview'+id).html(res);
+            $('#preview'+id).show();
+        }
+    })
+}
+
+
+
+
+
+
+
 function deletegroup(id) {
     alert('ok');
 }
@@ -26,7 +46,6 @@ function showmodalforgroupsettings(id) {
             $('#groupiconupdate').attr('src' , image);
         }
     })
-
 }
 function startgroupchat(id) 
 {
@@ -169,7 +188,7 @@ function getchatbyuser(id) {
 }
 
 $( document ).ready(function() {
-    checkchatmessage();
+    // checkchatmessage();
 });
 
 function checkchatmessage()

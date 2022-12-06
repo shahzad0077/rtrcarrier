@@ -129,6 +129,7 @@ Route::get('/jobedit/{id}', [JobController::class, 'jobedit']);
 Route::get('/carrierjobdetail/{id}', [JobController::class, 'carrierjobdetail']);
 Route::get('/hiring-templates', [JobController::class, 'hiringtemplates']);
 Route::get('/edithiringtemplate/{id}', [JobController::class, 'edithiringtemplate']);
+Route::get('/showpreviewofhiringreq/{id}', [JobController::class, 'showpreviewoftemplate']);
 
 
 Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);

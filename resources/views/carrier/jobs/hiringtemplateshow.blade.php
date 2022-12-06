@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ url('updatehiringtemplate') }}">
+        <form id="hiringreqajaxform{{ $r->id }}" method="POST" action="{{ url('updatehiringtemplate') }}">
             @csrf
             <input type="hidden" value="{{ $r->id }}" name="id">
             <div class="row">
@@ -473,7 +473,7 @@
                 <div class="col-md-12">
                     <div class="d-flex">
                         <div class="ml-auto">
-                            <button type="submit" id="save_as_template" class="btn btn-lg btn-primary">Update template</button>
+                            <button type="submit" id="save_as_template" class="savehiringreqform btn btn-lg btn-primary">Update template</button>
                         </div>
                     </div>
                 </div>

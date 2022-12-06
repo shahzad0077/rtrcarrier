@@ -68,4 +68,27 @@
 
         }
     </script>
+    @foreach($template as $r)
+    <script type="text/javascript">
+        $('#hiringreqajaxform{{ $r->id }}').on('submit',(function(e) {
+            $('.savehiringreqform').html('<i class="fa fa-spin fa-spinner"></i>');
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type:'POST',
+                url: $(this).attr('action'),
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $('.savehiringreqform').html('Update Template');
+                    var templateid = '{{$r->id}}';
+                    showpreviewofhiringreq(templateid);      
+                }
+            });
+        }));
+    </script>
+@endforeach
 @endsection
