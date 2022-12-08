@@ -73,6 +73,13 @@ Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
 Route::get('/printmap/{id}/{tittle}', [CarrierController::class, 'printmap']);
 Route::get('/searchzipcode/{id}', [CarrierController::class, 'searchzipcode']);
 Route::get('/shonotifications', [CarrierController::class, 'shonotifications']);
+Route::get('/allcompanypage', [CarrierController::class, 'allcompanypage']);
+Route::post('/addcompanypage', [CarrierController::class, 'addcompanypage']);
+Route::post('/updatecompanypage', [CarrierController::class, 'updatecompanypage']);
+Route::get('/deletecompanypage/{id}', [CarrierController::class, 'deletecompanypage']);
+
+
+
 
 
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);

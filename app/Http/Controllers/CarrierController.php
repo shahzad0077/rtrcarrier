@@ -23,6 +23,7 @@ use App\Models\equipment_jobs;
 use App\Models\job_equipments;
 use App\Models\payements;
 use App\Models\usernotifications;
+use App\Models\allcarrierpages;
 use Validator;
 use Auth;
 use DB;
@@ -43,6 +44,37 @@ class CarrierController extends Controller
             $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
+    }
+    public function allcompanypage()
+    {
+        $data = allcarrierpages::where('company_id' , Cmf::getusercompany()->id)->get();
+        return view('carrier.companyinfo.allpages')->with(array('data'=>$data));
+    }
+    public function deletecompanypage($id)
+    {
+        allcarrierpages::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Page Deleted Successfully');
+    }
+    public function addcompanypage(Request $request)
+    {
+        $add = new allcarrierpages();
+        $add->company_id = Cmf::getusercompany()->id;
+        $add->name = $request->name;
+        $add->content = $request->additional_notes_about_expereince;
+        $add->status = 'Published';
+        $add->url = Cmf::shorten_url($request->name);
+        $add->save();
+        return redirect()->back()->with('message', 'Page Added Successfully');
+    }
+    public function updatecompanypage(Request $request)
+    {
+        $add =  allcarrierpages::find($request->id);
+        $add->name = $request->name;
+        $add->content = $request->additional_notes_about_expereince;
+        $add->status = $request->status;
+        $add->url = Cmf::shorten_url($request->name);
+        $add->save();
+        return redirect()->back()->with('message', 'Page Updated Successfully');
     }
     public function shonotifications()
     {
