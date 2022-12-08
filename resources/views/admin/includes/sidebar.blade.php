@@ -99,6 +99,11 @@ begin::Aside-->
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Requests @if(DB::table('users')->where('approved_status' , 0)->count() > 0) <span style="margin-left: 40px;" class="badge badge-danger">{{ DB::table('users')->where('approved_status' , 0)->count() }}</span> @endif</span>
                                 </a>
                             </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{{url('admin/carrier/sendalerts')}}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Send Alerts</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li> 

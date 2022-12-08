@@ -15,13 +15,56 @@ use App\Models\company_info_pages;
 use App\Models\recuring_tips;
 use App\Models\subscription_plans;
 use App\Models\site_settings;
+use App\Models\carrieralerts;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
+use DB;
 class AdminController extends Controller
 {
     public function dashboard(){
         return view('admin/dashboard/index');
+    }
+    public function deletecarrieralert($id)
+    {
+        carrieralerts::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Alert Deleted Successfully');
+    }
+    public function savecarrieralerts(Request $request)
+    {
+        if($request->type == 'all')
+        {
+            foreach(DB::table('companies')->get() as $r)
+            {
+                $insert = new carrieralerts;
+                $insert->company_id = $r->id;
+                $insert->subject = $request->name;
+                $insert->alert = $request->answer;
+                $insert->carrier_delete_status = 'Active';
+                $insert->icon = 'no';
+                $insert->read = 0;
+                $insert->save();
+
+            }
+        }else{
+            foreach ($request->emails as $r) 
+            {
+                $insert = new carrieralerts;
+                $insert->company_id = $r;
+                $insert->subject = $request->name;
+                $insert->alert = $request->answer;
+                $insert->carrier_delete_status = 'Active';
+                $insert->icon = 'no';
+                $insert->read = 0;
+                $insert->save();
+            }
+        }
+        return redirect()->back()->with('message', 'Alert Added Successfully');
+    }
+    public function sendcarrieralerts()
+    {
+        $data = carrieralerts::orderby('created_at' , 'desc')->paginate(10);
+        return view('admin/carriers/sendalerts')->with(array('data'=>$data));
     }
     public function allcarriers(){
         $data = companies::leftJoin('users','users.id','=','companies.user_id')

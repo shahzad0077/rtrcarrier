@@ -24,6 +24,8 @@ use App\Models\job_equipments;
 use App\Models\payements;
 use App\Models\usernotifications;
 use App\Models\allcarrierpages;
+use App\Models\carrieralerts;
+
 use Validator;
 use Auth;
 use DB;
@@ -76,9 +78,9 @@ class CarrierController extends Controller
         $add->save();
         return redirect()->back()->with('message', 'Page Updated Successfully');
     }
-    public function shonotifications()
+    public function showalerts()
     {
-        $data = usernotifications::where('read' , 0)->where('user_id' , Auth::user()->id)->orderby('created_at' , 'DESC')->get();
+        $data = carrieralerts::where('read' , 0)->where('company_id' , Cmf::getusercompany()->id)->orderby('created_at' , 'DESC')->get();
         if($data->count() > 0)
         {
             foreach ($data as $r) {
@@ -92,18 +94,45 @@ class CarrierController extends Controller
                         <!--end::Symbol-->
                         <!--begin::Text-->
                         <div class="d-flex flex-column font-weight-bold">
-                            <a href="'.url('').'/'.$r->url.'" class="text-dark text-hover-primary mb-1 font-size-lg">'.$r->heading.'</a>
-                            <span class="text-muted">'.$r->notification.'</span>
+                            <a href="javascript:void(0)" class="text-dark text-hover-primary mb-1 font-size-lg">'.$r->subject.'</a>
+                            <span class="text-muted">'.$r->alert.'</span>
                         </div>
                         <!--end::Text-->
                     </div>';
             }
         }else{
             echo '<div style="margin-top:35%;" class="d-flex justify-content-center">
+                        <span style="font-size:22px;" class="text-muted">No Alerts</span>
+                </div>';
+        }
+    }
+    public function shonotifications()
+    {
+        $data = usernotifications::where('read' , 0)->where('user_id' , Auth::user()->id)->orderby('created_at' , 'DESC')->get();
+        if($data->count() > 0)
+        {
+            foreach ($data as $r) {
+            echo '<a href="'.url('').'/'.$r->url.'" class="navi-item">
+                    <div class="navi-link">
+                        <div class="navi-icon mr-2">
+                            <i class="'.$r->icon.' text-success"></i>
+                        </div>
+                        <div class="navi-text">
+                            <div class="font-weight-bold">
+                                '.$r->notification.'
+                            </div>
+                            <div class="text-muted">
+                                '.Cmf::create_time_ago($r->created_at).'
+                            </div>
+                        </div>
+                    </div>
+                </a>';
+            }
+        }else{
+            echo '<div style="margin-top:35%;" class="d-flex justify-content-center">
                         <span style="font-size:22px;" class="text-muted">No Notification</span>
                 </div>';
         }
-        
     }
     public function searchzipcode($id)
     {

@@ -73,6 +73,7 @@ Route::get('/map/add-new', [CarrierController::class, 'addnewmap']);
 Route::get('/printmap/{id}/{tittle}', [CarrierController::class, 'printmap']);
 Route::get('/searchzipcode/{id}', [CarrierController::class, 'searchzipcode']);
 Route::get('/shonotifications', [CarrierController::class, 'shonotifications']);
+Route::get('/showalerts', [CarrierController::class, 'showalerts']);
 Route::get('/allcompanypage', [CarrierController::class, 'allcompanypage']);
 Route::post('/addcompanypage', [CarrierController::class, 'addcompanypage']);
 Route::post('/updatecompanypage', [CarrierController::class, 'updatecompanypage']);
@@ -242,6 +243,10 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
 
 
     Route::name('carrier.')->prefix('carrier')->group(function(){
+        Route::get('/deletealert/{id}','AdminController@deletecarrieralert');
+        Route::get('/sendalerts','AdminController@sendcarrieralerts');
+        Route::post('/createcarrieralerts','AdminController@savecarrieralerts');
+        Route::get('/deletecarrieralerts/{id}','AdminController@deletecarrieralerts');
         Route::get('/requests','AdminController@carrierrequests');
         Route::get('/approve/{id}','AdminController@approvecarrier');
         Route::post('/declinerequest','AdminController@declinerequest')->name('declinerequest');
