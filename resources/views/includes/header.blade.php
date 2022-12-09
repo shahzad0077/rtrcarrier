@@ -87,7 +87,7 @@
                                         <div><i style="font-size: 40px;" class="fa fa-spin fa-spinner"></i></div>
                                     </div>
                                 </div>
-                                <div class="d-flex flex-center pt-7"><a href="#" class="btn btn-light-primary font-weight-bold text-center">See All</a></div>
+                                <div class="d-flex flex-center pt-7"><a href="{{ url('allnotifications') }}" class="btn btn-light-primary font-weight-bold text-center">See All</a></div>
                             </div>
                             <!--end::Tabpane-->
                             <!--begin::Tabpane-->

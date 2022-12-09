@@ -106,6 +106,12 @@ class CarrierController extends Controller
                 </div>';
         }
     }
+    public function allnotifications()
+    {
+        $notification = usernotifications::where('user_id' , Auth::user()->id)->orderby('created_at' , 'DESC')->get();
+        $alerts = carrieralerts::where('company_id' , Cmf::getusercompany()->id)->orderby('created_at' , 'DESC')->get();
+        return view('carrier.notifications.index')->with(array('notification'=>$notification,'alerts'=>$alerts));
+    }
     public function shonotifications()
     {
         $data = usernotifications::where('read' , 0)->where('user_id' , Auth::user()->id)->orderby('created_at' , 'DESC')->get();
