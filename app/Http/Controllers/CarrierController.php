@@ -47,6 +47,10 @@ class CarrierController extends Controller
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
     }
+    public function createnewpage()
+    {
+        return view('carrier.companyinfo.createnewpage');
+    }
     public function allcompanypage()
     {
         $data = allcarrierpages::where('company_id' , Cmf::getusercompany()->id)->get();

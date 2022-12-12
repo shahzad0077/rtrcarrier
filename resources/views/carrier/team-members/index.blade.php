@@ -107,8 +107,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Invite user <br>
-                    <small class="-mt-4">invite a user to manage your jobs</small>
+                    Invite Team Member <br>
+                    <small class="-mt-4">invite a Team Member to manage your jobs</small>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
@@ -121,7 +121,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Select Role</label>
-                            <select required name="role_id" class="form-control">
+                            <select required name="role_id" class="form-control selectpicker">
                                 <option value="">Select Role</option>
                                 @foreach(DB::table('staff_permissions')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
                                 <option value="{{ $r->id }}">{{ $r->name }}</option>

@@ -206,7 +206,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="lable-control">Duty Time</label>
+                    <label class="lable-control">Type of Driver Pay</label>
                     <select required name="duty_time" class="@error('duty_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 129)->first()->options) as $r)

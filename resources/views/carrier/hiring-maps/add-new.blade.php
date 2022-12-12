@@ -46,8 +46,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map Type</label>
-                                                <select class="form-control" name="map_type">
-                                                    <option value="">Map Type</option>
+                                                <select class="form-control selectpicker" name="map_type">
+                                                    <option value="">Select a Map Type</option>
                                                     <option value="Hiring Map">Hiring Map</option>
                                                     <option value="Operating Map">Operating Map</option>
                                                 </select>

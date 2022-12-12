@@ -77,6 +77,9 @@ Route::get('/allnotifications', [CarrierController::class, 'allnotifications']);
 
 Route::get('/showalerts', [CarrierController::class, 'showalerts']);
 Route::get('/allcompanypage', [CarrierController::class, 'allcompanypage']);
+Route::get('/create-new-page', [CarrierController::class, 'createnewpage']);
+
+
 Route::post('/addcompanypage', [CarrierController::class, 'addcompanypage']);
 Route::post('/updatecompanypage', [CarrierController::class, 'updatecompanypage']);
 Route::get('/deletecompanypage/{id}', [CarrierController::class, 'deletecompanypage']);
