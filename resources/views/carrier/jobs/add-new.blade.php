@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <!-- End Progress bar -->
-                        @if(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() != 0 && DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count() != 0)
+                        @if(DB::table('hiring_maps')->where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() != 0)
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -354,7 +354,7 @@
                                     <div class="col-md-12 successfully-content">
                                         <img width="120" src="{{asset('public/carrier/assets/media/custom/warning.png')}}">
                                         <h2>Warning !!</h2>
-                                        <p>You have not Added any Hiring Area or Operating Area Map Please Add Mapp Before Starting Job</p>
+                                        <p>You have not Added any Hiring Area Map Please Add Mapp Before Starting Job</p>
                                         <div class="dashboad-btn-main">
                                             <div class="dashboad-btn">
                                                 <a href="{{ url('map/add-new') }}" type="reset" class="btn btn-primary mr-2 post-inner-btn">Add New Map</a>
