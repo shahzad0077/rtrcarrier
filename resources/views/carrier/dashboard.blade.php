@@ -234,7 +234,7 @@
                         <!--begin::Body-->
                         <div class="card-body pt-5">
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
@@ -256,7 +256,7 @@
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
@@ -278,7 +278,7 @@
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
