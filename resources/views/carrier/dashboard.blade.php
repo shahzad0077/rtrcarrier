@@ -495,7 +495,7 @@
                         <h5 class="mb-5">Driver Type</h5>
                     </div>
                     @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <label class="checkbox checkbox-lg">
                             <input type="checkbox" name="Checkboxes1" />
                             <span class="mr-3"></span>
