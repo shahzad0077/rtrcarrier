@@ -107,9 +107,7 @@
                             </div> -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="d-flex flex-row mt-3">
-                                    </div>
-                                    <div class="d-flex flex-row mt-3">
+                                    <div class="d-flex flex-row mt-1">
                                         <div class="job-detail">
                                             <p>Average Weekly Pay</p>
                                             <b>{{ $job->avgerage_weekly_pay }} a week</b>
