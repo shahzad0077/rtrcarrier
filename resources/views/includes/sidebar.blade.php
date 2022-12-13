@@ -51,19 +51,19 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/manage-jobs.svg')}}">
                         </span>
-                        <span class="menu-text">Jobs</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Jobs</span><i class="menu-arrow text-white"></i>
                     </a>
                     @elseif(Cmf::getcarrierrole(22) == 1)
                     <a href="javascript:void(0)" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/manage-jobs.svg')}}">
                         </span>
-                        <span class="menu-text">Jobs</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Jobs</span><i class="menu-arrow text-white"></i>
                     </a>
                     @endif
 
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Manage Jobs</span></span>
@@ -121,10 +121,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/hiring-maps.svg')}}">
                         </span>
-                        <span class="menu-text">Maps</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Maps</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Hiring Maps</span></span>
@@ -166,10 +166,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/hiring-maps.svg')}}">
                         </span>
-                        <span class="menu-text">Maps</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Maps</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Manage Maps</span></span>
@@ -212,10 +212,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
                         </span>
-                        <span class="menu-text">Team</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Team</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Team Members</span></span>
@@ -269,10 +269,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
                         </span>
-                        <span class="menu-text">Team</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Team</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Team Members</span></span>
@@ -316,13 +316,13 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/company-info.svg')}}">
                         </span>
-                        <span class="menu-text">Active Pages</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Company Pages</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Active Pages</span></span>
+                                <span class="menu-link"><span class="menu-text">Company Pages</span></span>
                             </li>
                             <li class="menu-item @if($currenturl == 'allcompanypage') menu-item-active @endif" aria-haspopup="true">
                                 <a href="{{url('allcompanypage')}}" class="menu-link">
@@ -343,13 +343,13 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/company-info.svg')}}">
                         </span>
-                        <span class="menu-text">Active Pages</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Company Pages</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Active Pages</span></span>
+                                <span class="menu-link"><span class="menu-text">Company Pages</span></span>
                             </li>
                             <li class="menu-item @if($currenturl == 'allcompanypage') menu-item-active @endif" aria-haspopup="true">
                                 <a href="{{url('allcompanypage')}}" class="menu-link">
@@ -365,140 +365,6 @@
                     </div>
                 </li>
                 @endif
-                @if(Cmf::getcarrierrole(15) == 0)
-                <li class="menu-item menu-item-submenu @if($currenturl == 'education-center') menu-item-open @endif @if($currenturl == 'add-new-post') menu-item-open @endif @if($currenturl == 'all-posts') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
-                        </span>
-                        <span class="menu-text">Education Center</span><i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
-                        <ul class="menu-subnav">
-                            <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Posts From RTR</span></span>
-                            </li>
-                            <!-- Child -->
-                            <li class="menu-item @if($currenturl == 'education-center') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('education-center')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
-                                </a>
-                            </li>
-                            <li class="menu-item @if($currenturl == 'add-new-post') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('add-new-post')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Post</span>
-                                </a>
-                            </li>
-                            <li class="menu-item @if($currenturl == 'all-posts') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('all-posts')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Carrier Posts</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                
-
-                @elseif(Cmf::getcarrierrole(15) == 1)
-                <li class="menu-item menu-item-submenu @if($currenturl == 'education-center') menu-item-open @endif @if($currenturl == 'add-new-post') menu-item-open @endif @if($currenturl == 'all-posts') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
-                        </span>
-                        <span class="menu-text">Education Center</span><i class="menu-arrow"></i>
-                    </a>
-                    <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
-                        <ul class="menu-subnav">
-                            <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Posts From RTR</span></span>
-                            </li>
-                            <!-- Child -->
-                            <li class="menu-item @if($currenturl == 'education-center') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('education-center')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Posts From RTR</span>
-                                </a>
-                            </li>
-                            <li class="menu-item @if($currenturl == 'add-new-post') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('add-new-post')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Post</span>
-                                </a>
-                            </li>
-                            <li class="menu-item @if($currenturl == 'all-posts') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('all-posts')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                @endif
-
-                <li class="menu-item menu-item-submenu @if($currenturl == 'carrier-profile') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
-                    @if(Cmf::getcarrierrole(23) == 0)
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
-                        </span>
-                        <span class="menu-text">Carrier Profile</span><i class="menu-arrow"></i>
-                    </a>
-                    @elseif(Cmf::getcarrierrole(23) == 1)
-                    <a href="javascript:;" class="menu-link menu-toggle">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
-                        </span>
-                        <span class="menu-text">Carrier Profile</span><i class="menu-arrow"></i>
-                    </a>
-                    @endif
-                    <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
-                        <ul class="menu-subnav">
-                            @if(Cmf::getcarrierrole(23) == 0)
-                            <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Carrier Profile</span></span>
-                            </li>
-                            @elseif(Cmf::getcarrierrole(23) == 1)
-                            <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Carrier Profile</span></span>
-                            </li>
-                            @endif
-                            <!-- Child -->
-                            @if(Cmf::getcarrierrole(16) == 0)
-                            <li class="menu-item @if($currenturl == 'carrier-profile') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('carrier-profile/')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
-                                </a>
-                            </li>
-                            @elseif(Cmf::getcarrierrole(16) == 1)
-                            <li class="menu-item @if($currenturl == 'carrier-profile') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('carrier-profile/')}}" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
-                                </a>
-                            </li>
-                            @endif
-
-                            @if(Cmf::getcarrierrole(17) == 0)
-                            <!-- <li class="menu-item" aria-haspopup="true">
-                                <a href="carrier-profile/reviews" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
-                                </a>
-                            </li> -->
-                            @elseif(Cmf::getcarrierrole(17) == 1)
-                           <!--  <li class="menu-item" aria-haspopup="true">
-                                <a href="carrier-profile/reviews" class="menu-link">
-                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
-                                </a>
-                            </li> -->
-                            @endif
-
-
-                        </ul>
-                    </div>
-                </li>
-
-
 
                 @if(Cmf::getcarrierrole(18) == 0)
 
@@ -507,10 +373,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/advertise.svg')}}">
                         </span>
-                        <span class="menu-text">Advertising</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Advertising</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Advertising</span></span>
@@ -537,10 +403,10 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/advertise.svg')}}">
                         </span>
-                        <span class="menu-text">Advertising</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Advertising</span><i class="menu-arrow text-white"></i>
                     </a>
                     <div class="menu-submenu">z
-                        <i class="menu-arrow"></i>
+                        <i class="menu-arrow text-white"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
                                 <span class="menu-link"><span class="menu-text">Advertising</span></span>
@@ -568,73 +434,228 @@
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
 
-                <li class="menu-item @if($currenturl == 'profile-settings') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('profile-settings/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
-                        </span>
-                        <span class="menu-text">My Profile</span>
-                    </a>
-                </li>
-                @if(Cmf::getcarrierrole(19) == 0)
-                <li class="menu-item @if($currenturl == 'integrations') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('integrations/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
-                        </span>
-                        <span class="menu-text">Integrations</span>
-                    </a>
-                </li>
-                @elseif(Cmf::getcarrierrole(19) == 1)
-                <li class="menu-item @if($currenturl == 'integrations') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('integrations/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
-                        </span>
-                        <span class="menu-text">Integrations</span>
-                    </a>
-                </li>
-                @endif
 
-                @if(Cmf::getcarrierrole(20) == 0)
-                <li class="menu-item @if($currenturl == 'billing') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('billing/')}}" class="menu-link">
+                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
+                            <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
+                            <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
+                            <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-text">Billing & Invoices</span>
+                        <span class="menu-text">Settings</span><i class="menu-arrow text-white"></i>
                     </a>
-                </li>
-                @elseif(Cmf::getcarrierrole(20) == 1)
-                <li class="menu-item @if($currenturl == 'billing') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('billing/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
-                        </span>
-                        <span class="menu-text">Billing & Invoices</span>
-                    </a>
-                </li>
-                @endif
+                    <div class="menu-submenu">
+                        <i class="menu-arrow text-white"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link"><span class="menu-text">Settings</span></span>
+                            </li>
+                            <li class="menu-item @if($currenturl == 'profile-settings') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('profile-settings/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/team-members.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">My Profile</span>
+                                </a>
+                            </li>
 
-                @if(Cmf::getcarrierrole(21) == 0)
-                <li class="menu-item @if($currenturl == 'help') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('help/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
-                        </span>
-                        <span class="menu-text">Help</span>
-                    </a>
+                            <li class="menu-item menu-item-submenu @if($currenturl == 'carrier-profile') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
+                                @if(Cmf::getcarrierrole(23) == 0)
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Carrier Profile</span><i class="menu-arrow text-white"></i>
+                                </a>
+                                @elseif(Cmf::getcarrierrole(23) == 1)
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/carrier-profile.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Carrier Profile</span><i class="menu-arrow text-white"></i>
+                                </a>
+                                @endif
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow text-white"></i>
+                                    <ul class="menu-subnav">
+                                        @if(Cmf::getcarrierrole(23) == 0)
+                                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                            <span class="menu-link"><span class="menu-text">Carrier Profile</span></span>
+                                        </li>
+                                        @elseif(Cmf::getcarrierrole(23) == 1)
+                                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                            <span class="menu-link"><span class="menu-text">Carrier Profile</span></span>
+                                        </li>
+                                        @endif
+                                        <!-- Child -->
+                                        @if(Cmf::getcarrierrole(16) == 0)
+                                        <li class="menu-item @if($currenturl == 'carrier-profile') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('carrier-profile/')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
+                                            </a>
+                                        </li>
+                                        @elseif(Cmf::getcarrierrole(16) == 1)
+                                        <li class="menu-item @if($currenturl == 'carrier-profile') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('carrier-profile/')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">My Carrier Profile</span>
+                                            </a>
+                                        </li>
+                                        @endif
+
+                                        @if(Cmf::getcarrierrole(17) == 0)
+                                        <!-- <li class="menu-item" aria-haspopup="true">
+                                            <a href="carrier-profile/reviews" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
+                                            </a>
+                                        </li> -->
+                                        @elseif(Cmf::getcarrierrole(17) == 1)
+                                       <!--  <li class="menu-item" aria-haspopup="true">
+                                            <a href="carrier-profile/reviews" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Profile Reviews</span>
+                                            </a>
+                                        </li> -->
+                                        @endif
+
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @if(Cmf::getcarrierrole(19) == 0)
+                            <li class="menu-item @if($currenturl == 'integrations') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('integrations/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Integrations</span>
+                                </a>
+                            </li>
+                            @elseif(Cmf::getcarrierrole(19) == 1)
+                            <li class="menu-item @if($currenturl == 'integrations') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('integrations/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/integration.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Integrations</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(20) == 0)
+                            <li class="menu-item @if($currenturl == 'billing') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('billing/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Billing & Invoices</span>
+                                </a>
+                            </li>
+                            @elseif(Cmf::getcarrierrole(20) == 1)
+                            <li class="menu-item @if($currenturl == 'billing') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('billing/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/billing.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Billing & Invoices</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(15) == 0)
+                            <li class="menu-item menu-item-submenu @if($currenturl == 'education-center') menu-item-open @endif @if($currenturl == 'add-new-post') menu-item-open @endif @if($currenturl == 'all-posts') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Education Center</span><i class="menu-arrow text-white"></i>
+                                </a>
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow text-white"></i>
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                            <span class="menu-link"><span class="menu-text">Posts From RTR</span></span>
+                                        </li>
+                                        <!-- Child -->
+                                        <li class="menu-item @if($currenturl == 'education-center') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('education-center')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item @if($currenturl == 'add-new-post') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('add-new-post')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Post</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item @if($currenturl == 'all-posts') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('all-posts')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Carrier Posts</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            @elseif(Cmf::getcarrierrole(15) == 1)
+                            <li class="menu-item menu-item-submenu @if($currenturl == 'education-center') menu-item-open @endif @if($currenturl == 'add-new-post') menu-item-open @endif @if($currenturl == 'all-posts') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="javascript:;" class="menu-link menu-toggle">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/education-center.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Education Center</span><i class="menu-arrow text-white"></i>
+                                </a>
+                                <div class="menu-submenu">
+                                    <i class="menu-arrow text-white"></i>
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                            <span class="menu-link"><span class="menu-text">Posts From RTR</span></span>
+                                        </li>
+                                        <!-- Child -->
+                                        <li class="menu-item @if($currenturl == 'education-center') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('education-center')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Posts From RTR</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item @if($currenturl == 'add-new-post') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('add-new-post')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Post</span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item @if($currenturl == 'all-posts') menu-item-active @endif" aria-haspopup="true">
+                                            <a href="{{url('all-posts')}}" class="menu-link">
+                                                <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">All Posts</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(21) == 0)
+                            <li class="menu-item @if($currenturl == 'help') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('help/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Help</span>
+                                </a>
+                            </li>
+                            @elseif(Cmf::getcarrierrole(21) == 1)
+                            <li class="menu-item @if($currenturl == 'help') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('help/')}}" class="menu-link">
+                                    <!-- <span class="svg-icon menu-icon">
+                                        <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
+                                    </span> -->
+                                    <span class="menu-text">Help</span>
+                                </a>
+                            </li>
+                            @endif
+                            
+                        </ul>
+                    </div>
                 </li>
-                @elseif(Cmf::getcarrierrole(21) == 1)
-                <li class="menu-item @if($currenturl == 'help') menu-item-active @endif" aria-haspopup="true">
-                    <a href="{{url('help/')}}" class="menu-link">
-                        <span class="svg-icon menu-icon">
-                            <img src="{{asset('public/carrier/assets/media/custom/help.svg')}}">
-                        </span>
-                        <span class="menu-text">Help</span>
-                    </a>
-                </li>
-                @endif
+
+
+                
                 
             </ul>
             <!--end::Menu Nav-->
