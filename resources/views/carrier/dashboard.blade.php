@@ -11,10 +11,10 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-custom gutter-b">
-                        <div class="card-body p-10">
+                        <div class="card-body p-6">
                             <div class="card bg-light-gray">
                                 <form method="GET" action="{{ url('searchjobs') }}">
-                                    <div class="card-body p-4">
+                                    <div class="card-body p-2">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
