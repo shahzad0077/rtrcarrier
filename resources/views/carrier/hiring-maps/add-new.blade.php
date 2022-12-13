@@ -183,7 +183,7 @@
                               <label>Select Radius</label>
                               <div class="d-flex flex-row">
                                   <input style="margin-top:10px;" class="range-slider__range-two" type="range" value="0" min="0" max="1000">
-                                  <input style="width:70px;height: 30px;" type="number" class="range-slider__value-two" value="0" name="">
+                                  <input style="width:70px; height: 30px; background-color: white; color:black; border:1px solid lightgray" min="0" max="1000" type="number" class="range-slider__value-two" value="0" name="">
                               </div>
                             </div>
                         </div>
@@ -225,7 +225,7 @@
                           <label>Select Radius</label>
                           <div class="d-flex flex-row">
                               <input style="margin-top:10px;" class="range-slider__range" type="range" value="0" min="0" max="1000">
-                              <input style="width:70px;height: 30px;" type="number" class="range-slider__value" value="0" name="">
+                              <input style="width:70px; height: 30px; background-color: white; color:black; border:1px solid lightgray" min="0" max="1000" type="number" class="range-slider__value" value="0" name="">
                           </div>
                         </div>
                     </div>

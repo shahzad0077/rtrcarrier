@@ -10,15 +10,36 @@
             <div class="col-md-6 routing-content">
                 <div class="form-group">
                     <label class="lable-control">Referral Code</label>
-                    <p>Choose how you want this lead displayed in your CRM</p>
-                    <input type="text" class="form-control form-control-lg form-control-solid" style="margin-top:32px !important;" name="" placeholder="Chicago-WalmartAccount-Solo">
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Chicago-WalmartAccount-Solo">
+                    <span class="text-muted">Choose how you want this lead displayed in your CRM</span>
                 </div>
             </div>
             <div class="col-md-6 routing-content">
                 <div class="form-group">
+                    <label class="lable-control">Lead Destination</label>
+                    <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Driver Reach">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card card-custom card-stretch">
+    <!--begin::Header-->
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label font-weight-bolder text-dark">Email Settings</h3>
+            <small>Connect an email address to route all new leads directly to an inbox</small>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 routing-content">
+                <div class="form-group">
                     <label class="lable-control">Email</label>
                     <p>Select the email you would like to send applications from this job post to</p>
-                    <select class="hirringreqemail form-control select2 form-control-lg form-control-solid" style="width:100%; height: 55px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="emails[]">
+                    <select class="hirringreqemail form-control select2 form-control-solid" style="width:100%; min-height: 45px !important; background: #f3f6f9 !important; border: 1px solid #E4E6EF !important;" id="kt_select2_11" multiple name="emails[]">
                         @foreach(DB::table('company_emails')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
                             <option @foreach(explode(',' , $job->emails_send) as $e) @if($e == $r->email) selected @endif @endforeach value="{{ $r->email }}">{{ $r->email }}</option>
                         @endforeach
@@ -45,14 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 routing-content">
-                <div class="form-group">
-                    <label class="lable-control">Integrated CRM</label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Driver Reach">
-                </div>
-            </div>
         </div>
     </div>
 </div>
-
 

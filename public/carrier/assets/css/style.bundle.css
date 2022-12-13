@@ -54499,7 +54499,7 @@ i {
 }
 
 .card.card-custom>.card-body {
-    padding: 1rem 2.25rem;
+    padding: 1rem 1.6rem;
 }
 
 .card.card-custom>.card-footer {
@@ -98557,9 +98557,10 @@ a.leaflet-browser-print {
 }
 .select2-container .select2-selection--single {
     background-color: #F3F6F9 !important;
-    height: 52px !important;
+    height: 46px !important;
 }
 .select2-selection__arrow {
-    background-color: #F3F6F9 !important;
+    background-color: transparent !important;
     height: 52px !important;
 }
+

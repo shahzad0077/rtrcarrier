@@ -16,45 +16,51 @@
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
         <div class="container-fluid mt-5">
-            <form method="GET" action="{{ url('searchjobs') }}">
-            <div class="row mt-4">
-                
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="Search with title" name="keyword">
+
+            <div class="card card-custom gutter-b bg-light-gray">
+                <div class="card-body p-7">
+                    <div class="card p-4 bg-white">
+                        <form method="GET" action="{{ url('searchjobs') }}">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" style="background-color: #f3f6f9 !important;" placeholder="Search with title" name="keyword">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" style="background-color: #f3f6f9 !important;" placeholder="Search with Zipcode" name="">
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="freighttype" id="selectfreighttype" class="form-control" style="background-color: #f3f6f9 !important;">
+                                        <option value="">All Type</option>
+                                        @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
+                                        <option value="{{ $r }}">{{ $r }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="freighttype" id="kt_select2_1" class="form-control select2" style="background-color: #f3f6f9 !important;">
+                                        <option value="">Driver Type</option>
+                                        @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
+                                        <option value="{{ $r }}">{{ $r }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " class="btn btn-light-primary btn-block">Search</button>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
+                                </div> 
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-md-2">
-                        <input type="text" class="form-control" placeholder="Search with Zipcode" name="">
-                    </div>
-                    <div class="col-md-2">
-                        <select name="freighttype" class="form-control">
-                            <option value="">All Type</option>
-                            @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
-                            <option value="{{ $r }}">{{ $r }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <select name="freighttype" class="form-control">
-                            <option value="">Driver Type</option>
-                            @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
-                            <option value="{{ $r }}">{{ $r }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2 text-right">
-                        <button style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " class="btn btn-primary"> <i class="fa fa-search"></i>Search Jobs</button>
-                    </div>
-                    <div class="col-md-2 text-right">
-                    <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
-                </div> 
+                </div>
             </div>
-            </form>
         
             <div class="row mt-5">                                
                 @foreach($jobs as $index => $job)
                 <div class="col-md-12">
                     <div class="card job-card">
-                        <div class="card-body p-6">
+                        <div class="card-body p-5">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="d-flex flex-row">
@@ -67,7 +73,6 @@
                                     </div>
                                 </div>
                                 <div>
-                                    
                                     <div class="dropdown dropdown-inline">
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ki ki-bold-more-hor"></i>
@@ -96,7 +101,7 @@
                                     
                                 </div>
                             </div> -->
-                            <div class="row mt-1">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex flex-row mt-3">
                                         <div class="job-detail">
@@ -143,7 +148,7 @@
                     </div>
                 </div>
                 @endforeach
-        </div>
+            </div>
         <!--end::Container-->
     </div>
     <!--end::Entry-->

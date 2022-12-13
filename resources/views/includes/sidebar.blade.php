@@ -172,7 +172,7 @@
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Hiring Maps</span></span>
+                                <span class="menu-link"><span class="menu-text">Manage Maps</span></span>
                             </li>
                             <!-- Child -->
                             @if(Cmf::getcarrierrole(3) == 0)
@@ -316,13 +316,13 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/company-info.svg')}}">
                         </span>
-                        <span class="menu-text">Company Info</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Active Pages</span><i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Company Info</span></span>
+                                <span class="menu-link"><span class="menu-text">Active Pages</span></span>
                             </li>
                             <li class="menu-item @if($currenturl == 'allcompanypage') menu-item-active @endif" aria-haspopup="true">
                                 <a href="{{url('allcompanypage')}}" class="menu-link">
@@ -343,13 +343,13 @@
                         <span class="svg-icon menu-icon">
                             <img src="{{asset('public/carrier/assets/media/custom/company-info.svg')}}">
                         </span>
-                        <span class="menu-text">Company Info</span><i class="menu-arrow"></i>
+                        <span class="menu-text">Active Pages</span><i class="menu-arrow"></i>
                     </a>
                     <div class="menu-submenu">
                         <i class="menu-arrow"></i>
                         <ul class="menu-subnav">
                             <li class="menu-item menu-item-parent" aria-haspopup="true">
-                                <span class="menu-link"><span class="menu-text">Company Info</span></span>
+                                <span class="menu-link"><span class="menu-text">Active Pages</span></span>
                             </li>
                             <li class="menu-item @if($currenturl == 'allcompanypage') menu-item-active @endif" aria-haspopup="true">
                                 <a href="{{url('allcompanypage')}}" class="menu-link">
@@ -398,6 +398,9 @@
                         </ul>
                     </div>
                 </li>
+
+                
+
                 @elseif(Cmf::getcarrierrole(15) == 1)
                 <li class="menu-item menu-item-submenu @if($currenturl == 'education-center') menu-item-open @endif @if($currenturl == 'add-new-post') menu-item-open @endif @if($currenturl == 'all-posts') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
