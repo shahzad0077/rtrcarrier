@@ -11,20 +11,20 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-custom gutter-b">
-                        <div class="card-body p-6">
+                        <div class="card-body p-3">
                             <div class="card bg-light-gray">
                                 <form method="GET" action="{{ url('searchjobs') }}">
                                     <div class="card-body p-2">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
-                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Job Search" />
+                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
                                                     <span><i class="flaticon2-search-1 icon-md"></i></span>
                                                 </div>
                                             </div>
                                             <div>
                                             <select class="form-control " id="selectfreighttype" name="param">
-                                                <option value="">Select Freight Type</option>
+                                                <option value="">Driver Type</option>
                                                 @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
                                                 <option value="{{ $r }}">{{ $r }}</option> 
                                                 @endforeach
