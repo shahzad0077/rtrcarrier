@@ -548,7 +548,8 @@ class JobController extends Controller
         {
             $addnewjob->emails_send = implode(',', $request->emails);
         }
-        $addnewjob->step = 3;
+        $addnewjob->step = 4;
+        $addnewjob->payement_status = 'done';
         $addnewjob->save();
         return redirect()->back()->with('message', 'Email Added Successfully');
     }

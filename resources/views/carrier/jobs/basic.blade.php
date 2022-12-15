@@ -320,9 +320,17 @@
         </div>
     </div>
     <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="lable-control">When do benefits start?</label>
+                    <input type="text" placeholder="When do benefits start?" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" name="when_do_benifit_start">
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
-
+                <label class="lable-control">Select Benifits</label>
                 <div class="row" id="appendbenifitindiv">
                     @foreach(explode(',' , $attribute->where('id' , 133)->first()->options) as $r)
                     <div class="col-md-6">
@@ -362,6 +370,17 @@
                             <i class="fa fa-plus"></i> Add New
                         </span>
                     </div>
+                </div>
+            </div>
+        </div>
+        <style type="text/css">
+            
+        </style>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="lable-control">Upload your benefits information documents</label>
+                    <input class="form-control" type="file" id="files" name="files[]" multiple />
                 </div>
             </div>
         </div>
@@ -483,7 +502,7 @@
                 <p>If you have different trucks, add multiple Make, Models, and years by clicking “Add Equipment”</p>
             </div>
             <div>
-                <p class="text-primary" data-toggle="modal" data-target="#equipmentOption">Advanced Equipment Options</p>
+                <p class="btn btn-primary mr-2" data-toggle="modal" data-target="#equipmentOption">Advanced Equipment Options</p>
             </div>
         </div>
     </div>

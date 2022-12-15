@@ -173,9 +173,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addnewcarrier" method="POST" action="{{ route('admin.addnewcarrier') }}">
+                <form enctype="multipart/form-data" id="addnewcarrier" method="POST" action="{{ route('admin.addnewcarrier') }}">
                     @csrf
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Company Logo</label>
+                            <input required type="file" class="form-control input-lg" name="company_logo">
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Carrier Fullname</label>

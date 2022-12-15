@@ -53,33 +53,33 @@
                                             </li>
                                             @if($job->plan_id)
                                                 @if($job->payement_status == 'done')
-                                                <li class="nav-item @if($job->step == 3) active @endif">
+                                                <!-- <li class="nav-item @if($job->step == 3) active @endif">
                                                     <a class="nav-link @if($job->step == 3) active @endif" id="four-tab-2" data-toggle="tab" href="#four-2" aria-controls="four">
                                                         <span class="nav-icon">
                                                             <img src="{{asset('public/carrier/assets/media/custom/subscription.svg')}}">
                                                         </span>
                                                         <span class="nav-text">Subscription</span>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 @else
-                                                <li class="nav-item @if($job->step == 3) active @endif">
+                                                <!-- <li class="nav-item @if($job->step == 3) active @endif">
                                                     <a class="nav-link @if($job->step == 3) active @endif" id="four-tab-2" data-toggle="tab" href="#four-2" aria-controls="four">
                                                         <span class="nav-icon">
                                                             <img src="{{asset('public/carrier/assets/media/custom/subscription.svg')}}">
                                                         </span>
                                                         <span class="nav-text">Payement</span>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 @endif
                                             @else
-                                            <li class="nav-item @if($job->step == 3) active @endif">
+                                            <!-- <li class="nav-item @if($job->step == 3) active @endif">
                                                 <a class="nav-link @if($job->step == 3) active @endif" id="four-tab-2" data-toggle="tab" href="#four-2" aria-controls="four">
                                                     <span class="nav-icon">
                                                         <img src="{{asset('public/carrier/assets/media/custom/subscription.svg')}}">
                                                     </span>
                                                     <span class="nav-text">Subscriptions</span>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                             @endif
                                             <li class="nav-item @if($job->step == 4) active @endif">
                                                 <a class="nav-link" id="five-tab-2" data-toggle="tab" href="#five-2" aria-controls="five">

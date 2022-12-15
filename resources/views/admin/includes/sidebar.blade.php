@@ -3,7 +3,7 @@ begin::Aside-->
     <!--begin::Brand-->
     <div class="brand flex-column-auto" id="kt_brand">
         <!--begin::Logo-->
-        <a href="{{url('/dashboard')}}">
+        <a href="{{url('admin/dashboard')}}">
             <img alt="Logo" src="{{asset('public/carrier/assets/media/custom/rtr-logo.png')}}" />
         </a>
         <!--end::Logo-->
@@ -31,7 +31,7 @@ begin::Aside-->
             <!--begin::Menu Nav-->
             <ul class="menu-nav">
                 <li class="menu-item menu-item-active" aria-haspopup="true">
-                    <a href="index.html" class="menu-link">
+                    <a href="{{url('admin/dashboard')}}" class="menu-link">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

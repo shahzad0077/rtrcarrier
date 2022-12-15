@@ -101,6 +101,7 @@ class AdminController extends Controller
         $company = new companies();
         $company->user_id = $carrier->id;
         $company->email = $request->company_email;
+        $company->logo = $request->company_logo;
         $company->company_name = $request->company_name;
         $company->company_link = Cmf::shorten_url($request->company_name);
         $company->save();
