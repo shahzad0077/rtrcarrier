@@ -23,7 +23,13 @@ use DB;
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('admin/dashboard/index');
+        $newfivecarriers = companies::leftJoin('users','users.id','=','companies.user_id')
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status')
+            ->orderBy('id','desc')
+            ->where('users.approved_status' , 1)
+            ->limit(5)
+            ->get();
+        return view('admin/dashboard/index')->with(array('newfivecarriers'=>$newfivecarriers));
     }
     public function deletecarrieralert($id)
     {
