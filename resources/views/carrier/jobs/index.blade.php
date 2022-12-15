@@ -17,9 +17,7 @@
         <!--begin::Container-->
         <div class="container-fluid mt-5">
 
-            <div class="card card-custom gutter-b bg-light-gray">
-                <div class="card-body p-7">
-                    <div class="card p-4 bg-white">
+            <div class="card p-4 bg-white">
                         <form method="GET" action="{{ url('searchjobs') }}">
                             <div class="row">
                                 <div class="col-md-2">
@@ -53,8 +51,6 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
         
             <div class="row mt-5">                                
                 @foreach($jobs as $index => $job)

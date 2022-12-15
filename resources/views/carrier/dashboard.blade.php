@@ -11,20 +11,20 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="card card-custom gutter-b">
-                        <div class="card-body p-10">
+                        <div class="card-body p-3">
                             <div class="card bg-light-gray">
                                 <form method="GET" action="{{ url('searchjobs') }}">
-                                    <div class="card-body p-4">
+                                    <div class="card-body p-2">
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
-                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Job Search" />
+                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
                                                     <span><i class="flaticon2-search-1 icon-md"></i></span>
                                                 </div>
                                             </div>
                                             <div>
                                             <select class="form-control " id="selectfreighttype" name="param">
-                                                <option value="">Select Freight Type</option>
+                                                <option value="">Driver Type</option>
                                                 @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
                                                 <option value="{{ $r }}">{{ $r }}</option> 
                                                 @endforeach
@@ -107,9 +107,7 @@
                             </div> -->
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="d-flex flex-row mt-3">
-                                    </div>
-                                    <div class="d-flex flex-row mt-3">
+                                    <div class="d-flex flex-row mt-1">
                                         <div class="job-detail">
                                             <p>Average Weekly Pay</p>
                                             <b>{{ $job->avgerage_weekly_pay }} a week</b>
@@ -236,7 +234,7 @@
                         <!--begin::Body-->
                         <div class="card-body pt-5">
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
@@ -258,7 +256,7 @@
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
@@ -280,7 +278,7 @@
                             </div>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <div class="d-flex align-items-center mb-10">
+                            <div class="d-flex align-items-center mb-6">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                     <span class="symbol-label">
@@ -495,7 +493,7 @@
                         <h5 class="mb-5">Driver Type</h5>
                     </div>
                     @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <label class="checkbox checkbox-lg">
                             <input type="checkbox" name="Checkboxes1" />
                             <span class="mr-3"></span>
