@@ -25,7 +25,27 @@
   <input type="hidden" value="{{ url('') }}" id="app_url">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="{{ asset('public/admin/assets/media/logos/favicon.ico') }}" rel="shortcut icon" />
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBQAdBoWGWwdne8WSvfQRlQv58Hyz-BVQw"></script>
+    <script src="{{asset('public/admin/assets/plugins/global/plugins.bundle.js?v=7.0.6')}}"></script>
+<script>
+var searchInput = 'pac-input';
 
+$(document).ready(function () {
+    var options = {
+     types: ['(cities)'],
+     componentRestrictions: {country: "us"}
+    };
+   var input = document.getElementById('pac-input');
+   var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        console.log(place.name);
+        document.getElementById('cityLat').value = place.geometry.location.lat();
+        document.getElementById('cityLng').value = place.geometry.location.lng();
+    });
+});
+</script>
   
 </head>
   <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">    
@@ -131,7 +151,7 @@
         <!--end::Global Config-->
 
         <!--begin::Global Theme Bundle(used by all pages)-->
-        <script src="{{asset('public/admin/assets/plugins/global/plugins.bundle.js?v=7.0.6')}}"></script>
+        
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
         <script src="{{asset('public/admin/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6')}}"></script>
@@ -148,7 +168,8 @@
         <script src="{{asset('public/admin/assets/js/pages/crud/ktdatatable/base/data-local.js?v=7.0.6')}}"></script>
         <script src="{{ asset('public/admin/assets/js/custom.js') }}"></script>
         <!--end::Page Scripts-->
-
+        <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script> 
+        @yield('scripts')
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#example').DataTable();

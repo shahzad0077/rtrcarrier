@@ -5,7 +5,7 @@
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
-        <div class="container">
+        <div class="container-fluid">
             <!--begin::Card-->
             <div class="card card-custom">
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
@@ -33,7 +33,7 @@
                                 </svg>
                                 <!--end::Svg Icon-->
                             </span>
-                            New Record
+                            Add New Carrier
                         </a>
                         <!--end::Button-->
                     </div>
@@ -82,14 +82,13 @@
                         <div class="col-md-12">
                             <div class="datatable datatable-bordered datatable-head-custom datatable-default datatable-primary datatable-loaded" id="kt_datatable">
                                 <!--begin: Datatable-->
-                                <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
+                                <table class="table table-separate table-bordered table-head-custom table-checkable" id="kt_datatable">
                                     <thead>
                                         <tr>
                                             <th>Carrier Name/Email</th>
                                             <th>DOT Number</th>
                                             <th>Phone Number</th>
                                             <th>Company title</th>
-                                            <th>Subscription</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -111,8 +110,6 @@
                                             <td>DOT-{{ $r->dot_number }}</td>
                                             <td>{{ $r->contact_number }}</td>
                                             <td>{{ $r->company_name }}</td>
-                                            
-                                            <td>Static</td>
                                             <td>
                                                 @if($r->approved_status == 1)
                                                 <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
@@ -125,21 +122,8 @@
                                                 @endif
                                             </td>
                                             <td nowrap="">
-                                                <div class="dropdown dropdown-inline">
-                                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                                        <ul class="nav nav-hoverable flex-column">
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Disable</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" href="#">Activate</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                                <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
+                                                <a href="{{ url('admin/carriers/detail') }}/{{ $r->id }}/detail" class="btn btn-primary btn-sm btn-clean" title="Edit details"> <i class="la la-eye"></i> View Details</a>
+                                                <!-- <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a> -->
                                             </td>
                                         </tr>
                                         @endforeach

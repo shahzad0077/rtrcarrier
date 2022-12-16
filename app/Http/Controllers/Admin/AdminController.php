@@ -72,14 +72,7 @@ class AdminController extends Controller
         $data = carrieralerts::orderby('created_at' , 'desc')->paginate(10);
         return view('admin/carriers/sendalerts')->with(array('data'=>$data));
     }
-    public function allcarriers(){
-        $data = companies::leftJoin('users','users.id','=','companies.user_id')
-            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status')
-            ->orderBy('id','desc')
-            ->where('users.approved_status' , 1)
-            ->get();
-        return view('admin/carriers/index')->with(array('data'=>$data));
-    }
+   
     public function settings()
     {
         return view('admin.settigns.index');

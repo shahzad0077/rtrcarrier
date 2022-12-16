@@ -48,7 +48,6 @@
                                                         <input type="hidden" value="{{ $data->id }}" name="id">
                                                         <input type="file" id="updatecoverinput" class="form-input documents" size="60" name="coverphoto">
                                                     </form>
-                                                    
                                                 </label>
                                             </div>
                                         </div>

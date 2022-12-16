@@ -221,8 +221,20 @@ Route::name('admin.')->prefix('admin')->group(function(){
 
 Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware('admin')->group(function(){
     Route::get('/dashboard','AdminController@dashboard')->name('dashboard');
-    Route::get('/carriers','AdminController@allcarriers')->name('allcarriers');
     Route::post('/carriers','AdminController@addnewcarrier')->name('addnewcarrier');
+
+
+    Route::name('carriers.')->prefix('carriers')->group(function(){
+        Route::get('/','CarrierController@allcarriers');
+        Route::get('detail/{id}/{page}','CarrierController@carrierdetail');
+        Route::post('/updatecarrierdetail','CarrierController@updatecarrierdetail');
+        Route::post('/updateuserdetail','CarrierController@updateuserdetail');
+        Route::post('/changepassword','CarrierController@changepassword');
+
+        
+        
+    });
+
 
     Route::name('settings.')->prefix('settings')->group(function(){
         Route::get('/','AdminController@settings');
