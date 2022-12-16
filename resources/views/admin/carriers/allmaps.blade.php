@@ -1,9 +1,14 @@
 @extends('admin.layouts.main-layout')
 @section('title','Carriers')
-
 @section('pagename')
 <li class="breadcrumb-item">
-    <a href="javascript:void(0)" class="text-muted">User Details</a>
+    <a href="javascript:void(0)" class="text-muted">Manage Carriers</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="{{ url('admin/carriers') }}" class="text-muted">All Carriers</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">All Maps</a>
 </li>
 @endsection
 @section('content')

@@ -6,7 +6,7 @@
     <a href="javascript:void(0)" class="text-muted">Add New Job</a>
 </li>
 <li class="breadcrumb-item">
-    <a href="javascript:void(0)" class="text-danger">Please Asign This Job To Any Carrier First
+    <a href="javascript:void(0)" class="text-muted">Select a carrier to begin posting jobs on their behalf.
 </a>
 </li>
 @endsection
@@ -28,7 +28,7 @@
                                         <div class="card-title">
                                             <h3 class="card-label">
                                                 Add New Job
-                                                <div class="text-danger pt-2 font-size-sm">Please Asign This Job To Any Carrier First</div>
+                                                <div class="text-muted pt-2 font-size-sm">Select a carrier to begin posting jobs on their behalf.</div>
                                             </h3>
                                         </div>
                                     </div>
@@ -38,7 +38,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <label>Select Carrier</label>
-                                                    <select required class="form-control" name="company_id">
+                                                    <select required class="form-control" id="selectcarrier" name="company_id">
                                                         <option value="">Select Carrier</option>
                                                         @foreach(DB::table('users')->where('type' , 'carrier')->orderby('created_at', 'desc')->get() as $r)
                                                         <option value="{{ DB::table('companies')->where('user_id' , $r->id)->get()->first()->id }}">{{ $r->name }} | {{ DB::table('companies')->where('user_id' , $r->id)->get()->first()->company_name }} </option>
@@ -49,7 +49,7 @@
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-12 text-right">
-                                                    <button class="btn btn-primary">Asign Carrier</button>
+                                                    <button class="btn btn-primary">Select Carrier</button>
                                                 </div>
                                             </div>
                                         </div>

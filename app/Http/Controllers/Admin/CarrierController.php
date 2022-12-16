@@ -20,6 +20,7 @@ use App\Models\carrieralerts;
 use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
 use App\Models\role_users;
+use App\Models\jot_attributes;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
@@ -54,6 +55,11 @@ class CarrierController extends Controller
         if($page == 'changepassword')
         {
             return view('admin.carriers.changepassword')->with(array('data'=>$data,'page'=>$page));
+        }
+        if($page == 'addnewjob')
+        {
+            $attribute = jot_attributes::all();
+            return view('admin.carriers.jobs.addnewjob')->with(array('attribute'=>$attribute,'data'=>$data,'page'=>$page));
         }
         if($page == 'allmaps')
         {

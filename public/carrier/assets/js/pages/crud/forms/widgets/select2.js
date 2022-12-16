@@ -33,6 +33,10 @@ var KTSelect2 = function() {
             allowClear: true
         });
 
+        $('#selectcarrier').select2({
+            placeholder: "Select a Carrier",
+            allowClear: true
+        });
         // loading data from array
         var data = [{
             id: 0,
