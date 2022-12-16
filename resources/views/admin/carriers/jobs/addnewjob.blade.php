@@ -49,5 +49,4 @@
     </div>
     <!--end::Entry-->
 </div>
-@include('admin.carriers.jobs.modal')
 @endsection
