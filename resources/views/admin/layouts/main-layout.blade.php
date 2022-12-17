@@ -168,7 +168,7 @@ $(document).ready(function () {
         <script src="{{asset('public/admin/assets/js/pages/crud/ktdatatable/base/data-local.js?v=7.0.6')}}"></script>
         <script src="{{ asset('public/admin/assets/js/custom.js') }}"></script>
         <!--end::Page Scripts-->
-        <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script> 
+        <!-- <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>  -->
         @yield('scripts')
         <script type="text/javascript">
             $(document).ready(function () {

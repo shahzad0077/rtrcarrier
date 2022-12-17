@@ -21,6 +21,7 @@ use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
 use App\Models\role_users;
 use App\Models\jot_attributes;
+use App\Models\jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
@@ -58,8 +59,21 @@ class CarrierController extends Controller
         }
         if($page == 'addnewjob')
         {
+            $check = jobs::where('company_id' , $id)->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
+            if($check->count() > 0)
+            {
+                $job = $check->get()->first();
+            }else{
+                $addjob = new jobs();
+                $addjob->id = $_GET['jobid'];
+                $addjob->company_id = $id;
+                $addjob->step = 0;
+                $addjob->status = 'continue';
+                $addjob->save();
+                $job = $addjob;
+            }
             $attribute = jot_attributes::all();
-            return view('admin.carriers.jobs.addnewjob')->with(array('attribute'=>$attribute,'data'=>$data,'page'=>$page));
+            return view('admin.carriers.jobs.addnewjob')->with(array('job'=>$job,'attribute'=>$attribute,'data'=>$data,'page'=>$page));
         }
         if($page == 'allmaps')
         {

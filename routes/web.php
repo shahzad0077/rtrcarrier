@@ -230,8 +230,8 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/updatecarrierdetail','CarrierController@updatecarrierdetail');
         Route::post('/updateuserdetail','CarrierController@updateuserdetail');
         Route::post('/changepassword','CarrierController@changepassword');
-
-        
+        Route::post('/jobpostbasic','JobController@jobpostbasic');
+        Route::post('/adddadvancedetails','JobController@adddadvancedetails');
         
     });
 

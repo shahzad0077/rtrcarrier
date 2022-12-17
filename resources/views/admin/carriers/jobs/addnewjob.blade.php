@@ -8,7 +8,7 @@
     <a href="{{ url('admin/carriers') }}" class="text-muted">All Carriers</a>
 </li>
 <li class="breadcrumb-item">
-    <a href="javascript:void(0)" class="text-muted">All jobs</a>
+    <a href="{{ url('admin/carriers/detail') }}/{{ $data->id }}/alljobs" class="text-muted">All jobs</a>
 </li>
 <li class="breadcrumb-item">
     <a href="javascript:void(0)" class="text-muted">Add New job</a>
@@ -39,7 +39,10 @@
                         </div>
                         <!--end::Header-->
                     </div>
-                    @include('admin.carriers.jobs.portion.basic')
+                    <form method="POST" action="{{ url('admin/carriers/jobpostbasic') }}">
+                        @csrf
+                        @include('admin.carriers.jobs.portion.basic')
+                    </form>
                 </div>
                 <!--end::Content-->
             </div>
@@ -49,4 +52,5 @@
     </div>
     <!--end::Entry-->
 </div>
+@include('admin.carriers.jobs.modal')
 @endsection

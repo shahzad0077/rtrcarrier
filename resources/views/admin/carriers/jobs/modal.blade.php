@@ -1,6 +1,3 @@
-@php
-    $job = DB::table('jobs')->where('id' , $_GET['jobid'])->first();
-@endphp
 <div class="modal fade" id="addcompanyemail" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -150,34 +147,34 @@
             </div>
             <form id="advance_detail_submit_form" method="POST" action="{{ url('job/adddadvancedetails') }}">
                 @csrf
-                <input type="hidden" value="{{ $_GET['jobid'] }}" name="job_id">
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">What are the primary running lanes for this position?</label>
-                            <textarea name="primary_running_lanes" id="primary_running_lanes" rows="5" class="form-control form-control-solid" style="height:100px;"></textarea>
+                            <textarea name="primary_running_lanes" id="primary_running_lanes" rows="5" class="form-control form-control-solid" style="height:100px;">{{ $job->primary_running_lanes }}</textarea>
                             <span class="invalid-feedback advance-feedback" id="primary_running_lanes_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Avg Length of haul (Miles)</label>
-                            <input type="number" id="avg_length_of_haul" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="avg_length_of_haul">
+                            <input value="{{ $job->avg_length_of_haul }}" type="number" id="avg_length_of_haul" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" name="avg_length_of_haul">
                             <span class="invalid-feedback advance-feedback" id="avg_length_of_haul_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Type of Fuel Card</label>
-                            <input type="text" id="type_of_fuel_card" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. 25,000 miles" name="type_of_fuel_card">
+                            <input value="{{ $job->avg_length_of_haul }}" type="text" id="type_of_fuel_card" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="eg. 25,000 miles" name="type_of_fuel_card">
                             <span class="invalid-feedback advance-feedback" id="type_of_fuel_card_err" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Tolls</label>
-                            <textarea id="tolls" name="tolls" rows="4" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px"></textarea>
+                            <textarea id="tolls" name="tolls" rows="4" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px">{{ $job->tolls }}</textarea>
                             <span class="invalid-feedback advance-feedback" id="tolls_err" role="alert"></span>
                         </div>
                     </div>
@@ -185,8 +182,8 @@
                         <div class="form-group">
                             <label class="lable-control">24 hour Dispatch</label>
                             <select name="hour_dispatch" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="hour_dispatch">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option @if($job->hour_dispatch == 'Yes') selected @endif value="Yes">Yes</option>
+                                <option @if($job->hour_dispatch == 'No') selected @endif value="No">No</option>
                             </select>
                             <span class="invalid-feedback advance-feedback" id="hour_dispatch_err" role="alert"></span>
                         </div>
@@ -195,8 +192,8 @@
                         <div class="form-group">
                             <label class="lable-control">EZ Pass</label>
                             <select name="ez_Pass" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="ez_Pass">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option @if($job->ez_Pass == 'Yes') selected @endif value="Yes">Yes</option>
+                                <option @if($job->ez_Pass == 'No') selected @endif value="No">No</option>
                             </select>
                             <span class="invalid-feedback advance-feedback" id="ez_Pass_err" role="alert"></span>
                         </div>
@@ -205,8 +202,8 @@
                         <div class="form-group">
                             <label class="lable-control">Pre-Pass</label>
                             <select name="pre_pass" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="pre_pass">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option @if($job->pre_pass == 'Yes') selected @endif value="Yes">Yes</option>
+                                <option @if($job->pre_pass == 'No') selected @endif value="No">No</option>
                             </select>
                             <span class="invalid-feedback advance-feedback" id="pre_pass_err" role="alert"></span>
                         </div>
@@ -215,8 +212,8 @@
                         <div class="form-group">
                             <label class="lable-control">Non-Forced Dispatch</label>
                             <select name="non_forced_dispatch" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="non_forced_dispatch">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
+                                <option @if($job->non_forced_dispatch == 'Yes') selected @endif value="Yes">Yes</option>
+                                <option @if($job->non_forced_dispatch == 'No') selected @endif value="No">No</option>
                             </select>
                             <span class="invalid-feedback advance-feedback" id="non_forced_dispatch_err" role="alert"></span>
                         </div>
@@ -247,7 +244,7 @@
             </div>
             <form id="addpayoutschedule" method="POST" action="{{ url('job/addpayoutschedule') }}"> 
                 @csrf
-                <input type="hidden" value="{{ $_GET['jobid'] }}" name="job_id">
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
             <div class="modal-body ">
                 <div id="payoutschedule">
                     <div class="row mb-3">
@@ -320,21 +317,21 @@
             @endphp
             <form id="addadvancepayoutdetails" method="POST" action="{{ url('job/addadvancepayoutdetails') }}">
                 @csrf
-                <input type="hidden" value="{{ $_GET['jobid'] }}" name="job_id">
+                <input type="hidden" value="{{ $job->id }}" name="job_id">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="lable-control">Breakdown Pay ($)</label>
-                                <input required id="breakdown_pay" type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="breakdown_pay">
+                                <input @if($a_p_o) value="{{ $a_p_o->breakdown_pay }}" @endif required id="breakdown_pay" type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="breakdown_pay">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="lable-control">Cash Advance</label>
                                 <select name="cash_advance" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="cash_advance">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                    <option @if($a_p_o) @if($a_p_o->cash_advance == 'No') selected @endif @endif>No</option>
+                                    <option @if($a_p_o) @if($a_p_o->cash_advance == 'Yes') selected @endif @endif>Yes</option>
                                 </select>
                             </div>
                         </div>
@@ -342,33 +339,33 @@
                             <div class="form-group">
                                 <label class="lable-control">Detention pay</label>
                                 <select name="detention_pay" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="detention_pay">
-                                    <option>1 hour</option>
-                                    <option>2 hours</option>
-                                    <option>3 hours</option>
-                                    <option>4 hours</option>
+                                    <option @if($a_p_o) @if($a_p_o->detention_pay == '1 hour') selected @endif @endif>1 hour</option>
+                                    <option @if($a_p_o) @if($a_p_o->detention_pay == '2 hour') selected @endif @endif>2 hours</option>
+                                    <option @if($a_p_o) @if($a_p_o->detention_pay == '3 hour') selected @endif @endif>3 hours</option>
+                                    <option @if($a_p_o) @if($a_p_o->detention_pay == '4 hour') selected @endif @endif>4 hours</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="lable-control">Pays Amount ($)</label>
-                                <input required id="pays_amount" type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="pays_amount">
+                                <input @if($a_p_o) value="{{ $a_p_o->pays_amount }}" @endif required id="pays_amount" type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="pays_amount">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Are drivers paid the same for loaded and empty miles?</label>
                                 <select name="are_drivers_paid_the_same_for_loaded_and_empty" onchange="showbelowfield(this.value,'miles_cpm_chat' , 'No')" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                    <option >No</option>
-                                    <option >Yes</option>
+                                    <option @if($a_p_o) @if($a_p_o->are_drivers_paid_the_same_for_loaded_and_empty == 'No') selected @endif @endif>No</option>
+                                    <option @if($a_p_o) @if($a_p_o->are_drivers_paid_the_same_for_loaded_and_empty == 'Yes') selected @endif @endif>Yes</option>
                                 </select>
                             </div>
                         </div>
                         <!-- If selected No in the above field then show this field. -->
-                        <div id="miles_cpm_chat" style="display: none;" class="col-md-12">
+                        <div id="miles_cpm_chat" @if($a_p_o) @if($a_p_o->are_drivers_paid_the_same_for_loaded_and_empty == 'Yes') style="display: none;" @endif @else style="display: none;" @endif class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Miles CPM chat</label>
-                                <input type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="miles_cpn_chat">
+                                <input @if($a_p_o) value="{{ $a_p_o->miles_cpn_chat }}" @endif type="number" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="" name="miles_cpn_chat">
                             </div>
                         </div>
                     </div>
@@ -377,13 +374,13 @@
                             <div class="form-group">
                                 <label class="lable-control">End of Pay Week</label>
                                 <select name="end_of_pay_week" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                    <option>Monday</option>
-                                    <option>Tuesday</option>
-                                    <option>Wednesday</option>
-                                    <option>Thursday</option>
-                                    <option>Friday</option>
-                                    <option>Saturday</option>
-                                    <option>Sunday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Monday') selected @endif @endif>Monday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Tuesday') selected @endif @endif>Tuesday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Wednesday') selected @endif @endif>Wednesday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Thursday') selected @endif @endif>Thursday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Friday') selected @endif @endif>Friday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Saturday') selected @endif @endif>Saturday</option>
+                                    <option @if($a_p_o) @if($a_p_o->end_of_pay_week == 'Sunday') selected @endif @endif>Sunday</option>
                                 </select>
                             </div>
                         </div>
@@ -391,38 +388,38 @@
                             <div class="form-group">
                                 <label class="lable-control">Hazmat Pay</label>
                                 <select onchange="showbelowfield(this.value,'hazmat_pay_options','Yes')" name="hazmat_pay" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                    <option>No</option>
-                                    <option>Yes</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay == 'No') selected @endif @endif>No</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay == 'Yes') selected @endif @endif>Yes</option>
                                 </select>
                             </div>
                         </div>
                         <!-- If selected Yes then show this input-->
-                        <div style="display: none;" id="hazmat_pay_options" class="col-md-12">
+                        <div @if($a_p_o) @if($a_p_o->hazmat_pay == 'No') style="display: none;" @endif @else style="display: none;" @endif id="hazmat_pay_options" class="col-md-12">
                             <div class="form-group">
                                 <label class="lable-control">Select Option</label>
                                 <select name="hazmat_pay_options_field" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="hazmat_pay_options_field">
-                                    <option>$0.01</option>
-                                    <option>$0.02</option>
-                                    <option>$0.03</option>
-                                    <option>$0.04</option>
-                                    <option>$0.05</option>
-                                    <option>$0.06</option>
-                                    <option>$0.07</option>
-                                    <option>$0.08</option>
-                                    <option>$0.09</option>
-                                    <option>$0.10</option>
-                                    <option>$0.11</option>
-                                    <option>$0.12</option>
-                                    <option>$0.13</option>
-                                    <option>$0.14</option>
-                                    <option>$0.15</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.01') selected @endif @endif>$0.01</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.02') selected @endif @endif>$0.02</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.03') selected @endif @endif>$0.03</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.04') selected @endif @endif>$0.04</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.05') selected @endif @endif>$0.05</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.06') selected @endif @endif>$0.06</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.07') selected @endif @endif>$0.07</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.08') selected @endif @endif>$0.08</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.09') selected @endif @endif>$0.09</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.10') selected @endif @endif>$0.10</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.11') selected @endif @endif>$0.11</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.12') selected @endif @endif>$0.12</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.13') selected @endif @endif>$0.13</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.14') selected @endif @endif>$0.14</option>
+                                    <option @if($a_p_o) @if($a_p_o->hazmat_pay_options_field == '$0.15') selected @endif @endif>$0.15</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="lable-control">Holiday Pay</label>
-                                <textarea name="holida_pay" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="8"></textarea>
+                                <textarea name="holida_pay" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" rows="8">@if($a_p_o) {{ $a_p_o->holida_pay }} @endif</textarea>
                                 <small>Max 400 characters</small>
                             </div>
                         </div>
@@ -430,8 +427,8 @@
                             <div class="form-group">
                                 <label class="lable-control">How Are Drivers Paid?</label>
                                 <select onchange="showbelowfield(this.value,'how_are_drivers_paid_other','Other')" name="how_are_drivers_paid" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                                    <option>Direct Deposit</option>
-                                    <option>Other</option>
+                                    <option @if($a_p_o) @if($a_p_o->how_are_drivers_paid == 'Direct Deposit') selected @endif @endif>Direct Deposit</option>
+                                    <option @if($a_p_o) @if($a_p_o->how_are_drivers_paid == 'Other') selected @endif @endif>Other</option>
                                 </select>
                             </div>
                         </div>

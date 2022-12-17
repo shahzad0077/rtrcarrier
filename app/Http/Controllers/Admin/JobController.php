@@ -14,6 +14,7 @@ use App\Models\jobs;
 use App\Models\assign_from_admin_jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Validator;
 use Redirect;
 class JobController extends Controller
 {   
@@ -97,4 +98,35 @@ class JobController extends Controller
     {
         return view('admin.jobs.addmap');
     }
+    public function jobpostbasic(Request $request)
+    {
+        
+    }
+    public function adddadvancedetails(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'primary_running_lanes' => 'required',
+            'avg_length_of_haul' => 'required',
+            'type_of_fuel_card' => 'required',
+            'tolls' => 'required',
+            'hour_dispatch' => 'required',
+            'ez_Pass' => 'required',
+            'pre_pass' => 'required',
+            'non_forced_dispatch' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()]);
+        }
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->primary_running_lanes = $request->primary_running_lanes;
+        $addnewjob->avg_length_of_haul = $request->avg_length_of_haul;
+        $addnewjob->type_of_fuel_card = $request->type_of_fuel_card;
+        $addnewjob->tolls = $request->tolls;
+        $addnewjob->hour_dispatch = $request->hour_dispatch;
+        $addnewjob->ez_Pass = $request->ez_Pass;
+        $addnewjob->pre_pass = $request->pre_pass;
+        $addnewjob->non_forced_dispatch = $request->non_forced_dispatch;
+        $addnewjob->save();
+    }
+    
 }
