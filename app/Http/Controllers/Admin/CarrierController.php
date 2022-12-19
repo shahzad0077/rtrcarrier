@@ -24,6 +24,7 @@ use App\Models\jot_attributes;
 use App\Models\jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
+use Session;
 use Auth;
 use DB;
 class CarrierController extends Controller
@@ -59,6 +60,7 @@ class CarrierController extends Controller
         }
         if($page == 'addnewjob')
         {
+            Session::set('companyid', $id);
             $check = jobs::where('company_id' , $id)->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
             if($check->count() > 0)
             {
