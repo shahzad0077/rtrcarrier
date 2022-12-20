@@ -25,7 +25,7 @@ use App\Models\payements;
 use App\Models\usernotifications;
 use App\Models\allcarrierpages;
 use App\Models\carrieralerts;
-
+use Redirect;
 use Validator;
 use Auth;
 use DB;
@@ -309,7 +309,8 @@ class CarrierController extends Controller
             }
             
         }else{
-            return redirect()->back()->with('message', 'Map Added Successfully');
+            $url = url('hirig-maps');
+            return Redirect::to($url);
         }
     }
     public function updatehiringmap(Request $request)
