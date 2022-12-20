@@ -34,15 +34,79 @@
                         <div class="card-header py-3">
                             <div class="card-title align-items-start flex-column">
                                 <h3 class="card-label font-weight-bolder text-dark">Add New Job</h3>
-                                <span class="text-muted font-weight-bold font-size-sm mt-1">@if($_GET['step'] == 1) Basic Details @endif</span>
+                                <span class="text-muted font-weight-bold font-size-sm mt-1">@if($_GET['step'] == 3) Routing & Transfer @endif @if($_GET['step'] == 1) Basic Details @endif @if($_GET['step'] == 2) Hiring Requirements @endif</span>
                             </div>
                         </div>
                         <!--end::Header-->
                     </div>
-                    <form method="POST" action="{{ url('admin/carriers/jobpostbasic') }}">
+                    @if($_GET['step'] == 1)
+                    <form method="POST" action="{{ url('job/submitone') }}">
                         @csrf
+                        <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
+                        <input type="hidden" value="adminside" name="job_type_from_side">
                         @include('admin.carriers.jobs.portion.basic')
                     </form>
+                    @endif
+                    @if($_GET['step'] == 2)
+
+                    <form id="hiringreqform" method="POST" action="{{ url('job/hiringreq') }}">
+                    @csrf
+                    @include('carrier.jobs.hiringreq')
+                    <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
+                    <input type="hidden" value="adminside" name="job_type_from_side">
+                         <div id="submitbuttonforhiringreq" class="row mb-7">
+                            <div class="col-md-12 ml-auto">
+                                <div class="d-flex">
+                                    <div class="ml-auto">
+                                        <button class="btn btn-primary btn-lg">
+                                            Next <i class="fa fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @include('carrier.jobs.hiringtemplatepreview')
+                    @include('carrier.jobs.hiringtemplateshow')
+                    @endif
+                    @if($_GET['step'] == 3)
+                    <form method="POST" action="{{ url('job/routingandtrans') }}">
+                        @csrf
+                        <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
+                        <input type="hidden" value="adminside" name="job_type_from_side">
+                        @include('admin.carriers.jobs.portion.routingandtrans')
+                        <div class="row mb-7 mt-3">
+                            <div class="col-md-12 ml-auto">
+                                <div class="d-flex">
+                                    <div class="ml-auto">
+                                        <button class="btn btn-primary btn-lg">
+                                            Next <i class="fa fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
+                    @if($_GET['step'] == 4)
+                    <form method="POST" action="{{ url('job/jobsubmitlast') }}">
+                        @csrf
+                        <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
+                        <input type="hidden" value="adminside" name="job_type_from_side">
+                        @include('carrier.jobs.preview')
+                        <div class="row mb-7 mt-7">
+                            <div class="col-md-12 ml-auto">
+                                <div class="d-flex">
+                                    <div class="ml-auto">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            Submit Job <i class="fa fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
                 </div>
                 <!--end::Content-->
             </div>

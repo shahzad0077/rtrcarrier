@@ -514,6 +514,7 @@ class JobController extends Controller
         $addnewjob->live_load = $request->live_load;
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->step = 1;
+        $addnewjob->job_type_from_side = $request->job_type_from_side;
         $addnewjob->save();
         if($request->hiring_template)
         {
@@ -530,7 +531,14 @@ class JobController extends Controller
                 $linktemplate->save();
             }
         }
-        return redirect()->back()->with('message', 'Added Successfully');
+        if($request->job_type_from_side == 'adminside')
+        {
+            $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=2&jobid='.$addnewjob->id.'';
+            return Redirect::to($url);
+        }else{
+            return redirect()->back()->with('message', 'Baisc Details of Job Added Successfully');
+        }
+        
     }
 
     public function addnewcompanyemal(Request $request)
@@ -551,7 +559,13 @@ class JobController extends Controller
         $addnewjob->step = 4;
         $addnewjob->payement_status = 'done';
         $addnewjob->save();
-        return redirect()->back()->with('message', 'Email Added Successfully');
+        if($request->job_type_from_side == 'adminside')
+        {
+            $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=4&jobid='.$addnewjob->id.'';
+            return Redirect::to($url);
+        }else{
+            return redirect()->back()->with('message', 'Hiring Template Added');
+        }
     }
 
     public function subscription(Request $request)
@@ -597,7 +611,21 @@ class JobController extends Controller
             $submit->counter = 1;
             $submit->save();
         }
-        return view('carrier/jobs/jobsubmit');
+        if($request->job_type_from_side == 'adminside')
+        {
+            $data = companies::leftJoin('users','users.id','=','companies.user_id')
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status','users.phonenumber','users.profile_picture')
+            ->orderBy('id','desc')
+            ->where('users.approved_status' , 1)
+            ->where('companies.id' , $addnewjob->company_id)
+            ->first();
+            $page = 'alljobs';
+            return view('admin.carriers.jobs.jobsubmit')->with(array('data'=>$data,'page'=>$page));
+        }
+        else
+        {
+            return view('carrier/jobs/jobsubmit');
+        }
     }
     public function adddadvancedetails(Request $request)
     {
@@ -743,7 +771,15 @@ class JobController extends Controller
         $addnewjob->step = 2;
         $addnewjob->save();
 
-        return redirect()->back()->with('message', 'Email Added Successfully');
+
+        $addnewjob = jobs::find($request->job_id);
+        if($request->job_type_from_side == 'adminside')
+        {
+            $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=3&jobid='.$addnewjob->id.'';
+            return Redirect::to($url);
+        }else{
+            return redirect()->back()->with('message', 'Hiring Template Added');
+        }
     }
 
 

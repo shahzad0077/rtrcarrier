@@ -67,7 +67,7 @@ $(document).ready(function () {
 	    </div>        
     </body>
 
-    <!-- Modal-->
+<!-- Modal-->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -88,6 +88,33 @@ $(document).ready(function () {
     </div>
 </div>
 
+@if(isset($_GET['status']))
+<div class="modal fade" id="jobsaveasdraft" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Job is Still Continue Step # {{ $_GET['step'] }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                Your Job is Still in Continue to Upload. Please Save to Draft or Delete it
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger font-weight-bold">Delete Job</button>
+                <a href="{{ url('admin/carriers/draftjob') }}/{{ $_GET['jobid'] }}" class="btn btn-light-primary font-weight-bold">Save as Draft</a>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Keep Editing</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('#jobsaveasdraft').modal('show');
+    });
+</script>
+@endif
   <script>
             var KTAppSettings = {
                 breakpoints: {

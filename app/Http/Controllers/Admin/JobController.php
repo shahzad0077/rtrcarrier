@@ -18,6 +18,16 @@ use Validator;
 use Redirect;
 class JobController extends Controller
 {   
+    public function __construct()
+    {
+        $this->middleware('auth');
+        if(isset($_GET['status']))
+        {
+
+        }else{
+            $this->middleware('checkjobstatus');
+        }
+    }
     public function alljobs()
     {
         $jobs = jobsubmissionsrequests::select('jobsubmissionsrequests.status','jobs.url','jobs.payement_status','jobs.id as job_id','jobs.job_tittle','jobs.hiring_area','jobs.operating_area','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.driver_type','companies.company_name')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->leftJoin('companies','jobs.company_id','=','companies.id')->orderby('jobs.id' , 'desc')->paginate(10);

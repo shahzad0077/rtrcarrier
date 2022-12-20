@@ -4,7 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\jobs;
 use Auth;
+use Session;
+use Redirect;
 class Checkjobstatus
 {
     /**
@@ -16,18 +19,25 @@ class Checkjobstatus
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check())
+        $companyid = Session::get('companyid');
+        $checkjobs = jobs::where('company_id' , $companyid)->where('step' , '!=' , 5)->where('status' , 'continue');
+        if($checkjobs->count() > 0)
         {
-            if(Auth::user()->type == 'admin')
+            $checkstep = $checkjobs->first()->step;
+            if($checkstep == 0)
             {
-                return $next($request);
+                $step = 1;
+            }elseif($checkstep == 1){
+                $step = 2;
+            }elseif($checkstep == 2){
+                $step = 3;
             }else{
-                Auth::logout();
-                return redirect()->route('admin.login')->with('success','You Dont Have Access of Admin');
+                $step = $checkstep;
             }
+            $url = url('admin/carriers/detail').'/'.$companyid.'/addnewjob?step='.$step.'&jobid='.$checkjobs->first()->id.'&status=continue';
+            return Redirect::to($url);
         }else{
-            return redirect()->route('admin.login')->with('success','Admin has been logged out!');
+            return $next($request);
         }
-        
     }
 }

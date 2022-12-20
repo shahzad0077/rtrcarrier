@@ -232,6 +232,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/changepassword','CarrierController@changepassword');
         Route::post('/jobpostbasic','JobController@jobpostbasic');
         Route::post('/adddadvancedetails','JobController@adddadvancedetails');
+        Route::get('draftjob/{id}','CarrierController@draftjob');
         
     });
 

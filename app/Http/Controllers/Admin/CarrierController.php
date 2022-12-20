@@ -21,6 +21,7 @@ use App\Models\jobsubmissionsrequests;
 use App\Models\linktemplatewithjobs;
 use App\Models\role_users;
 use App\Models\jot_attributes;
+use App\Models\hiring_templates;
 use App\Models\jobs;
 use Illuminate\Support\Facades\Hash;
 use Mail;
@@ -29,6 +30,16 @@ use Auth;
 use DB;
 class CarrierController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        if(isset($_GET['status']))
+        {
+
+        }else{
+            $this->middleware('checkjobstatus');
+        }
+    }
     public function allcarriers(){
         $data = companies::leftJoin('users','users.id','=','companies.user_id')
             ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status')
@@ -60,7 +71,7 @@ class CarrierController extends Controller
         }
         if($page == 'addnewjob')
         {
-            Session::set('companyid', $id);
+            Session::put('companyid', $id);
             $check = jobs::where('company_id' , $id)->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
             if($check->count() > 0)
             {
@@ -74,8 +85,9 @@ class CarrierController extends Controller
                 $addjob->save();
                 $job = $addjob;
             }
+            $template = hiring_templates::where('company_id' , $id)->where('is_template' , 1)->get();
             $attribute = jot_attributes::all();
-            return view('admin.carriers.jobs.addnewjob')->with(array('job'=>$job,'attribute'=>$attribute,'data'=>$data,'page'=>$page));
+            return view('admin.carriers.jobs.addnewjob')->with(array('template'=>$template,'job'=>$job,'attribute'=>$attribute,'data'=>$data,'page'=>$page));
         }
         if($page == 'allmaps')
         {
