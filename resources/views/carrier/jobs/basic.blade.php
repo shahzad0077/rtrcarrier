@@ -20,6 +20,12 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="lable-control">Job Description</label>
+                    <textarea class="summernote" name="job_description">{{ $job->job_description }}</textarea>
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">How often will the driver get home?</label>
