@@ -12,8 +12,8 @@
                         <div class="row">
                             <div class="col-md-12 successfully-content">
                                 <img src="{{ asset('public/carrier/assets/media/custom/ticked.png') }}">
-                                <h2>Your Job has been successfully received</h2>
-                                <p>We're examining your job posting and will publish it soon one of our administrators approves it.</p>
+                                <h2>Your job has been successfully posted to your dashboard</h2>
+                                <p>Please allow up to 48 hours for all jobs to be approved for display on <b>drivers1st.com</b></p>
                                 <div class="dashboad-btn-main">
                                     <div class="dashboad-btn">
                                         <a href="{{ url('dashboard') }}" type="reset" class="btn btn-primary mr-2 dashboard-inner-btn">Dashboard</a>

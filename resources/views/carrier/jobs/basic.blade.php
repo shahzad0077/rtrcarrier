@@ -23,7 +23,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Job Description</label>
-                    <textarea class="summernote" name="job_description">{{ $job->job_description }}</textarea>
+                    <textarea rows="10" maxlength="500" id="comment"  class="form-control" name="job_description">{{ $job->job_description }}</textarea>
                 </div>
             </div>
             <div class="col-md-6">

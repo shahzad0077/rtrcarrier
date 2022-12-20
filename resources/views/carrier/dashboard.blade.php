@@ -23,7 +23,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                            <select class="form-control " id="selectfreighttype" name="param">
+                                            <select class="form-control " id="selectfreighttype" name="freighttype">
                                                 <option value="">Driver Type</option>
                                                 @foreach(explode(',' ,DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
                                                 <option value="{{ $r }}">{{ $r }}</option> 
@@ -155,6 +155,18 @@
             </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <a href="{{ url('job/add') }}" class="btn btn-primary mr-2 post-inner-btn form-control">
+                                Post New Job
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url('members') }}" class="btn btn-primary mr-2 post-inner-btn form-control">
+                                Invite Team
+                            </a>
+                        </div>
+                    </div>
                     <div class="card card-custom gutter-b">
                         <!--begin::Body-->
                         <div class="card-body pt-4">

@@ -302,7 +302,7 @@ class CarrierController extends Controller
                 {
                     return redirect()->route('addnewjob')->with('success','Map Added Successfully');
                 }else{
-                    return redirect()->back()->with('warning', 'Please Add Operating Map');
+                    return redirect()->route('addnewjob')->with('success','Map Added Successfully');
                 }
             }else{
                 return redirect()->back()->with('warning', 'Please Add Hiring Map');

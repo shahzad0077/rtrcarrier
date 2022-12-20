@@ -13,6 +13,10 @@ var KTSelect2 = function() {
             placeholder: 'Select a Freight'
         });
 
+        $('#selecthiringtemplateforaddingjob').select2({
+            placeholder: 'Please Select Hiring Template or Create New One'
+        });
+
         $('#selectmaptype').select2({
             placeholder: 'Select a Map Type'
         });
