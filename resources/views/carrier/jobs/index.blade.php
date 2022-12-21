@@ -35,7 +35,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <select name="freighttype" id="kt_select2_1" class="form-control select2" style="background-color: #f3f6f9 !important;">
+                                    <select name="drivertype" id="kt_select2_1" class="form-control select2" style="background-color: #f3f6f9 !important;">
                                         <option value="">Driver Type</option>
                                         @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
                                         <option value="{{ $r }}">{{ $r }}</option>

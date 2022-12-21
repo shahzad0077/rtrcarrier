@@ -383,10 +383,24 @@ class JobController extends Controller
         {
             $q->where('jobs.job_tittle','like', '%' . $input['keyword'] . '%' );
         }
+        if(isset($input['hometimeadvance']))
+        {
+            foreach ($input['hometimeadvance'] as $r) {
+                $q->where('jobs.home_time','like', '%' .$r. '%' );
+            }
+        }
         if ($input['freighttype'])
         {
             $q->where('jobs.freight_type','like', '%' . $input['freighttype'] . '%' );
         }
+        if(isset($input['drivertype']))
+        {
+            if ($input['drivertype'])
+            {
+                $q->where('jobs.driver_type','like', '%' . $input['drivertype'] . '%' );
+            }
+        }
+        
         $q->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id');
         $q->where('company_id' , Cmf::getusercompany()->id);
         $jobs = $q->orderby('jobs.id' , 'desc')->get();

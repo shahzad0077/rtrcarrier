@@ -14,6 +14,57 @@
                         <div class="card-body p-3">
                             <div class="card bg-light-gray">
                                 <form method="GET" action="{{ url('searchjobs') }}">
+                                    <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Advance Filters</h5>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <i aria-hidden="true" class="ki ki-close"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row mt-7">
+                                                        <div class="col-md-12">
+                                                            <h5 class="mb-5">Home time</h5>
+                                                        </div>
+                                                        @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 123)->first()->options) as $r)
+                                                        <div class="col-md-3">
+                                                            <label class="checkbox checkbox-lg">
+                                                                <input value="{{$r}}" type="checkbox" name="hometimeadvance[]" />
+                                                                <span class="mr-3"></span>
+                                                                {{$r}}
+                                                            </label>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="row mt-7">
+
+                                                        <div class="col-md-12">
+                                                            <h5 class="mb-5">Driver Type</h5>
+                                                        </div>
+                                                        @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
+                                                        <div class="col-md-3 mb-3">
+                                                            <label class="checkbox checkbox-lg">
+                                                                <input value="{{$r}}" type="checkbox" name="drivertypeadvance[]" />
+                                                                <span class="mr-3"></span>
+                                                                {{$r}}
+                                                            </label>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary font-weight-bold">Apply Filters</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="card-body p-2">
                                         <div class="d-flex justify-content-between">
                                             <div>
@@ -409,120 +460,6 @@
     <!--end::Entry-->
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="modal-title" id="exampleModalLabel">Advance Filters</h5>
-                    </div>
-                </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Pay detail</h5>
-                        <div class="form-group">
-                            <div class="checkbox-inline">
-                                <div class="row">
-                                    <div class="col-md-3 mb-4">
-                                        <label class="checkbox checkbox-lg">
-                                            <input type="checkbox" checked="checked" name="Checkboxes3_1" />
-                                            <span></span>
-                                            $1,000 - 2,000
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3 mb-4">
-                                        <label class="checkbox checkbox-lg">
-                                            <input type="checkbox" name="Checkboxes3_1" />
-                                            <span></span>
-                                            $1,100 - 2,200
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3 mb-4">
-                                        <label class="checkbox checkbox-lg">
-                                            <input type="checkbox" name="Checkboxes3_1" />
-                                            <span></span>
-                                            $1,300 - 2,300
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3 mb-4">
-                                        <label class="checkbox checkbox-lg">
-                                            <input type="checkbox" name="Checkboxes3_1" />
-                                            <span></span>
-                                            $1,400 - 2,400
-                                        </label>
-                                    </div>
-                                    <div class="col-md-3 mb-4">
-                                        <label class="checkbox checkbox-lg">
-                                            <input type="checkbox" name="Checkboxes3_1" />
-                                            <span></span>
-                                            $1,500 - 2,500
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Freight Type</h5>
-                    </div>
-                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 126)->first()->options) as $r)
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            {{$r}}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row mt-7">
-
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Home time</h5>
-                    </div>
-                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 123)->first()->options) as $r)
-                    <div class="col-md-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            {{$r}}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row mt-7">
-
-                    <div class="col-md-12">
-                        <h5 class="mb-5">Driver Type</h5>
-                    </div>
-                    @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
-                    <div class="col-md-3 mb-3">
-                        <label class="checkbox checkbox-lg">
-                            <input type="checkbox" name="Checkboxes1" />
-                            <span class="mr-3"></span>
-                            {{$r}}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Apply Filters</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @section('scripts')

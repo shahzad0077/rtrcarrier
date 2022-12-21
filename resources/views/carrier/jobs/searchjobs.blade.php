@@ -25,10 +25,10 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <select name="freighttype" class="form-control">
+                        <select name="drivertype" class="form-control">
                             <option value="">Driver Type</option>
                             @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 124)->first()->options) as $r)
-                            <option value="{{ $r }}">{{ $r }}</option>
+                            <option @if(isset($_GET['drivertype'])) @if($_GET['drivertype'] == $r) selected @endif @endif  value="{{ $r }}">{{ $r }}</option>
                             @endforeach
                         </select>
                     </div>
