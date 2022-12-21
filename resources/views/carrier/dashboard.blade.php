@@ -157,7 +157,7 @@
                 <div class="col-md-4"> 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <a href="{{ url('job/add') }}" class="btn btn-primary mr-2 post-inner-btn form-control">
+                            <a href="{{ url('job/add') }}" class="btn btn-white btn-block text-primary">
                                 Post New Job
                             </a>
                         </div>
