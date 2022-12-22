@@ -9,7 +9,7 @@ use App\Models\staff_permissions;
 use App\Models\set_roles;
 use App\Models\role_users;
 use App\Models\companies;
-use App\Models\usernotification;
+use App\Models\usernotifications;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 class Cmf
@@ -21,13 +21,15 @@ class Cmf
         $file->move(public_path('images'), $filename);
         return $filename;
     }
-    public static function saveusernoti($user , $notification , $url)
+    public static function saveusernoti($user_id , $icon , $heading, $notification , $url)
     {
-        $new = new usernotification();
-        $new->user = $user;
+        $new = new usernotifications();
+        $new->user_id = $user_id;
+        $new->icon = $icon;
+        $new->heading = $heading;
         $new->notification = $notification;
         $new->url = $url;
-        $new->status = 1;
+        $new->read = 1;
         $new->save();
     }
     public static function getsettings($value)

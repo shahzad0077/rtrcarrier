@@ -19,6 +19,7 @@ use App\Models\jobsubmissionsrequests;
 use App\Models\advance_equipment_values;
 use App\Models\subscription_plans;
 use App\Models\payements;
+use App\Models\usernotifications;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Mail;
@@ -611,8 +612,17 @@ class JobController extends Controller
         $addnewjob->step = 5;
         $addnewjob->save();
         $check = jobsubmissionsrequests::where('job_id' , $request->job_id);
+        $company = DB::table('companies')->where('id' , $addnewjob->company_id)->first();
+        $userid = $company->user_id;
 
-        // Cmf::saveusernoti('')
+        $new = new usernotifications();
+        $new->user_id = $userid;
+        $new->icon = '';
+        $new->heading = 'Job Notification';
+        $new->notification = 'Job IS Complete and Publish on your Dashboard';
+        $new->url = '';
+        $new->read = 1;
+        $new->save();
 
 
         if($check->count() == 0)
