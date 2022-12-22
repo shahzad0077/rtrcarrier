@@ -255,7 +255,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ url('members') }}" class="btn btn-primary mr-2 post-inner-btn form-control">
+                            <a href="{{ url('members') }}" class="btn btn-white btn-block text-primary">
                                 Invite Team
                             </a>
                         </div>
