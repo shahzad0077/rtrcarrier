@@ -69,7 +69,7 @@
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
-                                                    <input name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
+                                                    <input onkeyup="searchzipcode(this.value)" name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
                                                     <span><i class="flaticon2-search-1 icon-md"></i></span>
                                                 </div>
                                             </div>
@@ -89,6 +89,48 @@
                                                     Search
                                                 </button>
                                             </div>
+                                        </div>
+                                        <style>
+                                            /* Dropdown Button */
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {outline: 3px solid #ddd;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 99%;
+    border: 1px solid #ddd;
+    z-index: 1;
+    height: 300px;
+    top: 60px;
+    overflow: auto;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+                                        </style>
+                                        <div id="myDropdown" class="dropdown-content">
+
                                         </div>
                                     </div>
                                 </form>

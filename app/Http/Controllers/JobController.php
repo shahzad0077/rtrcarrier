@@ -386,7 +386,7 @@ class JobController extends Controller
         if(isset($input['hometimeadvance']))
         {
             foreach ($input['hometimeadvance'] as $r) {
-                $q->where('jobs.home_time','like', '%' .$r. '%' );
+                $q->orWhere('jobs.home_time','like', '%' .$r. '%' );
             }
         }
         if ($input['freighttype'])
@@ -611,6 +611,10 @@ class JobController extends Controller
         $addnewjob->step = 5;
         $addnewjob->save();
         $check = jobsubmissionsrequests::where('job_id' , $request->job_id);
+
+        // Cmf::saveusernoti('')
+
+
         if($check->count() == 0)
         {
             $submit = new jobsubmissionsrequests();

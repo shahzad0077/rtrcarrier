@@ -9,6 +9,7 @@ use App\Models\staff_permissions;
 use App\Models\set_roles;
 use App\Models\role_users;
 use App\Models\companies;
+use App\Models\usernotification;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 class Cmf
@@ -19,6 +20,15 @@ class Cmf
         $filename = rand() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path('images'), $filename);
         return $filename;
+    }
+    public static function saveusernoti($user , $notification , $url)
+    {
+        $new = new usernotification();
+        $new->user = $user;
+        $new->notification = $notification;
+        $new->url = $url;
+        $new->status = 1;
+        $new->save();
     }
     public static function getsettings($value)
     {
