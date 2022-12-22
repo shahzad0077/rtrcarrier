@@ -32,7 +32,7 @@ $(document).ready(function() {
     alert("Your browser doesn't support to File API")
   }
 });
-function searchzipcode(id) {
+function searchzipcodefordashboard(id) {
     if(id == '')
     {
         $('.dropdown-content').hide();
