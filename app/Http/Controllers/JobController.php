@@ -621,7 +621,7 @@ class JobController extends Controller
         $new->heading = 'Job Notification';
         $new->notification = 'Job IS Complete and Publish on your Dashboard';
         $new->url = '';
-        $new->read = 1;
+        $new->read = 0;
         $new->save();
 
 
