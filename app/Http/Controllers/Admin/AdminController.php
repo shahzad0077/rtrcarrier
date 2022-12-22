@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
 use DB;
+use Redirect;
 class AdminController extends Controller
 {
     public function __construct()
@@ -139,8 +140,9 @@ class AdminController extends Controller
         Mail::send('email.appreq', ['email' => $user->email , 'name' => $user->name, 'email' => $user->email], function($message) use($user){
               $message->to($user->email);
               $message->subject('Your Request is Approved');
-          });
-        return redirect()->route('admin.allcarriers');
+        });
+        $url = url('admin/carriers');
+        return Redirect::to($url);
     }
     public function declinerequest(Request $request)
     {
