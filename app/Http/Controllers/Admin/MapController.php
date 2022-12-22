@@ -23,5 +23,18 @@ class MapController extends Controller
         $this->middleware('auth');
     }
  
-    
+    public function mapdetail($id,$page)
+    {
+        $data = companies::leftJoin('users','users.id','=','companies.user_id')
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status','users.phonenumber','users.profile_picture')
+            ->orderBy('id','desc')
+            ->where('users.approved_status' , 1)
+            ->where('companies.id' , $id)
+            ->first();
+        // print_r($data);exit;
+        if($page == 'addmap')
+        {
+            return view('admin.carriers.maps.addnewmap')->with(array('data'=>$data,'page'=>$page));
+        }
+    }
 }

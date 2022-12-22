@@ -156,7 +156,7 @@
                         </span>
                     @enderror
                 </div>
-                <a href="{{ url('map/add-new') }}">Create New Hiring Map</a>
+                <a href="{{ url('admin/carriers/map') }}/{{ $data->id }}/addmap?maptype=hiringmap">Create New Hiring Map</a>
             </div>
             <div class="col-md-6 map-content">
                 <div class="form-group">
@@ -173,7 +173,7 @@
                         </span>
                     @enderror
                 </div>
-                <a href="{{ url('map/add-new') }}">Create New Hiring Map</a>
+                <a href="{{ url('admin/carriers/map') }}/{{ $data->id }}/addmap?maptype=operatingmap">Create New Operating Map</a>
             </div>
         </div>
     </div>

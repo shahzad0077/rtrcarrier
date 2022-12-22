@@ -92,7 +92,11 @@ class CarrierController extends Controller
         if($page == 'allmaps')
         {
             $allmaps = hiring_maps::where('company_id' , $id)->get();
-            return view('admin.carriers.allmaps')->with(array('allmaps'=>$allmaps,'data'=>$data,'page'=>$page));
+            return view('admin.carriers.maps.allmaps')->with(array('allmaps'=>$allmaps,'data'=>$data,'page'=>$page));
+        }
+        if($page == 'addmap')
+        {
+            return view('admin.carriers.maps.addnewmap')->with(array('allmaps'=>$allmaps,'data'=>$data,'page'=>$page));
         }
         if($page == 'alljobs')
         {
