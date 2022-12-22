@@ -467,7 +467,6 @@ class JobController extends Controller
             'how_often_will_driver_get_home' => 'required',
             'custom_home_time' => 'required',
             'hiring_area' => 'required',
-            'operating_area' => 'required',
             'job_tittle' => 'required',
             'driver_type' => 'required',
             'home_time' => 'required',
