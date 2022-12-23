@@ -162,7 +162,7 @@
                 <div class="form-group">
                     <label class="lable-control">Operating Area</label>
                     <select name="operating_area" class="form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
-                        <option value="">Select Hiring Map</option>
+                        <option value="">Select Operating Area</option>
                         @foreach(DB::table('hiring_maps')->where('type' , 'Operating Map')->where('company_id' , $data->id)->get() as $r)
                         <option value="{{ $r->id }}" @if($job->operating_area == $r->id) selected @elseif(old('operating_area') == $r->id) selected @endif>{{ $r->tittle }} </option>
                         @endforeach

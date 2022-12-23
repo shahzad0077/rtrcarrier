@@ -184,7 +184,7 @@ $(document).ready(function () {
         <script src="{{asset('public/admin/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6')}}"></script>
         <script src="{{asset('public/admin/assets/js/scripts.bundle.js?v=7.0.6')}}"></script>
         <!--end::Global Theme Bundle-->
-
+        @yield('scripts')
         <!--begin::Page Vendors(used by this page)-->
         <script src="{{asset('public/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6')}}"></script>
         <!--end::Page Vendors-->
@@ -196,7 +196,7 @@ $(document).ready(function () {
         <script src="{{ asset('public/admin/assets/js/custom.js') }}"></script>
         <!--end::Page Scripts-->
         <!-- <script src="{{ asset('public/carrier/assets/js/custom.js') }}"></script>  -->
-        @yield('scripts')
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#example').DataTable();

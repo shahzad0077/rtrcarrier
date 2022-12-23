@@ -35,7 +35,6 @@
                                 <div class="col-md-12 successfully-content">
                                     <img src="{{ asset('public/carrier/assets/media/custom/ticked.png') }}">
                                     <h2>Job has been added successfully.</h2>
-                                    <p>We're examining your job posting and will publish it soon one of our administrators approves it.</p>
                                     <div class="dashboad-btn-main">
                                         <div class="dashboad-btn">
                                             <a href="{{ url('admin/carriers/detail') }}/{{ $data->id }}/alljobs" type="reset" class="btn btn-primary mr-2 dashboard-inner-btn">All Jobs</a>

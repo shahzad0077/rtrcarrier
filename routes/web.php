@@ -235,6 +235,8 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/adddadvancedetails','JobController@adddadvancedetails');
         Route::get('draftjob/{id}','CarrierController@draftjob');
         Route::get('map/{id}/{page}','MapController@mapdetail');
+        Route::get('hiringtemplate/{id}/{page}','HiringtemplateController@addnewhiringtemplate');
+        Route::post('/createnewtemplate','HiringtemplateController@createnewhiringtemplate');
     });
 
 

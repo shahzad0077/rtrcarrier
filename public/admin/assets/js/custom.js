@@ -233,6 +233,116 @@ $('#advanceequipment').on('submit',(function(e) {
     });
 }));
 
+$('#addpayoutschedule').on('submit',(function(e) {
+    $('#payout-schedule-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#payOption').modal('hide');
+            $('#payout-schedule-button').html('Set Schedule');
+        }else{
+            $('#payout-schedule-button').html('Set Schedule');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+$('#addnewcompanyemal').on('submit',(function(e) {
+    $('#addnewcompanyemal_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
+    e.preventDefault();
+    var formData = new FormData(this);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('.hirringreqemail').append('<option selected value="'+$('#emailfield').val()+'">'+$('#emailfield').val()+'</option>');
+            $("#addnewcompanyemal").trigger('reset');
+            $('#addcompanyemail').modal('hide');
+            $('#addnewcompanyemal_submit_button').html('Save');
+        }else{
+            $('#payout-schedule-button').html('Set Schedule');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+$('#updateriderpolicy').on('submit',(function(e) {
+    $('#riderpolicy_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $(".riderpolicy-feedback").css('display','none');
+    $('#updateriderpolicy').find('*').removeClass('is-invalid');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#ridertextpolicy').html(data.policytext)
+            $('#riderpolicy').modal('hide');
+            $('#riderpolicy_submit_button').html('Save');
+        }else{
+            $('#riderpolicy_submit_button').html('Save');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+$('#updatepetpolicy').on('submit',(function(e) {
+    $('#update-pet-policy-submit-button').html('<i class="fa fa-spin fa-spinner"></i>');
+    $(".petpolicy-feedback").css('display','none');
+    $('#updatepetpolicy').find('*').removeClass('is-invalid');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('action'),
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success: function(data){
+         if($.isEmptyObject(data.error)){
+            $('#pettextpolicy').html(data.policytext)
+            $('#petpolicy').modal('hide');
+            $('#update-pet-policy-submit-button').html('Save');
+        }else{
+            $('#update-pet-policy-submit-button').html('Save');
+            printErrorMsg(data.error);
+        }
+            
+        }
+    });
+}));
+
+
+
 // Add Payout Schedule
 var payoutrow=2;
 $(document).on("click", "#addmore", function () {
@@ -326,61 +436,4 @@ function showpreview(input) {
     }
 }
 
-$('#updateriderpolicy').on('submit',(function(e) {
-    $('#riderpolicy_submit_button').html('<i class="fa fa-spin fa-spinner"></i>');
-    $(".riderpolicy-feedback").css('display','none');
-    $('#updateriderpolicy').find('*').removeClass('is-invalid');
 
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    $.ajax({
-        type:'POST',
-        url: $(this).attr('action'),
-        data:formData,
-        cache:false,
-        contentType: false,
-        processData: false,
-        success: function(data){
-         if($.isEmptyObject(data.error)){
-            $('#ridertextpolicy').html(data.policytext)
-            $('#riderpolicy').modal('hide');
-            $('#riderpolicy_submit_button').html('Save');
-        }else{
-            $('#riderpolicy_submit_button').html('Save');
-            printErrorMsg(data.error);
-        }
-            
-        }
-    });
-}));
-
-
-$('#updatepetpolicy').on('submit',(function(e) {
-    $('#update-pet-policy-submit-button').html('<i class="fa fa-spin fa-spinner"></i>');
-    $(".petpolicy-feedback").css('display','none');
-    $('#updatepetpolicy').find('*').removeClass('is-invalid');
-
-    e.preventDefault();
-    var formData = new FormData(this);
-
-    $.ajax({
-        type:'POST',
-        url: $(this).attr('action'),
-        data:formData,
-        cache:false,
-        contentType: false,
-        processData: false,
-        success: function(data){
-         if($.isEmptyObject(data.error)){
-            $('#pettextpolicy').html(data.policytext)
-            $('#petpolicy').modal('hide');
-            $('#update-pet-policy-submit-button').html('Save');
-        }else{
-            $('#update-pet-policy-submit-button').html('Save');
-            printErrorMsg(data.error);
-        }
-            
-        }
-    });
-}));

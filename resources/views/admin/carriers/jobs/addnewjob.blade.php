@@ -51,7 +51,7 @@
 
                     <form id="hiringreqform" method="POST" action="{{ url('job/hiringreq') }}">
                     @csrf
-                    @include('carrier.jobs.hiringreq')
+                    @include('admin.carriers.jobs.portion.hiringreq')
                     <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
                     <input type="hidden" value="adminside" name="job_type_from_side">
                          <div id="submitbuttonforhiringreq" class="row mb-7">

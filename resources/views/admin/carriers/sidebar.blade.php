@@ -128,6 +128,23 @@
                     </a>
                 </div>
                 <div class="navi-item mb-2">
+                    <a href="{{ url('admin/carriers/hiringtemplate') }}/{{ $data->id }}/alltemplates" class="navi-link py-4 @if($page == 'addtemplate') active @endif">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-top-panel-6.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                        <rect fill="#000000" x="2" y="5" width="19" height="4" rx="1"></rect>
+                                        <rect fill="#000000" opacity="0.3" x="2" y="11" width="19" height="10" rx="1"></rect>
+                                    </g>
+                                </svg>
+                                <!--end::Svg Icon--></span> </span>
+                        <span class="navi-text font-size-lg">
+                            Hiring Templates
+                        </span>
+                    </a>
+                </div>
+                <div class="navi-item mb-2">
                     <a href="{{ url('admin/carriers/detail') }}/{{ $data->id }}/allteam" class="navi-link py-4 @if($page == 'allteam') active @endif" data-toggle="tooltip" title="" data-placement="right" data-original-title="Coming soon...">
                         <span class="navi-icon mr-2">
                             <span class="svg-icon">
