@@ -56,8 +56,13 @@
                                     <div class="col-md-6">
                                         <div  class="form-group">
                                             <label class="lable-control">Profile Image</label>
-                                            <input  type="file" value="{{ $data->user_email }}" class="form-control form-control-lg form-control-solid" name="profileimage">
+                                            <input  type="file" class="form-control form-control-lg form-control-solid" name="profileimage">
                                         </div>
+                                        @if($data->profile_picture)
+                                        <img src="{{ url('public/images') }}/{{ $data->profile_picture }}" class="img-thumbnail" alt="{{ $data->user_name }}" width="200" height="100">
+                                        @else
+                                        <img src="{{ url('public/images/public/carrier/assets/profile.jpg') }}" class="img-thumbnail" alt="{{ $data->user_name }}" width="200" height="100">
+                                        @endif 
                                     </div>
                                     <div class="col-md-6">
                                         <div  class="form-group">
@@ -65,7 +70,7 @@
                                             <input type="text" value="{{ $data->dot_number }}" class="form-control form-control-lg form-control-solid" name="dot_number">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 mt-5">
                                         <div class="form-group">
                                             <label class="lable-control">Phonenumber</label>
                                             <input type="text" value="{{$data->phonenumber}}" class="form-control form-control-lg form-control-solid" name="phonenumber">
