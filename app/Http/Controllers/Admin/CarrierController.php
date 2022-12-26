@@ -23,6 +23,10 @@ use App\Models\role_users;
 use App\Models\jot_attributes;
 use App\Models\hiring_templates;
 use App\Models\jobs;
+use App\Models\staff_permissions;
+use App\Models\chat_messages;
+
+
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Session;
@@ -114,11 +118,45 @@ class CarrierController extends Controller
                     ->where('staff_permissions.company_id','=',$id)
                     ->orderBy('role_users.id','desc')
                     ->get();
-            return view('admin.carriers.allteam')->with(array('team'=>$team,'data'=>$data,'page'=>$page));
+            return view('admin.carriers.team.allteam')->with(array('team'=>$team,'data'=>$data,'page'=>$page));
         }
 
-        
-        
+        if($page == 'addteammember')
+        {
+            return view('admin.carriers.team.addteammember')->with(array('data'=>$data,'page'=>$page));
+        }
+    }
+    public function addnewteammember(Request $request)
+    {
+        $randompassword = rand(123456789,987654321);
+        $newuser = new User();
+        $newuser->name = $request->name;
+        $newuser->email = $request->email;
+        $newuser->phonenumber = $request->phone_number;
+        $newuser->password = Hash::make($randompassword);
+        $newuser->type = 'carrier_sub_account';
+        $newuser->company_id = $request->company_id;
+        $newuser->approved_status = 1;
+        $newuser->save();
+        $addrole = new role_users();
+        $addrole->user_id = $newuser->id;
+        $addrole->role_id = $request->role_id;
+        $addrole->save();
+        $company = staff_permissions::where('id' , $request->role_id)->get()->first();
+        $companyname = companies::where('id' , $company->company_id)->first()->company_name;
+        $subject = 'Welcome To '.env('APP_NAME').'';
+        Mail::send('email.inviteuser', ['email' => $request->email,'password' => $randompassword,'name' => $request->name,'role' => $company->name,'companyname' => $companyname], function($message) use($request , $subject){
+            $message->to($request->email);
+            $message->subject($subject);
+        });
+
+        $chat = new chat_messages();
+        $chat->message = 'Available for Chat';
+        $chat->sendBy = Auth::user()->id;
+        $chat->sendTo = $newuser->id;
+        $chat->first_message = 1;
+        $chat->save();
+        return redirect()->back()->with('message', 'New User Added Successfully');
     }
     public function updateuserdetail(Request $request)
     {
