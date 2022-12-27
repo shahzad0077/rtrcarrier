@@ -8,7 +8,10 @@
     <a href="{{ url('admin/carriers') }}" class="text-muted">All Carriers</a>
 </li>
 <li class="breadcrumb-item">
-    <a href="javascript:void(0)" class="text-muted">All Jobs</a>
+    <a href="javascript:void(0)" class="text-muted">All Maps</a>
+</li>
+<li class="breadcrumb-item">
+    <a href="javascript:void(0)" class="text-muted">Add New Map</a>
 </li>
 @endsection
 @section('content')

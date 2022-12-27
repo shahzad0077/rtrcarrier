@@ -18,21 +18,6 @@
         <!--begin::Container-->
         <div class=" container-fluid ">
             @include('alerts.index')
-            @if(session()->has('errorsecurity'))
-                <div class="alert alert-danger">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{ session()->get('errorsecurity') }}
-                </div>
-            @endif
-            @if ($errors->any())
-              <div  class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                      <li >{{ $error }}</li>
-                    @endforeach
-                </ul>
-              </div><br />
-            @endif
             <!--begin::Profile Change Password-->
             <div class="d-flex flex-row">
                 <!--begin::Aside-->

@@ -100,7 +100,7 @@ class CarrierController extends Controller
         }
         if($page == 'addmap')
         {
-            return view('admin.carriers.maps.addnewmap')->with(array('allmaps'=>$allmaps,'data'=>$data,'page'=>$page));
+            return view('admin.carriers.maps.addnewmap')->with(array('data'=>$data,'page'=>$page));
         }
         if($page == 'alljobs')
         {
