@@ -13,6 +13,10 @@ use App\Models\linktemplatewithjobs;
 use App\Models\jobs;
 use App\Models\assign_from_admin_jobs;
 use App\Models\hiring_templates;
+use App\Models\advance_equipment_values;
+use App\Models\advance_pay_options;
+use App\Models\equipment_jobs;
+use App\Models\job_equipments;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Validator;
@@ -23,7 +27,18 @@ class HiringtemplateController extends Controller
     {
         $this->middleware('auth');
     }
- 
+    public function deletejob($id)
+    {
+        advance_equipment_values::where('job_id' , $id)->delete();
+        advance_pay_options::where('job_id' , $id)->delete();
+        equipment_jobs::where('job_id' , $id)->delete();
+        jobsubmissionsrequests::where('job_id' , $id)->delete();
+        job_equipments::where('job_id' , $id)->delete();
+        linktemplatewithjobs::where('job_id' , $id)->delete();
+        jobs::where('id' , $id)->delete();
+        $url = url('admin/dashboard');
+        return Redirect::to($url);
+    }
     public function addnewhiringtemplate($id,$page)
     {
         $data = companies::leftJoin('users','users.id','=','companies.user_id')
@@ -99,4 +114,5 @@ class HiringtemplateController extends Controller
         $url = url('admin/carriers/hiringtemplate').'/'.$request->company_id.'/alltemplates';
         return Redirect::to($url);        
     }
+    
 }

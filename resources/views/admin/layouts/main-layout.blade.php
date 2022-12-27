@@ -102,7 +102,7 @@ $(document).ready(function () {
                 Your Job is Still in Continue to Upload. Please Save to Draft or Delete it
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger font-weight-bold">Delete Job</button>
+                <a href="{{ url('admin/carriers/deletejob') }}/{{ $_GET['jobid'] }}" type="button" class="btn btn-danger font-weight-bold">Delete Job</a>
                 <a href="{{ url('admin/carriers/draftjob') }}/{{ $_GET['jobid'] }}" class="btn btn-light-primary font-weight-bold">Save as Draft</a>
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Keep Editing</button>
             </div>
