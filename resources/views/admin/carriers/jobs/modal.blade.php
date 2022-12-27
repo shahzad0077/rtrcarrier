@@ -79,6 +79,8 @@
             </div>
             <form id="updateriderpolicy" method="POST" action="{{ url('updateriderpolicy') }}">
                 @csrf
+                <input type="hidden" value="admin" name="type">
+                <input type="hidden" value="{{ $data->id }}" name="carrier_id">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -113,6 +115,8 @@
             </div>
             <form id="updatepetpolicy" method="POST" action="{{ url('updatepetpolicy') }}">
                 @csrf
+                <input type="hidden" value="admin" name="type">
+                <input type="hidden" value="{{ $data->id }}" name="carrier_id">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">

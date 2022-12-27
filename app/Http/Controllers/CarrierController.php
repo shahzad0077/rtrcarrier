@@ -451,7 +451,13 @@ class CarrierController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()]);
         } 
-        $updatecompany = companies::find(Cmf::getusercompany()->id);
+        if($request->type == 'admin')
+        {
+            $updatecompany = companies::find($request->carrier_id);
+        }else{
+            $updatecompany = companies::find(Cmf::getusercompany()->id);
+        }
+        
         $updatecompany->petpolicy = $request->petpolicy;
         $updatecompany->save();
         return response()->json(['policytext'=>$request->petpolicy]);
@@ -464,7 +470,12 @@ class CarrierController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()]);
         }
-        $updatecompany = companies::find(Cmf::getusercompany()->id);
+        if($request->type == 'admin')
+        {
+            $updatecompany = companies::find($request->carrier_id);
+        }else{
+            $updatecompany = companies::find(Cmf::getusercompany()->id);
+        }
         $updatecompany->riderpolicy = $request->rider_policy;
         $updatecompany->save();
         return response()->json(['policytext'=>$request->rider_policy]);
