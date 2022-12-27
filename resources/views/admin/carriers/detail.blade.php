@@ -36,11 +36,17 @@
                         </div>
                         <!--end::Header-->
                         <!--begin::Form-->
-                        <form class="form" method="POST" action="{{ url('admin/carriers/updatecarrierdetail') }}">
+                        <form enctype="multipart/form-data" class="form" method="POST" action="{{ url('admin/carriers/updatecarrierdetail') }}">
                             @csrf
                             <input type="hidden" value="{{ $data->id }}" name="id">
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="lable-control">Company Logo</label>
+                                            <input type="file" class="form-control form-control-lg form-control-solid" name="company_logo">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="lable-control">Company Email</label>
