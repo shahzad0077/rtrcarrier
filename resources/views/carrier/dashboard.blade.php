@@ -69,7 +69,7 @@
                                         <div class="d-flex justify-content-between">
                                             <div>
                                                 <div class="input-icon" style="width: 100%;">
-                                                    <input onkeyup="searchzipcode(this.value)" name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
+                                                    <input onkeyup="searchzipcodefordashboard(this.value)" name="keyword" type="text" class="form-control border-none" placeholder="Enter Zip Code..." />
                                                     <span><i class="flaticon2-search-1 icon-md"></i></span>
                                                 </div>
                                             </div>

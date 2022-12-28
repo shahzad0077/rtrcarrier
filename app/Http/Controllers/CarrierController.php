@@ -47,9 +47,9 @@ class CarrierController extends Controller
         }
         return view('carrier/dashboard')->with(array('data'=>$data,'jobs'=>$jobs,'recuringtips'=>$recuringtips));
     }
-    public function searchzipcodefordashbaord($id)
+    public function searchzipcodefordashboard($id)
     {
-        echo '<a href="test">This is the TEst<a>';
+        echo '<div class="text-center mt-5">No Result Found</div>';
     }
     public function createnewpage()
     {

@@ -83,7 +83,7 @@ Route::get('/create-new-page', [CarrierController::class, 'createnewpage']);
 Route::post('/addcompanypage', [CarrierController::class, 'addcompanypage']);
 Route::post('/updatecompanypage', [CarrierController::class, 'updatecompanypage']);
 Route::get('/deletecompanypage/{id}', [CarrierController::class, 'deletecompanypage']);
-Route::get('/searchzipcode/{id}', [CarrierController::class, 'searchzipcode']);
+Route::get('/searchzipcodefordashboard/{id}', [CarrierController::class, 'searchzipcodefordashboard']);
 
 
 

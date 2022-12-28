@@ -39,10 +39,11 @@ function searchzipcodefordashboard(id) {
     }else{
         var app_url = geturl();
         $.ajax({
-            url:app_url+"/searchzipcode/"+id+"", 
+            url:app_url+"/searchzipcodefordashboard/"+id+"", 
             type:"get",
             success:function(res)
             {
+                $('.dropdown-content').show();
                 $('.dropdown-content').html(res);
             }
         })
