@@ -302,25 +302,32 @@ class CarrierController extends Controller
             $map->zipcode = implode(',', $request->zipcode);
         }
         $map->save();
-        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
-        if($check->count() > 0)
+        if($request->type == 'admin')
         {
-            if(hiring_maps::where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
-            {
-                if(hiring_maps::where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
-                {
-                    return redirect()->route('addnewjob')->with('success','Map Added Successfully');
-                }else{
-                    return redirect()->route('addnewjob')->with('success','Map Added Successfully');
-                }
-            }else{
-                return redirect()->back()->with('warning', 'Please Add Hiring Map');
-            }
-            
-        }else{
-            $url = url('hirig-maps');
+            $url = url('admin/dashboard');
             return Redirect::to($url);
+        }else{
+            $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
+                if($check->count() > 0)
+                {
+                    if(hiring_maps::where('type' , 'Hiring Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
+                    {
+                        if(hiring_maps::where('type' , 'Operating Map')->where('company_id' , Cmf::getusercompany()->id)->count() > 0)
+                        {
+                            return redirect()->route('addnewjob')->with('success','Map Added Successfully');
+                        }else{
+                            return redirect()->route('addnewjob')->with('success','Map Added Successfully');
+                        }
+                    }else{
+                        return redirect()->back()->with('warning', 'Please Add Hiring Map');
+                    }
+                    
+                }else{
+                    $url = url('hirig-maps');
+                    return Redirect::to($url);
+                }
         }
+        
     }
     public function updatehiringmap(Request $request)
     {
