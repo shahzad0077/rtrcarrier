@@ -69,7 +69,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
-                                                <input onkeyup="maptittle()" id="map_tittle" type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <input required onkeyup="maptittle()" id="map_tittle" type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
                                                 <div style="display:none;" class="map_tittle_error text-danger">This Field is Required for Print Map</div>
                                             </div>
                                         </div>
