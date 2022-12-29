@@ -64,7 +64,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="lable-control">Email</label>
-                                        <input required onkeyup="checkemail()" type="text" class="form-control input-lg" id="work_email" name="email">
+                                        <input required onkeyup="checkemailfromadmin()" type="text" class="form-control input-lg" id="work_email" name="email">
                                         <span style="color:red;" id="email-error"  role="alert"></span>
                                     </div>
                                 </div>

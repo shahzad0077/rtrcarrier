@@ -40,7 +40,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map Type</label>
-                                                <select class="form-control" name="map_type">
+                                                <select class="form-control selectpicker" name="map_type">
                                                     <option value="">Map Type</option>
                                                     <option @if($map->type == 'Hiring Map') selected @endif value="Hiring Map">Hiring Map</option>
                                                     <option @if($map->type == 'Operating Map') selected @endif value="Operating Map">Operating Map</option>
@@ -48,19 +48,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <button type="button" class="form-control btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <button type="button" class="btn btn-secondary map-model-btn state-btns" data-toggle="modal" data-target="#addState">+ Add State</button>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
+                                                    </div>
+                                                    <div>
+                                                        <button onclick="drawmap()" type="button" class="btn btn-secondary map-model-btn zip-btns">+ Draw Map</button>
+                                                    </div>
+                                                    <div>
+                                                        <button data-toggle="modal" data-target="#addzipcode" type="button" class="btn btn-secondary map-model-btn zip-btns">+ Add Zip Code</button>
+                                                    </div>
                                                 </div>
-                                                <!-- <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn city-btns" data-toggle="modal" data-target="#addCity">+ Add City</button>
-                                                </div> -->
-                                                <!-- <div class="col-md-2">
-                                                    <button type="button" class="btn form-control btn-secondary map-model-btn zip-btns" data-toggle="modal" data-target="#addZip">+ Add Zip</button>
+                                                <div>
+                                                    <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" placeholder="Search..." name="" class="form-control">
-                                                </div> -->
+                                                
                                             </div>
                                         </div>
                                         <style>

@@ -2,6 +2,28 @@ function geturl()
 {
     return $('#app_url').val();
 }
+function checkemailfromadmin()
+{
+    var email = $('#work_email').val();
+
+    $('#email-error').hide();
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/checkemailfromadmin/"+email, 
+        type:"get",
+        success:function(res){
+            if(res > 0)
+            {
+                $('#email-error').show();
+                $('#email-error').html('This Email is already in our Records');
+                $('#submitbutton').attr('disabled' , true);
+            }else{
+                $('#submitbutton').attr('disabled' , false);
+                $('#company_name-error').hide();
+            }
+        }
+    })
+}
 function checkcompanyname(id)
 {
 	$('#name-error').hide();

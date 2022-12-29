@@ -641,8 +641,18 @@
         {
             var zipcode = $('#zipcode').val();
             getlattitudeandlongitude(zipcode);
+            var radius = $('.range-slider__value-two').val();
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/savezipcodeagainstmap/"+zipcode+"/"+radius+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
+            $('#appenddivs').append('<button type="button" class="zipcode'+zipcode+' btn btn-secondary map-delete-btn">'+zipcode+'('+radius+')<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+zipcode+')"></i></button>');
 
-            $('#appenddivs').append('<button type="button" class="zipcode'+zipcode+' btn btn-secondary map-delete-btn">'+zipcode+'<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+zipcode+')"></i></button>');
             $('#addzipcode').modal('hide')
         }
         function deletezipcode(id)

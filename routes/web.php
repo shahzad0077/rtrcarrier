@@ -33,6 +33,9 @@ Route::get('/job-detail/{id}', [SiteController::class, 'jobdetail']);
 
 // Register Routes
 Route::POST('/checkemail', [RegisterController::class, 'checkemail'])->name('checkemail');
+Route::get('/checkemailfromadmin/{id}', [RegisterController::class, 'checkemailfromadmin']);
+
+
 Route::get('/checkcompanyname/{id}', [RegisterController::class, 'checkcompanyname']);
 Route::get('/checkdotnumber/{id}', [RegisterController::class, 'checkdotnumber']);
 Route::POST('/carrierregister', [RegisterController::class, 'carrierregister']);
@@ -91,6 +94,9 @@ Route::get('/searchzipcodefordashboard/{id}', [CarrierController::class, 'search
 
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
 Route::get('/savecitymaplocation/{id}/{two}/{three}', [CarrierController::class, 'savecitymaplocation']);
+Route::get('/savezipcodeagainstmap/{id}/{two}/{three}', [CarrierController::class, 'savezipcodeagainstmap']);
+
+
 Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
 Route::get('/hirig-maps', [CarrierController::class, 'hiringmaps']);
 Route::get('/deletemap/{id}', [CarrierController::class, 'deletemap']);

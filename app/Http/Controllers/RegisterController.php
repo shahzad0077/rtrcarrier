@@ -12,6 +12,11 @@ use Mail;
 use Auth;
 class RegisterController extends Controller
 {
+    public function checkemailfromadmin($id)
+    {
+        $checkemail = User::where('email' , $id)->count();
+        return $checkemail;
+    }
     public function checkemail(Request $request)
     {
         $checkemail = User::where('email' , $request->email)->count();

@@ -422,6 +422,18 @@ class CarrierController extends Controller
             $maploc->save();
         }
     }
+    public function savezipcodeagainstmap($zipcode , $radius , $mapid)
+    {
+        $maploc = new maplocations();
+        $maploc->zipcode = $zipcode;
+        $maploc->radius = $radius;
+        $maploc->map_id = $mapid;
+        $maploc->save();
+    }
+    public function deletemaplocation($zipcode , $radius , $mapid)
+    {
+        maplocations::where('zipcode' , $zipcode)->where('radius' , $radius)->where('map_id' , $mapid)->delete();
+    }
     public function savecitymaplocation($city,$state,$map_id)
     {
         $check  = maplocations::where('state' , $state)->where('city' , $city)->where('map_id',$map_id);
