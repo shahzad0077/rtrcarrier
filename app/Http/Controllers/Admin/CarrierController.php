@@ -104,7 +104,7 @@ class CarrierController extends Controller
         }
         if($page == 'alljobs')
         {
-            $jobs = jobsubmissionsrequests::select('jobs.created_at','jobs.url','jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('company_id' , $id)->orderby('jobs.id' , 'desc')->paginate(10);
+            $jobs = jobsubmissionsrequests::select('jobs.hiring_area','jobs.operating_area','jobs.created_at','jobs.url','jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('company_id' , $id)->orderby('jobs.id' , 'desc')->paginate(10);
             foreach ($jobs as $index => $job) {
                 $job->hirring = linktemplatewithjobs::select('linktemplatewithjobs.job_id','hiring_templates.minimum_expereince')->leftJoin('hiring_templates','hiring_templates.id','=','linktemplatewithjobs.template_id')->where('linktemplatewithjobs.job_id' , $job->job_id)->first();
             }
