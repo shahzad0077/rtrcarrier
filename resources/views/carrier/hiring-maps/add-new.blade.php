@@ -31,7 +31,7 @@
                             <form enctype="multipart/form-data" method="POST" action="{{ url('addnewhiringmap') }}" class="form">
                                 @csrf
                                 <input type="hidden" name="map_id" value="{{ $map_id }}">
-                                
+                                <input type="hidden" name="type" value="carrier">
                                 <!--begin::Body-->
                                 <div class="card-body">
                                     @include('alerts.index')

@@ -276,7 +276,12 @@ class CarrierController extends Controller
     {
         $map = new hiring_maps();
         $map->id = $request->map_id;
-        $map->company_id = Cmf::getusercompany()->id;
+        if($request->type == 'admin')
+        {
+            $map->company_id = $request->carrier_id;
+        }else{
+            $map->company_id = Cmf::getusercompany()->id;
+        }
         $map->tittle = $request->map_tittle;
         $map->type = $request->map_type;
         $map->status = 1;
