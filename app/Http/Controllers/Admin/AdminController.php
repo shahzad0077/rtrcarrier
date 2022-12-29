@@ -128,7 +128,7 @@ class AdminController extends Controller
         $data = companies::leftJoin('users','users.id','=','companies.user_id')
             ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status')
             ->orderBy('id','desc')
-            ->where('users.approved_status' , 0)
+            // ->where('users.approved_status' , 0)
             ->get();
         return view('admin/carriers/requests')->with(array('data'=>$data));
     }

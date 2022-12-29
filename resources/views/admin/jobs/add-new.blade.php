@@ -40,7 +40,7 @@
                                                     <label>Select Carrier</label>
                                                     <select required class="form-control" id="selectcarrier" name="company_id">
                                                         <option value="">Select Carrier</option>
-                                                        @foreach(DB::table('users')->where('type' , 'carrier')->orderby('created_at', 'desc')->get() as $r)
+                                                        @foreach(DB::table('users')->where('type' , 'carrier')->where('approved_status' , 1)->orderby('created_at', 'desc')->get() as $r)
                                                         <option value="{{ DB::table('companies')->where('user_id' , $r->id)->get()->first()->id }}">{{ $r->name }} | {{ DB::table('companies')->where('user_id' , $r->id)->get()->first()->company_name }} </option>
                                                         @endforeach
                                                     </select>
