@@ -76,7 +76,7 @@ class CarrierController extends Controller
         if($page == 'addnewjob')
         {
             Session::put('companyid', $id);
-            $check = jobs::where('company_id' , $id)->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
+            $check = jobs::where('company_id' , $id)->where('job_type_from_side' , 'adminside')->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
             if($check->count() > 0)
             {
                 $job = $check->get()->first();
@@ -86,6 +86,7 @@ class CarrierController extends Controller
                 $addjob->company_id = $id;
                 $addjob->step = 0;
                 $addjob->status = 'continue';
+                $addjob->job_type_from_side = 'adminside';
                 $addjob->save();
                 $job = $addjob;
             }
