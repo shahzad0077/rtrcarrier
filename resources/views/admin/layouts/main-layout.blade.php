@@ -110,7 +110,14 @@ $(document).ready(function () {
     </div>
 </div>
 @if(request()->segment(5) == 'addnewjob')
+    @if($_GET['step'] == 1)
+        <script type="text/javascript">
+        $( document ).ready(function() {
+            $('#jobsaveasdraft').modal('show');
+        });
+    </script>
 
+    @endif
 @else
 <script type="text/javascript">
     $( document ).ready(function() {
