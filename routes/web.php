@@ -244,6 +244,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::get('hiringtemplate/{id}/{page}','HiringtemplateController@addnewhiringtemplate');
         Route::post('/createnewtemplate','HiringtemplateController@createnewhiringtemplate');
         Route::post('/addnewteammember','CarrierController@addnewteammember');
+        Route::post('/addcompanyemail','HiringtemplateController@addcompanyemail');
         Route::get('deletejob/{id}','HiringtemplateController@deletejob');
     });
 

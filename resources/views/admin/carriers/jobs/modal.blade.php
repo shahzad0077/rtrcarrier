@@ -11,8 +11,9 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <form id="addnewcompanyemal" method="POST" action="{{ url('job/addnewcompanyemal') }}">
+            <form id="addnewcompanyemal" method="POST" action="{{ url('admin/carriers/addcompanyemail') }}">
                 @csrf
+                <input type="hidden" value="{{ $data->id }}" name="carrier_id">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">

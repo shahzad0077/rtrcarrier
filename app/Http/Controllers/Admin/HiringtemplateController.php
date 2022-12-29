@@ -27,6 +27,14 @@ class HiringtemplateController extends Controller
     {
         $this->middleware('auth');
     }
+    public function addcompanyemail()
+    {
+        $new = new company_emails();
+        $new->company_id  = $request->carrier_id;
+        $new->email  = $request->email;
+        $new->save();
+        return redirect()->back()->with('message', 'Email Added Successfully');
+    }
     public function deletejob($id)
     {
         advance_equipment_values::where('job_id' , $id)->delete();
