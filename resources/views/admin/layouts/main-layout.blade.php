@@ -93,7 +93,7 @@ $(document).ready(function () {
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Job is Still Continue Step # {{ request()->segment(1) }}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Job is Still Continue Step # {{ $_GET['step'] }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
@@ -109,11 +109,15 @@ $(document).ready(function () {
         </div>
     </div>
 </div>
+@if(request()->segment(5) == 'addnewjob')
+
+@else
 <script type="text/javascript">
     $( document ).ready(function() {
         $('#jobsaveasdraft').modal('show');
     });
 </script>
+@endif
 @endif
   <script>
             var KTAppSettings = {
