@@ -1,11 +1,18 @@
 @extends('layouts.main-layout')
-@section('title','Edit Map')
+@section('title','Edit Hiring Map')
 @section('pagename')
+<li class="breadcrumb-item">
+    <a href="{{ url('hirig-maps') }}" class="text-muted">All Maps</a>
+</li>
 <li class="breadcrumb-item">
     <a href="javascript:void(0)" class="text-muted">Edit Hiring Map</a>
 </li>
 @endsection
 @section('content')
+
+@php
+    $map_id = $map->id;
+@endphp
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Entry-->
@@ -18,15 +25,16 @@
                             <!--begin::Header-->
                             <div class="card-header py-3">
                                 <div class="card-title align-items-start flex-column">
-                                    <h3 class="card-label font-weight-bolder text-dark">Add Maps</h3>
+                                    <h3 class="card-label font-weight-bolder text-dark">Edit Map : {{ $map->tittle }}</h3>
                                 </div>
                             </div>
                             <!--end::Header-->
                             <!--begin::Form-->
 
-                            <form enctype="multipart/form-data" method="POST" action="{{ url('updatehiringmap') }}" class="form">
+                            <form enctype="multipart/form-data" method="POST" action="{{ url('addnewhiringmap') }}" class="form">
                                 @csrf
                                 <input type="hidden" name="map_id" value="{{ $map->id }}">
+                                <input type="hidden" name="type" value="carrier">
                                 <!--begin::Body-->
                                 <div class="card-body">
                                     @include('alerts.index')
@@ -34,14 +42,15 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map title</label>
-                                                <input type="text" value="{{ $map->tittle }}" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <input value="{{ $map->tittle }}" onkeyup="maptittle()" id="map_tittle" type="text" class="form-control form-control-lg form-control-solid" name="map_tittle" placeholder="RTR-WFX-hiringmap-5.16.22">
+                                                <div style="display:none;" class="map_tittle_error text-danger">This Field is Required for Print Map</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="lable-control">Map Type</label>
                                                 <select class="form-control selectpicker" name="map_type">
-                                                    <option value="">Map Type</option>
+                                                    <option value="">Select a Map Type</option>
                                                     <option @if($map->type == 'Hiring Map') selected @endif value="Hiring Map">Hiring Map</option>
                                                     <option @if($map->type == 'Operating Map') selected @endif value="Operating Map">Operating Map</option>
                                                 </select>
@@ -69,26 +78,6 @@
                                                 
                                             </div>
                                         </div>
-                                        <style>
-                                          html, body, #map { 
-                                            width:100%; 
-                                            height:100%; 
-                                            margin:0; 
-                                            padding:0; 
-                                            z-index: 5;
-                                          }
-                                          #filterdiv{
-                                            margin-top: 25%;
-                                            margin-left: 10px;
-                                            z-index: 20000;
-                                            position: relative;
-                                            width: 200px;
-                                          }
-                                          .chk{
-                                            width: 15px; 
-                                            height: 15px; 
-                                          }
-                                        </style>
                                         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin=""/>
                                         <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
                                         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
@@ -114,15 +103,19 @@
                                         </div>
                                         <div class="col-md-12 mt-5 upload-log-title">
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Map Logo</label>
-                                                    <input class="form-control" type="file" name="logo" accept=".png, .jpg, .jpeg">
-                                                </div>
-                                                
-                                            </div>
-                                            <div style="margin-top:20px;" class="row">
-                                                <div class="col-md-12">
-                                                    <img src="{{ url('public/images') }}/{{ $map->logo  }}" width="120">
+                                                <div class="col-md-2">
+                                                    <h3>Upload Logo</h3>
+                                                    <div class="upload-logo" style="background-image: url('{{ url("public/images")  }}/{{ $map->logo  }}');">
+                                                        <label for="selectimage">
+                                                            <span style="top: 36px; position: absolute; right: 115px;" class="selectimage btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                                            <i class="fa fa-pen icon-sm text-muted"></i>
+                                                        </span>
+                                                        <div class="logoicon">
+                                                            <i class="icon-2x text-dark-50 flaticon2-up"></i>
+                                                        </div>
+                                                        <input id="selectimage" style="display:none;" name="logo" required accept=".png, .jpg, .jpeg" type='file' onchange="readURL(this);" />
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -131,7 +124,6 @@
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <div class="map-btns">
-                                                <button type="button" class="btn btn-primary">Download MAP</button>
                                                 <button type="submit" class="btn btn-primary">Save</button>
                                             </div>
                                         </div>
@@ -149,10 +141,8 @@
         <!--end::Entry-->
     </div>
     <!--end::Content-->
-
-    
 <!-- Add Zipcode-->
-<div class="modal fade" id="addZip" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+<div class="modal fade" id="addzipcode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -168,7 +158,21 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <input id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                            <input onkeyup="searchzipcode(this.value)" id="zipcode" type="text" class="form-control form-control-lg form-control-solid" name="zipcode" placeholder="Enter Zip Code">
+                            <div id="zipcodesuggesstions">
+                                <ul id="zipcodeul">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="range-slider-two">
+                              <label>Select Radius</label>
+                              <div class="d-flex flex-row">
+                                  <input style="margin-top:10px;" class="range-slider__range-two" type="range" value="0" min="0" max="1000">
+                                  <input style="width:70px; height: 30px; background-color: white; color:black; border:1px solid lightgray" min="0" max="1000" type="number" class="range-slider__value-two" value="0" name="">
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -179,11 +183,9 @@
             </div>
     </div>
 </div>
-
-
 <!-- Add city-->
 <div class="modal fade" id="addCity" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -195,15 +197,28 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div style="height:300px;" class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="city" type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Enter City">
+                        <div id="pac-container">
+                            <input class="form-control w-100" id="pac-input" type="text" placeholder="Search City">
+                            <div id="location-error"></div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="cityLat" name="">
+                    <input type="hidden" id="cityLng" name="">
+                    <div class="col-md-12">
+                        <div class="range-slider">
+                          <label>Select Radius</label>
+                          <div class="d-flex flex-row">
+                              <input style="margin-top:10px;" class="range-slider__range" type="range" value="0" min="0" max="1000">
+                              <input style="width:70px; height: 30px; background-color: white; color:black; border:1px solid lightgray" min="0" max="1000" type="number" class="range-slider__value" value="0" name="">
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
                 <button onclick="addnewcity()" type="button" class="btn btn-primary font-weight-bold">Save</button>
             </div>
         </div>
@@ -213,7 +228,7 @@
 
 <!-- Add State-->
 <div class="modal fade" id="addState" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="row">
@@ -226,13 +241,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="states_div">
-                          <div id="states_chkbx_div" style=" max-height: 300px; padding: 5%; overflow: auto; background-color: aliceblue;">
-                          </div>
-                        </div>
-                    </div>
+                <div id="list1" class="dropdown-check-list" tabindex="100">
+                  <span class="anchor">Select States</span>
+                  <ul class="items">
+                    @foreach(DB::table('us_states')->orderby('STATE_NAME' , 'ASC')->get() as $r)
+                    <li id="removestatefromli{{ $r->ID }}" onclick="selectdropdown({{ $r->ID }},'{{ $r->STATE_NAME }}' , '{{ $r->STATE_CODE }}')"><input class="states" value="{{ $r->STATE_CODE }}" type="checkbox" id="checkbox{{ $r->ID }}" ><label class="label{{ $r->ID }}" for="checkbox{{ $r->ID }}">{{ $r->STATE_NAME }}</label> </li>
+                    @endforeach
+                  </ul>
                 </div>
             </div>
             <div class="modal-footer">
@@ -242,14 +257,92 @@
         </div>
     </div>
 </div>
-
-
-
 @endsection
-
-
 @section('scripts')
-<script>
+    @foreach(DB::table('maplocations')->wherenull('city')->wherenull('zipcode')->where('map_id' , $map->id)->get() as $state)
+        @php
+            $stateinfo = DB::table('us_states')->where('STATE_CODE' , $state->state)->first();
+        @endphp
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                var id = '{{ $stateinfo->ID }}';
+                var value = '{{ $stateinfo->STATE_NAME }}';
+                var code = '{{ $stateinfo->STATE_CODE }}';
+                selectdropdown(id , value , code);
+                addnewstate()
+            });
+        </script>
+    @endforeach
+    @foreach(DB::table('maplocations')->wherenotnull('city')->wherenull('zipcode')->where('map_id' , $map->id)->get() as $city)
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                
+            });
+        </script>
+    @endforeach
+
+
+
+
+    <script>
+        function searchzipcode(id) {
+            var app_url = geturl();
+            $.ajax({
+                url:app_url+"/searchzipcode/"+id, 
+                type:"get",
+                success:function(res){
+                 $('#zipcodeul').show();   
+                 $('#zipcodeul').html(res);      
+                }
+            })
+        }
+        function selectzipcode(id) {
+            $('#zipcodeul').hide();
+            $('#zipcodeul').html('');
+            $('#zipcode').val(id);
+        }
+        function maptittle() {
+            $('.map_tittle_error').hide();
+        }
+        function shownewtab() {
+            var tittle = $('#map_tittle').val();
+            if(tittle == '')
+            {
+                $('.map_tittle_error').show();
+            }else{
+                var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
+                window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
+            }
+            
+        }
+        function selectimageformap() {
+            alert('ok');
+        }
+        function selectdropdown(id , value , code) 
+        {
+            var checkList = document.getElementById('list1');
+            checkList.classList.remove('visible');
+            var html = '<input class="states" value="'+value+'" type="hidden" id="selectedstatename" ><input class="states" value="'+id+'" type="hidden" id="selectedstates" >'+value+'';
+            $('.anchor').html(html);
+        }
+        function addnewstate()
+        {
+            var id = $('#selectedstates').val();
+            var value = $('#selectedstatename').val();
+            $('.label'+id).click();
+            $('#appenddivs').append('<button type="button" class="states'+id+' btn btn-secondary map-delete-btn">'+value+'<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+id+')"></i></button>');
+            var html = 'Select State';
+            $('.anchor').html(html);
+            $('#removestatefromli'+id).hide();
+            $('#addState').modal('hide');
+        }
+        function deletestate(id) {
+            $('.label'+id).click();
+            $('.states'+id).remove();
+            var html = 'Select State';
+            $('.anchor').html(html);
+            $('#removestatefromli'+id).show();
+        }
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
         }, 500);
@@ -268,25 +361,30 @@
                     maxZoom: 20,
                     subdomains:['mt0','mt1','mt2','mt3']
                 })  
-      L.simpleMapScreenshoter({position:'topright'}).addTo(map)
 
       L.control.browserPrint({position:'topright'}).addTo(map);
       map.zoomControl.setPosition('topright');
      
+      var simpleMapScreenshoter = L.simpleMapScreenshoter({
+          hidden: true,
+      }).addTo(map)
 
-    var baseLayers = {
-    "Google Street Map": googlestreet,
-    "Google Sattellite Map": googleSat,
-    "Dark Map": dark,
-    };
-    var overLays = {
-    // "Land_Plots": Land_Plots,
-    // "Trees & Graphics": trees_layer,
-    // "Clouds": clouds_layer
-    };
-
-    var mylayercontrol= L.control.layers(baseLayers,overLays).addTo(map);
-
+      function manualPrint () {
+      $("#filterdiv").hide();
+      simpleMapScreenshoter.takeScreen('blob', {
+        caption: function () {
+                        return 'Map Logo copyright 2022'
+                    }
+      }).then(blob => {
+          saveAs(blob, 'Map_Print.png')
+      }).catch(e => {
+          alert(e.toString())
+      })
+      setTimeout(function(){
+        $("#filterdiv").show();
+      }, 3000);
+     
+        }
 
       var drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
@@ -295,12 +393,12 @@
             position: 'topright',
             draw:{
               polygon : {
-                          allowIntersection: false,
-                          showLength: true,
-                          metric:['km', 'm']
-                      },
+                  allowIntersection: false,
+                  showLength: true,
+                  metric:['km', 'm']
+              },
               polyline:false,
-              marker: true,
+              marker: false,
               squire: false,
               circlemarker: false,
               rectangle: false,
@@ -330,29 +428,14 @@
         });   
 
         var eachlyr_arr =  Array();
+        var city_arr = Array();
 
-        setTimeout(function(){
-          var str='';
-          str=str+'<h5>--Select State--</h5>';
-          @foreach(DB::table('maplocations')->where('map_id' , $map->id)->get() as $r)
-          state_drwa('{{ $r->state }}')
-          @endforeach
-          for(var i=0;i<us_states.length;i++){
 
-            str=str+'<label for="'+us_states[i].name+'" ><input type="checkbox" class="stchk" name="statechk" value="'+us_states[i].value+'" id="'+us_states[i].value+'" > '+us_states[i].name+' </label>&nbsp<br>'
-            $('#states_chkbx_div').html(str);
-
-            
-          }
-
-          $('.stchk').change(function(event) {
+          $('.states').change(function(event) {
             var valname =$(event.target).val();
-            
             var checked = $(this).is(':checked')
             if(checked==true){
-
-              savelocation(valname);
-              // console.log("chkd")
+              savelocation(valname , 'state');
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
                 console.log(data);
@@ -376,14 +459,13 @@
                 eachlyr_arr[valname].addTo(map)
               });
             }else{
-              savelocation(valname);
-              // console.log("un chkd")
-              if(map.hasLayer(eachlyr_arr[valname])){
-                map.removeLayer(eachlyr_arr[valname])
-              }   
+              // savelocation(valname , 'state');
+              // if(map.hasLayer(eachlyr_arr[valname])){
+              //   map.removeLayer(eachlyr_arr[valname])
+              // }   
             }  
           });
-        }, 400); 
+  
         
         
 
@@ -391,7 +473,7 @@
         function state_drwa(valname){
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
-                console.log(data);
+                // console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -411,37 +493,29 @@
                 eachlyr_arr[valname]=lyrname
                 eachlyr_arr[valname].addTo(map)
               });
-            
+        }
+
+        var circlelayer= L.layerGroup();
+
+
+        function circle_draw(lat,lon,radius){
+            var rmile=radius * 1609.34
+            // if(map.hasLayer(circlelayer)){
+            //     map.removeLayer(circlelayer)
+            // }
+            circlelayer=L.circle([lat,lon], rmile, {color: 'red', opacity:.5});
+            circlelayer.addTo(map)
         }
 
 
-
-         
-          // var lgeocoder=L.Control.geocoder({collapsed:false,position:"topleft", placeholder:"Enter Zip Code Here..."}).addTo(map);
-         
-       
-
-
-
-
-
-          var geocoder=L.Control.geocoder({
-          // defaultMarkGeocode: false,
-            collapsed:false,
-            position:"topleft", 
-            placeholder:"Enter Zip Code Here...",
-            queryParams: {"countrycodes": "US"},
-            geocoder: new L.Control.Geocoder.Nominatim({
-            geocodingQueryParams: {
-                "countrycodes": "US"
-                }
-            })
-          }).on('markgeocode', function(e) {
-              var searchTxt = $('div.leaflet-control-geocoder-form input').val();
-              console.log(searchTxt);
-              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&format=geojson'
+        function city_drawn(valname , state)
+        {
+            var j = valname;
+            var searchTxt = j.replace(" ", "-");
+            var city = searchTxt.toLowerCase();
+            var state_apend = state.toLowerCase();
+              var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&city='+searchTxt+'&polygon_geojson=1&state='+state_apend+'&format=geojson'
               $.getJSON(nurl, function(data) {
-                console.log(data);
                 var lyrname=L.geoJSON(data, {
                   style: (feature) => {
                     return {
@@ -457,61 +531,178 @@
                     };
                   },
                 }).addTo(map);
+                eachlyr_arr.push(city)
+                eachlyr_arr[city]=lyrname
+                // console.log(eachlyr_arr);
+                var bounds = lyrname.getBounds();
+                map.fitBounds(bounds)
+                var center = bounds.getCenter()
+                map.panTo(center)
               });
-          })
-          geocoder.addTo(map);
-    </script>
-    <script type="text/javascript">
-        function addnewstate()
-        {
-            var state = $('#state').val();
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="state'+value1+' btn btn-secondary map-delete-btn">'+state+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletestate('+value1+')"></i></button><input type="hidden" value="'+state+'" name="state[]" id="state'+value1+'">');
-            $('#state').val('')
-            $('#addState').modal('hide');
+                
         }
-        function deletestate(id)
+
+        function deletecity(valname)
         {
-            $('.state'+id).hide();
-            $('#state'+id).val('');
+            var city = valname.toLowerCase();
+            if(map.hasLayer(eachlyr_arr[city])){
+                map.removeLayer(eachlyr_arr[city])
+            }
+            if(map.hasLayer(circlelayer)){
+                map.removeLayer(circlelayer)
+            }
+            $('.city'+valname).remove();
+        }
+
+
+        function getlattitudeandlongitude(zipcode)
+        {
+            $.ajax({
+                url:"https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBQAdBoWGWwdne8WSvfQRlQv58Hyz-BVQw&address="+zipcode, 
+                type:"get",
+                success:function(res){
+                    latitude = res.results[0].geometry.location.lat;
+                    longitude= res.results[0].geometry.location.lng;
+                    var marker = L.marker([latitude, longitude]).addTo(map);
+                    var radius = $('.range-slider__value-two').val();
+                    circle_draw(latitude,longitude,radius);
+                    $('#zipcode').val('')
+                }
+            })
+        }
+    </script>
+
+
+
+    <script type="text/javascript">
+        var rangeSlider = function() {
+          var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            valuecity = $('.range-slider__value');
+
+            slider.each(function() {
+
+            valuecity.each(function() {
+              var valuecity = $(this).prev().attr('value');
+              $(this).val(valuecity);
+            });
+
+            range.on('input', function() {
+              $(this).next(valuecity).val(this.value);
+            });
+          });
+        };
+
+        rangeSlider();
+
+        var rangeSlidertwo = function() {
+          var slidertwo = $('.range-slider-two'),
+            rangetwo = $('.range-slider__range-two'),
+            value = $('.range-slider__value-two');
+
+            slidertwo.each(function() {
+
+            value.each(function() {
+              var value = $(this).prev().attr('value');
+              $(this).val(value);
+            });
+
+            rangetwo.on('input', function() {
+              $(this).next(value).val(this.value);
+            });
+          });
+        };
+
+        rangeSlidertwo();
+
+        function drawmap () {
+            $('.leaflet-popup-pane .leaflet-draw-tooltip').show();
+            $('.leaflet-draw-draw-polygon')[0].click();
+        }
+        function selectcity(id, state)
+        {
+            $('#searchcity').val(id);
+            $('#statehidden').val(state)
+            $('#citiesdiv').hide();
+        }
+        function editcitydrans(city , state , radius) {
+            city_drawn(city , state);
+            savecitymaplocation(city , state);
+            var lat = $('#cityLat').val();
+            var lon = $('#cityLng').val();
+            var radius = $('.range-slider__value').val();
+            console.log(radius);
+            circle_draw(lat,lon,radius);
+            $('#searchcity').val('');
+            $('#pac-input').val('')
+            $('#addCity').modal('hide');
         }
         function addnewcity()
         {
-            var city = $('#city').val();
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="city'+value1+' btn btn-secondary map-delete-btn">'+city+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletecity('+value1+')"></i></button><input type="hidden" value="'+city+'" name="city[]" id="city'+value1+'">');
-            $('#city').val('')
+            var array = $('#pac-input').val().split(",");
+            var city = array[0];
+            var state = array[1];
+            city_drawn(city , state);
+            savecitymaplocation(city , state);
+            var lat = $('#cityLat').val();
+            var lon = $('#cityLng').val();
+            var radius = $('.range-slider__value').val();
+            console.log(radius);
+            circle_draw(lat,lon,radius);
+            $('#searchcity').val('');
+            $('#pac-input').val('')
             $('#addCity').modal('hide');
         }
-        function deletecity(id)
-        {
-            $('.city'+id).hide();
-            $('#city'+id).val('');
-        }
+        
         function addnewzip()
         {
             var zipcode = $('#zipcode').val();
-            let value1 = Math.floor(Math.random() * 10000);;
-            $('#appenddivs').append('<button type="button" class="zipcode'+value1+' btn btn-secondary map-delete-btn">'+zipcode+' <i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+value1+')"></i></button><input type="hidden" value="'+zipcode+'" name="zipcode[]" id="zipcode'+value1+'">');
-            $('#zipcode').val('')
-            $('#addZip').modal('hide');
+            getlattitudeandlongitude(zipcode);
+            var radius = $('.range-slider__value-two').val();
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/savezipcodeagainstmap/"+zipcode+"/"+radius+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
+            $('#appenddivs').append('<button type="button" class="zipcode'+zipcode+' btn btn-secondary map-delete-btn">'+zipcode+'('+radius+')<i class="icon-2x text-dark-50 flaticon-delete-1" onclick="deletezipcode('+zipcode+')"></i></button>');
+
+            $('#addzipcode').modal('hide')
         }
         function deletezipcode(id)
         {
             $('.zipcode'+id).hide();
             $('#zipcode'+id).val('');
         }
-        function savelocation(value)
+        function savelocation(value , column)
         {
             var app_url = geturl();
-            var map_id = '{{ $map->id }}';
+            var map_id = '{{ $map_id }}';
             $.ajax({
-                url:app_url+"/savestatemap/"+value+"/"+map_id, 
+                url:app_url+"/savestatemap/"+value+"/"+map_id+"/"+column, 
                 type:"get",
                 success:function(res){
                    
                 }
             })
+        }
+
+
+        function savecitymaplocation(city , state)
+        {
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                 $('#appenddivs').append(res);      
+                }
+            })
+            
         }
     </script>
 @endsection

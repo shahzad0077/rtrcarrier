@@ -98563,3 +98563,16 @@ a.leaflet-browser-print {
     background-color: transparent !important;
     height: 52px !important;
 }
+ #zipcodesuggesstions ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #ddd;
+    height: 300px;
+    overflow: auto;
+    display: none;
+}
+#zipcodesuggesstions ul li{
+    padding: 10px;
+    cursor: pointer;
+}

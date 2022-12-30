@@ -138,22 +138,6 @@
         <!--end::Entry-->
     </div>
     <!--end::Content-->
-
-    <style type="text/css">
-        #zipcodesuggesstions ul{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            background-color: #ddd;
-            height: 300px;
-            overflow: auto;
-            display: none;
-        }
-        #zipcodesuggesstions ul li{
-            padding: 10px;
-            cursor: pointer;
-        }
-    </style>
 <!-- Add Zipcode-->
 <div class="modal fade" id="addzipcode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -452,11 +436,10 @@
                 eachlyr_arr[valname].addTo(map)
               });
             }else{
-              savelocation(valname , 'state');
-              // console.log("un chkd")
-              if(map.hasLayer(eachlyr_arr[valname])){
-                map.removeLayer(eachlyr_arr[valname])
-              }   
+              // savelocation(valname , 'state');
+              // if(map.hasLayer(eachlyr_arr[valname])){
+              //   map.removeLayer(eachlyr_arr[valname])
+              // }   
             }  
           });
   

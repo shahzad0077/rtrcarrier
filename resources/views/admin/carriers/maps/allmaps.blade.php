@@ -55,13 +55,13 @@
                             <div class="table-responsive">
                                 <table id="example" class="table table-separate table-head-custom table-checkable">
                                     <thead>
-                                        <tr class="text-left">
-                                            <th>Logo</th>
-                                            <th>Map ID</th>
+                                        <tr class="text-center">
+                                            <th>Thumbnail</th>
                                             <th>Map Title</th>
-                                            <th>Date</th>
-                                            <th>Map Type</th>
+                                            <th>Type</th>
+                                            <th>Associated Jobs</th>
                                             <th>Status</th>
+                                            <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -70,20 +70,12 @@
                                         <tr>
                                             <td>
                                                 @if($r->logo)
-                                                <img width="30" height="30" src="{{ url('public/images') }}/{{ $r->logo }}">
+                                                <img width="80" class="img-thumbnail" height="80" src="{{ url('public/images') }}/{{ $r->logo }}">
                                                 @endif
-                                            </td>
-                                            <td class="pl-0">
-                                                <a href="javascript::void(0)" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">{{ $r->id }}</a>
                                             </td>
                                             <td>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $r->tittle }}
-                                                </span>
-                                             </td>
-                                            <td>
-                                                <span class="text-info font-weight-bolder d-block font-size-lg">
-                                                    {{ Cmf::date_format($r->created_at) }}
                                                 </span>
                                             </td>
                                             <td>
@@ -91,7 +83,13 @@
                                                     {{ $r->type }}
                                                 </span>
                                             </td>
-
+                                            <td class="pl-0 text-center">
+                                                @if($r->type == 'Hiring Map')
+                                                    {{ DB::table('jobs')->where('hiring_area' , $r->id)->count() }} Jobs
+                                                @elseif($r->type == 'Operating Map')
+                                                    {{ DB::table('jobs')->where('operating_area' , $r->id)->count() }} Jobs
+                                                @endif
+                                            </td>
                                             <td>
                                                 @if($r->status == 1)
                                                 <span class="label label-lg label-light-primary label-inline">Published</span>
@@ -100,8 +98,12 @@
                                                 @endif
 
                                             </td>
-                                            
-                                            <td class="pr-0 text-right">
+                                            <td>
+                                                <span class="text-info font-weight-bolder d-block font-size-lg">
+                                                    {{ Cmf::date_format($r->created_at) }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center">
                                                 <a href="javascript:void(0)" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

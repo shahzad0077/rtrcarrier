@@ -289,22 +289,10 @@ class CarrierController extends Controller
         {
             $map->logo = Cmf::sendimagetodirectory($request->logo);
         }
-        if($request->state)
-        {
-            $map->state = implode(',', $request->state);
-        }
-        if($request->city)
-        {
-            $map->city = implode(',', $request->city);
-        }
-        if($request->zipcode)
-        {
-            $map->zipcode = implode(',', $request->zipcode);
-        }
         $map->save();
         if($request->type == 'admin')
         {
-            $url = url('admin/dashboard');
+            $url = url('admin/carriers/detail').'/'.$request->carrier_id.'/allmaps';
             return Redirect::to($url);
         }else{
             $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
@@ -340,18 +328,6 @@ class CarrierController extends Controller
         if($request->logo)
         {
             $map->logo = Cmf::sendimagetodirectory($request->logo);
-        }
-        if($request->state)
-        {
-            $map->state = implode(',', $request->state);
-        }
-        if($request->city)
-        {
-            $map->city = implode(',', $request->city);
-        }
-        if($request->zipcode)
-        {
-            $map->zipcode = implode(',', $request->zipcode);
         }
         $map->save();
         return redirect()->back()->with('message', 'Map Added Successfully');
