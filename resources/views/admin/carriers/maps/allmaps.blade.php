@@ -56,7 +56,6 @@
                                 <table id="example" class="table table-separate table-head-custom table-checkable">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>Thumbnail</th>
                                             <th>Map Title</th>
                                             <th>Type</th>
                                             <th>Associated Jobs</th>
@@ -68,11 +67,6 @@
                                     <tbody>
                                         @foreach($allmaps as $r)
                                         <tr>
-                                            <td>
-                                                @if($r->logo)
-                                                <img width="80" class="img-thumbnail" height="80" src="{{ url('public/images') }}/{{ $r->logo }}">
-                                                @endif
-                                            </td>
                                             <td>
                                                 <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                     {{ $r->tittle }}

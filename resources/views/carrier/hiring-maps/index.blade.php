@@ -11,7 +11,7 @@
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row mt-5">
                     <div class="col-md-12">
                         <div class="card card-custom gutter-b card-stretch">
@@ -34,7 +34,6 @@
                                     <table id="example" class="table table-separate table-head-custom table-checkable">
                                         <thead>
                                             <tr class="text-center">
-                                                <th>Thumbnail</th>
                                                 <th>Map Title</th>
                                                 <th>Type</th>
                                                 <th>Associated Jobs</th>
@@ -46,11 +45,6 @@
                                         <tbody>
                                             @foreach($data as $r)
                                             <tr>
-                                                <td>
-                                                    @if($r->logo)
-                                                    <img width="80" class="img-thumbnail" height="80" src="{{ url('public/images') }}/{{ $r->logo }}">
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
                                                         {{ $r->tittle }}
