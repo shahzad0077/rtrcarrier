@@ -51,4 +51,20 @@ class MapController extends Controller
         $map = hiring_maps::where('id' , $mapid)->get()->first();
         return view('admin.carriers.maps.editmap')->with(array('page'=>'addmap','data'=>$data,'locations'=>$locations,'map'=>$map));
     }
+    public function deletemap($id)
+    {
+        $map = hiring_maps::find($id);
+
+        if($map->type == 'Hiring Map')
+        {
+            jobs::where('hiring_area' , $id)->update(array('hiring_area'=>'','status'=>'pause'));
+        }
+        if($map->type == 'Operating Map')
+        {
+            jobs::where('operating_area' , $id)->update(array('operating_area'=>'','status'=>'pause'));
+        }
+        maplocations::where('map_id' , $id)->delete();
+        hiring_maps::where('id' , $id)->delete();
+        return redirect()->back()->with('warning', 'Map Deleted Successfully');
+    }
 }

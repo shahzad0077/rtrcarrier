@@ -32,12 +32,14 @@ class JobController extends Controller
     public function updateroutingandtransfer(Request $request)
     {
         $addnewjob = jobs::find($request->job_id);
+        $addnewjob->referral_code = $request->referral_code;
+        $addnewjob->lead_destination = $request->lead_destination;
         if($request->emails)
         {
             $addnewjob->emails_send = implode(',', $request->emails);
         }
         $addnewjob->save();
-        return redirect()->back()->with('message', 'Updated Successfully');
+        return redirect()->back()->with('message', 'Routing & Transfer Updated Successfully');
       
     }
     public function updatebasicdetailsofjob(Request $request)

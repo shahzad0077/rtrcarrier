@@ -62285,3 +62285,6 @@ a.leaflet-browser-print {
     padding: 10px;
     cursor: pointer;
 }
+.filter-option-inner-inner{
+  padding-top: 6px;
+}

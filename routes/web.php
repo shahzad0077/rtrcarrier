@@ -248,7 +248,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/addcompanyemail','HiringtemplateController@addcompanyemail');
         Route::get('deletejob/{id}','HiringtemplateController@deletejob');
         Route::get('editjob/{id}/{jobid}/{edittype}','JobController@editjob');
-
+        Route::get('deletemap/{id}','MapController@deletemap');
         
         Route::post('/updateroutingandtransfer','JobController@updateroutingandtransfer');
         Route::post('/updatebasicdetailsofjob','JobController@updatebasicdetailsofjob');

@@ -43,6 +43,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
+                                            <label>Company Name</label>
+                                            <input name="company_name" type="text" value="{{ $data->company_name }}" class="form-control form-control-lg form-control-solid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label class="lable-control">Company Logo</label>
                                             <input type="file" class="form-control form-control-lg form-control-solid" name="company_logo">
                                         </div>

@@ -73,22 +73,34 @@
                                     </a>
                                 </td>                            
                                 <td>
-                                    {{ $r->hiring_area }}
-                                </td>
-                                <td>
-                                   {{ $r->operating_area }}
-                                </td>
-                                <td>
-                                    @if($r->status == 'pending')
-                                    <span class="badge badge-warning">Pending</span> 
-                                    @elseif($r->status == 'active')
-                                    <span class="badge badge-success">Active</span> 
-                                    @elseif($r->status == 'notactive')
-                                    <span class="badge badge-danger">Not Active</span> 
+                                    @if($r->hiring_area)
+                                        {{ $r->hiring_area }}
+                                    @else
+                                        <span class="badge badge-danger">No Hiring Area</span>
                                     @endif
-                                    
-                                    @if($r->payement_id)
-                                    <span class="m-2 label label-lg font-weight-bold label-light-primary label-inline">Featured</span>
+                                </td>
+                                <td>
+                                    @if($r->operating_area)
+                                        {{ $r->operating_area }}
+                                    @else
+                                        <span class="badge badge-danger">No Operating Area</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($r->joborignalstatus == 'pause')
+                                    <span class="badge badge-danger">Pause</span> 
+                                    @else
+                                        @if($r->status == 'pending')
+                                        <span class="badge badge-warning">Pending</span> 
+                                        @elseif($r->status == 'active')
+                                        <span class="badge badge-success">Active</span> 
+                                        @elseif($r->status == 'notactive')
+                                        <span class="badge badge-danger">Not Active</span> 
+                                        @endif
+
+                                        @if($r->payement_id)
+                                        <span class="m-2 label label-lg font-weight-bold label-light-primary label-inline">Featured</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td>{{ Cmf::create_time_ago($r->created_at) }}</td>

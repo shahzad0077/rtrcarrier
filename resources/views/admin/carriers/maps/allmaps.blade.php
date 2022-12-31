@@ -155,7 +155,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-light-success font-weight-bold" data-dismiss="modal">Ignore</button>
-                                                                        <a href="{{ url('deletemap') }}/{{ $r->id }}" class="btn btn-danger font-weight-bold">Yes, Delete it</a>
+                                                                        <a href="{{ url('admin/carriers/deletemap') }}/{{ $r->id }}" class="btn btn-danger font-weight-bold">Yes, Delete it</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

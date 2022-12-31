@@ -44,13 +44,13 @@
                         <div class="row">
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input type="text" class="form-control" placeholder="Search with name..." id="kt_datatable_search_query">
+                                    <input type="text" class="form-control input-lg" placeholder="Search with name..." id="kt_datatable_search_query">
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input type="text" class="form-control" placeholder="Search with DOT..." id="kt_datatable_search_query">
+                                    <input type="text" class="form-control input-lg" placeholder="Search with DOT..." id="kt_datatable_search_query">
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="col-md-2 mt-5 mt-lg-0">
-                                <a href="#" class="btn btn-light-primary px-6 font-weight-bold">
+                                <a style="height: 52px;padding-top: 15px;" href="#" class="btn btn-light-primary px-6 font-weight-bold">
                                     Search
                                 </a>
                             </div>
@@ -145,7 +145,7 @@
 </div>
 
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -156,9 +156,10 @@
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
-            <div class="modal-body">
-                <form enctype="multipart/form-data" id="addnewcarrier" method="POST" action="{{ route('admin.addnewcarrier') }}">
+            <form enctype="multipart/form-data" id="addnewcarrier" method="POST" action="{{ route('admin.addnewcarrier') }}">
                     @csrf
+            <div class="modal-body">
+                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -169,45 +170,45 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Carrier Fullname</label>
-                            <input type="text" class="form-control input-lg" name="name">
+                            <input required type="text" class="form-control input-lg" name="name">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Company Name</label>
-                            <input onkeyup="checkcompanyname(this.value)" type="text" class="form-control input-lg" name="company_name">
+                            <input required onkeyup="checkcompanyname(this.value)" type="text" class="form-control input-lg" name="company_name">
                             <span id="company_name-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Company Email</label>
-                            <input type="text" class="form-control input-lg" name="company_email">
+                            <input required type="text" class="form-control input-lg" name="company_email">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Carrier DOT Number</label>
-                            <input onkeyup="checkdotnumber(this.value)" type="email" class="form-control input-lg" name="dot_number">
+                            <input required onkeyup="checkdotnumber(this.value)" type="number" class="form-control input-lg" name="dot_number">
                             <span id="dot_number-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">How many trucks are in fleet?</label>
-                            <input type="number" class="form-control input-lg" name="trucks_in_fleet">
+                            <input required type="number" class="form-control input-lg" name="trucks_in_fleet">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Phone number</label>
-                            <input type="text" class="form-control input-lg" name="phone_number">
+                            <input required type="text" class="form-control input-lg" name="phone_number">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">How many drivers looking to hire within the next 90 days?</label>
-                            <input type="text" class="form-control input-lg" name="how_many_drivers_in_next">
+                            <input required type="text" class="form-control input-lg" name="how_many_drivers_in_next">
                         </div>
                     </div>
                     <div class="col-md-12 mt-3 mb-3">
@@ -217,7 +218,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="lable-control">Email address</label>
-                            <input onkeyup="checkemail(this.value)" type="email" class="form-control input-lg" name="email">
+                            <input required onkeyup="checkemail(this.value)" type="email" class="form-control input-lg" name="email">
                             <span id="email-error" class="invalid-feedback" role="alert"></span>
                         </div>
                     </div>
@@ -225,13 +226,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Password</label>
-                            <input type="text" class="form-control input-lg" name="password">
+                            <input required type="text" class="form-control input-lg" name="password">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="lable-control">Confirm password</label>
-                            <input type="text" class="form-control input-lg" name="conferm_password">
+                            <input required type="text" class="form-control input-lg" name="conferm_password">
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -242,11 +243,11 @@
                         </label>
                     </div>
                 </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button id="submitbutton" onclick="formsubmit('addnewcarrier')" type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+        </form>
         </div>
     </div>
 </div>
