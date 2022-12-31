@@ -44505,7 +44505,7 @@ code {
   border-top: 0;
   border-bottom: 1px solid #EBEDF3; }
   .table.table-separate th:first-child, .table.table-separate td:first-child {
-    padding-left: 0 !important; }
+    padding-left: 10px !important; }
   .table.table-separate th:last-child, .table.table-separate td:last-child {
     padding-right: 0 !important; }
 

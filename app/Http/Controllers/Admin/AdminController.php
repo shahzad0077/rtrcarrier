@@ -16,6 +16,7 @@ use App\Models\recuring_tips;
 use App\Models\subscription_plans;
 use App\Models\site_settings;
 use App\Models\carrieralerts;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Auth;
@@ -98,13 +99,17 @@ class AdminController extends Controller
     }
     public function addnewcarrier(Request $request)
     {
+        $current_date_time = Carbon::now()->toDateTimeString();
         $carrier = new User();
         $carrier->name = $request->name;
         $carrier->email = $request->email;
+        $carrier->email_verified_at = $current_date_time;
         $carrier->type = 'carrier';
         $carrier->password = Hash::make($request->password);
         $carrier->dot_number = $request->dot_number;
         $carrier->trucks_in_fleet = $request->trucks_in_fleet;
+        $carrier->email_verified_at = 1;
+        $carrier->approved_status = 1;
         $carrier->how_many_drivers_in_next = $request->how_many_drivers_in_next;
         $carrier->save();
 
