@@ -234,6 +234,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
     Route::name('carriers.')->prefix('carriers')->group(function(){
         Route::get('/','CarrierController@allcarriers');
         Route::get('detail/{id}/{page}','CarrierController@carrierdetail');
+        Route::get('editmap/{id}/{mapid}','MapController@editmap');
         Route::post('/updatecarrierdetail','CarrierController@updatecarrierdetail');
         Route::post('/updateuserdetail','CarrierController@updateuserdetail');
         Route::post('/changepassword','CarrierController@changepassword');
@@ -246,6 +247,11 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
         Route::post('/addnewteammember','CarrierController@addnewteammember');
         Route::post('/addcompanyemail','HiringtemplateController@addcompanyemail');
         Route::get('deletejob/{id}','HiringtemplateController@deletejob');
+        Route::get('editjob/{id}/{jobid}/{edittype}','JobController@editjob');
+
+        
+        Route::post('/updateroutingandtransfer','JobController@updateroutingandtransfer');
+        Route::post('/updatebasicdetailsofjob','JobController@updatebasicdetailsofjob');
     });
 
 

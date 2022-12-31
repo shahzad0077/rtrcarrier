@@ -44052,7 +44052,7 @@ code {
   background-color:  #F3F6F9;
   border-color: 1px solid #EBEDF3;
   color: #3F4254;
-  height: 70px;
+  height: 52px;
   -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
@@ -55469,11 +55469,13 @@ code {
   .bootstrap-select > .dropdown-toggle:before {
     width: auto; }
   .bootstrap-select > .dropdown-toggle.btn-light, .bootstrap-select > .dropdown-toggle.btn-secondary {
-    background: #ffffff !important;
+    background: #F3F6F9 !important;
     color: #3F4254;
     border-color: #E4E6EF;
     -webkit-box-shadow: none;
-    box-shadow: none; }
+    box-shadow: none;
+    height: 52px;
+  }
     .bootstrap-select > .dropdown-toggle.btn-light.focus, .bootstrap-select > .dropdown-toggle.btn-light.active, .bootstrap-select > .dropdown-toggle.btn-secondary.focus, .bootstrap-select > .dropdown-toggle.btn-secondary.active {
       border-color: #69b3ff !important; }
     .bootstrap-select > .dropdown-toggle.btn-light.disabled, .bootstrap-select > .dropdown-toggle.btn-light:disabled, .bootstrap-select > .dropdown-toggle.btn-secondary.disabled, .bootstrap-select > .dropdown-toggle.btn-secondary:disabled {

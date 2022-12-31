@@ -96,7 +96,6 @@
                                                 @else
                                                 <span class="label label-lg label-light-danger label-inline">Not Published</span>
                                                 @endif
-
                                             </td>
                                             <td>
                                                 <span class="text-info font-weight-bolder d-block font-size-lg">
@@ -104,7 +103,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="javascript:void(0)" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                                                <a href="{{ url('admin/carriers/editmap') }}/{{ $data->id }}/{{ $r->id }}" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -114,7 +113,7 @@
                                                             </g>
                                                         </svg>
                                                         <!--end::Svg Icon--></span> </a>
-                                                <a  href="javascript::void(0)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                                                <a data-toggle="modal" data-target="#deleteModal{{$r->id}}" href="javascript::void(0)" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                                     <span class="svg-icon svg-icon-md svg-icon-primary">
                                                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -129,7 +128,7 @@
 
 
                                                          <div class="modal fade" id="deleteModal{{ $r->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">Are you Sure?</h5>
@@ -138,10 +137,24 @@
                                                                         </button>
                                                                     </div>
                                                                     <div style="text-align: left;" class="modal-body">
-                                                                       <b style="color:red;"> Are you Sure You want to delete this.If you Delete Map Then Job Will be Automaticaly Deleted Against This Map</b> 
+                                                                       <b style="color:green;"> Deleting this map will pause the following job listings:</b>
+                                                                       @php
+                                                                            if($r->type == 'Hiring Map')
+                                                                            {
+                                                                                $colum = 'hiring_area';
+                                                                            }else{
+                                                                                $colum = 'operating_area';
+                                                                            }
+                                                                       @endphp
+                                                                       @foreach(DB::table('jobs')->where($colum , $r->id)->get() as $job)
+
+                                                                        <h3 class="badge mt-3 badge-warning">{{ $job->job_tittle }}</h3>
+
+                                                                       @endforeach
+
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                                                                        <button type="button" class="btn btn-light-success font-weight-bold" data-dismiss="modal">Ignore</button>
                                                                         <a href="{{ url('deletemap') }}/{{ $r->id }}" class="btn btn-danger font-weight-bold">Yes, Delete it</a>
                                                                     </div>
                                                                 </div>

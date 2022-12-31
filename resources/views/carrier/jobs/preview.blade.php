@@ -310,7 +310,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <!-- <div class="card">
         <div class="card-header" id="headingFour6">
             <div class="card-title collapsed" data-toggle="collapse" data-target="#collapseFour6">
                 <img class="mr-2" src="{{asset('public/carrier/assets/media/custom/preview.svg')}}"> Subscriptions
@@ -343,6 +343,6 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>

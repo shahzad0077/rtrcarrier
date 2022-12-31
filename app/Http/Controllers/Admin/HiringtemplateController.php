@@ -17,6 +17,7 @@ use App\Models\advance_equipment_values;
 use App\Models\advance_pay_options;
 use App\Models\equipment_jobs;
 use App\Models\job_equipments;
+use App\Models\company_emails;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Validator;
@@ -27,7 +28,7 @@ class HiringtemplateController extends Controller
     {
         $this->middleware('auth');
     }
-    public function addcompanyemail()
+    public function addcompanyemail(Request $request)
     {
         $new = new company_emails();
         $new->company_id  = $request->carrier_id;

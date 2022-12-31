@@ -1400,7 +1400,7 @@ ul.nav.flex-column li {
 }
 
 ul.nav.flex-column li:first-child {
-    padding-left: 0px !important;
+/*    padding-left: 0px !important;*/
 }
 
 label.inner-label.edit-covers input {

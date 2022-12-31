@@ -321,7 +321,6 @@ class CarrierController extends Controller
     {
         $map = hiring_maps::find($request->map_id);
         $map->id = $request->map_id;
-        $map->company_id = Cmf::getusercompany()->id;
         $map->tittle = $request->map_tittle;
         $map->type = $request->map_type;
         $map->status = 1;
@@ -330,7 +329,7 @@ class CarrierController extends Controller
             $map->logo = Cmf::sendimagetodirectory($request->logo);
         }
         $map->save();
-        return redirect()->back()->with('message', 'Map Added Successfully');
+        return redirect()->back()->with('message', 'Map Updated Successfully');
     }
     public function hiringmaps()
     {

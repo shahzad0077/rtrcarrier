@@ -137,7 +137,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
+                                    <a href="{{ url('admin/carriers/editjob') }}/{{$r->company_id}}/{{ $r->job_id }}/basic" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
                                     <a data-toggle="modal" data-target="#deleteModal" href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
                                 </td>
                             </tr>

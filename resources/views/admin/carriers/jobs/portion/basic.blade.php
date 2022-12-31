@@ -40,28 +40,18 @@
                 <div class="form-group">
                     <label class="lable-control">Add Custom Home Time</label>
                     <input required value="@if($job->custom_home_time){{ $job->custom_home_time }}@elseif(old('custom_home_time')){{ old('custom_home_time') }}@endif" type="text" class="@error('custom_home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" placeholder="Add Custome Time Here" name="custom_home_time">
-                    @error('custom_home_time')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="lable-control">Driver Type</label>
-                    <select required name="driver_type" class="@error('driver_type') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
+                    <select required name="driver_type" class="@error('home_time') is-invalid @enderror form-control  form-control-solid font-size-lg pl-5 min-h-50px" id="exampleSelects">
                         <option value="">Select Option</option>
                         @foreach(explode(',' , $attribute->where('id' , 124)->first()->options) as $r)
-                        <option @if($job->driver_type == $r) selected @elseif(old('driver_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
+                        <option @if($job->driver_type == $r) selected @elseif(old('home_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('driver_type')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -73,11 +63,6 @@
                         <option @if($job->home_time == $r) selected @elseif(old('home_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('home_time')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -89,11 +74,6 @@
                         <option @if($job->freight_type == $r) selected @elseif(old('freight_type') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('freight_type')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -105,22 +85,12 @@
                         <option @if($job->dedicated_account == $r) selected @elseif(old('dedicated_account') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('dedicated_account')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Avg Weekly Mile</label>
                     <input required value="@if($job->avg_weekly_mile){{ $job->avg_weekly_mile }}@elseif(old('avg_weekly_mile')){{ old('avg_weekly_mile') }}@endif" name="avg_weekly_mile" type="text" class="@error('avg_weekly_mile') is-invalid @enderror form-control form-control-solid font-size-lg pl-5 min-h-50px" placeholder="1,000 - 2,200">
-                    @error('avg_weekly_mile')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-12 d-flex justify-content-end">
@@ -150,11 +120,6 @@
                         <option value="{{ $r->id }}" @if($job->hiring_area == $r->id) selected @elseif(old('hiring_area') == $r->id) selected @endif>{{ $r->tittle }}</option>
                         @endforeach
                     </select>
-                    @error('hiring_area')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <a href="{{ url('admin/carriers/map') }}/{{ $data->id }}/addmap?maptype=hiringmap">Create New Hiring Map</a>
             </div>
@@ -167,11 +132,6 @@
                         <option value="{{ $r->id }}" @if($job->operating_area == $r->id) selected @elseif(old('operating_area') == $r->id) selected @endif>{{ $r->tittle }} </option>
                         @endforeach
                     </select>
-                    @error('operating_area')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <a href="{{ url('admin/carriers/map') }}/{{ $data->id }}/addmap?maptype=operatingmap">Create New Operating Map</a>
             </div>
@@ -196,11 +156,6 @@
                         <option @if($job->compensation == $r) selected @elseif(old('compensation') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('compensation')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -212,11 +167,6 @@
                         <option @if($job->duty_time == $r) selected @elseif(old('duty_time') == $r) selected @endif value="{{ $r }}">{{ $r }}</option>
                         @endforeach
                     </select>
-                    @error('duty_time')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-6">
@@ -553,7 +503,7 @@
 <div class="card card-custom mt-3">
     <div class="card-header">
         <div class="card-title">
-            <h3 class="card-label font-weight-bolder text-dark">Save and Continue</h3>
+            <h3 class="card-label font-weight-bolder text-dark">@if($page == 'editjob') Update Basic Details @else  Save and Continue @endif</h3>
         </div>
         <div class="card-toolbar">
         <!--begin::Button-->
@@ -566,7 +516,7 @@
                             <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
                         </g>
                     </svg>
-                    <!--end::Svg Icon--></span> Save and Continue
+                    <!--end::Svg Icon--></span> @if($page == 'editjob') Update Basic Details @else  Save and Continue @endif
             </button>
             <!--end::Button-->
         </div>
