@@ -30,10 +30,10 @@
                                                 <div class="modal-body">
                                                     <div class="row mt-7">
                                                         <div class="col-md-12">
-                                                            <h5 class="mb-5">Home time</h5>
+                                                            <h5 class="mb-5">Home time</h5> 
                                                         </div>
-                                                        @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 123)->first()->options) as $r)
-                                                        <div class="col-md-3">
+                                                        @foreach(explode(',' , DB::table('jot_attributes')->where('id' , 125)->first()->options) as $r)
+                                                        <div class="col-md-3 mb-3">
                                                             <label class="checkbox checkbox-lg">
                                                                 <input value="{{$r}}" type="checkbox" name="hometimeadvance[]" />
                                                                 <span class="mr-3"></span>

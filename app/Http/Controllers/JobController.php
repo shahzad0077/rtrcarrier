@@ -386,10 +386,14 @@ class JobController extends Controller
         }
         if(isset($input['hometimeadvance']))
         {
-            foreach ($input['hometimeadvance'] as $r) {
-                $q->orWhere('jobs.home_time','like', '%' .$r. '%' );
-            }
+            $q->whereIn('jobs.home_time', $input['hometimeadvance']);
         }
+        if(isset($input['drivertypeadvance']))
+        {
+            $q->whereIn('jobs.driver_type', $input['drivertypeadvance']);
+        }
+
+
         if ($input['freighttype'])
         {
             $q->where('jobs.freight_type','like', '%' . $input['freighttype'] . '%' );
