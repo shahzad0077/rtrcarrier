@@ -122,7 +122,7 @@ class AdminController extends Controller
         $company->save();
 
         $subject = 'Welcome To '.env('APP_NAME').'';
-        Mail::send('email.addnewcarrier', ['name' => $request->name,'email' => $request->name,'password' => $request->password], function($message) use($request , $subject){
+        Mail::send('email.addnewcarrier', ['name' => $request->name,'email' => $request->email,'password' => $request->password], function($message) use($request , $subject){
             $message->to($request->email);
             $message->subject($subject);
         });

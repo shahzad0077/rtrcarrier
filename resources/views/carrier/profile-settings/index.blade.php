@@ -11,7 +11,7 @@
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
-            <div class="container">
+            <div class="container mt-10">
                 @include('alerts.index')
                 <!--begin::Profile Personal Information-->
                 <div class="d-flex flex-row">
