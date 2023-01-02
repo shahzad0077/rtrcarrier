@@ -175,7 +175,7 @@
                                             <i class="ki ki-bold-more-hor"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right job-dropdown">
-                                            <a class="dropdown-item" href="{{ url('jobedit') }}/{{ $job->job_id }}"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
+                                            <a class="dropdown-item" href="{{ url('jobedit') }}/{{ $job->job_id }}/basic"> <img src="{{asset('public/carrier/assets/media/custom/edit.svg')}}" />Edit </a>
                                             <a onclick="deletejobbycarrier({{$job->job_id}})" class="dropdown-item" href="javascript:void(0)"> <img src="{{asset('public/carrier/assets/media/custom/delete.svg')}}" />Delete </a>
                                             
                                             @if($job->job_status == 'approved')

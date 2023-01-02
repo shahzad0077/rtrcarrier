@@ -145,11 +145,17 @@ Route::post('/job/subscription', [JobController::class, 'subscription']);
 Route::post('/job/jobsubmitlast', [JobController::class, 'jobsubmitlast']);
 Route::post('/job/advanceequipment', [JobController::class, 'advanceequipment']);
 Route::get('/deletejob/{id}', [JobController::class, 'deletejob']);
-Route::get('/jobedit/{id}', [JobController::class, 'jobedit']);
+Route::get('/jobedit/{id}/{type}', [JobController::class, 'jobedit']);
 Route::get('/carrierjobdetail/{id}', [JobController::class, 'carrierjobdetail']);
 Route::get('/hiring-templates', [JobController::class, 'hiringtemplates']);
 Route::get('/edithiringtemplate/{id}', [JobController::class, 'edithiringtemplate']);
 Route::get('/showpreviewofhiringreq/{id}', [JobController::class, 'showpreviewoftemplate']);
+Route::post('/updatebasicdetailsofjob', [JobController::class, 'updatebasicdetailsofjob']);
+Route::post('/updatehiringtemplateofjob', [JobController::class, 'updatehiringtemplateofjob']);
+Route::post('/updateroutingofjob', [JobController::class, 'updateroutingofjob']);
+
+
+
 
 
 Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);

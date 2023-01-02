@@ -436,12 +436,97 @@ class JobController extends Controller
         }
         return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
     }
-    public function jobedit($id)
+    public function jobedit($id , $edittype)
     {
+        $data = companies::leftJoin('users','users.id','=','companies.user_id')
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status','users.phonenumber','users.profile_picture')
+            ->orderBy('id','desc')
+            ->where('users.approved_status' , 1)
+            ->where('companies.id' , Cmf::getusercompany()->id)
+            ->first();
         $job = jobs::find($id);
         $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
         $attribute = jot_attributes::all();
-        return view('carrier/jobs/jobedit')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+
+        if($edittype == 'basic')
+        {
+            return view('carrier.jobs.editjob.basic')->with(array('page'=>'editjob','data'=>$data,'attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        }
+        if($edittype == 'hiring')
+        {
+            return view('carrier.jobs.editjob.hiring')->with(array('page'=>'editjob','data'=>$data,'attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        }
+        if($edittype == 'routing')
+        {
+            return view('carrier.jobs.editjob.routing')->with(array('page'=>'editjob','data'=>$data,'attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        }
+        if($edittype == 'preview')
+        {
+            return view('carrier.jobs.editjob.preview')->with(array('page'=>'editjob','data'=>$data,'attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        }
+    }
+    public function updatehiringtemplateofjob(Request $request)
+    {
+        
+    }
+    public function updateroutingofjob(Request $request)
+    {
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->referral_code = $request->referral_code;
+        $addnewjob->lead_destination = $request->lead_destination;
+        if($request->emails)
+        {
+            $addnewjob->emails_send = implode(',', $request->emails);
+        }
+        $addnewjob->save();
+        return redirect()->back()->with('message', 'Routing & Transfer Updated Successfully');
+    }
+    
+    public function updatebasicdetailsofjob(Request $request)
+    {
+        $url = Cmf::shorten_url($request->job_tittle);
+        $checkurl = jobs::where('url' , $url)->count();
+        if($checkurl > 0)
+        {
+            $url = $url.'-'.$request->job_id;
+        }else{
+            $url = $url;
+        }
+        $addnewjob = jobs::find($request->job_id);
+        $addnewjob->how_often_will_driver_get_home = $request->how_often_will_driver_get_home;
+        $addnewjob->custom_home_time = $request->custom_home_time;
+        $addnewjob->job_tittle = $request->job_tittle;
+        $addnewjob->hiring_area = $request->hiring_area;
+        $addnewjob->operating_area = $request->operating_area;
+        $addnewjob->url = $url;
+        $addnewjob->driver_type = $request->driver_type;
+        $addnewjob->home_time = $request->home_time;
+        $addnewjob->freight_type = $request->freight_type;
+        $addnewjob->dedicated_account = $request->dedicated_account;
+        $addnewjob->avg_weekly_mile = $request->avg_weekly_mile;
+        $addnewjob->compensation = $request->compensation;
+        $addnewjob->duty_time = $request->duty_time;
+        if($request->benifits)
+        {
+            $addnewjob->benifits = implode(',', $request->benifits);
+        }
+        if($request->custombenifits)
+        {
+            $addnewjob->custombenifits = implode(',', $request->custombenifits);
+        }
+        $addnewjob->compensation_ammount = $request->compensation_ammount;
+        $addnewjob->top_10_of_earners_are_makking = $request->top_10_of_earners_are_makking;
+        $addnewjob->avgerage_weekly_pay = $request->avgerage_weekly_pay;
+        $addnewjob->avgerage_yearly_pay = $request->avgerage_yearly_pay;
+        $addnewjob->sign_on_bonus = $request->sign_on_bonus;
+        $addnewjob->sign_on_bonus_amount = $request->sign_on_bonus_amount;
+        $addnewjob->freight_type_equipment = $request->freight_type_equipment;
+        $addnewjob->drop_and_hook = $request->drop_and_hook;
+        $addnewjob->live_load = $request->live_load;
+        $addnewjob->driver_load = $request->driver_load;
+        $addnewjob->job_type_from_side = $request->job_type_from_side;
+        $addnewjob->save();
+        return redirect()->back()->with('message', 'Basic Details Updated Successfully');
     }
     public function carrierjobdetail($id)
     {

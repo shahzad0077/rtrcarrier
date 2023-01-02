@@ -10,14 +10,14 @@
             <div class="col-md-6 routing-content">
                 <div class="form-group">
                     <label class="lable-control">Referral Code</label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Chicago-WalmartAccount-Solo">
+                    <input value="{{ $job->referral_code }}" type="text" class="form-control form-control-lg form-control-solid" name="referral_code" placeholder="Chicago-WalmartAccount-Solo">
                     <span class="text-muted">Choose how you want this lead displayed in your CRM</span>
                 </div>
             </div>
             <div class="col-md-6 routing-content">
                 <div class="form-group">
                     <label class="lable-control">Lead Destination</label>
-                    <input type="text" class="form-control form-control-lg form-control-solid" name="" placeholder="Driver Reach">
+                    <input type="text" value="{{ $job->lead_destination }}" class="form-control form-control-lg form-control-solid" name="lead_destination" placeholder="Driver Reach">
                 </div>
             </div>
         </div>

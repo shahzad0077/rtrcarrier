@@ -70,7 +70,11 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
+                                                    <select onchange="downloadandshare(this.value)" class="form-control selectpicker" id="shareanddownloadbutton">
+                                                        <option value="1">Download & Share</option>
+                                                        <option value="download">Download</option>
+                                                        <option value="share">Share</option>
+                                                    </select>
                                                 </div>
                                                 
                                             </div>
@@ -254,14 +258,99 @@
         </div>
     </div>
 </div>
+<style>
+.img-thumbnail {
+    border-radius: 33px;
+    width: 61px;
+    height: 61px;
+}
 
-
+.fab:before {
+    position: relative;
+    top: 13px;
+}
+.smd {
+    width: 200px;
+    font-size: small;
+    text-align: center;
+}
+</style>
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content col-12">
+            <div class="modal-header ">
+                <h5 class="modal-title">Share</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-container1 d-flex">
+                    <div class="smd">
+                        <a href="" class=" img-thumbnail fab fa-twitter fa-2x"
+                            style="color:#4c6ef5;background-color: aliceblue"></a>
+                        <p>Twitter</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail fab fa-facebook fa-2x"
+                            style="color: #3b5998;background-color: #eceff5;"></a>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail fab fa-reddit-alien fa-2x"
+                            style="color: #FF5700;background-color: #fdd9ce;"></a>
+                        <p>Reddit</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail fab fa-discord fa-2x "
+                            style="color: #738ADB;background-color: #d8d8d8;"></a>
+                        <p>Whatsapp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="input-group">
+                  <input id="maplink" style="border-right: none;" type="text" class="form-control" placeholder="Search" name="search">
+                  <div class="input-group-btn">
+                    <button  data-toggle="tooltip" title="sadsadsadsad" data-original-title="Delete" onclick="coppymaplink()" style="height:47px;" class="btn btn-default" type="submit"><i class="far fa-clone"></i></button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
 
 @section('scripts')
     <script>
+        function coppymaplink() {
+            var copyText = document.getElementById("maplink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(maplink.value);
+        }
+        function downloadandshare(id) {
+            if(id == 'download')
+            {
+                shownewtab()
+            }
+            if(id == 'share')
+            {
+                var tittle = $('#map_tittle').val();
+                if(tittle == '')
+                {
+                    $("#shareanddownloadbutton").val('1').change();
+                    $('.map_tittle_error').show();
+                }else{
+                    $("#shareanddownloadbutton").val('1').change();
+                    var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
+                    $('#maplink').val(url);
+                    $('#exampleModal').modal('show')
+                }
+            }
+        }
         function searchzipcode(id) {
             var app_url = geturl();
             $.ajax({
@@ -285,8 +374,10 @@
             var tittle = $('#map_tittle').val();
             if(tittle == '')
             {
+                $("#shareanddownloadbutton").val('1').change();
                 $('.map_tittle_error').show();
             }else{
+                $("#shareanddownloadbutton").val('1').change();
                 var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
                 window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
             }

@@ -50,6 +50,7 @@
                         @csrf
                         <input type="hidden"  name="job_id" value="{{ $job->id }}">
                         @include('admin.carriers.jobs.portion.basic')
+                        
                     </form>
                     
                 </div>

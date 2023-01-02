@@ -18,21 +18,6 @@
 @php
     $map_id = rand(100000000000 , 2000000000);
 @endphp
-<style type="text/css">
-    #zipcodesuggesstions ul{
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        background-color: #ddd;
-        height: 300px;
-        overflow: auto;
-        display: none;
-    }
-    #zipcodesuggesstions ul li{
-        padding: 10px;
-        cursor: pointer;
-    }
-</style>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
@@ -100,7 +85,11 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
+                                                    <select class="form-control">
+                                                        <option onclick="shownewtab()">Download</option>
+                                                        <option>Share</option>
+                                                    </select>
+                                                    <!-- <a  href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Download & Share</a> -->
                                                 </div>
                                                 
                                             </div>
