@@ -524,7 +524,55 @@ class JobController extends Controller
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->job_type_from_side = $request->job_type_from_side;
         $addnewjob->save();
+
+        if($request->truck_make)
+        {
+            job_equipments::where('job_id' , $addnewjob->id)->delete();
+            $arraycount =  count($request->truck_make);
+            $input = $request->all();
+            for ($i=0; $i < $arraycount; $i++) { 
+               $newequipment = new job_equipments();
+               $newequipment->job_id = $addnewjob->id;
+               $newequipment->truck_make = $input['truck_make'][$i];
+               $newequipment->truck_model = $input['truck_model'][$i];
+               $newequipment->truck_year = $input['truck_year'][$i];
+               $newequipment->save();
+            }
+        }
         return redirect()->back()->with('message', 'Basic Details Updated Successfully');
+    }
+    public function deleteequipment($id , $jobid)
+    {
+        job_equipments::where('id' , $id)->delete();
+        $data = job_equipments::where('job_id' , $jobid)->wherenotnull('truck_make')->wherenotnull('truck_year')->wherenotnull('truck_model')->get();
+
+        foreach ($data as $r) {
+            echo '<div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="lable-control">Truck Make</label>
+                            <input value="'.$r->truck_make.'" name="truck_make[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="lable-control">Truck Model</label>
+                            <input value="'.$r->truck_model.'" name="truck_model[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="lable-control">Truck Year</label>
+                            <input value="'.$r->truck_year.'" name="truck_year[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="lable-control"></label>
+                        <button id="deleteequipmentbutton'.$r->id.'" onclick="deleteequipment('.$r->id.','.$jobid.')" style="height:52px;margin-top: 8px;" class="form-control btn btn-danger" type="button" value="Delete">Delete</button>
+                    </div>
+                  <td></td>
+                </div>';
+        }
     }
     public function carrierjobdetail($id)
     {
@@ -593,6 +641,20 @@ class JobController extends Controller
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->step = 1;
         $addnewjob->save();
+        if($request->truck_make)
+        {
+            job_equipments::where('job_id' , $addnewjob->id)->delete();
+            $arraycount =  count($request->truck_make);
+            $input = $request->all();
+            for ($i=0; $i < $arraycount; $i++) { 
+               $newequipment = new job_equipments();
+               $newequipment->job_id = $addnewjob->id;
+               $newequipment->truck_make = $input['truck_make'][$i];
+               $newequipment->truck_model = $input['truck_model'][$i];
+               $newequipment->truck_year = $input['truck_year'][$i];
+               $newequipment->save();
+            }
+        }
         $url = url('job/add').'?step=2&jobid='.$addnewjob->id.'';
         return Redirect::to($url);
     }

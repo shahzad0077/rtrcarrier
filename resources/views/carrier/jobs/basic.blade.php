@@ -470,10 +470,45 @@
     </div>
     <div class="card-body">
         <div class="row">
-
             <div class="col-md-12">
+
+                @php
+                        $jobequipment = DB::table('job_equipments')->wherenotnull('truck_make')->wherenotnull('truck_year')->wherenotnull('truck_model')->where('job_id' , $job->id);
+                    @endphp
+                    @if($jobequipment->count() > 0)
+                    <div id="showequipment">
+                        @foreach($jobequipment->get() as $r)
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="lable-control">Truck Make</label>
+                                    <input value="{{ $r->truck_make }}" name="truck_make[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="lable-control">Truck Model</label>
+                                    <input value="{{ $r->truck_model }}" name="truck_model[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="lable-control">Truck Year</label>
+                                    <input value="{{ $r->truck_year }}" name="truck_year[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-control"></label>
+                                <button id="deleteequipmentbutton{{$r->id}}" onclick="deleteequipment({{$r->id}} , {{$job->id}})" style="height:52px;margin-top: 8px;" class="form-control btn btn-danger" type="button" value="Delete">Delete</button>
+                            </div>
+                          <td></td>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
                 <table id="test-table" class="">
                   <div id="test-body">
+                    @if($jobequipment->count() == 0)
                     <div class="row" id="row0">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -493,11 +528,11 @@
                                 <input name="truck_year[]" type="text" class="form-control form-control-solid font-size-lg pl-5 min-h-50px">
                             </div>
                         </div>
-                      <td>
-                        
-                      </td>
+                      <td></td>
                     </div>
+                    @endif
                   </div>
+
                 </table>
             </div>
         </div>

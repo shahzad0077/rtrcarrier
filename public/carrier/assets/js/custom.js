@@ -48,7 +48,20 @@ function searchzipcodefordashboard(id) {
             }
         })
     }
-    
+}
+
+
+function deleteequipment(id , jobid) {
+    var app_url = geturl();
+    $('#deleteequipmentbutton'+id).html('<i class="fa fa-spin fa-spinner"></i>')
+    $.ajax({
+        url:app_url+"/deleteequipment/"+id+"/"+jobid, 
+        type:"get",
+        success:function(res)
+        {
+            $('#showequipment').html(res);
+        }
+    })
 }
 function shownotifications() {
     $('#shownotifications').html('<div style="margin-top: 35%;" class="d-flex justify-content-center"><div><i style="font-size: 40px;" class="fa fa-spin fa-spinner"></i></div></div>')
@@ -741,6 +754,7 @@ function removepayoutrow(id)
 {
     $('#payoutrow'+id).remove();
 }
+
 
 
 

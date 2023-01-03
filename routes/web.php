@@ -83,6 +83,7 @@ Route::get('/allcompanypage', [CarrierController::class, 'allcompanypage']);
 Route::get('/create-new-page', [CarrierController::class, 'createnewpage']);
 
 
+
 Route::post('/addcompanypage', [CarrierController::class, 'addcompanypage']);
 Route::post('/updatecompanypage', [CarrierController::class, 'updatecompanypage']);
 Route::get('/deletecompanypage/{id}', [CarrierController::class, 'deletecompanypage']);
@@ -153,7 +154,7 @@ Route::get('/showpreviewofhiringreq/{id}', [JobController::class, 'showpreviewof
 Route::post('/updatebasicdetailsofjob', [JobController::class, 'updatebasicdetailsofjob']);
 Route::post('/updatehiringtemplateofjob', [JobController::class, 'updatehiringtemplateofjob']);
 Route::post('/updateroutingofjob', [JobController::class, 'updateroutingofjob']);
-
+Route::get('/deleteequipment/{id}/{jobid}', [JobController::class, 'deleteequipment']);
 
 
 
