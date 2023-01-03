@@ -243,7 +243,7 @@ class JobController extends Controller
     {
         $data = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->get();
         return view('carrier/jobs/hiringtemplates')->with(array('data'=>$data));
-    }
+    } 
     public function addnewhiringtemplate()
     {
         return view('carrier/jobs/addnewhiringtemplat');
@@ -416,25 +416,23 @@ class JobController extends Controller
     }
     public function addnewjob()
     {
-        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('step' ,'!=' ,5);
+        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('job_type_from_side' , 'carrierside')->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
         if($check->count() > 0)
         {
             $job = $check->get()->first();
         }else{
             $addjob = new jobs();
+            $addjob->id = $_GET['jobid'];
             $addjob->company_id = Cmf::getusercompany()->id;
             $addjob->step = 0;
+            $addjob->status = 'continue';
+            $addjob->job_type_from_side = 'carrierside';
             $addjob->save();
             $job = $addjob;
         }
-        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();  
+        $template = hiring_templates::where('company_id' , Cmf::getusercompany()->id)->where('is_template' , 1)->get();
         $attribute = jot_attributes::all();
-        $link = linktemplatewithjobs::where('job_id' , $job->id);
-        if($link->count() > 0)
-        {
-            
-        }
-        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));
+        return view('carrier/jobs/add-new')->with(array('attribute'=>$attribute,'job'=>$job,'template'=>$template));        
     }
     public function jobedit($id , $edittype)
     {
@@ -552,30 +550,6 @@ class JobController extends Controller
     }
     public function submitone(Request $request)
     {
-        $this->validate($request, [
-            'how_often_will_driver_get_home' => 'required',
-            'custom_home_time' => 'required',
-            'hiring_area' => 'required',
-            'job_tittle' => 'required',
-            'driver_type' => 'required',
-            'home_time' => 'required',
-            'freight_type' => 'required',
-            'dedicated_account' => 'required',
-            'avg_weekly_mile' => 'required',
-            'compensation' => 'required',
-            'duty_time' => 'required',
-            'compensation_ammount' => 'required',
-            'top_10_of_earners_are_makking' => 'required',
-            'avgerage_weekly_pay' => 'required',
-            'avgerage_yearly_pay' => 'required',
-            'sign_on_bonus' => 'required',
-            'sign_on_bonus_amount' => 'required',
-            'freight_type_equipment' => 'required',
-            'drop_and_hook' => 'required',
-            'live_load' => 'required',
-            'driver_load' => 'required',
-        ]);
-
         $url = Cmf::shorten_url($request->job_tittle);
         $checkurl = jobs::where('url' , $url)->count();
         if($checkurl > 0)
@@ -585,9 +559,10 @@ class JobController extends Controller
             $url = $url;
         }
         $addnewjob = jobs::find($request->job_id);
+        $addnewjob->job_tittle = $request->job_tittle;
+        $addnewjob->job_description = $request->job_description;
         $addnewjob->how_often_will_driver_get_home = $request->how_often_will_driver_get_home;
         $addnewjob->custom_home_time = $request->custom_home_time;
-        $addnewjob->job_tittle = $request->job_tittle;
         $addnewjob->hiring_area = $request->hiring_area;
         $addnewjob->operating_area = $request->operating_area;
         $addnewjob->url = $url;
@@ -617,31 +592,9 @@ class JobController extends Controller
         $addnewjob->live_load = $request->live_load;
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->step = 1;
-        $addnewjob->job_type_from_side = $request->job_type_from_side;
         $addnewjob->save();
-        if($request->hiring_template)
-        {
-            $checklinktemplete = linktemplatewithjobs::where('job_id' , $request->job_id);
-            if($checklinktemplete->count() == 0)
-            {
-                $linktemplate = new linktemplatewithjobs();
-                $linktemplate->job_id = $request->job_id;
-                $linktemplate->template_id = $request->hiring_template;
-                $linktemplate->save();
-            }else{
-                $linktemplate = linktemplatewithjobs::find($checklinktemplete->first()->id);
-                $linktemplate->template_id = $request->hiring_template;
-                $linktemplate->save();
-            }
-        }
-        if($request->job_type_from_side == 'adminside')
-        {
-            $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=2&jobid='.$addnewjob->id.'';
-            return Redirect::to($url);
-        }else{
-            return redirect()->back()->with('message', 'Baisc Details of Job Added Successfully');
-        }
-        
+        $url = url('job/add').'?step=2&jobid='.$addnewjob->id.'';
+        return Redirect::to($url);
     }
 
     public function addnewcompanyemal(Request $request)
@@ -667,7 +620,8 @@ class JobController extends Controller
             $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=4&jobid='.$addnewjob->id.'';
             return Redirect::to($url);
         }else{
-            return redirect()->back()->with('message', 'Hiring Template Added');
+            $url = url('job/add').'?step=4&jobid='.$addnewjob->id.'';
+            return Redirect::to($url);
         }
     }
 
@@ -894,7 +848,8 @@ class JobController extends Controller
             $url = url('admin/carriers/detail').'/'.$addnewjob->company_id.'/addnewjob?step=3&jobid='.$addnewjob->id.'';
             return Redirect::to($url);
         }else{
-            return redirect()->back()->with('message', 'Hiring Template Added');
+            $url = url('job/add').'?step=3&jobid='.$addnewjob->id.'';
+            return Redirect::to($url);
         }
     }
 

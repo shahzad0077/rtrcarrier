@@ -250,7 +250,7 @@
                 <div class="col-md-4"> 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <a href="{{ url('job/add') }}" class="btn btn-white btn-block text-primary">
+                            <a href="{{ url('job/add') }}?step=1&jobid={{ rand(123456789,987654321) }}" class="btn btn-white btn-block text-primary">
                                 Post New Job
                             </a>
                         </div>

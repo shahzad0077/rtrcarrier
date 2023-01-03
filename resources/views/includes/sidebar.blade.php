@@ -86,13 +86,13 @@
 
                             @if(Cmf::getcarrierrole(2) == 0)
                             <li class="menu-item @if($currenturl == 'job/add') menu-item-active @endif" aria-haspopup="true">
-                                <a href="{{url('job/add')}}" class="menu-link">
+                                <a href="{{ url('job/add') }}?step=1&jobid={{ rand(123456789,987654321) }}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
-                                </a>
+                                </a> 
                             </li>
                             @elseif(Cmf::getcarrierrole(2) == 1)
                             <li class="menu-item" aria-haspopup="true">
-                                <a href="{{url('job/add')}}" class="menu-link @if($currenturl == 'job/add') menu-item-active @endif">
+                                <a href="{{ url('job/add') }}?step=1&jobid={{ rand(123456789,987654321) }}" class="menu-link @if($currenturl == 'job/add') menu-item-active @endif">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Add New Job</span>
                                 </a>
                             </li>
