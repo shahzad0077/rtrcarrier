@@ -610,16 +610,25 @@
                 
         }
 
-        function deletecity(valname)
+        function deletecity(valname , id)
         {
-            var city = valname.toLowerCase();
-            if(map.hasLayer(eachlyr_arr[city])){
-                map.removeLayer(eachlyr_arr[city])
-            }
-            if(map.hasLayer(circlelayer)){
-                map.removeLayer(circlelayer)
-            }
-            $('.city'+valname).remove();
+
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/deletecity/"+id, 
+                type:"get",
+                success:function(res){
+                    var city = valname.toLowerCase();
+                    if(map.hasLayer(eachlyr_arr[city])){
+                        map.removeLayer(eachlyr_arr[city])
+                    }
+                    if(map.hasLayer(circlelayer)){
+                        map.removeLayer(circlelayer)
+                    }
+                    $('.city'+valname).remove();
+                }
+            })
         }
 
 
@@ -749,12 +758,12 @@
         }
 
 
-        function savecitymaplocation(city , state)
+        function savecitymaplocation(city , state , radius)
         {
             var app_url = geturl();
             var map_id = '{{ $map_id }}';
             $.ajax({
-                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id, 
+                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id+"/"+radius, 
                 type:"get",
                 success:function(res){
                  $('#appenddivs').append(res);      

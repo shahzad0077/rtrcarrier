@@ -94,8 +94,9 @@ Route::get('/searchzipcodefordashboard/{id}', [CarrierController::class, 'search
 
 
 Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
-Route::get('/savecitymaplocation/{id}/{two}/{three}', [CarrierController::class, 'savecitymaplocation']);
+Route::get('/savecitymaplocation/{id}/{two}/{three}/{radius}', [CarrierController::class, 'savecitymaplocation']);
 Route::get('/savezipcodeagainstmap/{id}/{two}/{three}', [CarrierController::class, 'savezipcodeagainstmap']);
+Route::get('/deletecity/{id}', [CarrierController::class, 'deletecity']);
 
 
 Route::post('/addnewhiringmap', [CarrierController::class, 'addnewhiringmap']);
