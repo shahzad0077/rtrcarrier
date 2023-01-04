@@ -92,21 +92,21 @@ class CarrierController extends Controller
         if($data->count() > 0)
         {
             foreach ($data as $r) {
-                echo '<div class="d-flex align-items-center mb-6">
-                        <!--begin::Symbol-->
-                        <div class="symbol symbol-40 symbol-light-secondary mr-5">
-                            <span class="symbol-label">
-                                <i class="fa '.$r->icon.'"></i>
-                            </span>
-                        </div>
-                        <!--end::Symbol-->
-                        <!--begin::Text-->
-                        <div class="d-flex flex-column font-weight-bold">
-                            <a href="javascript:void(0)" class="text-dark text-hover-primary mb-1 font-size-lg">'.$r->subject.'</a>
-                            <span class="text-muted">'.$r->alert.'</span>
-                        </div>
-                        <!--end::Text-->
-                    </div>';
+                echo    '<a href="'.url('allnotifications').'?alerts=1" class="navi-item">
+                            <div class="navi-link">
+                                <div class="navi-icon mr-2">
+                                    <i class="flaticon-alert text-success"></i>
+                                </div>
+                                <div class="navi-text">
+                                    <div class="font-weight-bold">
+                                        '.$r->subject.'
+                                    </div>
+                                    <div class="text-muted">
+                                        '.Cmf::create_time_ago($r->created_at).'
+                                    </div>
+                                </div>
+                            </div>
+                        </a>';
             }
         }else{
             echo '<div style="margin-top:35%;" class="d-flex justify-content-center">

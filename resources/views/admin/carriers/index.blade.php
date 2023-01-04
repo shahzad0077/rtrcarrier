@@ -18,7 +18,7 @@
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Button-->
-                        <a href="#" class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#exampleModalScrollable">
+                        <a href="javascript:void(0)" class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#exampleModalScrollable">
                             <span class="svg-icon svg-icon-md">
                                 <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -41,17 +41,18 @@
                 </div>
                 <div class="card-body">
                     <!--begin: Search Form-->
+                    <form method="GET" action="{{ url('admin/carriers/search') }}">
                     <div class="mb-7">
                         <div class="row">
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input type="text" class="form-control input-lg" placeholder="Search with name..." id="kt_datatable_search_query">
+                                    <input @if(isset($_GET['keyword'])) value="{{ $_GET['keyword'] }}" @endif type="text" name="keyword" class="form-control input-lg" placeholder="Search with name..." id="kt_datatable_search_query">
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-3 my-2 my-md-0">
                                 <div class="input-icon">
-                                    <input type="text" class="form-control input-lg" placeholder="Search with DOT..." id="kt_datatable_search_query">
+                                    <input name="dotnumber" @if(isset($_GET['dotnumber'])) value="{{ $_GET['dotnumber'] }}" @endif type="text" class="form-control input-lg" placeholder="Search with DOT..." id="kt_datatable_search_query">
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
@@ -70,13 +71,14 @@
                             </div>
 
                             <div class="col-md-2 mt-5 mt-lg-0">
-                                <a style="height: 52px;padding-top: 15px;" href="#" class="btn btn-light-primary px-6 font-weight-bold">
+                                <button style="height: 52px;padding-top: 15px;" type="submit" class="btn btn-light-primary px-6 font-weight-bold">
                                     Search
-                                </a>
+                                </button>
                             </div>
 
                         </div>
                     </div>
+                    </form>
                     <!--end: Search Form-->
 
                     <div class="row">

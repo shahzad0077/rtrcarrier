@@ -9,20 +9,12 @@ $(document).ready(function() {
         fileReader.onload = (function(e) {
           var file = e.target;
           $("<span class=\"pip\">" +
-            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<span>" + f.name + "</span>" +
             "<br/><span class=\"remove\">Remove image</span>" +
             "</span>").insertAfter("#files");
           $(".remove").click(function(){
             $(this).parent(".pip").remove();
-          });
-          
-          // Old code here
-          /*$("<img></img>", {
-            class: "imageThumb",
-            src: e.target.result,
-            title: file.name + " | Click to remove"
-          }).insertAfter("#files").click(function(){$(this).remove();});*/
-          
+          });          
         });
         fileReader.readAsDataURL(f);
       }

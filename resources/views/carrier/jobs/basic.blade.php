@@ -330,7 +330,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">When do benefits start?</label>
-                    <input type="text" placeholder="When do benefits start?" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" name="when_do_benifit_start">
+                    <input type="text" value="{{ $job->when_do_benifit_start }}" placeholder="When do benefits start?" class="form-control form-control-solid font-size-lg pl-5 min-h-50px" name="when_do_benifit_start">
                 </div>
             </div>
         </div>

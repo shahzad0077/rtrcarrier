@@ -240,6 +240,7 @@ Route::name('admin.')->prefix('admin')->namespace('App\Http\Controllers\Admin')-
 
     Route::name('carriers.')->prefix('carriers')->group(function(){
         Route::get('/','CarrierController@allcarriers');
+        Route::get('/search','CarrierController@carriersearch');
         Route::get('detail/{id}/{page}','CarrierController@carrierdetail');
         Route::get('editmap/{id}/{mapid}','MapController@editmap');
         Route::post('/updatecarrierdetail','CarrierController@updatecarrierdetail');

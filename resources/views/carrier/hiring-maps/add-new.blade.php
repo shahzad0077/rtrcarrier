@@ -700,10 +700,11 @@
             var city = array[0];
             var state = array[1];
             city_drawn(city , state);
-            savecitymaplocation(city , state);
             var lat = $('#cityLat').val();
             var lon = $('#cityLng').val();
             var radius = $('.range-slider__value').val();
+            savecitymaplocation(city , state , radius);
+            
             console.log(radius);
             circle_draw(lat,lon,radius);
             $('#searchcity').val('');

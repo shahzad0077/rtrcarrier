@@ -52,6 +52,24 @@ class CarrierController extends Controller
             ->get();
         return view('admin/carriers/index')->with(array('data'=>$data));
     }
+    public function carriersearch(Request $request)
+    {
+        $input = $request->all();
+        $q = companies::leftJoin('users','users.id','=','companies.user_id')
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status');
+        if ($input['keyword'])
+        {
+            $q->where('users.name','like', '%' . $input['keyword'] . '%' );
+        }
+        if ($input['dotnumber'])
+        {
+            $q->where('users.dot_number','like', '%' . $input['dotnumber'] . '%' );
+        }       
+        $q->orderBy('id','desc');
+        $q->where('users.approved_status' , 1);
+        $data = $q->get();
+        return view('admin/carriers/index')->with(array('data'=>$data));
+    }
     public function carrierdetail($id,$page)
     {
         $data = companies::leftJoin('users','users.id','=','companies.user_id')
