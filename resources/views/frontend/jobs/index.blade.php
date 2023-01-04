@@ -406,7 +406,7 @@
                                     </div>
                                     <div class="recent-job-require experince">
                                         <h4>Experience</h4>
-                                        <p>{{ $job->hirring->minimum_expereince }}</p>
+                                        <p></p>
                                     </div>
                                     <div class="recent-job-require-btn">
                                         <a href="{{ url('job-detail') }}/{{ $job->url }}">See Details</a>

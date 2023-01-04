@@ -24,6 +24,23 @@ $(document).ready(function() {
     alert("Your browser doesn't support to File API")
   }
 });
+
+
+
+function showdetails(id) {
+
+    var x = document.getElementById("jobdetailbutton"+id);
+      if (x.innerHTML === "See Details") {
+        x.innerHTML = "Less Details";
+      } else {
+        x.innerHTML = "See Details";
+      }
+
+
+
+    $('.detailsection'+id).slideToggle();
+}
+
 function searchzipcodefordashboard(id) {
     if(id == '')
     {

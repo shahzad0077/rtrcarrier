@@ -1493,6 +1493,7 @@ label.inner-label.edit-covers p {
     border-radius: 0.2rem;
     padding: 8px;
     margin-bottom: 15px;
+    border-color: #22aae2;
 }
 
 .job-card h4 {
@@ -1673,4 +1674,20 @@ label.inner-label.edit-covers p {
 .remove:hover {
   background: white;
   color: black;
+}
+.jobdetailsidebar{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+}
+.jobdetailsidebar .navi-item{
+    border-radius: 10px;
+}
+
+.jobdetailsidebar .active{
+    background-color: #22aae2;
+}
+
+.jobdetailsidebar .active a span{
+    color: white !important;
 }

@@ -69,6 +69,7 @@
                                     </div>
                                 </div>
                                 <div>
+                                    <div onclick="showdetails({{ $job->job_id }})" id="jobdetailbutton{{$job->job_id}}" class="btn btn-primary me-6">See Details</div>
                                     <div class="dropdown dropdown-inline">
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ki ki-bold-more-hor"></i>
@@ -85,18 +86,6 @@
                                     </div>
                                 </div>
                             </div>
-                           <!--  <div class="d-flex flex-row mt-1">
-                                <div class="head-down">
-                                    <a href="javascript:void(0)" class="text-primary">
-                                        <i class="fa fa-map-marker-alt"></i>
-                                        View Map
-                                    </a>
-                                </div>
-                                <div class="head-down">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    
-                                </div>
-                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex flex-row mt-3">
@@ -139,6 +128,155 @@
                                     </div>
                                 </div>
                                 
+                            </div>
+                            <div style="display: none;" class="detailsection{{ $job->job_id }} mt-10">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="jobdetailsidebar">
+                                            <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+                                                <div class="navi-item mb-2 active">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Overview
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Top Selling Points
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Job Description
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Job Description
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Pay Detail
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Equipment
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Requirements
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Maps
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Benifits
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Orientation
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="navi-item mb-2">
+                                                    <a href="javascript:void(0)" class="navi-link py-4 ">
+                                                        <span class="navi-text font-size-lg">
+                                                            Lease Information
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="jobdetailsidebar">
+                                            <div class="card-header align-items-center border-0 mt-4 p-4">
+                                                <h3 class="align-items-start">
+                                                    <span class="font-weight-bolder text-dark">Oveview</span>
+                                                </h3>
+                                                <span class="text-muted mt-3 font-weight-bold font-size-sm">Here you Can See Overview of the Job</span>
+                                                <hr>
+                                            </div>
+                                            <div class="job-details p-4">
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <h4><a target="_blank" class="text-black" href="{{url('job-detail')}}/{{ $job->url }}">{{ $job->job_tittle }}</a></h4>
+                                                    </div>
+                                                    <div>
+                                                        <span class="job-type ml-5">{{ $job->job_status }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-md-2">
+                                                        <div class="job-detail">
+                                                            <p class="mr-2">Freight type:</p>
+                                                            <b>{{ $job->freight_type }}</b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="job-detail">
+                                                            <p class="mr-2">Home time:</p>
+                                                            <b>{{ $job->home_time }}</b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="job-detail">
+                                                            <p class="mr-2">Experience:</p>
+                                                            <b>{{ $job->hirring->minimum_expereince }}</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-md-2">
+                                                        <div class="d-flex job-detail flex-row">
+                                                            <b class="mr-2">Salary:</b>
+                                                            <b>$1200 - $1600</b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex job-detail flex-row">
+                                                            <b class="mr-2">Driver Type:</b>
+                                                            <b>{{ $job->driver_type }}</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-md-12">
+                                                        <h4>Job Description</h4>
+                                                        <br>
+                                                        {{ $job->job_description }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
