@@ -171,6 +171,7 @@
                                 </div>
                                 <div>
                                     <div class="dropdown dropdown-inline">
+                                        <div onclick="showdetails({{ $job->job_id }})" id="jobdetailbutton{{$job->job_id}}" class="btn btn-primary me-6">See Details</div>
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ki ki-bold-more-hor"></i>
                                         </button>
@@ -241,6 +242,7 @@
                                 </div>
                                 
                             </div>
+                            @include('carrier.jobs.jobdetailsection')
                         </div>
                     </div>
                 </div>

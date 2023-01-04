@@ -28,16 +28,12 @@ $(document).ready(function() {
 
 
 function showdetails(id) {
-
     var x = document.getElementById("jobdetailbutton"+id);
       if (x.innerHTML === "See Details") {
         x.innerHTML = "Less Details";
       } else {
         x.innerHTML = "See Details";
       }
-
-
-
     $('.detailsection'+id).slideToggle();
 }
 
