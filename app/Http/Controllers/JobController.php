@@ -522,6 +522,7 @@ class JobController extends Controller
         $addnewjob->drop_and_hook = $request->drop_and_hook;
         $addnewjob->live_load = $request->live_load;
         $addnewjob->driver_load = $request->driver_load;
+        $addnewjob->when_do_benifit_start = $request->when_do_benifit_start;
         $addnewjob->job_type_from_side = $request->job_type_from_side;
         $addnewjob->save();
 
@@ -637,6 +638,7 @@ class JobController extends Controller
         $addnewjob->sign_on_bonus_amount = $request->sign_on_bonus_amount;
         $addnewjob->freight_type_equipment = $request->freight_type_equipment;
         $addnewjob->drop_and_hook = $request->drop_and_hook;
+        $addnewjob->when_do_benifit_start = $request->when_do_benifit_start;
         $addnewjob->live_load = $request->live_load;
         $addnewjob->driver_load = $request->driver_load;
         $addnewjob->step = 1;

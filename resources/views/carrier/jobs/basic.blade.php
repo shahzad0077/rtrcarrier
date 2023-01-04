@@ -386,7 +386,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Upload your benefits information documents</label>
-                    <input class="form-control" type="file" id="files" name="files[]" multiple />
+                    <input class="form-control" type="file" id="files" name="benifitfiles[]" multiple />
                 </div>
             </div>
         </div>
@@ -472,7 +472,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                @php
+                    @php
                         $jobequipment = DB::table('job_equipments')->wherenotnull('truck_make')->wherenotnull('truck_year')->wherenotnull('truck_model')->where('job_id' , $job->id);
                     @endphp
                     @if($jobequipment->count() > 0)
