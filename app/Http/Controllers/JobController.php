@@ -416,7 +416,7 @@ class JobController extends Controller
     }
     public function addnewjob()
     {
-        $check = jobs::where('company_id' , Cmf::getusercompany()->id)->where('job_type_from_side' , 'carrierside')->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
+        $check = jobs::where('id' , $_GET['jobid'])->where('company_id' , Cmf::getusercompany()->id)->where('job_type_from_side' , 'carrierside')->where('step' ,'!=' ,5)->where('status' , '!=' , 'draft');
         if($check->count() > 0)
         {
             $job = $check->get()->first();
