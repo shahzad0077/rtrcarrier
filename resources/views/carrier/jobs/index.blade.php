@@ -10,6 +10,7 @@
 
 
 @section('content')
+
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Entry-->
@@ -68,6 +69,7 @@
                                     </div>
                                 </div>
                                 <div>
+                                    <div data-toggle="modal" data-target="#sharejobmodal{{$job->job_id}}" class="btn btn-primary me-6">Share Job</div>
                                     <div onclick="showdetails({{ $job->job_id }})" id="jobdetailbutton{{$job->job_id}}" class="btn btn-primary me-6">See Details</div>
                                     <div class="dropdown dropdown-inline">
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

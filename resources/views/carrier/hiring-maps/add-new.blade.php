@@ -259,7 +259,7 @@
     </div>
 </div>
 <style>
-.img-thumbnail {
+.img-thumbnail-for-icons {
     border-radius: 33px;
     width: 61px;
     height: 61px;
@@ -288,22 +288,22 @@
             <div class="modal-body">
                 <div class="icon-container1 d-flex">
                     <div class="smd">
-                        <a href="" class=" img-thumbnail fab fa-twitter fa-2x"
+                        <a href="" class="img-thumbnail-for-icons fab fa-twitter fa-2x"
                             style="color:#4c6ef5;background-color: aliceblue"></a>
                         <p>Twitter</p>
                     </div>
                     <div class="smd">
-                        <a href="" class="img-thumbnail fab fa-facebook fa-2x"
+                        <a href="" class="img-thumbnail-for-icons fab fa-facebook fa-2x"
                             style="color: #3b5998;background-color: #eceff5;"></a>
                         <p>Facebook</p>
                     </div>
                     <div class="smd">
-                        <a href="" class="img-thumbnail fab fa-reddit-alien fa-2x"
+                        <a href="" class="img-thumbnail-for-icons fab fa-reddit-alien fa-2x"
                             style="color: #FF5700;background-color: #fdd9ce;"></a>
                         <p>Reddit</p>
                     </div>
                     <div class="smd">
-                        <a href="" class="img-thumbnail fab fa-discord fa-2x "
+                        <a href="" class="img-thumbnail-for-icons fab fa-discord fa-2x "
                             style="color: #738ADB;background-color: #d8d8d8;"></a>
                         <p>Whatsapp</p>
                     </div>
@@ -319,7 +319,7 @@
         </div>
     </div>
 </div>
-
+</div>
 @endsection
 
 

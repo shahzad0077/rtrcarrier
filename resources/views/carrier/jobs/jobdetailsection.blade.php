@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="row mt-4">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="d-flex job-detail flex-row">
                                         <b class="mr-2">Salary:</b>
                                         <b>$1200 - $1600</b>
@@ -151,7 +151,37 @@
                             <hr>
                         </div>
                         <div class="job-details p-4">
-                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>Equipment & Freight</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="job-details p-4">
+                                        <b class="mr-2">Freight Type:</b>
+                                        {{ $job->freight_type_equipment }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="job-details p-4">
+                                        <b class="mr-2">Drop and Hook:</b>
+                                        {{ $job->drop_and_hook }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="job-details p-4">
+                                        <b class="mr-2">Live Load/Unload:</b>
+                                        {{ $job->live_load }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="job-details p-4">
+                                        <b class="mr-2">Driver Load/Unload:</b>
+                                        {{ $job->driver_load }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -228,4 +258,66 @@
             </div>
         </div>
     </div>
+</div>
+<style>
+.img-thumbnail-for-icons {
+    border-radius: 33px;
+    width: 61px;
+    height: 61px;
+}
+
+.fab:before {
+    position: relative;
+    top: 13px;
+}
+.smd {
+    width: 200px;
+    font-size: small;
+    text-align: center;
+}
+</style>
+ <div class="modal fade" id="sharejobmodal{{$job->job_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content col-12">
+            <div class="modal-header ">
+                <h5 class="modal-title">Share</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-container1 d-flex">
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-twitter fa-2x"
+                            style="color:#4c6ef5;background-color: aliceblue"></a>
+                        <p>Twitter</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-facebook fa-2x"
+                            style="color: #3b5998;background-color: #eceff5;"></a>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-reddit-alien fa-2x"
+                            style="color: #FF5700;background-color: #fdd9ce;"></a>
+                        <p>Reddit</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-discord fa-2x "
+                            style="color: #738ADB;background-color: #d8d8d8;"></a>
+                        <p>Whatsapp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="input-group">
+                  <input value="{{url('job-detail')}}/{{ $job->url }}" id="maplink" style="border-right: none;" type="text" class="form-control" placeholder="Search" name="search">
+                  <div class="input-group-btn">
+                    <button  data-toggle="tooltip" title="sadsadsadsad" data-original-title="Delete" onclick="coppymaplink()" style="height:47px;" class="btn btn-default" type="submit"><i class="far fa-clone"></i></button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

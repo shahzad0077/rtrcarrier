@@ -56,15 +56,16 @@
                                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                                 </div>
                             </div>
-                            <div class="col-md-3 my-2 my-md-0">
+                            <div class="col-md-4 my-2 my-md-0">
                                 <div class="d-flex align-items-center">
-                                    <label class="mr-3 mb-0 d-none d-md-block">Status:</label>
+                                    <label class="mr-3 mb-0 d-none d-md-block">Account Status:</label>
                                     <div class="dropdown bootstrap-select form-control">
                                         <select class="form-control" id="kt_datatable_search_status" tabindex="null">
                                             <option value="">All</option>
                                             <option value="1">Active</option>
-                                            <option value="2">Disabled</option>
-                                            <option>Pending Invitation</option>
+                                            <option value="2">In Active</option>
+                                            <option value="3">Temproary Blocked</option>
+                                            <option value="4">Permanent Blocked</option>
                                         </select>
                                     </div>
                                 </div>
@@ -92,7 +93,8 @@
                                             <th>DOT Number</th>
                                             <th>Phone Number</th>
                                             <th>Company title</th>
-                                            <th>Status</th>
+                                            <th>Approved Status</th>
+                                            <th>Account Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -113,9 +115,10 @@
                                             <td>DOT-{{ $r->dot_number }}</td>
                                             <td>{{ $r->contact_number }}</td>
                                             <td>{{ $r->company_name }}</td>
+
                                             <td>
                                                 @if($r->approved_status == 1)
-                                                <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
+                                                <span class="label label-lg font-weight-bold label-light-success label-inline">Approved</span>
                                                 @endif
                                                 @if($r->approved_status == '')
                                                 <span class="label label-lg font-weight-bold label-light-warning label-inline">Pending Invitation</span>
@@ -123,6 +126,21 @@
                                                 @if($r->approved_status == 2)
                                                 <span class="label label-lg font-weight-bold label-light-danger label-inline">Disabled</span>
                                                 @endif
+                                            </td>
+                                            <td> 
+                                                @if($r->activestatus == 1)
+                                                <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
+                                                @elseif($r->activestatus == 2)
+                                                <span class="label label-lg font-weight-bold label-warning label-inline">In Active</span>
+                                                @elseif($r->activestatus == 3)
+                                                <span class="label label-lg font-weight-bold label-light-danger label-inline">Temproary Banned</span>
+                                                @elseif($r->activestatus == 4)
+                                                <span class="label label-lg font-weight-bold label-danger label-inline">Permanent Banned</span>
+                                                @else
+                                                <span class="label label-lg font-weight-bold label-light-danger label-inline">No Status</span>
+                                                @endif
+
+
                                             </td>
                                             <td nowrap="">
                                                 <a href="{{ url('admin/carriers/detail') }}/{{ $r->id }}/detail" class="btn btn-primary btn-sm btn-clean" title="Edit details"> <i class="la la-eye"></i> View Details</a>

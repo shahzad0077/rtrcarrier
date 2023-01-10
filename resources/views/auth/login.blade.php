@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             @if(session()->has('warning'))
-                                <div style="text-align: center;color: red;" id="result">{{ session()->get('warning') }}</div>
+                                <div class="alert alert-danger" id="result">{{ session()->get('warning') }} <a href="">For Further Information Contact Us</a> </div>
                              @endif
                             <form class="form mt-4" id="kt_login_signin_form" method="POST" action="{{ route('login') }}">
                                  @csrf

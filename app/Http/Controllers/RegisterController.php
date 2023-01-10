@@ -44,6 +44,7 @@ class RegisterController extends Controller
         $carrier->how_many_drivers_in_next = $request->how_many_drivers_in_next;
         $carrier->redirect = $request->redirect;
         $carrier->approved_status = 0;
+        $carrier->activestatus = 1;
         $carrier->save();
         $carrier->sendEmailVerificationNotification();
         $company = new companies();

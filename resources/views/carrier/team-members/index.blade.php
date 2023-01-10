@@ -90,7 +90,7 @@
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <ul class="nav nav-hoverable flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Disable</a>
+                                                        <a class="nav-link" href="{{ url('teammemberchangestatus') }}">Disable</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="#">Activate</a>

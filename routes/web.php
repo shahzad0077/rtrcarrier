@@ -21,7 +21,7 @@ use App\Http\Controllers\ChatController;
 */
 
 Auth::routes(['verify' => true]);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Site Routes
 
 Route::get('/', [SiteController::class, 'index']);
