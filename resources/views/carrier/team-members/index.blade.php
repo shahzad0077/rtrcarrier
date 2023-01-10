@@ -11,7 +11,8 @@
     <!--begin::Entry-->
     <div class="d-flex flex-column-fluid">
         <!--begin::Container-->
-        <div class=" container-fluid ">
+        <div class=" container-fluid mt-5">
+            @include('alerts.index')
             <!--begin::Card-->
             <div class="card card-custom mt-5">
                 <div class="card-header flex-wrap py-5">
@@ -51,7 +52,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @include('alerts.index')
+                    
                     <table id="example" class="table table-separate table-bordered" style="width:100%">
                         <thead>
                                 <tr>
@@ -79,29 +80,46 @@
                                     </td>
                                     
                                     <td>{{ $r->user_phonenumber }}</td>
-                                    <td>{{ $r->role_name }} <a href="{{ url('edit-staff-permission') }}/{{ $r->role_id }}" class="btn btn-primary btn-sm flaticon-edit"></a> </td>
+                                    <td>{{ $r->role_name }}  </td>
                                     <td>{{ Cmf::date_format($r->created_at) }}</td>
                                     <td>
+                                        @if($r->activestatus == 1)
                                         <span class="label label-lg font-weight-bold label-light-success label-inline">Active</span>
+                                        @elseif($r->activestatus == 2)
+                                        <span class="label label-lg font-weight-bold label-warning label-inline">In Active</span>
+                                        @elseif($r->activestatus == 3)
+                                        <span class="label label-lg font-weight-bold label-light-danger label-inline">Temproary Banned</span>
+                                        @elseif($r->activestatus == 4)
+                                        <span class="label label-lg font-weight-bold label-danger label-inline">Permanent Banned</span>
+                                        @else
+                                        <span class="label label-lg font-weight-bold label-light-danger label-inline">No Status</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="dropdown dropdown-inline">
-                                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
+                                            <a href="javascript:;" class="btn btn-sm btn-primary btn-icon" data-toggle="dropdown"> <i class="la la-cog"></i> </a>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <ul class="nav nav-hoverable flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="{{ url('teammemberchangestatus') }}">Disable</a>
+                                                        <a class="nav-link" href="{{ url('userchangestatus') }}/{{$r->user_id}}/1">Active</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="#">Activate</a>
+                                                       <a class="nav-link" href="{{ url('userchangestatus') }}/{{$r->user_id}}/2">In Active</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                       <a class="nav-link" href="{{ url('userchangestatus') }}/{{$r->user_id}}/3">Temproary Banned</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                       <a class="nav-link" href="{{ url('userchangestatus') }}/{{$r->user_id}}/4">Permanent Banned</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details"> <i class="la la-edit"></i> </a>
-                                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Delete"> <i class="la la-trash"></i> </a>
+                                        <a href="{{ url('edit-staff-permission') }}/{{ $r->role_id }}" class="btn btn-primary btn-sm flaticon-edit"> Role </a>
+                                        <a data-toggle="modal" data-target="#edituser{{$r->user_id}}" href="javascript:;" class="btn btn-primary btn-sm flaticon-edit"> User </a>
                                     </td>
                                 </tr>
+                               
                                 @endforeach
                             </tbody>
                     </table>
@@ -115,6 +133,74 @@
 </div>
 <!--end::Content-->
     <!-- Modal-->
+@foreach($data as $user)
+ <div class="modal fade" id="edituser{{$user->user_id}}" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Update Team Member <br>
+                    <small class="-mt-4">Update Team Member</small>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url('updateteammember') }}">
+                    @csrf
+
+                <input type="hidden" value="{{ $user->user_id }}" name="user_id">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Select Role</label>
+                            <select required name="role_id" class="form-control selectpicker">
+                                <option value="">Select Role</option>
+                                @foreach(DB::table('staff_permissions')->where('company_id' , Cmf::getusercompany()->id)->get() as $r)
+                                <option @if($user->role_id == $r->id) selected @endif value="{{ $r->id }}">{{ $r->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Name</label>
+                            <input value="{{ $user->user_name }}" required type="text" class="form-control input-lg" name="name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="lable-control">Email</label>
+                            <input readonly value="{{ $user->user_email }}" required onkeyup="checkemail()" type="text" class="form-control input-lg" id="work_email" name="email">
+                            <span style="color:red;" id="email-error"  role="alert"></span>
+                        </div>
+                    </div> 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="lable-control">Phone number</label>
+                            <input required value="{{ $user->user_phonenumber }}" type="text" class="form-control input-lg" name="phone_number">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="lable-control">Change Password <span class="text-danger">(Leave Blank If Password Not Change)</span> </label>
+                            <input type="text" class="form-control input-lg" name="password">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button id="submitbutton" type="submit" class="btn btn-primary btn-block">
+                            Send Invitation
+                        </button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 <div class="modal fade" id="addnewstaffrole" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -234,5 +320,4 @@
         </div>
     </div>
 </div>
-
 @endsection

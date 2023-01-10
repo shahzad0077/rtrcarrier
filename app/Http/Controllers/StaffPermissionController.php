@@ -66,13 +66,33 @@ class StaffPermissionController extends Controller
     }
     public function allmembers()
     {
-        $data = role_users::select('users.id as user_id','users.name as user_name','users.email as user_email','users.phonenumber as user_phonenumber','staff_permissions.name as role_name','staff_permissions.id as role_id','role_users.created_at as created_at')                      
+        $data = role_users::select('users.activestatus as activestatus','users.id as user_id','users.name as user_name','users.email as user_email','users.phonenumber as user_phonenumber','staff_permissions.name as role_name','staff_permissions.id as role_id','role_users.created_at as created_at')                      
                     ->leftJoin('users','users.id','=','role_users.user_id') 
                     ->leftJoin('staff_permissions','staff_permissions.id','=','role_users.role_id')
                     ->where('staff_permissions.company_id','=',Cmf::getusercompany()->id)
                     ->orderBy('role_users.id','desc')
                     ->get();
         return view('carrier/team-members/index')->with(array('data'=>$data));
+    }
+    public function userchangestatus($userid , $id)
+    {
+        $newuser = User::find($userid);
+        $newuser->activestatus = $id;
+        $newuser->save();
+        return redirect()->back()->with('message', 'Updated Successfully');
+    }
+    public function updateteammember(Request $request)
+    {
+        $newuser = User::find($request->user_id);
+        $newuser->name = $request->name;
+        $newuser->email = $request->email;
+        $newuser->phonenumber = $request->phone_number;
+        if($request->password)
+        {
+            $newuser->password = Hash::make($request->password);
+        }
+        $newuser->save();
+        return redirect()->back()->with('message', 'Updated Successfully');
     }
     public function addnewcarrierstaff(Request $request)
     {

@@ -119,6 +119,8 @@ Route::POST('/addnewstaffpermission', [StaffPermissionController::class, 'addnew
 Route::POST('/updatestaffpermission', [StaffPermissionController::class, 'updatestaffpermission']);
 Route::get('/members', [StaffPermissionController::class, 'allmembers']);
 Route::POST('/addnewcarrierstaff', [StaffPermissionController::class, 'addnewcarrierstaff']);
+Route::POST('/updateteammember', [StaffPermissionController::class, 'updateteammember']);
+Route::get('/userchangestatus/{id}/{userid}', [StaffPermissionController::class, 'userchangestatus']);
 
 
 
