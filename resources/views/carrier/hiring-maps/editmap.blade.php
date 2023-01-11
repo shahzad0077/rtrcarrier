@@ -1,11 +1,8 @@
 @extends('layouts.main-layout')
-@section('title','Edit Hiring Map')
+@section('title','Add Hiring Map')
 @section('pagename')
 <li class="breadcrumb-item">
-    <a href="{{ url('hirig-maps') }}" class="text-muted">All Maps</a>
-</li>
-<li class="breadcrumb-item">
-    <a href="javascript:void(0)" class="text-muted">Edit Hiring Map</a>
+    <a href="javascript:void(0)" class="text-muted">Add Hiring Map</a>
 </li>
 @endsection
 @section('content')
@@ -25,7 +22,7 @@
                             <!--begin::Header-->
                             <div class="card-header py-3">
                                 <div class="card-title align-items-start flex-column">
-                                    <h3 class="card-label font-weight-bolder text-dark">Edit Map : {{ $map->tittle }}</h3>
+                                    <h3 class="card-label font-weight-bolder text-dark">Add Maps</h3>
                                 </div>
                             </div>
                             <!--end::Header-->
@@ -33,7 +30,7 @@
 
                             <form enctype="multipart/form-data" method="POST" action="{{ url('addnewhiringmap') }}" class="form">
                                 @csrf
-                                <input type="hidden" name="map_id" value="{{ $map->id }}">
+                                <input type="hidden" name="map_id" value="{{ $map_id }}">
                                 <input type="hidden" name="type" value="carrier">
                                 <!--begin::Body-->
                                 <div class="card-body">
@@ -51,8 +48,8 @@
                                                 <label class="lable-control">Map Type</label>
                                                 <select class="form-control selectpicker" name="map_type">
                                                     <option value="">Select a Map Type</option>
-                                                    <option @if($map->type == 'Hiring Map') selected @endif value="Hiring Map">Hiring Map</option>
-                                                    <option @if($map->type == 'Operating Map') selected @endif value="Operating Map">Operating Map</option>
+                                                    <option @if($map->type = 'Hiring Map') selected @endif value="Hiring Map">Hiring Map</option>
+                                                    <option @if($map->type = 'Operating Map') selected @endif value="Operating Map">Operating Map</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -73,7 +70,11 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <a onclick="shownewtab()" href="javascript:void(0)" class="btn form-control btn-secondary map-model-btn zip-btns" ><i class="fa fa-print"></i> Print Map</a>
+                                                    <select onchange="downloadandshare(this.value)" class="form-control selectpicker" id="shareanddownloadbutton">
+                                                        <option value="1">Download & Share</option>
+                                                        <option value="download">Download</option>
+                                                        <option value="share">Share</option>
+                                                    </select>
                                                 </div>
                                                 
                                             </div>
@@ -257,8 +258,73 @@
         </div>
     </div>
 </div>
+<style>
+.img-thumbnail-for-icons {
+    border-radius: 33px;
+    width: 61px;
+    height: 61px;
+}
+
+.fab:before {
+    position: relative;
+    top: 13px;
+}
+.smd {
+    width: 200px;
+    font-size: small;
+    text-align: center;
+}
+</style>
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content col-12">
+            <div class="modal-header ">
+                <h5 class="modal-title">Share</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-container1 d-flex">
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-twitter fa-2x"
+                            style="color:#4c6ef5;background-color: aliceblue"></a>
+                        <p>Twitter</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-facebook fa-2x"
+                            style="color: #3b5998;background-color: #eceff5;"></a>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-reddit-alien fa-2x"
+                            style="color: #FF5700;background-color: #fdd9ce;"></a>
+                        <p>Reddit</p>
+                    </div>
+                    <div class="smd">
+                        <a href="" class="img-thumbnail-for-icons fab fa-discord fa-2x "
+                            style="color: #738ADB;background-color: #d8d8d8;"></a>
+                        <p>Whatsapp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="input-group">
+                  <input id="maplink" style="border-right: none;" type="text" class="form-control" placeholder="Search" name="search">
+                  <div class="input-group-btn">
+                    <button  data-toggle="tooltip" title="sadsadsadsad" data-original-title="Delete" onclick="coppymaplink()" style="height:47px;" class="btn btn-default" type="submit"><i class="far fa-clone"></i></button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 @endsection
+
+
 @section('scripts')
+
     @foreach(DB::table('maplocations')->wherenull('city')->wherenull('zipcode')->where('map_id' , $map->id)->get() as $state)
         @php
             $stateinfo = DB::table('us_states')->where('STATE_CODE' , $state->state)->first();
@@ -280,11 +346,33 @@
             });
         </script>
     @endforeach
-
-
-
-
     <script>
+        function coppymaplink() {
+            var copyText = document.getElementById("maplink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(maplink.value);
+        }
+        function downloadandshare(id) {
+            if(id == 'download')
+            {
+                shownewtab()
+            }
+            if(id == 'share')
+            {
+                var tittle = $('#map_tittle').val();
+                if(tittle == '')
+                {
+                    $("#shareanddownloadbutton").val('1').change();
+                    $('.map_tittle_error').show();
+                }else{
+                    $("#shareanddownloadbutton").val('1').change();
+                    var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
+                    $('#maplink').val(url);
+                    $('#exampleModal').modal('show')
+                }
+            }
+        }
         function searchzipcode(id) {
             var app_url = geturl();
             $.ajax({
@@ -308,8 +396,10 @@
             var tittle = $('#map_tittle').val();
             if(tittle == '')
             {
+                $("#shareanddownloadbutton").val('1').change();
                 $('.map_tittle_error').show();
             }else{
+                $("#shareanddownloadbutton").val('1').change();
                 var url = '{{ url("printmap") }}/{{ $map_id }}/'+tittle;
                 window.open(url, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=500,width=5000,height=1000");
             }
@@ -342,6 +432,17 @@
             var html = 'Select State';
             $('.anchor').html(html);
             $('#removestatefromli'+id).show();
+        }
+        function deletestateformap(state) {
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/deletestate/"+state+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
         }
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
@@ -435,7 +536,8 @@
             var valname =$(event.target).val();
             var checked = $(this).is(':checked')
             if(checked==true){
-              savelocation(valname , 'state');
+              var mapid = '{{ $map_id }}'
+              savestate(valname , mapid);
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
                 console.log(data);
@@ -459,10 +561,10 @@
                 eachlyr_arr[valname].addTo(map)
               });
             }else{
-              // savelocation(valname , 'state');
-              // if(map.hasLayer(eachlyr_arr[valname])){
-              //   map.removeLayer(eachlyr_arr[valname])
-              // }   
+              deletestateformap(valname);
+              if(map.hasLayer(eachlyr_arr[valname])){
+                map.removeLayer(eachlyr_arr[valname])
+              }
             }  
           });
   
@@ -542,16 +644,25 @@
                 
         }
 
-        function deletecity(valname)
+        function deletecity(valname , id)
         {
-            var city = valname.toLowerCase();
-            if(map.hasLayer(eachlyr_arr[city])){
-                map.removeLayer(eachlyr_arr[city])
-            }
-            if(map.hasLayer(circlelayer)){
-                map.removeLayer(circlelayer)
-            }
-            $('.city'+valname).remove();
+
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/deletecity/"+id, 
+                type:"get",
+                success:function(res){
+                    var city = valname.toLowerCase();
+                    if(map.hasLayer(eachlyr_arr[city])){
+                        map.removeLayer(eachlyr_arr[city])
+                    }
+                    if(map.hasLayer(circlelayer)){
+                        map.removeLayer(circlelayer)
+                    }
+                    $('.city'+valname).remove();
+                }
+            })
         }
 
 
@@ -625,28 +736,18 @@
             $('#statehidden').val(state)
             $('#citiesdiv').hide();
         }
-        function editcitydrans(city , state , radius) {
-            city_drawn(city , state);
-            savecitymaplocation(city , state);
-            var lat = $('#cityLat').val();
-            var lon = $('#cityLng').val();
-            var radius = $('.range-slider__value').val();
-            console.log(radius);
-            circle_draw(lat,lon,radius);
-            $('#searchcity').val('');
-            $('#pac-input').val('')
-            $('#addCity').modal('hide');
-        }
+        
         function addnewcity()
         {
             var array = $('#pac-input').val().split(",");
             var city = array[0];
             var state = array[1];
             city_drawn(city , state);
-            savecitymaplocation(city , state);
             var lat = $('#cityLat').val();
             var lon = $('#cityLng').val();
             var radius = $('.range-slider__value').val();
+            savecity(city , state , radius);
+            
             console.log(radius);
             circle_draw(lat,lon,radius);
             $('#searchcity').val('');
@@ -676,33 +777,6 @@
         {
             $('.zipcode'+id).hide();
             $('#zipcode'+id).val('');
-        }
-        function savelocation(value , column)
-        {
-            var app_url = geturl();
-            var map_id = '{{ $map_id }}';
-            $.ajax({
-                url:app_url+"/savestatemap/"+value+"/"+map_id+"/"+column, 
-                type:"get",
-                success:function(res){
-                   
-                }
-            })
-        }
-
-
-        function savecitymaplocation(city , state)
-        {
-            var app_url = geturl();
-            var map_id = '{{ $map_id }}';
-            $.ajax({
-                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id, 
-                type:"get",
-                success:function(res){
-                 $('#appenddivs').append(res);      
-                }
-            })
-            
         }
     </script>
 @endsection

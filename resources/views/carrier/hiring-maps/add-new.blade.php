@@ -411,6 +411,17 @@
             $('.anchor').html(html);
             $('#removestatefromli'+id).show();
         }
+        function deletestateformap(state) {
+            var app_url = geturl();
+            var map_id = '{{ $map_id }}';
+            $.ajax({
+                url:app_url+"/deletestate/"+state+"/"+map_id, 
+                type:"get",
+                success:function(res){
+                   
+                }
+            })
+        }
         setTimeout(function(){
           $("#states_chkbx_div").css({"max-height": "300px", "padding": "5%", "overflow": "auto"});
         }, 500);
@@ -503,7 +514,8 @@
             var valname =$(event.target).val();
             var checked = $(this).is(':checked')
             if(checked==true){
-              savelocation(valname , 'state');
+              var mapid = '{{ $map_id }}'
+              savestate(valname , mapid);
               var nurl='https://nominatim.openstreetmap.org/search.php?country=%us%&state='+valname+'&polygon_geojson=1&format=geojson'
               $.getJSON(nurl, function(data) {
                 console.log(data);
@@ -527,10 +539,10 @@
                 eachlyr_arr[valname].addTo(map)
               });
             }else{
-              // savelocation(valname , 'state');
-              // if(map.hasLayer(eachlyr_arr[valname])){
-              //   map.removeLayer(eachlyr_arr[valname])
-              // }   
+              deletestateformap(valname);
+              if(map.hasLayer(eachlyr_arr[valname])){
+                map.removeLayer(eachlyr_arr[valname])
+              }
             }  
           });
   
@@ -712,8 +724,8 @@
             var lat = $('#cityLat').val();
             var lon = $('#cityLng').val();
             var radius = $('.range-slider__value').val();
-            savecitymaplocation(city , state , radius);
-            
+            var mapid = '{{ $map_id }}';
+            savecity(city , state , radius , mapid);
             console.log(radius);
             circle_draw(lat,lon,radius);
             $('#searchcity').val('');
@@ -739,37 +751,6 @@
 
             $('#addzipcode').modal('hide')
         }
-        function deletezipcode(id)
-        {
-            $('.zipcode'+id).hide();
-            $('#zipcode'+id).val('');
-        }
-        function savelocation(value , column)
-        {
-            var app_url = geturl();
-            var map_id = '{{ $map_id }}';
-            $.ajax({
-                url:app_url+"/savestatemap/"+value+"/"+map_id+"/"+column, 
-                type:"get",
-                success:function(res){
-                   
-                }
-            })
-        }
-
-
-        function savecitymaplocation(city , state , radius)
-        {
-            var app_url = geturl();
-            var map_id = '{{ $map_id }}';
-            $.ajax({
-                url:app_url+"/savecitymaplocation/"+city+"/"+state+"/"+map_id+"/"+radius, 
-                type:"get",
-                success:function(res){
-                 $('#appenddivs').append(res);      
-                }
-            })
             
-        }
     </script>
 @endsection

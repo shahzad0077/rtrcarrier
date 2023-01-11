@@ -831,3 +831,32 @@ function showpreview(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
+function savecity(city , state , radius , map_id)
+{
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/savecity/"+city+"/"+state+"/"+map_id+"/"+radius, 
+        type:"get",
+        success:function(res){
+         $('#appenddivs').append(res);      
+        }
+    })
+}
+function savestate(value, map_id)
+{
+    var app_url = geturl();
+    $.ajax({
+        url:app_url+"/savestate/"+value+"/"+map_id, 
+        type:"get",
+        success:function(res){
+           
+        }
+    })
+}
+function deletezipcode(id)
+{
+    $('.zipcode'+id).hide();
+    $('#zipcode'+id).val('');
+}

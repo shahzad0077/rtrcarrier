@@ -376,21 +376,7 @@ class CarrierController extends Controller
         $map->save();
         return redirect()->back()->with('message', 'Map status Updated Successfully');
     }
-    public function savestatemap($state,$map_id,$colum)
-    {
-        $check  = maplocations::where($colum , $state)->where('map_id',$map_id);
-        if($check->count() > 0)
-        {
-            maplocations::where($colum , $state)->where('map_id',$map_id)->delete();
-        }
-        else
-        {
-            $maploc = new maplocations();
-            $maploc->map_id = $map_id;
-            $maploc->$colum = $state;
-            $maploc->save();
-        }
-    }
+    
     public function savezipcodeagainstmap($zipcode , $radius , $mapid)
     {
         $maploc = new maplocations();
@@ -403,28 +389,7 @@ class CarrierController extends Controller
     {
         maplocations::where('zipcode' , $zipcode)->where('radius' , $radius)->where('map_id' , $mapid)->delete();
     }
-    public function savecitymaplocation($city,$state,$map_id ,  $radius)
-    {
-        $check  = maplocations::where('state' , $state)->where('city' , $city)->where('map_id',$map_id);
-        if($check->count() > 0)
-        {
-            maplocations::where('state' , $state)->where('city' , $city)->where('map_id',$map_id)->delete();
-        }
-        else
-        {
-            $maploc = new maplocations();
-            $maploc->map_id = $map_id;
-            $maploc->state = $state;
-            $maploc->city = $city;
-            $maploc->radius = $radius;
-            $maploc->save();
-        }
-        $string = $new_str = str_replace(' ', '-', $city); 
-        $cityforclass = $string;
-        $string = "'".$string."'";
-
-        echo '<button type="button" class="city'.$cityforclass.' btn btn-secondary map-delete-btn">'.$city.', '.$state.' ('.$radius.')<i onclick="deletecity('.$string.' , '.$maploc->id.')" class="icon-2x text-dark-50 flaticon-delete-1" ></i></button>';
-    }
+    
     public function deletecity($id)
     {
         maplocations::where('id' , $id)->delete();

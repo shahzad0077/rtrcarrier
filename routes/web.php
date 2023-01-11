@@ -9,6 +9,7 @@ use App\Http\Controllers\StaffPermissionController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\JobController; 
 use App\Http\Controllers\ChatController; 
+use App\Http\Controllers\MapController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Site Routes
 
 Route::get('/', [SiteController::class, 'index']);
-
 Route::get('/carrier/{id}', [SiteController::class, 'carrierprofile']);
 Route::get('/job-detail/{id}', [SiteController::class, 'jobdetail']);
 
@@ -34,12 +34,9 @@ Route::get('/job-detail/{id}', [SiteController::class, 'jobdetail']);
 // Register Routes
 Route::POST('/checkemail', [RegisterController::class, 'checkemail'])->name('checkemail');
 Route::get('/checkemailfromadmin/{id}', [RegisterController::class, 'checkemailfromadmin']);
-
-
 Route::get('/checkcompanyname/{id}', [RegisterController::class, 'checkcompanyname']);
 Route::get('/checkdotnumber/{id}', [RegisterController::class, 'checkdotnumber']);
 Route::POST('/carrierregister', [RegisterController::class, 'carrierregister']);
-
 Route::get('/registeralert', [RegisterController::class, 'registeralert'])->name('registeralert');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [CarrierController::class, 'index']);
@@ -92,9 +89,13 @@ Route::get('/searchzipcodefordashboard/{id}', [CarrierController::class, 'search
 
 
 
+// Carrier Map Routes
+Route::get('/savestate/{id}/{two}', [MapController::class, 'savestate']);
+Route::get('/deletestate/{id}/{two}', [MapController::class, 'deletestate']);
+Route::get('/savecity/{id}/{two}/{three}/{radius}', [MapController::class, 'savecity']);
 
-Route::get('/savestatemap/{id}/{two}/{three}', [CarrierController::class, 'savestatemap']);
-Route::get('/savecitymaplocation/{id}/{two}/{three}/{radius}', [CarrierController::class, 'savecitymaplocation']);
+
+
 Route::get('/savezipcodeagainstmap/{id}/{two}/{three}', [CarrierController::class, 'savezipcodeagainstmap']);
 Route::get('/deletecity/{id}', [CarrierController::class, 'deletecity']);
 
