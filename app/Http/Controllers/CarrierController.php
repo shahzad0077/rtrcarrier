@@ -40,6 +40,11 @@ class CarrierController extends Controller
     }
     public function index()
     {
+        if(Auth::user()->type == 'admin')
+        {
+            $url = url('admin/dashboard');
+            return Redirect::to($url);
+        }
         $data = companies::where('company_link' , Cmf::getusercompany()->id)->get()->first();
         $recuringtips = recuring_tips::orderby('id' , 'desc')->limit(5)->get();
         $jobs = jobsubmissionsrequests::select('jobs.id as job_id','jobs.job_tittle','jobs.compensation','jobs.driver_type','jobs.duty_time','jobs.freight_type','jobs.home_time','jobs.avgerage_weekly_pay','jobsubmissionsrequests.status as job_status')->leftJoin('jobs','jobs.id','=','jobsubmissionsrequests.job_id')->where('company_id' , Cmf::getusercompany()->id)->orderby('jobs.created_at' , 'desc')->get();
