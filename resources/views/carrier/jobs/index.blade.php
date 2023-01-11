@@ -45,9 +45,9 @@
                         </div>
                         <div class="col-md-2">
                             <button style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " class="btn btn-light-primary btn-block">Search</button>
-                        </div>
+                        </div> 
                         <div class="col-md-2 text-right">
-                        <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{url('job/add')}}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
+                        <a style=" height: calc(2.1em + 1.3rem + 2px); padding-top: 12px; " href="{{ url('job/add') }}?step=1&jobid={{ rand(123456789,987654321) }}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Job Post</a>
                         </div> 
                     </div>
                 </form>
