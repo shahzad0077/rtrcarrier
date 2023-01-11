@@ -11,7 +11,8 @@
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
             <!--begin::Container-->
-            <div class="container-fluid">
+            <div class="container-fluid mt-5">
+                @include('alerts.index')
                 <div class="row mt-5">
                     <div class="col-md-12">
                         <div class="card card-custom gutter-b card-stretch">
@@ -28,7 +29,7 @@
                             <!--end::Header-->
                             <!--begin::Body-->
                             <div class="card-body py-0">
-                                @include('alerts.index')
+                                
                                 <!--begin::Table-->
                                 <div class="table-responsive">
                                     <table id="example" class="table table-separate table-head-custom table-checkable">
@@ -102,24 +103,38 @@
 
 
                                                              <div class="modal fade" id="deleteModal{{ $r->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Are you Sure?</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <i aria-hidden="true" class="ki ki-close"></i>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div style="text-align: left;" class="modal-body">
-                                                                           <b style="color:red;"> Are you Sure You want to delete this.If you Delete Map Then Job Will be Automaticaly Deleted Against This Map</b> 
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                                                                            <a href="{{ url('deletemap') }}/{{ $r->id }}" class="btn btn-danger font-weight-bold">Yes, Delete it</a>
-                                                                        </div>
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Are you Sure?</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true" class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div style="text-align: left;" class="modal-body">
+                                                                       <b style="color:green;"> Deleting this map will pause the following job listings:</b>
+                                                                       @php
+                                                                            if($r->type == 'Hiring Map')
+                                                                            {
+                                                                                $colum = 'hiring_area';
+                                                                            }else{
+                                                                                $colum = 'operating_area';
+                                                                            }
+                                                                       @endphp
+                                                                       @foreach(DB::table('jobs')->where($colum , $r->id)->get() as $job)
+
+                                                                        <h3 class="label label-lg label-light-primary label-inline mt-3">{{ $job->job_tittle }}</h3>
+
+                                                                       @endforeach
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-light-success font-weight-bold" data-dismiss="modal">Ignore</button>
+                                                                        <a href="{{ url('deletemap') }}/{{ $r->id }}" class="btn btn-danger font-weight-bold">Yes, Delete it</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                 </td>
                                             </tr>
                                             @endforeach

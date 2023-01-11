@@ -54,7 +54,6 @@ class MapController extends Controller
     public function deletemap($id)
     {
         $map = hiring_maps::find($id);
-
         if($map->type == 'Hiring Map')
         {
             jobs::where('hiring_area' , $id)->update(array('hiring_area'=>'','status'=>'pause'));

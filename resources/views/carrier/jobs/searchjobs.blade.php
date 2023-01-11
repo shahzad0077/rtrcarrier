@@ -44,7 +44,7 @@
                 @foreach($jobs as $index => $job)
                 <div class="col-md-12">
                     <div class="card job-card">
-                        <div class="card-body p-6">
+                        <div class="card-body p-5">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <div class="d-flex flex-row">
@@ -52,12 +52,17 @@
                                             <h4><a target="_blank" class="text-black" href="{{url('job-detail')}}/{{ $job->url }}">{{ $job->job_tittle }}</a></h4>
                                         </div>
                                         <div>
+                                            @if($job->job_status_main == 'pause')
+                                            <span class="label ml-5 label-lg label-light-danger label-inline">{{ $job->job_status_main }}</span>
+                                            @else
                                             <span class="job-type ml-5">{{ $job->job_status }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    
+                                    <div data-toggle="modal" data-target="#sharejobmodal{{$job->job_id}}" class="btn btn-primary me-6">Share Job</div>
+                                    <div onclick="showdetails({{ $job->job_id }})" id="jobdetailbutton{{$job->job_id}}" class="btn btn-primary me-6">See Details</div>
                                     <div class="dropdown dropdown-inline">
                                         <button type="button" class="btn btn-hover-light-gray btn-icon btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ki ki-bold-more-hor"></i>
@@ -74,19 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                           <!--  <div class="d-flex flex-row mt-1">
-                                <div class="head-down">
-                                    <a href="javascript:void(0)" class="text-primary">
-                                        <i class="fa fa-map-marker-alt"></i>
-                                        View Map
-                                    </a>
-                                </div>
-                                <div class="head-down">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    
-                                </div>
-                            </div> -->
-                            <div class="row mt-1">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex flex-row mt-3">
                                         <div class="job-detail">
@@ -129,6 +122,7 @@
                                 </div>
                                 
                             </div>
+                            @include('carrier.jobs.jobdetailsection')
                         </div>
                     </div>
                 </div>

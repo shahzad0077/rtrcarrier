@@ -64,7 +64,11 @@
                                             <h4><a target="_blank" class="text-black" href="{{url('job-detail')}}/{{ $job->url }}">{{ $job->job_tittle }}</a></h4>
                                         </div>
                                         <div>
+                                            @if($job->job_status_main == 'pause')
+                                            <span class="label ml-5 label-lg label-light-danger label-inline">{{ $job->job_status_main }}</span>
+                                            @else
                                             <span class="job-type ml-5">{{ $job->job_status }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

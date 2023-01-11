@@ -345,41 +345,17 @@ class CarrierController extends Controller
     public function deletemap($id)
     {
         $map = hiring_maps::find($id);
-        $map_type = $map->type;
-        if($map_type == 'Hiring Map')
+        if($map->type == 'Hiring Map')
         {
-            $jobs = jobs::where('hiring_area' , $id)->first();
-            if($jobs)
-            {
-                linktemplatewithjobs::where('job_id' , $jobs->id)->delete();
-                advance_equipment_values::where('job_id' , $jobs->id)->delete();
-                advance_pay_options::where('job_id' , $jobs->id)->delete();
-                equipment_jobs::where('job_id' , $jobs->id)->delete();
-                jobsubmissionsrequests::where('job_id' , $jobs->id)->delete();
-                job_equipments::where('job_id' , $jobs->id)->delete();
-                jobs::where('id' , $jobs->id)->delete();
-            }
-            
+            jobs::where('hiring_area' , $id)->update(array('hiring_area'=>'','status'=>'pause'));
         }
-        if($map_type == 'Operating Map')
+        if($map->type == 'Operating Map')
         {
-            $jobs = jobs::where('operating_area' , $id)->first();
-            if($jobs)
-            {
-                linktemplatewithjobs::where('job_id' , $jobs->id)->delete();
-                advance_equipment_values::where('job_id' , $jobs->id)->delete();
-                advance_pay_options::where('job_id' , $jobs->id)->delete();
-                equipment_jobs::where('job_id' , $jobs->id)->delete();
-                jobsubmissionsrequests::where('job_id' , $jobs->id)->delete();
-                job_equipments::where('job_id' , $jobs->id)->delete();
-                jobs::where('id' , $jobs->id)->delete();
-            }
-            
+            jobs::where('operating_area' , $id)->update(array('operating_area'=>'','status'=>'pause'));
         }
-
         maplocations::where('map_id' , $id)->delete();
         hiring_maps::where('id' , $id)->delete();
-        return redirect()->back()->with('message', 'Map Deleted Successfully');
+        return redirect()->back()->with('warning', 'Map Deleted Successfully');
     }
     function editmap($id)
     {
