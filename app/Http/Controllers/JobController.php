@@ -512,6 +512,10 @@ class JobController extends Controller
         {
             $addnewjob->custombenifits = implode(',', $request->custombenifits);
         }
+        if($request->benifitsdocument)
+        {
+            $addnewjob->benifitsdocument = Cmf::sendimagetodirectory($request->benifitsdocument);
+        }
         $addnewjob->compensation_ammount = $request->compensation_ammount;
         $addnewjob->top_10_of_earners_are_makking = $request->top_10_of_earners_are_makking;
         $addnewjob->avgerage_weekly_pay = $request->avgerage_weekly_pay;

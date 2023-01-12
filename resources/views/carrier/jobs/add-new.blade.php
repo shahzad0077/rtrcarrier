@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 @if($_GET['step'] == 1)
-                                <form method="POST" action="{{ url('job/submitone') }}">
+                                <form enctype="multipart/form-data" method="POST" action="{{ url('job/submitone') }}">
                                     @csrf
                                     <input type="hidden"  name="job_id" value="{{ $_GET['jobid'] }}">
                                     @include('carrier.jobs.basic')

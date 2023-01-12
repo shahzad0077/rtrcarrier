@@ -41,7 +41,7 @@
                         </div>
                         <!--end::Header-->
                     </div>
-                    <form method="POST" action="{{ url('updatebasicdetailsofjob') }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ url('updatebasicdetailsofjob') }}">
                         @csrf
                         <input type="hidden"  name="job_id" value="{{ $job->id }}">
                         @include('carrier.jobs.basic')

@@ -385,6 +385,9 @@
                     <label class="lable-control">Upload your benefits information documents</label>
                      <input type="file" name="benifitsdocument" id="file-upload" class="form-control" />
                      <div class="mt-3" id="file-upload-filename"></div>
+                     @if($job->benifitsdocument)
+                     <div class="alert alert-primary"> <a class="text-white" target="_blank" href="{{ url('public/images') }}/{{ $job->benifitsdocument }}">{{ $job->benifitsdocument }}</a> </div>
+                     @endif
                 </div>
             </div>
         </div>
