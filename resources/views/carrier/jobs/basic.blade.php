@@ -379,14 +379,12 @@
                 </div>
             </div>
         </div>
-        <style type="text/css">
-            
-        </style>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="lable-control">Upload your benefits information documents</label>
-                    <input class="form-control" type="file" id="files" name="benifitfiles[]" multiple />
+                     <input type="file" name="benifitsdocument" id="file-upload" class="form-control" />
+                     <div class="mt-3" id="file-upload-filename"></div>
                 </div>
             </div>
         </div>

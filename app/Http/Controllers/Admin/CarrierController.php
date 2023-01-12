@@ -56,7 +56,7 @@ class CarrierController extends Controller
     {
         $input = $request->all();
         $q = companies::leftJoin('users','users.id','=','companies.user_id')
-            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.approved_status');
+            ->select('companies.*','users.id as user_id','users.name as user_name','users.name as user_name','users.email as user_email','users.dot_number','users.activestatus','users.approved_status');
         if ($input['keyword'])
         {
             $q->where('users.name','like', '%' . $input['keyword'] . '%' );
@@ -64,6 +64,10 @@ class CarrierController extends Controller
         if ($input['dotnumber'])
         {
             $q->where('users.dot_number','like', '%' . $input['dotnumber'] . '%' );
+        }
+        if ($input['userstatus'])
+        {
+            $q->where('users.activestatus',$input['userstatus']);
         }       
         $q->orderBy('id','desc');
         $q->where('users.approved_status' , 1);

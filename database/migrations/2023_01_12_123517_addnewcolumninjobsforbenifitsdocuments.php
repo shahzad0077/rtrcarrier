@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Addnewcoluminusersforstatus extends Migration
+class Addnewcolumninjobsforbenifitsdocuments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class Addnewcoluminusersforstatus extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('activestatus')->nullable();
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->string('benifitsdocument')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class Addnewcoluminusersforstatus extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('activestatus');
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropColumn('benifitsdocument');
         });
     }
 }

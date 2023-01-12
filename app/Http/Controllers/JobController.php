@@ -626,6 +626,10 @@ class JobController extends Controller
         {
             $addnewjob->benifits = implode(',', $request->benifits);
         }
+        if($request->benifitsdocument)
+        {
+            $addnewjob->benifitsdocument = Cmf::sendimagetodirectory($request->benifitsdocument);
+        }
         if($request->custombenifits)
         {
             $addnewjob->custombenifits = implode(',', $request->custombenifits);

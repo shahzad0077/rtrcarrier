@@ -60,12 +60,12 @@
                                 <div class="d-flex align-items-center">
                                     <label class="mr-3 mb-0 d-none d-md-block">Account Status:</label>
                                     <div class="dropdown bootstrap-select form-control">
-                                        <select class="form-control" id="kt_datatable_search_status" tabindex="null">
-                                            <option value="">All</option>
-                                            <option value="1">Active</option>
-                                            <option value="2">In Active</option>
-                                            <option value="3">Temproary Blocked</option>
-                                            <option value="4">Permanent Blocked</option>
+                                        <select name="userstatus" class="form-control" id="kt_datatable_search_status" tabindex="null">
+                                            <option  value="">All</option>
+                                            <option @if(isset($_GET['userstatus'])) @if($_GET['userstatus'] == 1) selected @endif  @endif value="1">Active</option>
+                                            <option @if(isset($_GET['userstatus'])) @if($_GET['userstatus'] == 2) selected @endif @endif value="2">In Active</option>
+                                            <option @if(isset($_GET['userstatus'])) @if($_GET['userstatus'] == 3) selected @endif @endif value="3">Temproary Blocked</option>
+                                            <option @if(isset($_GET['userstatus'])) @if($_GET['userstatus'] == 4) selected @endif @endif value="4">Permanent Blocked</option>
                                         </select>
                                     </div>
                                 </div>
