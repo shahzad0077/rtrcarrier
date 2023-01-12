@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\JobController; 
 use App\Http\Controllers\ChatController; 
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\OrientationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -159,19 +161,22 @@ Route::post('/updatebasicdetailsofjob', [JobController::class, 'updatebasicdetai
 Route::post('/updatehiringtemplateofjob', [JobController::class, 'updatehiringtemplateofjob']);
 Route::post('/updateroutingofjob', [JobController::class, 'updateroutingofjob']);
 Route::get('/deleteequipment/{id}/{jobid}', [JobController::class, 'deleteequipment']);
-
-
-
-
 Route::get('/deletehiringtemplate/{id}', [JobController::class, 'deletehiringtemplate']);
 Route::get('/add-new-hiring-template', [JobController::class, 'addnewhiringtemplate']);
 Route::post('/addnewhiringtemplate', [JobController::class, 'createnewhiringtemplate']);
 Route::post('/updatehiringtemplate', [JobController::class, 'updatehiringtemplate']);
-
-
 Route::POST('/paypal', [JobController::class, 'postPaymentWithpaypal'])->name('paypal');
 Route::get('/paypal', [JobController::class, 'getPaymentStatus'])->name('status');
 Route::post('stripe', [JobController::class, 'stripePost'])->name('stripe.post');
+
+
+
+
+Route::get('/orientation-templates', [OrientationController::class, 'alltemplates']);
+Route::get('add-new-orientation-template', [OrientationController::class, 'addorientationtemplates']);
+Route::post('addneworientationtemplate', [OrientationController::class, 'addneworientationtemplate']);
+Route::get('editorientationtemplate/{id}', [OrientationController::class, 'editorientationtemplate']);
+Route::post('updateorientationtemplate', [OrientationController::class, 'updateorientationtemplate']);
 
 
 

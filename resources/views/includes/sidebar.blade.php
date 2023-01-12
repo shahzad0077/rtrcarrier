@@ -44,7 +44,7 @@
                     <h4 class="menu-text">Menu</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
                 </li>
-                <li class="menu-item menu-item-submenu  @if($currenturl == 'hiring-templates') menu-item-open @endif  @if($currenturl == 'jobs') menu-item-open @endif  @if($currenturl == 'job/add') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
+                <li class="menu-item menu-item-submenu  @if($currenturl == 'orientation-templates') menu-item-open @endif @if($currenturl == 'hiring-templates') menu-item-open @endif  @if($currenturl == 'jobs') menu-item-open @endif  @if($currenturl == 'job/add') menu-item-open @endif" aria-haspopup="true" data-menu-toggle="hover">
 
                     @if(Cmf::getcarrierrole(22) == 0)
                     <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -109,6 +109,20 @@
                             <li class="menu-item @if($currenturl == 'hiring-templates') menu-item-active @endif" aria-haspopup="true">
                                 <a href="{{url('hiring-templates')}}" class="menu-link ">
                                     <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Hiring Templates</span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if(Cmf::getcarrierrole(1) == 0)
+                            <li class="menu-item @if($currenturl == 'orientation-templates') menu-item-active @endif" aria-haspopup="true">
+                                <a class="menu-link" href="{{url('orientation-templates')}}">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Orientation Templates</span>
+                                </a>
+                            </li>
+                            @elseif(Cmf::getcarrierrole(1) == 1)
+                            <li class="menu-item @if($currenturl == 'orientation-templates') menu-item-active @endif" aria-haspopup="true">
+                                <a href="{{url('orientation-templates')}}" class="menu-link ">
+                                    <i class="menu-bullet menu-bullet-dot"><span></span></i><span class="menu-text">Orientation Templates</span>
                                 </a>
                             </li>
                             @endif
