@@ -45,6 +45,14 @@
                                                 </a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link @if($_GET['step'] == 2) active @endif">
+                                                    <span class="nav-icon">
+                                                        <img src="{{asset('public/carrier/assets/media/custom/hiring-req.svg')}}">
+                                                    </span>
+                                                    <span class="nav-text">Orientation</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link @if($_GET['step'] == 3) active @endif">
                                                     <span class="nav-icon">
                                                         <img src="{{asset('public/carrier/assets/media/custom/routing-trans.svg')}}">
